@@ -752,3 +752,6 @@ includeFile("groups/crystal/crystal_sunriders_destiny.lua")
 includeFile("groups/crystal/crystal_ulics_redemption.lua")
 includeFile("groups/crystal/crystal_windus_guile.lua")
 includeFile("groups/crystal/named_crystals.lua")
+
+-- Components
+includeFile("groups/jedi_clothing_attachments.lua")

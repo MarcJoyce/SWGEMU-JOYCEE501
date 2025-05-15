@@ -44,7 +44,7 @@ void AttachmentImplementation::initializeTransientMembers() {
 	}
 }
 
-void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
+void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool firstUpdate, const String& lootTemplateName) {
 	auto zoneServer = getZoneServer();
 
 	if (zoneServer == nullptr) {
@@ -77,13 +77,17 @@ void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool
 		modCount = System::random(1) + 2;
 	}
 
+	modCount = 1
+
 	for (int i = 0; i < modCount; ++i) {
 		float step = 1.f - ((i / (float)modCount) * 0.5f);
 		int min = Math::clamp(-1, (int)round(0.075f * level) - 1, 25) * step;
 		int max = Math::clamp(-1, (int)round(0.125f * level) + 1, 25);
 		int mod = System::random(max - min) + min;
 
-		String modName = lootManager->getRandomLootableMod(gameObjectType);
+		mod = 25;
+
+		String modName = lootManager->getRandomLootableMod(gameObjectType, lootTemplateName);
 
 		skillModifiers.put(modName, ((mod <= 0) ? 1 : mod));
 	}

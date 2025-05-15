@@ -39,6 +39,7 @@ void LootManagerImplementation::initialize() {
 
 	info(true) << "Loaded " << lootableArmorAttachmentMods.size() << " lootable Armor Attachment Stat Mods.";
 	info(true) << "Loaded " << lootableClothingAttachmentMods.size() << " lootable Clothing Attachment Stat Mods.";
+	info(true) << "Loaded " << lootableJediClothingAttachmentMods.size() << " lootable Jedi Clothing Attachment Stat Mods.";
 	info(true) << "Loaded " << lootableArmorMods.size() << " lootable Armor Stat Mods.";
 	info(true) << "Loaded " << lootableClothingMods.size() << " lootable Clothing Stat Mods.";
 	info(true) << "Loaded " << lootableOneHandedMeleeMods.size() << " lootable One-handed Melee Stat Mods.";
@@ -154,6 +155,9 @@ bool LootManagerImplementation::loadConfigData() {
 
 	modsTable = lua->getGlobalObject("lootableClothingAttachmentStatMods");
 	loadLootableMods( &modsTable, &lootableClothingAttachmentMods );
+
+	modsTable = lua->getGlobalObject("lootableJediStatMods");
+	loadLootableMods( &modsTable, &lootableJediClothingAttachmentMods );
 
 	modsTable = lua->getGlobalObject("lootableArmorStatMods");
 	loadLootableMods( &modsTable, &lootableArmorMods );
@@ -437,6 +441,50 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		addConditionDamage(prototype);
 	}
 
+	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
+	craftingValues->addExperimentalAttribute("creatueLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
+	craftingValues->setHidden("creatureLevel");
+
+	if (prototype != nullptr && prototype->isAttachment()) {
+		Attachment* attachment = cast<Attachment*>(prototype.get());
+
+		if (attachment == nullptr) {
+			return nullptr;
+		}
+
+		attachment->updateCraftingValues(craftingValues, true, templateObject->getTemplateName());
+
+		delete craftingValues;
+
+		VectorMap<String, int>* mods = attachment->getSkillMods();
+
+		StringId attachmentName;
+		String key = "";
+		int highest = -1;
+		String attachmentType = "[AA] ";
+		String attachmentCustomName = "";
+
+		if(attachment->isClothingAttachment()){
+			attachmentType = "[CA] ";
+		}
+
+		for (int i = 0; i < mods->size(); i++) {
+			auto key = mods->elementAt(i).getKey();
+			auto value = mods->elementAt(i).getValue();
+
+			if (value > highest) {
+				highest = value;
+			}
+
+			attachmentName.setStringId("stat_n", key);
+			prototype->setObjectName(attachmentName, false);
+			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
+		}
+
+		prototype->setCustomObjectName(attachmentCustomName, false);	
+	}
+
+
 	trx.addState("lootAdjustment", chance);
 	trx.addState("lootExcMod", excMod);
 	trx.addState("lootJunkValue", prototype->getJunkValue());
@@ -595,7 +643,7 @@ void LootManagerImplementation::setSkillMods(TangibleObject* prototype, const Lo
 	}
 
 	for (int i = 0; i < randomMods; ++i) {
-		String modName = getRandomLootableMod(prototype->getGameObjectType());
+		String modName = getRandomLootableMod(prototype->getGameObjectType(), templateObject->getTemplateName());
 
 		if (modName.isEmpty()) {
 			continue;
@@ -623,9 +671,11 @@ void LootManagerImplementation::setSkillMods(TangibleObject* prototype, const Lo
 	prototype->addMagicBit(false);
 }
 
-String LootManagerImplementation::getRandomLootableMod(uint32 sceneObjectType) {
+String LootManagerImplementation::getRandomLootableMod(uint32 sceneObjectType, const String& lootTemplateName) {
 	if (sceneObjectType == SceneObjectType::ARMORATTACHMENT) {
 		return lootableArmorAttachmentMods.get(System::random(lootableArmorAttachmentMods.size() - 1));
+	} else if( sceneObjectType == SceneObjectType::CLOTHINGATTACHMENT && lootTemplateName == "attachment_jedi_clothing") {
+		return lootableJediClothingAttachmentMods.get(System::random(lootableJediClothingAttachmentMods.size() - 1));
 	} else if (sceneObjectType == SceneObjectType::CLOTHINGATTACHMENT) {
 		return lootableClothingAttachmentMods.get(System::random(lootableClothingAttachmentMods.size() - 1));
 	} else if (sceneObjectType & SceneObjectType::ARMOR) {

@@ -81,6 +81,8 @@ class LootManager extends ManagedService implements Logger {
 	@dereferenced
 	private transient SortedVector<string> lootableClothingAttachmentMods;
 	@dereferenced
+	private transient SortedVector<string> lootableJediClothingAttachmentMods;
+	@dereferenced
 	private transient SortedVector<string> lootableArmorMods;
 	@dereferenced
 	private transient SortedVector<string> lootableClothingMods;
@@ -123,6 +125,7 @@ class LootManager extends ManagedService implements Logger {
 
 		lootableArmorAttachmentMods.setNoDuplicateInsertPlan();
 		lootableClothingAttachmentMods.setNoDuplicateInsertPlan();
+		lootableJediClothingAttachmentMods.setNoDuplicateInsertPlan();
 		lootableArmorMods.setNoDuplicateInsertPlan();
 		lootableClothingMods.setNoDuplicateInsertPlan();
 		lootableOneHandedMeleeMods.setNoDuplicateInsertPlan();
@@ -207,7 +210,7 @@ class LootManager extends ManagedService implements Logger {
 	public native TangibleObject createLootResource(@dereferenced final string resourceTypeName, @dereferenced final string resourceZoneName);
 
 	@local
-	public native string getRandomLootableMod( unsigned int sceneObjectType );
+	public native string getRandomLootableMod( unsigned int sceneObjectType, final string lootTemplateName );
 
 	public native int calculateLootCredits(int level);
 

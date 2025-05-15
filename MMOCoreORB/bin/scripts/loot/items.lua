@@ -2304,4 +2304,6 @@ includeFile("items/crystal/force_crystal_strength_of_luminaria.lua")
 includeFile("items/crystal/force_crystal_sunriders_destiny.lua")
 includeFile("items/crystal/force_crystal_ulics_redemption.lua")
 includeFile("items/crystal/force_crystal_windus_guile.lua")
-includeFile("items/crystal/named_crystals.lua")
+
+-- Components
+includeFile("items/attachment_jedi_clothing.lua")
