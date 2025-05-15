@@ -472,7 +472,7 @@ void LightsaberCrystalComponentImplementation::updateCraftingValues(CraftingValu
 }
 
 int LightsaberCrystalComponentImplementation::inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, bool notifyClient) {
-	if (isDestroyed()) {
+	if (isDestroyed() || getColor() != 31) {
 		return 0;
 	}
 
