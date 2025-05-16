@@ -39,12 +39,12 @@ public:
 			CreatureObject* player = cast<CreatureObject*>( tano.get());
 
 			if (player->getPlayerObject()->hasGodMode() && tag != "") {
-				UnicodeString customName = name + " \\#ffff00[" + tag + "]\\#.";
-				addUnicodeUpdate(2, customName);
+				// UnicodeString customName = name + " \\#ffff00[" + tag + "]\\#.";
+				// addUnicodeUpdate(2, customName);
+				addUnicodeUpdate(2, name);
 				return;
 			}
 		}
-
 		addUnicodeUpdate(2, name);
 	}
 
