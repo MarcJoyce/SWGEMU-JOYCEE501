@@ -441,9 +441,22 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		// addConditionDamage(prototype);
 	}
 
-	if (prototype->isAttachment()) {
+	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
+	craftingValues->addExperimentalAttribute("creatueLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
+	craftingValues->setHidden("creatureLevel");
+
+	if (prototype != nullptr && prototype->isAttachment()) {
 		Attachment* attachment = cast<Attachment*>(prototype.get());
-		VectorMap<String, int>* skillModifiers = attachment->getSkillMods();
+
+		if (attachment == nullptr) {
+			return nullptr;
+		}
+
+		attachment->updateCraftingValues(craftingValues, true, templateObject->getTemplateName());
+
+		delete craftingValues;
+
+		VectorMap<String, int>* mods = attachment->getSkillMods();
 
 		StringId attachmentName;
 		String key = "";
@@ -451,29 +464,25 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		String attachmentType = "[AA] ";
 		String attachmentCustomName = "";
 
-		if (attachment->isClothingAttachment()) {
+		if(attachment->isClothingAttachment()){
 			attachmentType = "[CA] ";
 		}
 
-		float modifier = getRandomModifier(templateObject, level, excMod);
-		auto lootValues = LootValues(templateObject, level, modifier);
-		attachment->updateCraftingValues(&lootValues, true, templateObject->getTemplateName());
-
-		for (int i = 0; i < skillModifiers->size(); i++) {
-			auto key = skillModifiers->elementAt(i).getKey();
-			auto value = skillModifiers->elementAt(i).getValue();
+		for (int i = 0; i < mods->size(); i++) {
+			auto key = mods->elementAt(i).getKey();
+			auto value = mods->elementAt(i).getValue();
 
 			if (value > highest) {
-				highest = value;	
-				attachmentName.setStringId("stat_n", key);
-				prototype->setObjectName(attachmentName, false);
-				attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
+				highest = value;
 			}
+
+			attachmentName.setStringId("stat_n", key);
+			prototype->setObjectName(attachmentName, false);
+			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
 		}
 
 		prototype->setCustomObjectName(attachmentCustomName, false);	
 	}
-
 
 	trx.addState("lootAdjustment", chance);
 	trx.addState("lootExcMod", excMod);
