@@ -420,7 +420,7 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 	setCustomObjectName(prototype, templateObject, excMod);
 
 	// Set the values for the random attributes to be modified if there are any
-	setRandomLootValues(trx, prototype, templateObject, level, excMod);
+	if (!prototype->isAttachment()) setRandomLootValues(trx, prototype, templateObject, level, excMod);
 
 	// Set the value for those items that can be sold at a junk dealer
 	setJunkValue(prototype, templateObject, level, excMod);
@@ -438,25 +438,12 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 
 	// Add some condition damage to the looted item if it is a weapon or piece of armor
 	if (!maxCondition && (prototype->isWeaponObject() || prototype->isArmorObject())) {
-		addConditionDamage(prototype);
+		// addConditionDamage(prototype);
 	}
 
-	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
-	craftingValues->addExperimentalAttribute("creatueLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
-	craftingValues->setHidden("creatureLevel");
-
-	if (prototype != nullptr && prototype->isAttachment()) {
+	if (prototype->isAttachment()) {
 		Attachment* attachment = cast<Attachment*>(prototype.get());
-
-		if (attachment == nullptr) {
-			return nullptr;
-		}
-
-		attachment->updateCraftingValues(craftingValues, true, templateObject->getTemplateName());
-
-		delete craftingValues;
-
-		VectorMap<String, int>* mods = attachment->getSkillMods();
+		VectorMap<String, int>* skillModifiers = attachment->getSkillMods();
 
 		StringId attachmentName;
 		String key = "";
@@ -464,21 +451,24 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		String attachmentType = "[AA] ";
 		String attachmentCustomName = "";
 
-		if(attachment->isClothingAttachment()){
+		if (attachment->isClothingAttachment()) {
 			attachmentType = "[CA] ";
 		}
 
-		for (int i = 0; i < mods->size(); i++) {
-			auto key = mods->elementAt(i).getKey();
-			auto value = mods->elementAt(i).getValue();
+		float modifier = getRandomModifier(templateObject, level, excMod);
+		auto lootValues = LootValues(templateObject, level, modifier);
+		attachment->updateCraftingValues(&lootValues, true, templateObject->getTemplateName());
+
+		for (int i = 0; i < skillModifiers->size(); i++) {
+			auto key = skillModifiers->elementAt(i).getKey();
+			auto value = skillModifiers->elementAt(i).getValue();
 
 			if (value > highest) {
-				highest = value;
+				highest = value;	
+				attachmentName.setStringId("stat_n", key);
+				prototype->setObjectName(attachmentName, false);
+				attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
 			}
-
-			attachmentName.setStringId("stat_n", key);
-			prototype->setObjectName(attachmentName, false);
-			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
 		}
 
 		prototype->setCustomObjectName(attachmentCustomName, false);	
@@ -762,7 +752,7 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 
 		rolls.add(roll);
 
-		if (roll > lootChance)
+		if (roll > lootChance && level <= 200)
 			continue;
 
  		// Start at 0
