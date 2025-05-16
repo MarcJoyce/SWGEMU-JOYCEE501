@@ -283,8 +283,8 @@ void PetDeedImplementation::updateCraftingValues(CraftingValues* values, bool fi
 		chanceHit = component->getHit();
 		attackSpeed = component->getSpeed();
 
-		damageMin = component->getMinDamage();
-		damageMax = component->getMaxDamage();
+		damageMin = Math::min(2000, component->getMinDamage() * 2);
+		damageMax = Math::min(3000, component->getMaxDamage() * 2);
 
 		// Armor
 		armor = component->getArmor();
@@ -301,9 +301,9 @@ void PetDeedImplementation::updateCraftingValues(CraftingValues* values, bool fi
 		saberResist = round(component->getSaber());
 
 		// HAM
-		health = component->getHealth();
-		action = component->getAction();
-		mind = component->getMind();
+		health = component->getHealth() * 2;
+		action = component->getAction() * 2;
+		mind = component->getMind() * 2;
 
 		// Special Attacks
 		special1 = component->getSpecial1();
@@ -376,6 +376,10 @@ void PetDeedImplementation::updateCraftingValues(CraftingValues* values, bool fi
 		if (level < skinFactor) {
 			level = skinFactor;
 		}
+	}
+		
+	if (level > 35) {
+		level = 35;
 	}
 
 	// setup attack map
