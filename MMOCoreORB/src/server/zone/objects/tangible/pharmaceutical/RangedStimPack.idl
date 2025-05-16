@@ -109,7 +109,9 @@ class RangedStimPack extends StimPack {
 
 		float modSkill = (float) healer.getSkillMod("combat_medic_effectiveness");
 
-		return (100 + modSkill) / 100 * power;
+		power = (100 + modSkill) / 100 * power;
+
+		return power / 4 * 3;
 	}
 
 	@dirty
@@ -148,5 +150,22 @@ class RangedStimPack extends StimPack {
 	@dirty
 	public boolean isRangedStimPack() {
 		return true;
+	}
+
+	public void setEffectiveness(int value) {
+		super.effectiveness = value;
+	}
+
+	public void setMedicineUseRequired(int value) {
+		super.medicineUseRequired = value;
+	}
+
+	public void setRange(int value) {
+		range = value;
+	}
+
+	public void setArea(int value) {
+		if (isArea())
+			area = value;
 	}
 }

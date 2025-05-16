@@ -166,4 +166,28 @@ class Consumable extends TangibleObject {
 	public string getSpeciesRestriction() {
 		return speciesRestriction;
 	}
+
+	public void setDuration(int value) {
+		duration = value;
+	}
+
+	public void setNutrition(int value) {
+		nutrition = value;
+		nutritionMin = value;
+		nutritionMax = value;
+	}
+
+	public void setFilling(int value) {
+		filling = value;
+	}
+
+	public void setFlavor(int value) {
+		flavorMin = value;
+		flavorMax = value;
+	}
+
+	public void setQuantity(int value) {
+		quantityMin = value;
+		quantityMax = value;
+	}
 }
