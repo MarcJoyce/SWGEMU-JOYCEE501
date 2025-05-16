@@ -203,7 +203,7 @@ void MissionManagerImplementation::handleMissionListRequest(MissionTerminal* mis
 	if (missionBag == nullptr)
 		return;
 
-	int maximumNumberOfItemsInMissionBag = 12;
+	int maximumNumberOfItemsInMissionBag = 24;
 
 
 	if (enableFactionalCraftingMissions) {
@@ -265,7 +265,7 @@ void MissionManagerImplementation::handleMissionAccept(MissionTerminal* missionT
 	}
 
 	//Limit to two missions (only one of them can be a bounty mission)
-	if (missionCount >= 2 || (hasBountyMission && mission->getTypeCRC() == MissionTypes::BOUNTY)) {
+	if (player->hasSkill("admin") && (missionCount >= 4 || (hasBountyMission && mission->getTypeCRC() == MissionTypes::BOUNTY))) {
 		StringIdChatParameter stringId("mission/mission_generic", "too_many_missions");
 		player->sendSystemMessage(stringId);
 		return;
@@ -588,9 +588,9 @@ void MissionManagerImplementation::randomizeGeneralTerminalMissions(CreatureObje
 		//Clear mission type before calling mission generators.
 		mission->setTypeCRC(0);
 
-		if (i < 6) {
+		if (i < 24) {
 			randomizeGenericDestroyMission(player, mission, Factions::FACTIONNEUTRAL);
-		} else if (i < 12) {
+		} else if (i < 30) {
 			randomizeGenericDeliverMission(player, mission, Factions::FACTIONNEUTRAL);
 		}
 
@@ -617,9 +617,9 @@ void MissionManagerImplementation::randomizeArtisanTerminalMissions(CreatureObje
 		//Clear mission type before calling mission generators.
 		mission->setTypeCRC(0);
 
-		if (i < 6) {
+		if (i < 24) {
 			randomizeGenericSurveyMission(player, mission, Factions::FACTIONNEUTRAL);
-		} else if (i < 12) {
+		} else if (i < 30) {
 			randomizeGenericCraftingMission(player, mission, Factions::FACTIONNEUTRAL);
 		}
 
@@ -646,9 +646,9 @@ void MissionManagerImplementation::randomizeEntertainerTerminalMissions(Creature
 		//Clear mission type before calling mission generators.
 		mission->setTypeCRC(0);
 
-		if (i < 6) {
+		if (i < 24) {
 			randomizeGenericEntertainerMission(player, mission, Factions::FACTIONNEUTRAL, MissionTypes::DANCER);
-		} else if (i < 12) {
+		} else if (i < 30) {
 			randomizeGenericEntertainerMission(player, mission, Factions::FACTIONNEUTRAL, MissionTypes::MUSICIAN);
 		}
 
@@ -675,9 +675,9 @@ void MissionManagerImplementation::randomizeScoutTerminalMissions(CreatureObject
 		//Clear mission type before calling mission generators.
 		mission->setTypeCRC(0);
 
-		if (i < 6) {
+		if (i < 24) {
 			randomizeGenericReconMission(player, mission, Factions::FACTIONNEUTRAL);
-		} else if (i < 12) {
+		} else if (i < 30) {
 			randomizeGenericHuntingMission(player, mission, Factions::FACTIONNEUTRAL);
 		}
 
@@ -734,9 +734,9 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 		//Clear mission type before calling mission generators.
 		mission->setTypeCRC(0);
 
-		if (i < 6) {
+		if (i < 24) {
 			randomizeGenericDestroyMission(player, mission, faction);
-		} else if (i < 12) {
+		} else if (i < 30) {
 			randomizeGenericDeliverMission(player, mission, faction);
 		} else {
 			if (enableFactionalCraftingMissions && numberOfCraftingMissions < 6) {
@@ -763,6 +763,17 @@ void MissionManagerImplementation::randomizeFactionTerminalMissions(CreatureObje
 
 		mission->setRefreshCounter(counter, true);
 	}
+}
+
+Vector3 getMissionPosition(CreatureObject* player, float distance, float angle) {
+	float angleRads = angle * (Math::PI / 180.0f);
+	float newAngle = angleRads + (Math::PI / 2);
+
+	float newX = player->getWorldPositionX() + (cos(newAngle) * distance); 
+	float newY = player->getWorldPositionY() + (sin(newAngle) * distance);
+	float newZ = 0.0f;
+
+	return Vector3(newX, newY, newZ);
 }
 
 void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject* player, MissionObject* mission, const uint32 faction) {
@@ -796,7 +807,16 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 	int diffDisplay = difficultyLevel < 5 ? 4 : difficultyLevel;
 
-	if (player->isGrouped()) {
+	PlayerObject* targetGhost = player->getPlayerObject();
+
+	String level = targetGhost->getScreenPlayData("mission_level", "levelChoice");
+	String dir = targetGhost->getScreenPlayData("mission_direction", "directionChoice");
+	int levelChoice = Integer::valueOf(level);
+	float dirChoice = Float::valueOf(dir);
+
+	if (levelChoice > 0) {
+		diffDisplay += levelChoice;
+	} else if (player->isGrouped()) {
 		bool includeFactionPets = faction != Factions::FACTIONNEUTRAL || ConfigManager::instance()->includeFactionPetsForMissionDifficulty();
 		Reference<GroupObject*> group = player->getGroup();
 
@@ -834,7 +854,29 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 
 		int distance = destroyMissionBaseDistance + destroyMissionDifficultyDistanceFactor * difficultyLevel;
 		distance += System::random(destroyMissionRandomDistance) + System::random(destroyMissionDifficultyRandomDistance * difficultyLevel);
-		startPos = player->getWorldCoordinate((float)distance, (float)System::random(360), false);
+		
+		float direction = (float)System::random(360);
+
+		if (dirChoice >= 0) {
+			int deviation = 0;
+			int isMinus = System::random(100);
+
+			if (isMinus > 40) {
+				deviation *= -1;
+			}
+
+			direction = dirChoice + deviation;
+
+			if (direction > 360) {
+				direction -= 360;
+			}
+
+			if (direction < 0) {
+				direction += 360;
+			}
+		}
+
+		startPos = getMissionPosition(player, (float)distance, direction);
 
 		if (zone->isWithinBoundaries(startPos)) {
 			float height = zone->getHeight(startPos.getX(), startPos.getY());
@@ -897,19 +939,32 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	String messageDifficulty;
 	String missionType;
 
-	if (difficulty < 2)
+	if (difficulty < 2) {
 		messageDifficulty = "_easy";
-	else if (difficulty == 2)
+	} else if (difficulty == 2) {
 		messageDifficulty = "_medium";
-	else
+	} else {
 		messageDifficulty = "_hard";
+	}
 
-	if (lairTemplateObject->getMobType() == LairTemplate::NPC)
+	String groupSuffix;
+
+	if (lairTemplateObject->getMobType() == LairTemplate::NPC) {
 		missionType = "_npc";
-	else
+		groupSuffix = " base.";
+	} else {
 		missionType = "_creature";
+		groupSuffix = " lair.";
+	}
 
-	mission->setMissionTitle("mission/mission_destroy_neutral" + messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "t");
+	const VectorMap<String, int>* mobiles = lairTemplateObject->getMobiles();
+	String mobileName ="mysterious";
+
+	if (mobiles->size() > 0){
+		mobileName = mobiles->elementAt(0).getKey();
+	}
+
+	mission->setMissionTitle("CL:" + String::valueOf(diffDisplay), " A " + mobileName.replaceAll("_", " ") + groupSuffix);
 	mission->setMissionDescription("mission/mission_destroy_neutral" +  messageDifficulty + missionType, "m" + String::valueOf(randTexts) + "d");
 
 	switch (faction) {

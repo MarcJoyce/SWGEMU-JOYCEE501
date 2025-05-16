@@ -729,3 +729,7 @@ includeFile("events/ServerEventAutomation.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
+
+-- Mission handler
+includeFile("custom/mission/mission_direction.lua")
+includeFile("custom/mission/mission_level.lua")
