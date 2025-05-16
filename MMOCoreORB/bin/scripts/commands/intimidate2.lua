@@ -68,7 +68,8 @@ Intimidate2Command = {
 	animation = "intimidate",
 	effectString = "clienteffect/combat_special_attacker_intimidate.cef",
 	range = 24,
-
+	areaAction = true,
+	areaRange = 24,
 	poolsToDamage = NO_ATTRIBUTE
 }
 
