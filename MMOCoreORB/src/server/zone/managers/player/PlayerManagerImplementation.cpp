@@ -2063,7 +2063,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 			float xpAmount = levelRatio * 500.f;
 
-			if (levelRatio <= 0.5) {
+			if (levelRatio <= 0.25) {
 				xpAmount = 1;
 			} else {
 				xpAmount = Math::min(xpAmount, (float)attacker->getLevel() * 50.f);
@@ -2119,7 +2119,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				xpAmount *= (float) damage / totalDamage;
 
 				//Cap xp based on level
-				xpAmount = Math::min(xpAmount, playerLevel * 300.f);
+				// xpAmount = Math::min(xpAmount, playerLevel * 300.f);
 
 				//Apply group bonus if in group
 				if (group != nullptr)
@@ -2140,6 +2140,11 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 				//Award individual expType
 				awardExperience(attackerCreo, xpType, xpAmount);
+
+				if (xpType == "jedi_general" && attackerCreo->hasSkill("force_title_jedi_rank_03")) {
+					float frsXpAmount = xpAmount * 0.05f;
+					awardExperience(attackerCreo, "force_rank_xp", frsXpAmount);
+				}
 			}
 
 			awardExperience(attackerCreo, "combat_general", combatXp, true, 0.1f);
@@ -6032,8 +6037,9 @@ bool PlayerManagerImplementation::increaseOnlineCharCountIfPossible(ZoneClientSe
 		}
 	}
 
-	if (onlineCount >= onlineCharactersPerAccount)
+	if (onlineCount >= onlineCharactersPerAccount) {
 		return false;
+	}
 
 	clients.add(client);
 
