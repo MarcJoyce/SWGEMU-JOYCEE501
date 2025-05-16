@@ -102,7 +102,7 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 
 			}
 
-			if (creature->hasSkill("crafting_artisan_business_03"))
+			if (creature->getSkillMod("manage_vendor") > 0)
 				menuResponse->addRadialMenuItemToRadialID(118, 130, 3, "@player_structure:create_vendor"); //Create Vendor
 
 
@@ -120,7 +120,7 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 			menuResponse->addRadialMenuItemToRadialID(117, 122, 3, "@player_structure:permission_vendor"); //Vendor List
 		}
 	} else if(structureObject->isOnPermissionList("VENDOR", creature)) {
-		if (creature->hasSkill("crafting_artisan_business_03")) {
+		if (creature->getSkillMod("manage_vendor") > 0) {
 			menuResponse->addRadialMenuItem(118, 3, "@player_structure:management"); //Structure Management
 			menuResponse->addRadialMenuItemToRadialID(118, 130, 3, "@player_structure:create_vendor"); //Create Vendor
 		}
@@ -261,7 +261,7 @@ int StructureTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObj
 	}
 
 	if(selectedID == 130 && (structureObject->isOnAdminList(creature) || structureObject->isOnPermissionList("VENDOR", creature))) {
-		if (creature->hasSkill("crafting_artisan_business_03")) {
+		if (creature->getSkillMod("manage_vendor") > 0) {
 			creature->executeObjectControllerAction(STRING_HASHCODE("createvendor")); // Create Vendor
 		}
 	}
