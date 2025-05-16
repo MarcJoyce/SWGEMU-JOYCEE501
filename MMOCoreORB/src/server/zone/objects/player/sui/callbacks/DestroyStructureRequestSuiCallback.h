@@ -29,7 +29,7 @@ public:
 			return;
 		}
 
-		session->sendDestroyCode();
+		session->destroyStructure();
 	}
 };
 
