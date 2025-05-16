@@ -755,3 +755,6 @@ includeFile("groups/crystal/named_crystals.lua")
 
 -- Components
 includeFile("groups/jedi_clothing_attachments.lua")
+
+-- Deed
+includeFile("groups/resource/resource_deed.lua")

@@ -2307,3 +2307,6 @@ includeFile("items/crystal/force_crystal_windus_guile.lua")
 
 -- Components
 includeFile("items/attachment_jedi_clothing.lua")
+
+-- Deed
+includeFile("items/resource/resource_deed.lua")
