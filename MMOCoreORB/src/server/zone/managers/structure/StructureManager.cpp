@@ -48,6 +48,7 @@
 #include "server/zone/objects/transaction/TransactionLog.h"
 #include "templates/faction/Factions.h"
 #include "server/zone/objects/player/FactionStatus.h"
+#include "server/login/account/AccountManager.h"
 #include "templates/building/CampStructureTemplate.h"
 #include "templates/customization/CustomizationIdManager.h"
 
@@ -538,10 +539,27 @@ StructureObject* StructureManager::placeStructure(CreatureObject* creature, cons
 
 	Locker sLocker(structureObject);
 
-	structureObject->grantPermission("ADMIN", creature->getObjectID());
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+
+	if (ghost != nullptr) {
+		ManagedReference<Account*> account = ghost->getAccount();
+
+		if (account != nullptr) {
+			Reference<CharacterList*> characters = account->getCharacterList();
+
+			if (characters != nullptr) {
+				for (int i = 0; i < characters->size(); ++i) {
+					CharacterListEntry& entry = characters->get(i);
+					uint64 characterId = entry.getObjectID();
+
+					structureObject->grantPermission("ADMIN", characterId);
+				}
+			}
+		}
+	}
+
 	structureObject->setOwner(creature->getObjectID());
 
-	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 	if (ghost != nullptr) {
 		ghost->addOwnedStructure(structureObject);
 	}
@@ -870,7 +888,7 @@ int StructureManager::redeedStructure(CreatureObject* creature) {
 			trxDeed.addState("structureOriginalObjectID", structureObject->getObjectID());
 			trxDeed.groupWith(trx);
 
-			deed->setSurplusMaintenance(maint - redeedCost);
+			deed->setSurplusMaintenance(maint); // do not lose credits on redeed
 			deed->setSurplusPower(structureObject->getSurplusPower());
 
 			structureObject->setDeedObjectID(0); // Set this to 0 so the deed doesn't get destroyed with the structure.
