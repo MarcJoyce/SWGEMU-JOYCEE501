@@ -161,6 +161,7 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"tedn_dahai",60,1.29,-0.894992,-15.18,70.0021,1082880, "themepark_music_3"},
 		{"dravis",60,-21.2103,-0.894989,24.3324,164.437,1082886, "neutral"},
 		{"talon_karrde",60,-18.7,-0.9,24.9,-31.0,1082886, "npc_sitting_chair"},
+		{"boba_fett", 60, 11.0, -0.9, 1.1, 88, 1082877, "neutral"},
 
 		--western Tavern A
 		{"protocol_droid_3po",60,5.3,1.0,4.2,0,1188033, "conversation"},
