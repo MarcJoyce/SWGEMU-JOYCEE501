@@ -80,9 +80,9 @@ public:
 			}
 			break;
 		case SAMPLING:
-			if (waitCount == 9) {
+			if (waitCount == 1) {
 				currentPhase = END;
-			}else {
+			} else {
 				waitCount++;
 			}
 			player->addPendingTask("sampledna",this,1000);
@@ -149,6 +149,7 @@ public:
 					}
 				}
 			}
+			result = 4;
 			switch(result) {
 				case 1:
 					success = false;
@@ -256,7 +257,10 @@ public:
 			quality = mid;
 		else
 			quality = high;
-		DnaManager::instance()->generateSample(creature,player,quality);
+		
+		for (int i = 0; i < 5; i++) {
+			DnaManager::instance()->generateSample(creature, player, 1);
+		}
 	}
 };
 #endif //SAMPLEDNATASK_H_

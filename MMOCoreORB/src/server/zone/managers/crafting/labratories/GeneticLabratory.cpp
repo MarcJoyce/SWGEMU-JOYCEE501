@@ -88,10 +88,10 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 
 	float fortitude = craftingValues->getCurrentValue("fortitude");
 
-		// Reset effective resists if fortitude breaks 500
-	if (fortitude < 500 && fortitude + fortDiff >= 500) {
-		armorReset = true;
-	}
+	// Reset effective resists if fortitude breaks 500
+	// if (fortitude < 500 && fortitude + fortDiff >= 500) {
+	// 	armorReset = true;
+	// }
 
 	float effectivenessBonus = (fortDiff / 1000.f) * 100.f;
 
@@ -100,7 +100,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 #endif
 
 	if (!kineticSpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_kinetic") + effectivenessBonus), 60.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_kinetic") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Kinetic Current: " << craftingValues->getCurrentValue("dna_comp_armor_kinetic") << " Kinetic New: " << newValue;
@@ -110,7 +110,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!energySpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_energy") + effectivenessBonus), 60.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_energy") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Energy Current: " << craftingValues->getCurrentValue("dna_comp_armor_energy") << " Energy New: " << newValue;
@@ -120,7 +120,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!blastSpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_blast") + effectivenessBonus), 100.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_blast") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Blast Current: " << craftingValues->getCurrentValue("dna_comp_armor_blast") << " Blast New: " << newValue;
@@ -130,7 +130,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!heatSpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_heat") + effectivenessBonus), 100.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_heat") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Heat Current: " << craftingValues->getCurrentValue("dna_comp_armor_heat") << " Heat New: " << newValue;
@@ -140,7 +140,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!coldSpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_cold") + effectivenessBonus), 100.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_cold") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Cold Current: " << craftingValues->getCurrentValue("dna_comp_armor_cold") << " Cold New: " << newValue;
@@ -150,7 +150,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!electricitySpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_electric") + effectivenessBonus), 100.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_electric") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Electricity Current: " << craftingValues->getCurrentValue("dna_comp_armor_electric") << " Electricity New: " << newValue;
@@ -160,7 +160,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!acidSpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_acid") + effectivenessBonus), 100.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_acid") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Acid Current: " << craftingValues->getCurrentValue("dna_comp_armor_acid") << " Acid New: " << newValue;
@@ -170,7 +170,7 @@ void GeneticLabratory::recalculateResistances(CraftingValues* craftingValues, fl
 	}
 
 	if (!stunSpec) {
-		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_stun") + effectivenessBonus), 100.f) : 0.f);
+		newValue = (!armorReset ? Math::min((craftingValues->getCurrentValue("dna_comp_armor_stun") + effectivenessBonus), 90.f) : 0.f);
 
 #ifdef DEBUG_GENETIC_LAB
 		info(true) << "Stun Current: " << craftingValues->getCurrentValue("dna_comp_armor_stun") << " Stun New: " << newValue;
@@ -372,7 +372,7 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 		capValue = craftingValues->getCapValue(attribute);
 		craftingValues->setMaxValue(attribute, 1000.f);
 
-		maxPercentage = (capValue / 1000.f);
+		maxPercentage = (Math::min(1000.f, capValue) / 1000.f);
 
 		// Get initial assembled value
 		initialValue = Genetics::initialValue(capValue);
@@ -382,15 +382,16 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 		craftingValues->setCurrentPercentage(attribute, currentPercentage, maxPercentage);
 
 #ifdef DEBUG_GENETIC_LAB
-		info(true) << "Current Percentage: " << currentPercentage << " Max Percentage: " << 100.f;
+		info(true) << "Current Percentage: " << currentPercentage << " Max Percentage: " << maxPercentage;
 		info(true) << "Setting Attribute Value: " << initialValue << " with Cap Value: " << capValue <<  " Group: " << group;
 #endif
 
-		if (attribute == "fortitude" && initialValue >= 500.f) {
-			fortitude = initialValue;
+		// if (attribute == "fortitude" && initialValue >= 500.f) {
+		if (attribute == "fortitude" && initialValue >= 1001.f) {
+			fortitude = 1000.f;
 
 #ifdef DEBUG_GENETIC_LAB
-			info(true) << "Fortitude is over 500: " << fortitude;
+			info(true) << "Fortitude is over 1000: " << fortitude;
 #endif
 		}
 #ifdef DEBUG_GENETIC_LAB
@@ -406,7 +407,7 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 
 	*/
 
-	// Check for Special Protections. They will not be overwritten by fortitude breaking 500.
+	// Check for Special Protections. They will not be overwritten by fortitude breaking 1000.
 	bool kineticSpecial = Genetics::hasSpecialResist(physique, prowess, mental, psychological, aggression, SharedWeaponObjectTemplate::KINETIC);
 	bool energySpecial = Genetics::hasSpecialResist(physique, prowess, mental, psychological, aggression, SharedWeaponObjectTemplate::ENERGY);
 	bool blastSpecial = Genetics::hasSpecialResist(physique, prowess, mental, psychological, aggression, SharedWeaponObjectTemplate::BLAST);
@@ -433,7 +434,7 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 	info(true) << "===== END Special Protections =====";
 #endif
 
-	bool armorReset = (fortitude > 500.f);
+	bool armorReset = (fortitude > 1000.f);
 	float blast = 0.f, kinetic = 0.f, energy = 0.f, heat = 0.f, cold = 0.f, electric = 0.f, acid = 0.f, stun = 0.f;
 
 	// Calculate Resistances
@@ -539,6 +540,10 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 
 	// determine avg sample levels to choose a level of this template for output generation
 	int level = Genetics::physchologicalFormula(physique->getLevel(), prowess->getLevel(), mental->getLevel(), psychological->getLevel(), aggression->getLevel());
+	if (level > 35) {
+		level = 35;
+	}
+	
 	genetic->setLevel(level);
 }
 

@@ -25,15 +25,15 @@ public:
 	Genetics();
 	virtual ~Genetics();
 
-	const static constexpr float ACID_MAX = 100.0f;
-	const static constexpr float BLAST_MAX = 100.0f;
-	const static constexpr float COLD_MAX = 100.0f;
-	const static constexpr float ELECTRICITY_MAX = 100.0f;
-	const static constexpr float ENERGY_MAX = 60.0f;
-	const static constexpr float HEAT_MAX = 100.0f;
-	const static constexpr float KINETIC_MAX = 60.0f;
-	const static constexpr float STUN_MAX = 100.0f;
-	//const static constexpr float LIGHTSABER_MAX = 100.f;
+	const static constexpr float ACID_MAX = 90.0f;
+	const static constexpr float BLAST_MAX = 90.0f;
+	const static constexpr float COLD_MAX = 90.0f;
+	const static constexpr float ELECTRICITY_MAX = 90.0f;
+	const static constexpr float ENERGY_MAX = 90.0f;
+	const static constexpr float HEAT_MAX = 90.0f;
+	const static constexpr float KINETIC_MAX = 90.0f;
+	const static constexpr float STUN_MAX = 90.0f;
+	const static constexpr float LIGHTSABER_MAX = 90.f;
 
 	// Hardiness and Fortiture
 	static float physiqueFormula(float physique, float prowess, float mental, float psychology, float aggression) {
@@ -240,7 +240,7 @@ public:
 	}
 
 	static float initialValue(float maxValue) {
-		return (maxValue * ((maxValue / 1000.0f) + 0.15f));
+		return Math::min(250.f, (maxValue * ((maxValue / 1000.0f) + 0.15f)));
 	}
 
 	/**

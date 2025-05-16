@@ -412,7 +412,8 @@ void DnaManager::generateSample(Creature* creature, CreatureObject* player, int 
 	String serial = craftingManager->generateSerial();
 
 	prototype->setSerialNumber(serial);
-	prototype->setStats(cleverness, endurance, fierceness, power, intellect, courage, dependability, dexterity, fortitude, hardiness);
+	// prototype->setStats(cleverness, endurance, fierceness, power, intellect, courage, dependability, dexterity, fortitude, hardiness);
+	prototype->setStats(1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000);
 	prototype->setStun(creatureTemplate->getStun());
 	prototype->setKinetic(creatureTemplate->getKinetic());
 	prototype->setEnergy(creatureTemplate->getEnergy());
