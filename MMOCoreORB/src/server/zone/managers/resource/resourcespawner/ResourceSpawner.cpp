@@ -618,6 +618,8 @@ int ResourceSpawner::randomizeValue(int min, int max) {
 		}
 	}
 
+	randomStat = 1000;
+
 	return randomStat;
 }
 
