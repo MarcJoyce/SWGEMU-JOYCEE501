@@ -320,7 +320,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	auto maxchars = ConfigManager::instance()->getInt("Core3.PlayerCreationManager.MaxCharactersPerGalaxy", 10);
 
 	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= maxchars) {
-		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 10 characters per galaxy.", 0x0);
+		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to " + String::valueOf(maxchars) + " characters per galaxy.", 0x0);
 		client->sendMessage(errMsg);
 
 		return false;
@@ -1024,6 +1024,15 @@ void PlayerCreationManager::addRacialMods(CreatureObject* creature,
 					creature, false, true, true);
 		}
 	}
+
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+	Ability* ability = new Ability("intimidate1");
+	ghost->addAbility(ability);
+
+	creature->addSkillMod(SkillModManager::SKILLBOX, "manage_vendor", 1);
+	creature->addSkillMod(SkillModManager::SKILLBOX, "hiring", 10);
+	creature->addSkillMod(SkillModManager::SKILLBOX, "vendor_item_limit", 250);
+	creature->addSkillMod(SkillModManager::SKILLBOX, "slope_move", 50);
 
 	// Get inventory.
 	if (!equipmentOnly) {
