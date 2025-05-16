@@ -892,7 +892,7 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		bonusMessage.setTT(creature->getObjectNameStringIdFile(), creature->getObjectNameStringIdName());
 
 		ChatSystemMessage* sysMessage = new ChatSystemMessage(bonusMessage);
-		owner->getGroup()->broadcastMessage(owner, sysMessage, false);
+		// owner->getGroup()->broadcastMessage(owner, sysMessage, false);
 	}
 
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
@@ -1042,7 +1042,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 		bonusMessage.setTT(creature->getObjectNameStringIdFile(), creature->getObjectNameStringIdName());
 
 		ChatSystemMessage* sysMessage = new ChatSystemMessage(bonusMessage);
-		player->getGroup()->broadcastMessage(player, sysMessage, false);
+		// player->getGroup()->broadcastMessage(player, sysMessage, false);
 	}
 
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();

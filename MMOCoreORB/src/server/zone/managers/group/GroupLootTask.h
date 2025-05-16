@@ -166,7 +166,7 @@ public:
 		lootMember.setTU(player->getDisplayedName());
 		lootMember.setDI(lootCredits);
 		lootMember.setTT(corpse->getDisplayedName());
-		group->sendSystemMessage(lootMember, player);
+		// group->sendSystemMessage(lootMember, player);
 
 		clocker.release();
 
