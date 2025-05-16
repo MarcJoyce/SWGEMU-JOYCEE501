@@ -5,7 +5,7 @@ recruiterScreenplay = Object:new {
 	allowPveBases = true,
 	covertOvertResignTime = 15, -- In Minutes
 
-	minimumFactionStanding = 200,
+	minimumFactionStanding = 50,
 
 	factionHashCode = { rebel = 370444368, imperial = 3679112276 },
 
