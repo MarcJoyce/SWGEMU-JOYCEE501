@@ -303,10 +303,10 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player, bool ini
 		Reference<CallPetTask*> callPet = new CallPetTask(_this.getReferenceUnsafeStaticCast(), player, "call_pet");
 
 		StringIdChatParameter message("pet/pet_menu", "call_pet_delay"); // Calling pet in %DI seconds. Combat will terminate pet call.
-		message.setDI(15);
+		message.setDI(2);
 		player->sendSystemMessage(message);
 
-		player->addPendingTask("call_pet", callPet, 15 * 1000);
+		player->addPendingTask("call_pet", callPet, 2 * 1000);
 
 		if (petControlObserver == nullptr) {
 			petControlObserver = new PetControlObserver(_this.getReferenceUnsafeStaticCast());
@@ -646,7 +646,7 @@ bool PetControlDeviceImplementation::growPet(CreatureObject* player, bool force,
 
 	Time currentTime;
 	uint32 timeDelta = currentTime.getTime() - lastGrowth.getTime();
-	int stagesToGrow = timeDelta / 43200; // 12 hour
+	int stagesToGrow = timeDelta / 6;
 
 	if (adult)
 		stagesToGrow = 10;
@@ -1376,20 +1376,22 @@ PatrolPoint PetControlDeviceImplementation::getPatrolPoint(int idx) {
 }
 
 bool PetControlDeviceImplementation::isValidPet(AiAgent* pet) {
-	PetDeed* deed = pet->getPetDeed();
-
-	if (deed != nullptr) {
-		// time to calculate!
-		int calculatedLevel =  deed->calculatePetLevel();
-
-		if (pet->getTemplateLevel() >= (calculatedLevel * 0.85)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	return true;
+	// PetDeed* deed = pet->getPetDeed();
+
+	// if (deed != nullptr) {
+	// 	// time to calculate!
+	// 	int calculatedLevel =  deed->calculatePetLevel();
+
+	// 	if (pet->getTemplateLevel() >= (calculatedLevel * 0.85)) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
+
+	// return true;
 }
 
 void PetControlDeviceImplementation::setVitality(int vit) {
