@@ -77,7 +77,7 @@ void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool
 		modCount = System::random(1) + 2;
 	}
 
-	modCount = 1
+	modCount = 1;
 
 	for (int i = 0; i < modCount; ++i) {
 		float step = 1.f - ((i / (float)modCount) * 0.5f);
@@ -85,7 +85,7 @@ void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool
 		int max = Math::clamp(-1, (int)round(0.125f * level) + 1, 25);
 		int mod = System::random(max - min) + min;
 
-		mod = 25;
+		mod = Math::min<int>(25, Math::max<int>(((50 + level) / 50) * 5, 5));
 
 		String modName = lootManager->getRandomLootableMod(gameObjectType, lootTemplateName);
 
