@@ -376,7 +376,7 @@ public:
 		}
 
 		// If the delay is less that 4 seconds, use the default time
-		delay = (delay < 4) ? defaultTime : delay;
+		delay = (delay < 1) ? 1 : delay;
 
 		creature->addCooldown(skillName, delay * 1000);
 

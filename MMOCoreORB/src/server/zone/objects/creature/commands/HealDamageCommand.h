@@ -48,7 +48,7 @@ public:
 		}
 
 		//Force the delay to be at least 4 seconds.
-		delay = (delay < 4) ? 4 : delay;
+		delay = (delay < 1) ? 1 : delay;
 
 		StringIdChatParameter message("healing_response", "healing_response_58"); //You are now ready to heal more damage.
 		Reference<InjuryTreatmentTask*> task = new InjuryTreatmentTask(creature, message, "injuryTreatment");
@@ -300,8 +300,13 @@ public:
 
 			sendHealMessage(creature, targetCreature, healthHealed, actionHealed, mindHealed);
 
-			if (targetCreature != creature && !targetCreature->isPet())
-				awardXp(creature, "medical", (healthHealed + actionHealed)); //No experience for healing yourself or pets.
+			if (!targetCreature->isPet()) {
+				if (targetCreature != creature) {
+					awardXp(creature, "medical", (healthHealed + actionHealed + mindHealed));
+				} else {
+					awardXp(creature, "medical", (int)((healthHealed + actionHealed + mindHealed) * 0.1f));
+				}
+			}
 
 			checkForTef(creature, targetCreature);
 		}
@@ -493,8 +498,13 @@ public:
 		Locker locker(stimPack);
 		stimPack->decreaseUseCount();
 
-		if (targetCreature != creature && !targetCreature->isPet())
-			awardXp(creature, "medical", (healthHealed + actionHealed)); //No experience for healing yourself.
+		if (!targetCreature->isPet()) {
+			if (targetCreature != creature) {
+				awardXp(creature, "medical", (healthHealed + actionHealed + mindHealed));
+			} else {
+				awardXp(creature, "medical", (int)((healthHealed + actionHealed + mindHealed) * 0.1f));
+			}
+		}
 
 		if (targetCreature != creature)
 			clocker.release();
