@@ -404,6 +404,8 @@ bool LairObserverImplementation::checkForNewSpawns(TangibleObject* lair, Tangibl
 	bool isCreatureLair = false;
 	int spawnLimit = lairTemplate->getSpawnLimit();
 
+	spawnLimit *= 2;
+
 	if (getMobType() == LairTemplate::CREATURE) {
 		isCreatureLair = true;
 		spawnLimit *= 3;
@@ -664,6 +666,8 @@ void LairObserverImplementation::spawnLairMobile(LairObject* lair, int spawnNumb
 	}
 
 	int spawnLimit = lairTemplate->getSpawnLimit();
+	spawnLimit *= 2;
+
 	bool isCreatureLair = false;
 	bool spawnScout = false;
 
