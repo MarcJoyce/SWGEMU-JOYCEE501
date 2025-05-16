@@ -441,48 +441,37 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		// addConditionDamage(prototype);
 	}
 
-	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
-	craftingValues->addExperimentalAttribute("creatueLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
-	craftingValues->setHidden("creatureLevel");
-
 	if (prototype != nullptr && prototype->isAttachment()) {
 		Attachment* attachment = cast<Attachment*>(prototype.get());
-
-		if (attachment == nullptr) {
-			return nullptr;
-		}
-
-		attachment->updateCraftingValues(craftingValues, true, templateObject->getTemplateName());
-
-		delete craftingValues;
-
-		VectorMap<String, int>* mods = attachment->getSkillMods();
-
+		VectorMap<String, int>* skillModifiers = attachment->getSkillMods();
+		
 		StringId attachmentName;
 		String key = "";
-		int highest = -1;
 		String attachmentType = "[AA] ";
 		String attachmentCustomName = "";
-
-		if(attachment->isClothingAttachment()){
+		int highest = -1;
+		
+		if (attachment->isClothingAttachment()) {
 			attachmentType = "[CA] ";
 		}
 
-		for (int i = 0; i < mods->size(); i++) {
-			auto key = mods->elementAt(i).getKey();
-			auto value = mods->elementAt(i).getValue();
+		for (int i = 0; i < skillModifiers->size(); i++) {
+			auto key = skillModifiers->elementAt(i).getKey();
+			auto value = skillModifiers->elementAt(i).getValue();
 
 			if (value > highest) {
 				highest = value;
-			}
 
-			attachmentName.setStringId("stat_n", key);
-			prototype->setObjectName(attachmentName, false);
-			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
+				attachmentName.setStringId("stat_n", key);
+				prototype->setObjectName(attachmentName, false);
+				attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String:valueOf(value);
+			}
 		}
 
-		prototype->setCustomObjectName(attachmentCustomName, false);	
+		prototype->setCustomObjectName(attachmentCustomName, false);
 	}
+
+	
 
 	trx.addState("lootAdjustment", chance);
 	trx.addState("lootExcMod", excMod);
