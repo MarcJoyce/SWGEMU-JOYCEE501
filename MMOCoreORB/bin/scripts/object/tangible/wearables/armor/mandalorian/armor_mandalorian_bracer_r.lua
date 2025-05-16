@@ -43,11 +43,12 @@
 
 object_tangible_wearables_armor_mandalorian_armor_mandalorian_bracer_r = object_tangible_wearables_armor_mandalorian_shared_armor_mandalorian_bracer_r:new {
 	templateType = ARMOROBJECT,
+	objectMenuComponent = "ArmorObjectMenuComponent",
 
-	certificationsRequired = { "combat_bountyhunter_master",
-					"combat_commando_master",
-					"outdoors_squadleader_master",
-					"outdoors_ranger_master" },
+	-- certificationsRequired = { "combat_bountyhunter_master",
+	-- 				"combat_commando_master",
+	-- 				"outdoors_squadleader_master",
+	-- 				"outdoors_ranger_master" },
 
 	playerRaces = { "object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
@@ -93,26 +94,26 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_bracer_r = object_
 				"object/mobile/vendor/zabrak_male.iff" },
 	
 	-- Damage types in WeaponObject
-	vulnerability = COLD + ELECTRICITY + STUN + LIGHTSABER,
+	-- vulnerability = COLD + ELECTRICITY + STUN + LIGHTSABER,
 
 	-- These are default Blue Frog stats, These are also used as temporary DWB crafting stats. Needs to be adjusted to random color, and Blast should be a Special Resist. Encumberance on boots and all arm/hand armor are estimated. Helm/Chest/Leggings are correct. 
-	healthEncumbrance = 50,
-	actionEncumbrance = 48,
-	mindEncumbrance = 53,
+	healthEncumbrance = 0,
+	actionEncumbrance = 0,
+	mindEncumbrance = 0,
 
 	-- LIGHT, MEDIUM, HEAVY
-	rating = LIGHT,
-	maxCondition = 40000,
+	rating = HEAVY,
+	maxCondition = 100000,
 
-	kinetic = 58,
-	energy = 58,
-	electricity = 0,
-	stun = 0,
-	blast = 65,
-	heat = 58,
-	cold = 0,
-	acid = 58,
-	lightSaber = 0
+	kinetic = 90,
+	energy = 90,
+	electricity = 90,
+	stun = 90,
+	blast = 90,
+	heat = 90,
+	cold = 90,
+	acid = 90,
+	lightSaber = 90
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_mandalorian_armor_mandalorian_bracer_r, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_bracer_r.iff")
