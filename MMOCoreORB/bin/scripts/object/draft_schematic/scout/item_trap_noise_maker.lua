@@ -51,7 +51,7 @@ object_draft_schematic_scout_item_trap_noise_maker = object_draft_schematic_scou
 	size = 1,
 	factoryCrateType = "object/factory/factory_crate_electronics.iff",
 
-	xpType = "camp",
+	xpType = "trapping",
 	xp = 30,
 
 	assemblySkill = "general_assembly",
