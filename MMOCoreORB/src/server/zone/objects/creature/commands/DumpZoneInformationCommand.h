@@ -102,9 +102,12 @@ public:
 
 		float collisionZ = CollisionManager::getWorldFloorCollision(posX, posY, zone, false);
 
+		float directionAngle = creature->getDirectionAngle();
+
 		msg << "x = " << posX << ", z = " << posZ << ", y = " << posY << ", ow = " << direction->getW()
 				<< ", ox = " << direction->getX() << ", oz = " << direction->getZ() << ", oy = " << direction->getY()
 				<< ", cellid = " << cellid
+				<< ", directionAngle = " << directionAngle
 				<< ", collisionZ = " << collisionZ;
 
 		if (buildingTemplate != 0)

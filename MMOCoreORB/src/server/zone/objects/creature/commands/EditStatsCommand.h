@@ -109,10 +109,32 @@ public:
 
 				ghost->setVisibility(vis);
 			}
+			else if (commandType.beginsWith("screenplay")) {
+				String screenPlayName = args.getStringToken();
+				uint64 state = args.getLongToken();
+				Locker targetLock(patient);
+				patient->setScreenPlayState(screenPlayName, state);
+
+				creature->sendSystemMessage(patient->getFirstName() + " " + screenPlayName + " set to " + String::valueOf(patient->getScreenPlayState(screenPlayName)));
+			}
+			else if (commandType.beginsWith("screenplaydata")) {
+				String screenPlayName = args.getStringToken();
+				String screenPlayKey = args.getStringToken();
+				String screenPlayData = args.getStringToken();
+
+				Reference<PlayerObject*> ghost = patient->getSlottedObject("ghost").castTo<PlayerObject*>();
+
+				Locker targetLock(ghost);
+				ghost->setScreenPlayData(screenPlayName, screenPlayKey, screenPlayData);
+
+				creature->sendSystemMessage(patient->getFirstName() + " " + screenPlayName + " set to " + String::valueOf(patient->getScreenPlayState(screenPlayName)));
+			}
 
 		} catch (Exception& e) {
 			creature->sendSystemMessage("Syntax: /editStats buff health, action... / all amount");
 			creature->sendSystemMessage("Syntax: /editStats skill temp/perm skill_modifier amount");
+			creature->sendSystemMessage("Syntax: /editStats screenplay screenplay screenplayValue");
+			creature->sendSystemMessage("Syntax: /editStats screenplaydata screenplay screenplayKey screenplayValue");
 			creature->sendSystemMessage("Syntax: /editStats vis amount");
 		}
 
