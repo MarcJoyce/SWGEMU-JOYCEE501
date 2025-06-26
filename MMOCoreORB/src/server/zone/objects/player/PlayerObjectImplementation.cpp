@@ -435,7 +435,7 @@ int PlayerObjectImplementation::calculateBhReward() {
 	if (reward < minReward)
 		reward = minReward;
 
-	return reward;
+	return reward * 1000;
 }
 
 void PlayerObjectImplementation::sendBaselinesTo(SceneObject* player) {
