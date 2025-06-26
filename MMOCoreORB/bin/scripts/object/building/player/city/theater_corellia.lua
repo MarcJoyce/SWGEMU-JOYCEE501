@@ -56,7 +56,7 @@ object_building_player_city_theater_corellia = object_building_player_city_share
 		{"private_safe_logout", 1}
 	},
 	ejectDistance = 1.5,
-	cityRankRequired = 4,
+	cityRankRequired = 1,
 	groundZoneComponent = "StructureZoneComponent",
 	childObjects = {
 		{templateFile = "object/tangible/sign/player/house_address_corellia.iff", x = 11.1, z = 3.08, y = -14, ox = 0, oy = -0.707107, oz = 0, ow = 0.707107, cellid = -1, containmentType = -1},

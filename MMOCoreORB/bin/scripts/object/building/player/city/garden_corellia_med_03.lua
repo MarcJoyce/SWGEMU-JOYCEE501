@@ -50,7 +50,7 @@ object_building_player_city_garden_corellia_med_03 = object_building_player_city
 	length = 5,
 	
 	width = 5,
-	cityRankRequired = 2,
+	cityRankRequired = 1,
 	cityMaintenanceBase = 20000,
 	abilityRequired = "place_medium_garden",
 	groundZoneComponent = "StructureZoneComponent",
