@@ -73,7 +73,7 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_s13_gen4 = o
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = MEDIUM,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -112,6 +112,9 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_s13_gen4 = o
 
 	maxRange = 5,
 	maxRangeAccuracy = 5,
+
+	minDamage = 247,
+	maxDamage = 335,
 
 	attackSpeed = 4.5,
 

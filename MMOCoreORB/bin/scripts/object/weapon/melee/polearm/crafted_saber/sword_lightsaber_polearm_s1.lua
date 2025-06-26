@@ -72,7 +72,7 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_s1 = object_w
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = MEDIUM,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -112,8 +112,8 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_s1 = object_w
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	minDamage = 105,
-	maxDamage = 195,
+	minDamage = 115,
+	maxDamage = 214,
 
 	attackSpeed = 5.1,
 
