@@ -2180,11 +2180,11 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 
 					int forceCost = 1;
 
-					ManagedReference<PlayerObject*> playerObject = attacker->getPlayerObject();
+					ManagedReference<PlayerObject*> playerObject = creoAttacker->getPlayerObject();
 					if (playerObject != nullptr) {
 						if (playerObject->getForcePower() <= forceCost) {
-							attacker->sendSystemMessage("@jedi_spam:no_force_power");
-							hitResult = HitStatus::HIT
+							creoAttacker->sendSystemMessage("@jedi_spam:no_force_power");
+							hitResult = HitStatus::HIT;
 						} else {
 							playerObject->setForcePower(playerObject->getForcePower() - forceCost);
 							hitResult = HitStatus::RICOCHET;

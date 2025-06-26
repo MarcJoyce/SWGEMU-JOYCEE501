@@ -6381,7 +6381,7 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 		case 1:
 			hamModifier += 0.20f;
 			cooldownModifier += 0.20f;
-			burstRunSpeed = 2.f
+			burstRunSpeed = 2.f;
 			break;
 		case 2:
 			hamModifier += 0.4f;

@@ -3,8 +3,8 @@ refined_crystal_pack = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "force_refined_crystal_pack_force", weight = 5000000},
-		{itemTemplate = "force_refined_crystal_pack_damage", weight = 5000000},
+		{itemTemplate = "refined_crystal_pack_force", weight = 5000000},
+		{itemTemplate = "refined_crystal_pack_damage", weight = 5000000},
 	}
 }
 

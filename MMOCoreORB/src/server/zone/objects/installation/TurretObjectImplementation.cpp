@@ -295,73 +295,46 @@ void TurretObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 // }
 
 float TurretObjectImplementation::getKinetic() {
-	if (templateData !== nullptr) {
-		return templateData->getKinetic()
-	}
-	return 0;
+	return kinetic;
 	// return getArmorResistReduction(kinetic);
 }
 
 float TurretObjectImplementation::getEnergy() {
-	if (templateData !== nullptr) {
-		return templateData->getEnergy()
-	}
-	return 0;
+	return energy;
 	// return getArmorResistReduction(energy);
 }
 
 float TurretObjectImplementation::getElectricity() {
-	if (templateData !== nullptr) {
-		return templateData->getElectricity()
-	}
-	return 0;
+	return electricity;
 	// return getArmorResistReduction(electricity);
 }
 
 float TurretObjectImplementation::getStun() {
-	if (templateData !== nullptr) {
-		return templateData->getStun()
-	}
-	return 0;
+	return stun;
 	// return getArmorResistReduction(stun);
 }
 
 float TurretObjectImplementation::getBlast() {
-	if (templateData !== nullptr) {
-		return templateData->getBlast()
-	}
-	return 0;
+	return blast;
 	// return getArmorResistReduction(blast);
 }
 
 float TurretObjectImplementation::getHeat() {
-	if (templateData !== nullptr) {
-		return templateData->getHeat()
-	}
-	return 0;
+	return heat;
 	// return getArmorResistReduction(heat);
 }
 
 float TurretObjectImplementation::getCold() {
-	if (templateData !== nullptr) {
-		return templateData->getCold()
-	}
-	return 0;
+	return cold;
 	// return getArmorResistReduction(cold);
 }
 
 float TurretObjectImplementation::getAcid() {
-	if (templateData !== nullptr) {
-		return templateData->getAcid()
-	}
-	return 0;
+	return acid;
 	// return getArmorResistReduction(acid);
 }
 
 float TurretObjectImplementation::getLightSaber() {
-	if (templateData !== nullptr) {
-		return templateData->getLightSaber()
-	}
-	return 0;
+	return lightsaber;
 	// return getArmorResistReduction(lightsaber);
 }
