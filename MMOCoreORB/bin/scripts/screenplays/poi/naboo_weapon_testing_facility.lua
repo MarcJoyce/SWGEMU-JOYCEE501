@@ -58,7 +58,7 @@ function WeaponFacilityScreenPlay:spawnImperials(pBuilding)
 	BuildingObject(pBuilding):spawnChildCreature("stormtrooper", 300, -6495.8, 40.0, -3272.4, 25, 0)
 	BuildingObject(pBuilding):spawnChildCreature("dark_trooper", 300, -6504.4, 40.0, -3262.2, 44, 0)
 
-		BuildingObject(pBuilding):spawnChildCreature("elite_novatrooper_commander", 300, -6504.4, 40.0, -3262.2, 0)
+	BuildingObject(pBuilding):spawnChildCreature("elite_novatrooper_commander", 300, -6504.4, 40.0, -3262.2, 44, 0)
 
 	--Cell [6335640]
 	BuildingObject(pBuilding):spawnChildCreature("stormtrooper", 300, -4.2, 0.3, 3.8, 131, 6335640)

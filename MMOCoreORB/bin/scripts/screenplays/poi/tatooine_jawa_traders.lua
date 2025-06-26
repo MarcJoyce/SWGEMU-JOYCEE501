@@ -14,7 +14,7 @@ end
 function JawaTradersScreenPlay:spawnMobiles()
 
 	-- Canopy
-	spawnMobile("tatooine", "jawa", 300, -6184.270, 7.253, 1852.560, 154.785, 0)
+	-- spawnMobile("tatooine", "jawa", 300, -6184.270, 7.253, 1852.560, 154.785, 0)
 	spawnMobile("tatooine", "jawa_protector", 300, -6183.420, 7.123, 1848.440, 29.248, 0)
 	
 	-- Canopy
