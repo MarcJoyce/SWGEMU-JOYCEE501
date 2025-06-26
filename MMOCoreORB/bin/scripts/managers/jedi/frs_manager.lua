@@ -4,9 +4,9 @@ frsEnabled = 1
 lightEnclaveID = 8525417
 darkEnclaveID = 3435626
 
-petitionInterval = 86400000 -- 1 day
-votingInterval = 86400000 -- 1 day
-acceptanceInterval = 86400000 -- 1 day
+petitionInterval = 10000 -- 86400000 -- 1 day
+votingInterval = 10000 -- 86400000 -- 1 day
+acceptanceInterval = 30000 -- 1 day
 maintenanceInterval = 86400000 -- 1 day
 
 requestDemotionDuration = 604800000 -- 7 days
@@ -15,7 +15,7 @@ voteChallengeDuration = 604800000 -- 7 days
 arenaOpenInterval = 5400000 -- 90 mins
 arenaClosedInterval = 108000000 -- 30 hours
 arenaChallengeDuration = 3600000 -- 60 mins
-arenaChallengeCooldown = 90000000 -- 25 hours
+arenaChallengeCooldown = 30000 -- 90000000 -- 25 hours
 
 -- Costs are in FRS experience
 baseMaintCost = 100
