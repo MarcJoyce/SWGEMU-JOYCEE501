@@ -652,9 +652,9 @@ public:
 			break;
 		case CommandEffect::KNOCKDOWN:
 			if (!defender->checkKnockdownRecovery()) {
-				if (defender->getPosture() != CreaturePosture::UPRIGHT)
-					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
-				break;
+				// if (defender->getPosture() != CreaturePosture::UPRIGHT)
+				// 	defender->setPosture(CreaturePosture::UPRIGHT, false, false);
+				// break;
 			}
 
 			if (defender->isRidingMount()) {
@@ -666,17 +666,19 @@ public:
 				defender->setPosture(CreaturePosture::KNOCKEDDOWN, false, false);
 
 			defender->updateKnockdownRecovery();
-			defender->setPostureChangeDelay(5000);
+			// defender->setPostureChangeDelay(5000);
+			defender->setPostureChangeDelay(2500);
 			defender->removeBuff(STRING_HASHCODE("burstrun"));
 			defender->removeBuff(STRING_HASHCODE("retreat"));
+			defender->removeBuff(STRING_HASHCODE("forcerun"));
 			defender->sendSystemMessage("@cbt_spam:posture_knocked_down");
 			defender->sendStateCombatSpam("cbt_spam", "posture_knocked_down", 0, 0, false);
 			break;
 		case CommandEffect::POSTUREUP:
 			if (!defender->checkPostureUpRecovery()) {
-				if (defender->getPosture() != CreaturePosture::UPRIGHT)
-					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
-				break;
+				// if (defender->getPosture() != CreaturePosture::UPRIGHT)
+				// 	defender->setPosture(CreaturePosture::UPRIGHT, false, false);
+				// break;
 			}
 
 			if (defender->isRidingMount()) {
@@ -701,9 +703,9 @@ public:
 			break;
 		case CommandEffect::POSTUREDOWN:
 			if (!defender->checkPostureDownRecovery()) {
-				if (defender->getPosture() != CreaturePosture::UPRIGHT)
-					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
-				break;
+				// if (defender->getPosture() != CreaturePosture::UPRIGHT)
+				// 	defender->setPosture(CreaturePosture::UPRIGHT, false, false);
+				// break;
 			}
 
 			if (defender->isRidingMount()) {
