@@ -39,11 +39,17 @@ void ArmorObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, 
 	String text = "Color Change";
 	menuResponse->addRadialMenuItem(81, 3, text);
 
+	// String text = "Color Trim";
+	// menuResponse->addRadialMenuItem(81, 3, text);
+	// String text2 = "Color Plates";
+	// menuResponse->addRadialMenuItem(82, 3, text2);
+	
 	WearableObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player);
 }
 
 int ArmorObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID) const {
 
+	// if (selectedID == 81 || selectedID == 82) {
 	if (selectedID == 81) {
 		ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
 
@@ -77,32 +83,43 @@ int ArmorObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 			VectorMap<String, Reference<CustomizationVariable*> > variables;
 			AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
 
-			// The Sui Box.
-			ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
-			cbox->setCallback(new ColorArmorSuiCallback(server));
-			cbox->setColorPalette(variables.elementAt(1).getKey()); // First one seems to be the frame of it? Skip to 2nd.
-			cbox->setUsingObject(sceneObject);
+			for (VectorMap<String, Reference<CustomizationVariable*> >::iterator iter = variables.begin(); iter != variables.end(); ++iter) {
+				String varkey = iter->getKey();
 
-			int skillMod = 255; //player->getSkillMod("armor_customization");
+				if (varkey.contains("color")) {
 
-			/*
-			if (skillMod < 64)
-				skillMod = 64;
-			else if (skillMod > 255)
-				skillMod = 255;
-			*/
+					// The Sui Box.
+					ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
+					cbox->setCallback(new ColorArmorSuiCallback(server));
+					cbox->setColorPalette(varkey);
+					// if (selectedID == 81) {
+					// 	cbox->setColorPalette(variables.elementAt(1).getKey()); // First one seems to be the frame of it? Skip to 2nd.
+					// } else {
+					// 	cbox->setColorPalette(variables.elementAt(0).getKey());
+					// }
+					cbox->setUsingObject(sceneObject);
+					
+					int skillMod = 255; //player->getSkillMod("armor_customization");
+					
+					/*
+					if (skillMod < 64)
+						skillMod = 64;
+					else if (skillMod > 255)
+						skillMod = 255;
+					*/
 
-			cbox->setSkillMod(skillMod);
+					cbox->setSkillMod(skillMod);
+					
+					// Add to player.
+					ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 
-			// Add to player.
-			ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-
-			if (ghost != nullptr) {
-				ghost->addSuiBox(cbox);
-				player->sendMessage(cbox->generateMessage());
+					if (ghost != nullptr) {
+						ghost->addSuiBox(cbox);
+						player->sendMessage(cbox->generateMessage());
+					}
+				}
 			}
 		}
-
 	}
 
 	return WearableObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
