@@ -25,6 +25,9 @@ function GoToDathomir:onEnteredActiveArea(pPlayer)
 
 	QuestManager.completeQuest(pPlayer, QuestManager.quests.FS_VILLAGE_ELDER)
 	self:finish(pPlayer)
+
+	VillageJediManagerCommon.unlockBranch(pPlayer, "force_sensitive_enhanced_reflexes_ranged_defense")
+	VillageJediManagerCommon.unlockBranch(pPlayer, "force_sensitive_enhanced_reflexes_melee_defense")
 end
 
 -- Event handler for the onSuccessfulSpawn.
