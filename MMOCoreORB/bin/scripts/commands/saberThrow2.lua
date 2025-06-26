@@ -50,14 +50,16 @@ SaberThrow2Command = {
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
+	coneAngle = 30,
+	coneAction = true,
 	forceCostMultiplier = 2.0,
 	visMod = 25,
 
 	stateEffects = {
 		StateEffect(
-			KNOCKDOWN_EFFECT,
-			{ "knockdownRecovery", "lastKnockdown" },
-			{ "knockdown_defense" },
+			POSTUREDOWN_EFFECT,
+			{ "postureDownRecovery" },
+			{ "posture_change_down_defense" },
 			{},
 			100,
 			0,

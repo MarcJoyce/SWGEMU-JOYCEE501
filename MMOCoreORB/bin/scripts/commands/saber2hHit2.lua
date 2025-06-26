@@ -44,14 +44,26 @@
 Saber2hHit2Command = {
 	name = "saber2hhit2",
 
-	damageMultiplier = 2.0,
+		damageMultiplier = 2.0,
 	accuracyBonus = 50,
 	speedMultiplier = 1.5,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
-	forceCostMultiplier = 1.5,
+	forceCostMultiplier = 2.0,
 	visMod = 25,
+
+	stateEffects = {
+		StateEffect(
+			STUN_EFFECT,
+			{},
+			{ "stun_defense" },
+			{ "jedi_state_defense", "resistance_states" },
+			50,
+			0,
+			45
+		)
+	},
 
 	animation = "combo_jedi_1",
 	animType = GENERATE_INTENSITY,

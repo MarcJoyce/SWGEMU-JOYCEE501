@@ -46,7 +46,7 @@ Saber2hFrenzyCommand = {
 
 	damageMultiplier = 3.5,
 	accuracyBonus = 50,
-	speedMultiplier = 3.5,
+	speedMultiplier = 3.0,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,

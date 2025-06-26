@@ -46,7 +46,7 @@ Saber2hHit1Command = {
 
 	damageMultiplier = 1.25,
 	accuracyBonus = 50,
-	speedMultiplier = 1.25,
+	speedMultiplier = 1.5,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,

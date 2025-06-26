@@ -44,26 +44,16 @@
 Saber2hSweep1Command = {
 	name = "saber2hsweep1",
 
-	damageMultiplier = 1.25,
+	damageMultiplier = 0.75,
 	accuracyBonus = 50,
 	speedMultiplier = 1.25,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	forceCostMultiplier = 1.25,
+	areaAction = true,
+	areaRange = 16,
 	visMod = 25,
-
-	stateEffects = {
-		StateEffect(
-			POSTUREDOWN_EFFECT,
-			{ "postureDownRecovery" },
-			{ "posture_change_down_defense" },
-			{},
-			100,
-			0,
-			0
-		)
-	},
 
 	animation = "lower_posture_2hmelee_3",
 

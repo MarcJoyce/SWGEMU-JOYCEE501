@@ -44,13 +44,15 @@
 Saber2hSweep3Command = {
 	name = "saber2hsweep3",
 
-	damageMultiplier = 3.0,
+damageMultiplier = 3.0,
 	accuracyBonus = 50,
-	speedMultiplier = 3.5,
+	speedMultiplier = 2.0,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
-	forceCostMultiplier = 2.25,
+	forceCostMultiplier = 2.5,
+	areaAction = true,
+	areaRange = 16,
 	visMod = 25,
 
 	stateEffects = {

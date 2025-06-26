@@ -44,18 +44,18 @@
 Saber1hFlurry2Command = {
 	name = "saber1hflurry2",
 
-	damageMultiplier = 4.0,
+	damageMultiplier = 4.5,
 	accuracyBonus = 50,
 	speedMultiplier = 4.0,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
-	areaRange = 16,
 	areaAction = true,
+	areaRange = 16,
 	forceCostMultiplier = 3.0,
 	visMod = 25,
 
-		stateEffects = {
+	stateEffects = {
 		StateEffect(
 			BLIND_EFFECT,
 			{},
