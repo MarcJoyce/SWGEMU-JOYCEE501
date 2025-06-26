@@ -50,10 +50,10 @@ public:
 			return GENERALERROR;
 		}
 
-		if (!creature->hasSkill("combat_bountyhunter_novice") && !creature->hasSkill("combat_smuggler_novice")) {
-			creature->sendSystemMessage("@pet/droid_modules:insufficient_skill_detonate");
-			return GENERALERROR;
-		}
+		// if (!creature->hasSkill("combat_bountyhunter_novice") && !creature->hasSkill("combat_smuggler_novice")) {
+		// 	creature->sendSystemMessage("@pet/droid_modules:insufficient_skill_detonate");
+		// 	return GENERALERROR;
+		// }
 
 		// Check to make sure droid has power
 		if (!droid->hasPower()){

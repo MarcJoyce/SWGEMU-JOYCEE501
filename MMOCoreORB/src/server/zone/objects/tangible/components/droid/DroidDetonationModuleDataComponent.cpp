@@ -93,8 +93,7 @@ void DroidDetonationModuleDataComponent::fillObjectMenuResponse(SceneObject* dro
 	if (owner == nullptr)
 		return;
 
-	// Novice Bounty Hunter or Smuggler required to access radial
-	if (owner == player && (player->hasSkill("combat_bountyhunter_novice") || player->hasSkill("combat_smuggler_novice"))) {
+	if (owner == player) {
 		menuResponse->addRadialMenuItemToRadialID(132, DETONATE_DROID, 3, "@pet/droid_modules:detonate_droid");
 	}
 }
