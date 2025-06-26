@@ -70,7 +70,9 @@ class TurretObject extends InstallationObject {
 	@dirty
 	public native void fillAttributeList(AttributeListMessage alm, CreatureObject player);
 
-	public native float getArmorResistReduction(float value);
+	/*
+	* public native float getArmorResistReduction(float value);
+	*/
 	public native float getKinetic();
 	public native float getEnergy();
 	public native float getElectricity();

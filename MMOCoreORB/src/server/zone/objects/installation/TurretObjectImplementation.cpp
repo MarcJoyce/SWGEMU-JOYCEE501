@@ -253,79 +253,115 @@ void TurretObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 *
 */
 
-float TurretObjectImplementation::getArmorResistReduction(float value) {
-	if (value == -1) {
-		return value;
-	}
+// float TurretObjectImplementation::getArmorResistReduction(float value) {
+// 	if (value == -1) {
+// 		return value;
+// 	}
 
-	// if (getZone )
+// 	// if (getZone )
 
-	int maxCondition = getMaxCondition();
+// 	int maxCondition = getMaxCondition();
 
-	// Damage not prevented by armor resists
-	int unmitigatedDamage = getUnmitigatedDamage();
+// 	// Damage not prevented by armor resists
+// 	int unmitigatedDamage = getUnmitigatedDamage();
 
-	// Percent of damage not prevented by armor resists compared to maxCondition
-	// Only accounts if the turret has that resistance type.
-	float mitigatedAmount = unmitigatedDamage / (float)maxCondition;
+// 	// Percent of damage not prevented by armor resists compared to maxCondition
+// 	// Only accounts if the turret has that resistance type.
+// 	float mitigatedAmount = unmitigatedDamage / (float)maxCondition;
 
-#ifdef DEBUG_RESIST_DECAY
-	info (true) << " Value of damage mitigated by armor = " << mitigatedAmount;
-#endif
+// #ifdef DEBUG_RESIST_DECAY
+// 	info (true) << " Value of damage mitigated by armor = " << mitigatedAmount;
+// #endif
 
-	float newValue = value;
+// 	float newValue = value;
 
-	// Decay resists when unmitigated damage is greater than 25% of maxConiditon
-	if (mitigatedAmount > 0.25f) {
-		// Reduce resists 2% for every 1% of damage passed armor resists greater than 25% of max condition
-		// Range to reduce armor is 75% to 50% totaling a max of 50% reduction of resists
-		float reduction = (mitigatedAmount - 0.25f) * 2.f;
+// 	// Decay resists when unmitigated damage is greater than 25% of maxConiditon
+// 	if (mitigatedAmount > 0.25f) {
+// 		// Reduce resists 2% for every 1% of damage passed armor resists greater than 25% of max condition
+// 		// Range to reduce armor is 75% to 50% totaling a max of 50% reduction of resists
+// 		float reduction = (mitigatedAmount - 0.25f) * 2.f;
 
-		// Resists never drop below 50%
-		reduction = 1.f - (reduction > 0.50f ? 0.50f : reduction);
+// 		// Resists never drop below 50%
+// 		reduction = 1.f - (reduction > 0.50f ? 0.50f : reduction);
 
-		newValue = (value * reduction);
+// 		newValue = (value * reduction);
 
-#ifdef DEBUG_RESIST_DECAY
-		info(true) << " max condition = " << maxCondition << " Total Damage Mitigated = " << unmitigatedDamage << " Start Armor value: " << value << " New Armor Value = " << newValue << " Reduction percent = " << reduction;
-#endif
-	}
+// #ifdef DEBUG_RESIST_DECAY
+// 		info(true) << " max condition = " << maxCondition << " Total Damage Mitigated = " << unmitigatedDamage << " Start Armor value: " << value << " New Armor Value = " << newValue << " Reduction percent = " << reduction;
+// #endif
+// 	}
 
-	return newValue;
-}
+// 	return newValue;
+// }
 
 float TurretObjectImplementation::getKinetic() {
-	return getArmorResistReduction(kinetic);
+	if (templateData !== nullptr) {
+		return templateData->getKinetic()
+	}
+	return 0;
+	// return getArmorResistReduction(kinetic);
 }
 
 float TurretObjectImplementation::getEnergy() {
-	return getArmorResistReduction(energy);
+	if (templateData !== nullptr) {
+		return templateData->getEnergy()
+	}
+	return 0;
+	// return getArmorResistReduction(energy);
 }
 
 float TurretObjectImplementation::getElectricity() {
-	return getArmorResistReduction(electricity);
+	if (templateData !== nullptr) {
+		return templateData->getElectricity()
+	}
+	return 0;
+	// return getArmorResistReduction(electricity);
 }
 
 float TurretObjectImplementation::getStun() {
-	return getArmorResistReduction(stun);
+	if (templateData !== nullptr) {
+		return templateData->getStun()
+	}
+	return 0;
+	// return getArmorResistReduction(stun);
 }
 
 float TurretObjectImplementation::getBlast() {
-	return getArmorResistReduction(blast);
+	if (templateData !== nullptr) {
+		return templateData->getBlast()
+	}
+	return 0;
+	// return getArmorResistReduction(blast);
 }
 
 float TurretObjectImplementation::getHeat() {
-	return getArmorResistReduction(heat);
+	if (templateData !== nullptr) {
+		return templateData->getHeat()
+	}
+	return 0;
+	// return getArmorResistReduction(heat);
 }
 
 float TurretObjectImplementation::getCold() {
-	return getArmorResistReduction(cold);
+	if (templateData !== nullptr) {
+		return templateData->getCold()
+	}
+	return 0;
+	// return getArmorResistReduction(cold);
 }
 
 float TurretObjectImplementation::getAcid() {
-	return getArmorResistReduction(acid);
+	if (templateData !== nullptr) {
+		return templateData->getAcid()
+	}
+	return 0;
+	// return getArmorResistReduction(acid);
 }
 
 float TurretObjectImplementation::getLightSaber() {
-	return getArmorResistReduction(lightsaber);
+	if (templateData !== nullptr) {
+		return templateData->getLightSaber()
+	}
+	return 0;
+	// return getArmorResistReduction(lightsaber);
 }

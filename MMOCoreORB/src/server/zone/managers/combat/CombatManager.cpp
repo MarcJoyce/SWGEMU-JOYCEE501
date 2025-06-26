@@ -1667,11 +1667,13 @@ int CombatManager::applyDamage(CreatureObject* attacker, WeaponObject* weapon, T
 		if (armorReduction >= 0)
 			damage *= getArmorPiercing(defender, armorPiercing);
 
-		if (armorReduction > 0) {
-			damage *= (1.f - (armorReduction / 100.f));
 
-			defender->addUnmitigatedDamage(damage);
-		}
+		// Armor Reduce on BF instead
+		// if (armorReduction > 0) {
+		// 	damage *= (1.f - (armorReduction / 100.f));
+
+		// 	defender->addUnmitigatedDamage(damage);
+		// }
 	}
 
 	defender->inflictDamage(attacker, 0, damage, true, xpType, true, true);
@@ -2489,12 +2491,12 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		if (armorReduction >= 0)
 			damage *= getArmorPiercing(cast<AiAgent*>(defender), armorPiercing);
 
-		if (armorReduction > 0) {
-			damage *= (1.f - (armorReduction / 100.f));
+		// if (armorReduction > 0) {
+		// 	damage *= (1.f - (armorReduction / 100.f));
 
-			if (!defender->isPet())
-				defender->addUnmitigatedDamage(damage);
-		}
+		// 	if (!defender->isPet())
+		// 		defender->addUnmitigatedDamage(damage);
+		// }
 
 		return damage;
 	} else if (defender->isVehicleObject()) {
