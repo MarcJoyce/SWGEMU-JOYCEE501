@@ -6354,11 +6354,44 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 
 	uint32 crc = STRING_HASHCODE("burstrun");
 	float hamCost = 100.0f;
-	float duration = 30;
-	float cooldown = 300;
+	float duration = 60;
+	float cooldown = 60;
 
 	float burstRunMod = (float) player->getSkillMod("burst_run");
 	hamModifier += (burstRunMod / 100.f);
+
+	float burstRunSpeed = 1.822f;
+
+	int bhBRSkillMod = player->getSkillMod("bh_burst_run");
+
+	switch(bhBRSkillMod) {
+		case 1:
+			hamModifier += 0.20f;
+			cooldownModifier += 0.20f;
+			burstRunSpeed = 2.f
+			break;
+		case 2:
+			hamModifier += 0.4f;
+			cooldownModifier += 0.4f;
+			burstRunSpeed = 2.f;
+			break;
+		case 3:
+			hamModifier += 0.6f;
+			cooldownModifier += 0.6f;
+			burstRunSpeed = 2.f;
+			break;
+		case 4:
+			hamModifier += 0.8f;
+			cooldownModifier += 0.8f;
+			burstRunSpeed = 2.5f;
+			break;
+		case 5:
+			hamModifier += 0.9f;
+			cooldownModifier += 0.9f;
+			burstRunSpeed = 3.5f;
+		default: 
+			break;
+	}
 
 	if (hamModifier > 1.0f) {
 		hamModifier = 1.0f;
@@ -6395,8 +6428,8 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 
 	Locker locker(buff);
 
-	buff->setSpeedMultiplierMod(1.822f);
-	buff->setAccelerationMultiplierMod(1.822f);
+	buff->setSpeedMultiplierMod(burstRunSpeed);
+	buff->setAccelerationMultiplierMod(burstRunSpeed);
 
 	if (cooldownModifier == 0.f)
 		buff->setStartMessage(startStringId);
