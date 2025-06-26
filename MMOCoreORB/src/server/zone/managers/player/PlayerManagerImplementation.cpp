@@ -2129,10 +2129,23 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 					xpAmount *= gcwBonus;
 
 				// Jedi experience doesn't count towards combat experience, and is earned at 20% the rate of normal experience
-				if (xpType != "jedi_general")
+				if (xpType != "jedi_general") {
 					combatXp += xpAmount;
-				else
-					xpAmount *= 0.2f;
+				} else {
+					PlayerObject* playerObject = attackerCreo->getPlayerObject();
+					int jediSkillPoints = playerObject->getSpentJediSkillPoints();
+					if (jediSkillPoints < 8) {
+						xpAmount *= 1.f;
+					} else if (jediSkillPoints < 16) {
+						xpAmount *= 0.8f;
+					} else if (jediSkillPoints < 22) {
+						xpAmount *= 0.6f;
+					} else if (jediSkillPoints < 24) {
+						xpAmount *= 0.4f;
+					} else {
+						xpAmount *= 0.2f;
+					}
+				}
 
 				if (xpType == "dotDMG") { // Prevents XP generated from DoTs from applying to the equiped weapon, but still counts towards combat XP
 					continue;
