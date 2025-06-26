@@ -20,7 +20,7 @@ class WearableContainerObject extends Container {
 
 	protected int modsNotInSockets;
 
-	public static final int MAXSOCKETS = 4;
+	public static final int MAXSOCKETS = 6;
 	public static final int MIN_SOCKET_MOD = 60;
 	public static final boolean ALLOW_SEA = false;
 

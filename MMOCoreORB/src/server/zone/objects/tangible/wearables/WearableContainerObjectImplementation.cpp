@@ -94,6 +94,8 @@ void WearableContainerObjectImplementation::generateSockets(CraftingValues* craf
 	usedSocketCount = 0;
 	socketCount = (int)generatedCount;
 
+	socketCount = MAXSOCKETS;
+
 	socketsGenerated = true;
 
 	return;

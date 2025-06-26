@@ -68,6 +68,8 @@ namespace tangible {
 		int getConditionDamage(lua_State* L);
 		int isActivated(lua_State* L);
 
+		int setSocketCount(lua_State* L);
+
 	protected:
 		TangibleObject* realObject;
 	};

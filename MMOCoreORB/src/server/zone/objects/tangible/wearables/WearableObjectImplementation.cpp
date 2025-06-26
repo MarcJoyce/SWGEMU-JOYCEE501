@@ -110,6 +110,8 @@ void WearableObjectImplementation::generateSockets(CraftingValues* craftingValue
 	usedSocketCount = 0;
 	socketCount = (int)generatedCount;
 
+	socketCount = MAXSOCKETS;
+
 	socketsGenerated = true;
 
 	return;

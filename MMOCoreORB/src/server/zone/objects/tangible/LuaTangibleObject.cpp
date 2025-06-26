@@ -12,6 +12,8 @@
 #include "templates/appearance/PaletteTemplate.h"
 #include "server/zone/objects/player/FactionStatus.h"
 
+#include "server/zone/objects/tangible/wearables/WearableObject.h"
+
 const char LuaTangibleObject::className[] = "LuaTangibleObject";
 
 Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
@@ -57,6 +59,7 @@ Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "getMainDefender", &LuaTangibleObject::getMainDefender},
 		{ "getConditionDamage", &LuaTangibleObject::getConditionDamage},
 		{ "isActivated", &LuaTangibleObject::isActivated},
+		{ "setSocketCount", &LuaTangibleObject::setSocketCount },
 		{ 0, 0 }
 };
 
@@ -448,4 +451,24 @@ int LuaTangibleObject::isActivated(lua_State* L){
 	lua_pushboolean(L, isActivated);
 
 	return 1;
+}
+
+int LuaTangibleObject::setSocketCount(lua_State* L) {
+	int count = lua_tointeger(L, -1);
+
+	if (realObject->isWearableObject() && realObject != nullptr) {
+		Locker locker(realObject);
+
+		WearableObject* wo = cast<WearableObject*>(realObject);
+
+		if (count > 4) {
+			count = 4;
+		} else if (count < 0) {
+			count = 0;
+		}
+
+		wo->setSockets(count);
+	}
+
+	return 0;
 }

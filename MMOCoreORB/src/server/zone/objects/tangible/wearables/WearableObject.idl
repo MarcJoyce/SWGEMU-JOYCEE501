@@ -20,7 +20,7 @@ class WearableObject extends TangibleObject {
 
 	protected int modsNotInSockets;
 
-	public static final int MAXSOCKETS = 4;
+	public static final int MAXSOCKETS = 6;
 	public static final int MIN_SOCKET_MOD = 60;
 
 	@dereferenced
@@ -108,5 +108,9 @@ class WearableObject extends TangibleObject {
 		}
 		socketCount = maxSockets;
 		socketsGenerated = true;
+	}
+
+	public void setSockets(int count) {
+		socketCount = count;
 	}
 }
