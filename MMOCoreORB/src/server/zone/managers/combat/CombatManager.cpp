@@ -1130,6 +1130,16 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	damage += defender->getSkillMod("private_damage_susceptibility");
 
+	int damageMultiplier = attacker->getSkillMod("private_damage_susceptibility_multiplier");
+
+	if (damageMultiplier != 0)
+		damage *= damageMultiplier;
+
+	int damageDivisor = attacker->getSkillMod("private_damage_susceptibility_divisor");
+
+	if (damageDivisor != 0)
+		damage /= damageDivisor;
+
 	if (attacker->isPlayerCreature()) {
 		if (data.isForceAttack() && !defender->isPlayerCreature())
 			damage *= 2 + System::random(1);
@@ -2070,6 +2080,7 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 	int accuracyBonus = 0;
 	int defenseSkill = 0;
 	int defensePosture = 0;
+	float atkSaberBreak = 0.f;
 
 	// DefendData
 	int evadeSkill = 0;
@@ -2159,6 +2170,8 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 					evadeTotal = (int)(threshold + ((evadeTotal - threshold) / divisor));
 				}
 
+				atkSaberBreak = creoAttacker->getSkillMod("saber_break");
+				evadeTotal -= atkSaberBreak;
 
 				if (evadeTotal > 0 && System::random(100) <= evadeTotal) {
 					hitResult = HitStatus::RICOCHET;
