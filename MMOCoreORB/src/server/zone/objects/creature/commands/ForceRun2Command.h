@@ -5,6 +5,7 @@
 #ifndef FORCERUN2COMMAND_H_
 #define FORCERUN2COMMAND_H_
 
+#include "server/zone/objects/creature/buffs/PrivateBuff.h"
 #include "server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.h"
 #include "JediQueueCommand.h"
 
@@ -26,8 +27,20 @@ public:
 		int res = creature->hasBuff(buffCRC) ? NOSTACKJEDIBUFF : doJediSelfBuffCommand(creature);
 
 		if (res == NOSTACKJEDIBUFF) {
-			creature->sendSystemMessage("@jedi_spam:already_force_running"); // You are already force running.
-			return GENERALERROR;
+			creature->sendSystemMessage("You feel the force leaving your body and return to your normal speed.");
+			creature->removeBuff(BuffCRC::JEDI_FORCE_RUN_2);
+
+			ManagedReference<PrivateSkillMultiplierBuff *> regenDebuff = new PrivateSkillMultiplierBuff(creature, STRING_HASHCODE("private_force_regen_debuff"), 60*3, BuffType::JEDI);
+			Locker regenLocker(regenDebuff);
+			regenDebuff->setSkillModifier("private_force_regen_divisor", 4);
+			regenDebuff->setSkillModifier("private_force_regen_multiplier", 3);
+
+			// Add buffs to creature
+			creature->addBuff(regenDebuff);
+
+			creature->sendSystemMessage("You feel groggy, your ability to regenerate force power has been diminished for 3 minutes.");
+
+			return SUCCESS;
 		}
 
 		if (res != SUCCESS) {
@@ -43,7 +56,11 @@ public:
 
 		Locker locker(multBuff);
 
-		multBuff->setSkillModifier("private_damage_divisor", 20);
+		multBuff->setSkillModifier("private_damage_divisor", 10);
+		multBuff->setSkillModifier("private_damage_multiplier", 8);
+
+		multBuff->setSkillModifier("private_damage_susceptibility_divisor", 10);
+		multBuff->setSkillModifier("private_damage_susceptibility_multiplier", 12);
 
 		creature->addBuff(multBuff);
 
