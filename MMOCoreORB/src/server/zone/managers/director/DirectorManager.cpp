@@ -363,6 +363,8 @@ void DirectorManager::startGlobalScreenPlays() {
 		String screenPlay = screenPlays.elementAt(i).getKey();
 		bool start = screenPlays.elementAt(i).getValue();
 
+		info(true) << "Screenplay is: " << screenPlay;
+
 		if (!nextReport.isFuture()) {
 			nextReport.updateToCurrentTime();
 			nextReport.addMiliTime(5000);

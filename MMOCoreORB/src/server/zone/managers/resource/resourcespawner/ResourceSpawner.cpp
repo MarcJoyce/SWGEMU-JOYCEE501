@@ -625,13 +625,13 @@ int ResourceSpawner::randomizeValue(int min, int max) {
 
 long ResourceSpawner::getRandomExpirationTime(const ResourceTreeEntry* resourceEntry) {
 	if (resourceEntry->isOrganic())
-		return getRandomUnixTimestamp(6, 22);
+		return getRandomUnixTimestamp(36500, 36500);
 
 	else if (resourceEntry->isJTL())
-		return getRandomUnixTimestamp(13, 22);
+		return getRandomUnixTimestamp(36500, 36500);
 
 	else
-		return getRandomUnixTimestamp(6, 11);
+		return getRandomUnixTimestamp(36500, 36500);
 }
 
 long ResourceSpawner::getRandomUnixTimestamp(int min, int max) const {
