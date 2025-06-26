@@ -269,11 +269,11 @@ void LootManagerImplementation::setCustomObjectName(TangibleObject* object, cons
 
 	String suffixName = "";
 
-	if (excMod >= legendaryModifier) {
-		suffixName = " (Legendary)";
-	} else if (excMod >= exceptionalModifier) {
-		suffixName = " (Exceptional)";
-	}
+	// if (excMod >= legendaryModifier) {
+	// 	suffixName = " (Legendary)";
+	// } else if (excMod >= exceptionalModifier) {
+	// 	suffixName = " (Exceptional)";
+	// }
 
 	if (suffixName != "") {
 		object->setCustomObjectName(object->getDisplayedName() + suffixName, false);
@@ -420,7 +420,9 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 	setCustomObjectName(prototype, templateObject, excMod);
 
 	// Set the values for the random attributes to be modified if there are any
-	if (!prototype->isAttachment()) setRandomLootValues(trx, prototype, templateObject, level, excMod);
+	if (!prototype->isAttachment()) {
+		setRandomLootValues(trx, prototype, templateObject, level, excMod);
+	}
 
 	// Set the value for those items that can be sold at a junk dealer
 	setJunkValue(prototype, templateObject, level, excMod);
@@ -441,37 +443,57 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		// addConditionDamage(prototype);
 	}
 
+	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
+	craftingValues->addExperimentalAttribute("creatueLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
+	craftingValues->setHidden("creatureLevel");
+
 	if (prototype != nullptr && prototype->isAttachment()) {
 		Attachment* attachment = cast<Attachment*>(prototype.get());
-		VectorMap<String, int>* skillModifiers = attachment->getSkillMods();
-		
+
+		if (attachment == nullptr) {
+			return nullptr;
+		}
+
+		attachment->updateCraftingValues(craftingValues, true, templateObject->getTemplateName());
+
+		delete craftingValues;
+
+		VectorMap<String, int>* mods = attachment->getSkillMods();
+
 		StringId attachmentName;
 		String key = "";
+		int highest = -1;
 		String attachmentType = "[AA] ";
 		String attachmentCustomName = "";
-		int highest = -1;
-		
-		if (attachment->isClothingAttachment()) {
+
+		if(attachment->isClothingAttachment()){
 			attachmentType = "[CA] ";
 		}
 
-		for (int i = 0; i < skillModifiers->size(); i++) {
-			auto key = skillModifiers->elementAt(i).getKey();
-			auto value = skillModifiers->elementAt(i).getValue();
+		for (int i = 0; i < mods->size(); i++) {
+			auto key = mods->elementAt(i).getKey();
+			auto value = mods->elementAt(i).getValue();
 
 			if (value > highest) {
 				highest = value;
-
-				attachmentName.setStringId("stat_n", key);
-				prototype->setObjectName(attachmentName, false);
-				attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String:valueOf(value);
 			}
+
+			attachmentName.setStringId("stat_n", key);
+			prototype->setObjectName(attachmentName, false);
+			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
 		}
 
-		prototype->setCustomObjectName(attachmentCustomName, false);
-	}
+		#ifdef DEBUG_LOOT_MAN
+			info(true) << "attachmentCustomName" << attachmentCustomName;
+			info(true) << "attachmentName" << attachmentName.getFullPath();
+			info(true) << "highest" << highest;
+			info(true) << "key" << key;
+			info(true) << "prototype->getDisplayedName()" << prototype->getDisplayedName();
+			info(true) << "prototype->getCustomObjectName()" << prototype->getCustomObjectName();
+		#endif
 
-	
+		prototype->setCustomObjectName(attachmentCustomName, false);	
+	}
 
 	trx.addState("lootAdjustment", chance);
 	trx.addState("lootExcMod", excMod);
@@ -630,6 +652,8 @@ void LootManagerImplementation::setSkillMods(TangibleObject* prototype, const Lo
 		}
 	}
 
+	randomMods = 6;
+
 	for (int i = 0; i < randomMods; ++i) {
 		String modName = getRandomLootableMod(prototype->getGameObjectType(), templateObject->getTemplateName());
 
@@ -641,6 +665,8 @@ void LootManagerImplementation::setSkillMods(TangibleObject* prototype, const Lo
 		int min = Math::clamp(-1, (int)round(0.075f * level) - 1, 25) * step;
 		int max = Math::clamp(-1, (int)round(0.125f * level) + 1, 25);
 		int mod = System::random(max - min) + min;
+
+		mod = Math::min<int>(25, Math::max<int>(((50 + level) / 50) * 5, 5));
 
 		skillMods.add(skillMods.size(), VectorMapEntry<String,int>(modName, ((mod <= 0) ? 1 : mod)));
 	}
