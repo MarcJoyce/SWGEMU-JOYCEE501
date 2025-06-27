@@ -64,7 +64,7 @@ class InstallationObject extends StructureObject {
 
 		hopperSizeMax = 10000;
 		extractionRate = 100;
-		spawnDensity = 0;
+		spawnDensity = 1;
 	}
 
 	public void initializeTransientMembers() {

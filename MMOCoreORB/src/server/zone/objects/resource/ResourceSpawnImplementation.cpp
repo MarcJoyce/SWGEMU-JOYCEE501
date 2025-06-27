@@ -147,6 +147,8 @@ int ResourceSpawnImplementation::getConcentration(bool jtl) const {
 	 * density of this specific spawn
 	 */
 
+	return SpawnDensityMap::HIGHDENSITY;
+
 	if (jtl || isType("chemical") || isType("gas_inert"))
 		return SpawnDensityMap::HIGHDENSITY;
 

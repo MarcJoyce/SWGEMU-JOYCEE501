@@ -85,10 +85,10 @@ void SurveySessionImplementation::startSurvey(const String& resname) {
 		return;
 	}
 
-	if (surveyer->isSwimming()) {
-		surveyer->sendSystemMessage("@error_message:survey_swimming");
-		return;
-	}
+	// if (surveyer->isSwimming()) {
+	// 	surveyer->sendSystemMessage("@error_message:survey_swimming");
+	// 	return;
+	// }
 
 	if (surveyer->isRidingMount()) {
 		if (surveyer->isInWater()) {
@@ -104,6 +104,7 @@ void SurveySessionImplementation::startSurvey(const String& resname) {
 
 	//Get actual cost based upon player's Focus
 	int mindCost = 100 - (int)(surveyer->getHAM(CreatureAttribute::FOCUS)/15.f);
+	mindCost = 0;
 
 	if (surveyer->getHAM(CreatureAttribute::MIND) < mindCost) {
 		surveyer->setPosture(CreaturePosture::UPRIGHT, true);
@@ -194,6 +195,8 @@ void SurveySessionImplementation::startSample(const String& resname) {
 	//Get actual cost based upon player's Quickness
 	int actionCost = 124 - (int)(surveyer->getHAM(CreatureAttribute::QUICKNESS)/12.5f);
 
+	actionCost = actionCost /= 2;
+
 	if (surveyer->getHAM(CreatureAttribute::ACTION) < actionCost) {
 		surveyer->setPosture(CreaturePosture::UPRIGHT, true);
 		surveyer->sendSystemMessage("@error_message:sample_mind"); //You are exhausted. You need to clear your head before you can sample again.
@@ -228,27 +231,31 @@ void SurveySessionImplementation::startSample(const String& resname) {
 	message.setTO(lastResourceSampleName);
 	surveyer->sendSystemMessage(message);
 
-	if (!doGamble && richSampleLocation.getPosition() == Vector3(0, 0, 0) && System::random(50) == 7) {
-
-		if (ghost->hasSuiBoxWindowType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME)) {
-			ghost->removeSuiBoxType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME);
-		}
-
-		if (ghost->hasSuiBoxWindowType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME2)) {
-			ghost->removeSuiBoxType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME2);
-		}
-
-		if (System::random(1) == 1)
-			surveyCnodeMinigameSui();
-		else
-			surveyGnodeMinigameSui();
-
-	} else {
-
-		if (!lastResourceSampleName.isEmpty())
-			resourceManager->sendSample(surveyer, lastResourceSampleName,
-					activeSurveyTool->getSampleAnimation());
+	if (!lastResourceSampleName.isEmpty()) {
+		resourceManager->sendSample(surveyer, lastResourceSampleName, activeSurveyTool->getSampleAnimation());
 	}
+
+	// if (!doGamble && richSampleLocation.getPosition() == Vector3(0, 0, 0) && System::random(50) == 7) {
+
+	// 	if (ghost->hasSuiBoxWindowType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME)) {
+	// 		ghost->removeSuiBoxType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME);
+	// 	}
+
+	// 	if (ghost->hasSuiBoxWindowType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME2)) {
+	// 		ghost->removeSuiBoxType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME2);
+	// 	}
+
+	// 	if (System::random(1) == 1)
+	// 		surveyCnodeMinigameSui();
+	// 	else
+	// 		surveyGnodeMinigameSui();
+
+	// } else {
+
+	// 	if (!lastResourceSampleName.isEmpty())
+	// 		resourceManager->sendSample(surveyer, lastResourceSampleName,
+	// 				activeSurveyTool->getSampleAnimation());
+	// }
 }
 
 void SurveySessionImplementation::surveyCnodeMinigameSui() {

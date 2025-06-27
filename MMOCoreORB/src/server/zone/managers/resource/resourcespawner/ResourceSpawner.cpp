@@ -807,6 +807,7 @@ void ResourceSpawner::sendSurvey(CreatureObject* player, const String& resname) 
 
 	//Adjust cost based upon player's focus
 	int mindCost = 100 - (int)(player->getHAM(CreatureAttribute::FOCUS)/15.f);
+	mindCost = 0;
 
 	player->inflictDamage(player, CreatureAttribute::MIND, mindCost, false, true);
 
@@ -912,6 +913,7 @@ void ResourceSpawner::sendSample(CreatureObject* player, const String& resname,
 
 	//Adjust cost based upon player's quickness
 	int actionCost = 124 - (int)(player->getHAM(CreatureAttribute::QUICKNESS)/12.5f);
+	actionCost /= 2;
 
 	player->inflictDamage(player, CreatureAttribute::ACTION, actionCost, false, true);
 
@@ -928,6 +930,7 @@ void ResourceSpawner::sendSample(CreatureObject* player, const String& resname,
 
 	// Get resource Density ay players position
 	float density = resourceMap->getDensityAt(resname, zoneName, posX, posY);
+	density = 1.0f;
 
 	session->rescheduleSampleResults(this, density, resname);
 	session->rescheduleSample();
@@ -960,26 +963,26 @@ void ResourceSpawner::sendSampleResults(TransactionLog& trx, CreatureObject* pla
 	String zoneName = zne->getZoneName();
 
 	// If density is too low, we can't obtain a sample
-	if (density < .10f) {
-		StringIdChatParameter message("survey", "efficiency_too_low");
-		message.setTO(resname);
-		player->sendSystemMessage(message);
-		player->setPosture(CreaturePosture::UPRIGHT, true);
-		trx.abort() << message.toString();
-		return;
-	}
+	// if (density < .10f) {
+	// 	StringIdChatParameter message("survey", "efficiency_too_low");
+	// 	message.setTO(resname);
+	// 	player->sendSystemMessage(message);
+	// 	player->setPosture(CreaturePosture::UPRIGHT, true);
+	// 	trx.abort() << message.toString();
+	// 	return;
+	// }
 
 	// Lower skill levels mean you can't sample lower concetrations
 	int surveySkill = player->getSkillMod("surveying");
 
-	if ((density * 100) < (32 - ((surveySkill / 20) * 6)) || density < .10) {
-		StringIdChatParameter message("survey", "density_below_threshold");
-		message.setTO(resname);
-		player->sendSystemMessage(message);
-		player->setPosture(CreaturePosture::UPRIGHT, true);
-		trx.abort() << message.toString();
-		return;
-	}
+	// if ((density * 100) < (32 - ((surveySkill / 20) * 6)) || density < .10) {
+	// 	StringIdChatParameter message("survey", "density_below_threshold");
+	// 	message.setTO(resname);
+	// 	player->sendSystemMessage(message);
+	// 	player->setPosture(CreaturePosture::UPRIGHT, true);
+	// 	trx.abort() << message.toString();
+	// 	return;
+	// }
 
 	Coordinate* richSampleLocation = session->getRichSampleLocation();
 
@@ -1001,16 +1004,18 @@ void ResourceSpawner::sendSampleResults(TransactionLog& trx, CreatureObject* pla
 	int unitsExtracted = maxUnitsExtracted * (float(surveySkill) / 100.0f) * samplingMultiplier * cityMultiplier;
 	int xpcap = 40;
 
-	if (session->tryGamble()) {
-		if (System::random(2) == 1) {
-			player->sendSystemMessage("@survey:gamble_success");
-			unitsExtracted *= 5;
-		} else {
-			player->sendSystemMessage("@survey:gamble_fail");
-		}
-		session->clearGamble();
-		xpcap = 50;
-	}
+	unitsExtracted *= 5;
+
+	// if (session->tryGamble()) {
+	// 	if (System::random(2) == 1) {
+	// 		player->sendSystemMessage("@survey:gamble_success");
+	// 		unitsExtracted *= 5;
+	// 	} else {
+	// 		player->sendSystemMessage("@survey:gamble_fail");
+	// 	}
+	// 	session->clearGamble();
+	// 	xpcap = 50;
+	// }
 
 	if (richSampleLocation != nullptr && richSampleLocation->getPosition() != Vector3(0, 0, 0)) {
 		if (player->getDistanceTo(richSampleLocation) < 10) {

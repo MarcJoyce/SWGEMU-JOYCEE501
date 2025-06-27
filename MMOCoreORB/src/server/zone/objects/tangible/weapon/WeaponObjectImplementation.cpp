@@ -712,23 +712,37 @@ void WeaponObjectImplementation::decreasePowerupUses(CreatureObject* player) {
 String WeaponObjectImplementation::repairAttempt(int repairChance) {
 	String message = "@error_message:";
 
-	if(repairChance < 25) {
-		message += "sys_repair_failed";
-		setMaxCondition(1, true);
-		setConditionDamage(0, true);
-	} else if(repairChance < 50) {
-		message += "sys_repair_imperfect";
-		setMaxCondition(getMaxCondition() * .65f, true);
-		setConditionDamage(0, true);
-	} else if(repairChance < 75) {
-		setMaxCondition(getMaxCondition() * .80f, true);
-		setConditionDamage(0, true);
-		message += "sys_repair_slight";
-	} else {
-		setMaxCondition(getMaxCondition() * .95f, true);
-		setConditionDamage(0, true);
-		message += "sys_repair_perfect";
+	if (repairChance > 100) {
+		repairChance = 0;
 	}
+
+	if (repairChance < 0) {
+		repairChance = 0;
+	}
+
+	int reduction = (float)(-0.05f * repairChance + 0.1);
+
+	setMaxCondition(getMaxCondition() * reduction, true);
+	setConditionDamage(0, true);
+	message += "sys_repair_slight";
+
+	// if(repairChance < 25) {
+	// 	message += "sys_repair_failed";
+	// 	setMaxCondition(1, true);
+	// 	setConditionDamage(0, true);
+	// } else if(repairChance < 50) {
+	// 	message += "sys_repair_imperfect";
+	// 	setMaxCondition(getMaxCondition() * .65f, true);
+	// 	setConditionDamage(0, true);
+	// } else if(repairChance < 75) {
+	// 	setMaxCondition(getMaxCondition() * .80f, true);
+	// 	setConditionDamage(0, true);
+	// 	message += "sys_repair_slight";
+	// } else {
+	// 	setMaxCondition(getMaxCondition() * .95f, true);
+	// 	setConditionDamage(0, true);
+	// 	message += "sys_repair_perfect";
+	// }
 
 	return message;
 }
@@ -743,6 +757,8 @@ void WeaponObjectImplementation::decay(CreatureObject* user) {
 
 	if (hasPowerup())
 		chance += 10;
+
+		chance /= 2;
 
 	if (roll < chance) {
 		Locker locker(_this.getReferenceUnsafeStaticCast());

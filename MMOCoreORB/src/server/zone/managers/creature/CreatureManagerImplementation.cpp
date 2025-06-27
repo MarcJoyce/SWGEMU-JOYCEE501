@@ -813,6 +813,7 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 	}
 
 	float density = resourceSpawn->getDensityAt(droidZone->getZoneName(), droid->getPositionX(), droid->getPositionY());
+	density = 1.0f;
 
 	String creatureHealth = "";
 
@@ -855,13 +856,13 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 	TransactionLog trx(TrxCode::HARVESTED, owner, resourceSpawn);
 
 	if (pet->hasStorage()) {
-		bool didit = resourceManager->harvestResourceToPlayer(trx, droid, resourceSpawn, quantityExtracted);
+		bool didit = resourceManager->harvestResourceToPlayer(trx, droid, resourceSpawn, quantityExtracted * 5);
 		if (!didit) {
 			trx.addState("droidOverflow", true);
-			resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted);
+			resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted * 5);
 		}
 	} else {
-		resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted);
+		resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted * 5);
 	}
 
 	trx.commit();
@@ -983,6 +984,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 	}
 
 	float density = resourceSpawn->getDensityAt(player->getZone()->getZoneName(), player->getPositionX(), player->getPositionY());
+	density = 1.0f;
 
 	String creatureHealth = "";
 
@@ -1013,7 +1015,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 		quantityExtracted = 1;
 
 	TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn);
-	resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted);
+	resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted * 5);
 	trx.commit();
 
 	/// Send System Messages
