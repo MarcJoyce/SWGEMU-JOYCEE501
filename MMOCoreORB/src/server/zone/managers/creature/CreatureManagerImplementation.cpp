@@ -813,7 +813,6 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 	}
 
 	float density = resourceSpawn->getDensityAt(droidZone->getZoneName(), droid->getPositionX(), droid->getPositionY());
-	density = 1.0f;
 
 	String creatureHealth = "";
 
@@ -984,7 +983,6 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 	}
 
 	float density = resourceSpawn->getDensityAt(player->getZone()->getZoneName(), player->getPositionX(), player->getPositionY());
-	density = 1.0f;
 
 	String creatureHealth = "";
 

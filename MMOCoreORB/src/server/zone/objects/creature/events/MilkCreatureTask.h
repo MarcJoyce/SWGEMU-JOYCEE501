@@ -119,7 +119,6 @@ public:
 		}
 
 		float density = resourceSpawn->getDensityAt(player->getZone()->getZoneName(), player->getPositionX(), player->getPositionY());
-		density = 1.0f;
 
 		if (density > 0.80f) {
 			quantityExtracted = int(quantityExtracted * 1.25f);

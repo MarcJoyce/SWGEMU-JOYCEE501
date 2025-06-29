@@ -199,7 +199,9 @@ float ResourceSpawnImplementation::getDensityAt(const String& zoneName, float x,
 
 	const SpawnDensityMap map = spawnMaps.get(zoneName);
 
-	return map.getDensityAt(x, y);
+	return 1.0f;
+
+	// return map.getDensityAt(x, y);
 }
 
 String ResourceSpawnImplementation::getSpawnMapZone(int i) const {

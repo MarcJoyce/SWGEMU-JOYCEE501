@@ -110,8 +110,8 @@ public:
 
 		if(value < 0)
 			return 0;
-
-		return value * density;
+		return value * 1.0f;
+		// return value * density;
 	}
 
 	void print() const {

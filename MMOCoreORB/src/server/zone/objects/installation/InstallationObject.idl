@@ -64,7 +64,7 @@ class InstallationObject extends StructureObject {
 
 		hopperSizeMax = 10000;
 		extractionRate = 100;
-		spawnDensity = 1;
+		spawnDensity = 0;
 	}
 
 	public void initializeTransientMembers() {
@@ -195,12 +195,12 @@ class InstallationObject extends StructureObject {
 
 	@read
 	public float getExtractionRate() {
-		return extractionRate;
+		return extractionRate * 5;
 	}
 
 	@read
 	public float getHopperSizeMax() {
-		return hopperSizeMax;
+		return hopperSizeMax * 10;
 	}
 
 	@preLocked

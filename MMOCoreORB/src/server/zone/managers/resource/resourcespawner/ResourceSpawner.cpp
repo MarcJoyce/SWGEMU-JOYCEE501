@@ -930,7 +930,6 @@ void ResourceSpawner::sendSample(CreatureObject* player, const String& resname,
 
 	// Get resource Density ay players position
 	float density = resourceMap->getDensityAt(resname, zoneName, posX, posY);
-	density = 1.0f;
 
 	session->rescheduleSampleResults(this, density, resname);
 	session->rescheduleSample();

@@ -85,8 +85,6 @@ void InstallationObjectImplementation::setActive(bool value, bool notifyClient) 
 
 		spawnDensity = currentSpawn->getDensityAt(getZone()->getZoneName(), getPositionX(), getPositionY());
 
-		spawnDensity = 1.0f;
-
 		if (spawnDensity < .10) {
 			return;
 		}
@@ -161,7 +159,6 @@ void InstallationObjectImplementation::setActiveResource(ResourceContainer* cont
 		currentSpawn = container->getSpawnObject();
 
 		spawnDensity = currentSpawn->getDensityAt(getZone()->getZoneName(), getPositionX(), getPositionY());
-		spawnDensity = 1.0f;
 
 		return;
 	}
@@ -191,7 +188,6 @@ void InstallationObjectImplementation::setActiveResource(ResourceContainer* cont
 
 			currentSpawn = container->getSpawnObject();
 			spawnDensity = currentSpawn->getDensityAt(getZone()->getZoneName(), getPositionX(), getPositionY());
-			spawnDensity = 1.0f;
 
 			inso7->updateHopperSize(getHopperSize());
 			inso7->updateExtractionRate(getActualRate());
@@ -594,7 +590,6 @@ void InstallationObjectImplementation::changeActiveResourceID(uint64 spawnID) {
 
 	currentSpawn = newSpawn;
 	spawnDensity = currentSpawn->getDensityAt(getZone()->getZoneName(), getPositionX(), getPositionY());
-	spawnDensity = 1.0f;
 
 	Time timeToWorkTill;
 
