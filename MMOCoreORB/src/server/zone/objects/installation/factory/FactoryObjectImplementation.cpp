@@ -149,6 +149,12 @@ void FactoryObjectImplementation::fillAttributeList(AttributeListMessage* alm, C
 			alm->insertAttribute("manufacture_object", prototype->getDisplayedName());
 		}
 
+		if (object->hasSkill("admin")) {
+			timer = 0;
+		} else {
+			timer = 1;
+		}
+
 		alm->insertAttribute("manufacture_time", timer);
 
 		ManagedReference<SceneObject*> outputHopper = getSlottedObject("output_hopper");
@@ -522,7 +528,7 @@ void FactoryObjectImplementation::handleOperateToggle(CreatureObject* player) {
 		currentUserName = player->getFirstName();
 		currentRunCount = 0;
 
-		if (startFactory(player)) {
+		if (startFactory()) {
 			player->sendSystemMessage("@manf_station:activated"); // Station activated
 			player->sendSystemMessage("This schematic limit is: " + String::valueOf(schematic->getManufactureLimit()));
 		}
@@ -533,7 +539,7 @@ void FactoryObjectImplementation::handleOperateToggle(CreatureObject* player) {
 	}
 }
 
-bool FactoryObjectImplementation::startFactory(CreatureObject* player) {
+bool FactoryObjectImplementation::startFactory() {
 	if (getContainerObjectsSize() == 0) {
 		return false;
 	}
@@ -566,12 +572,10 @@ bool FactoryObjectImplementation::startFactory(CreatureObject* player) {
 	timer = 30;
 	info(true) << "Factory Testing Timer Set To: " << timer;
 #else
-	timer = 1;
-#endif
-
-	if (player->hasSkill("admin")) {
-		timer = 0.001;
+	if (timer != 0) {
+		timer = 1;
 	}
+#endif
 
 	if (!populateSchematicBlueprint(schematic))
 		return false;

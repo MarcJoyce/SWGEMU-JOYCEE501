@@ -2600,49 +2600,43 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 
 	int xp = 0;
 
-	int typeMultiplier = 1.f;
+	float typeMultiplier = 1.f;
 
-	switch(xpType) {
-		case "dance":
-		case "entertainer_healing":
-		case "music":
-		case "squadleader":
+	if (xpType == "dance" || xpType == "entertainer_healing" || xpType == "music" || xpType == "squadleader") {
 			typeMultiplier = 100.0f;
-			break;
-		case "crafting_spice":
-		case "slicing":
+	} else if (xpType == "crafting_spice" || xpType == "slicing") {
 			typeMultiplier = 50.0f;
-			break;
-		case "bio_engineer_dna_harvesting":
-		case "crafting_clothing_armor":
-		case "crafting_clothing_general":
-		case "crafting_droid_general":
-		case "crafting_food_general":
-		case "crafting_general":
-		case "crafting_medicine_general":
-		case "crafting_structure_general":
-		case "crafting_weapons_general":
-		case "creaturehandler":
-		case "resource_harvesting_inorganic":
-		case "scout":
-		case "trapping":
+	} else if (
+			xpType == "bio_engineer_dna_harvesting" ||
+			xpType == "crafting_clothing_armor" ||
+			xpType == "crafting_clothing_general" ||
+			xpType == "crafting_droid_general" ||
+			xpType == "crafting_food_general" ||
+			xpType == "crafting_general" ||
+			xpType == "crafting_medicine_general" ||
+			xpType == "crafting_structure_general" ||
+			xpType == "crafting_weapons_general" ||
+			xpType == "creaturehandler" ||
+			xpType == "resource_harvesting_inorganic" ||
+			xpType == "scout" ||
+			xpType == "trapping"
+	) {
 			typeMultiplier = 25.0f;
-			break;
-		case "medical":
+	} else if (xpType == "medical") {
 			typeMultiplier = 10.0f;
-			break;
-		case "combat_general":
-		case "combat_meleespecialize_onehand":
-		case "combat_meleespecialize_polearm":
-		case "combat_meleespecialize_twohand":
-		case "combat_meleespecialize_unarmed":
-		case "combat_rangedspecialize_carbine":
-		case "combat_rangedspecialize_heavy":
-		case "combat_rangedspecialize_pistol":
-		case "combat_rangedspecialize_rifle":
+	} else if (
+			xpType == "combat_general" ||
+			xpType == "combat_meleespecialize_onehand" ||
+			xpType == "combat_meleespecialize_polearm" ||
+			xpType == "combat_meleespecialize_twohand" ||
+			xpType == "combat_meleespecialize_unarmed" ||
+			xpType == "combat_rangedspecialize_carbine" ||
+			xpType == "combat_rangedspecialize_heavy" ||
+			xpType == "combat_rangedspecialize_pistol" ||
+			xpType == "combat_rangedspecialize_rifle"
+	) {
 			typeMultiplier = 5.0f;
-			break;
-		default:
+	} else {
 			typeMultiplier = 1.0f;
 	}
 
