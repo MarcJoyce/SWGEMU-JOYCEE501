@@ -2600,6 +2600,52 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 
 	int xp = 0;
 
+	int typeMultiplier = 1.f;
+
+	switch(xpType) {
+		case "dance":
+		case "entertainer_healing":
+		case "music":
+		case "squadleader":
+			typeMultiplier = 100.0f;
+			break;
+		case "crafting_spice":
+		case "slicing":
+			typeMultiplier = 50.0f;
+			break;
+		case "bio_engineer_dna_harvesting":
+		case "crafting_clothing_armor":
+		case "crafting_clothing_general":
+		case "crafting_droid_general":
+		case "crafting_food_general":
+		case "crafting_general":
+		case "crafting_medicine_general":
+		case "crafting_structure_general":
+		case "crafting_weapons_general":
+		case "creaturehandler":
+		case "resource_harvesting_inorganic":
+		case "scout":
+		case "trapping":
+			typeMultiplier = 25.0f;
+			break;
+		case "medical":
+			typeMultiplier = 10.0f;
+			break;
+		case "combat_general":
+		case "combat_meleespecialize_onehand":
+		case "combat_meleespecialize_polearm":
+		case "combat_meleespecialize_twohand":
+		case "combat_meleespecialize_unarmed":
+		case "combat_rangedspecialize_carbine":
+		case "combat_rangedspecialize_heavy":
+		case "combat_rangedspecialize_pistol":
+		case "combat_rangedspecialize_rifle":
+			typeMultiplier = 5.0f;
+			break;
+		default:
+			typeMultiplier = 1.0f;
+	}
+
 	trx.addState("applyModifiers", applyModifiers);
 
 	if (applyModifiers) {
@@ -2608,7 +2654,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 		trx.addState("localMultiplier", localMultiplier);
 		trx.addState("globalExpMultiplier", globalExpMultiplier);
 
-		xp = playerObject->addExperience(trx, xpType, (int) (amount * speciesModifier * buffMultiplier * localMultiplier * globalExpMultiplier));
+		xp = playerObject->addExperience(trx, xpType, (int) (amount * speciesModifier * buffMultiplier * localMultiplier * globalExpMultiplier * typeMultiplier));
 	} else {
 		xp = playerObject->addExperience(trx, xpType, (int)amount);
 	}
