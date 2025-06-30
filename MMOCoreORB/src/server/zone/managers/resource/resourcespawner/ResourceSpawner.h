@@ -143,6 +143,8 @@ public:
 
 	String healthCheck();
 
+	void despawnAllResources(const String& planet) const;
+
 	String dumpResources() {
 		if(writeAllSpawnsToScript())
 			return "Resources Dumped";

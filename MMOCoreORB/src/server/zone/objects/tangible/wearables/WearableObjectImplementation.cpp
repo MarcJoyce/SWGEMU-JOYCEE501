@@ -234,7 +234,7 @@ String WearableObjectImplementation::repairAttempt(int repairChance) {
 	String message = "@error_message:";
 
 	if (repairChance > 100) {
-		repairChance = 0;
+		repairChance = 100;
 	}
 
 	if (repairChance < 0) {

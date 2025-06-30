@@ -522,7 +522,7 @@ void FactoryObjectImplementation::handleOperateToggle(CreatureObject* player) {
 		currentUserName = player->getFirstName();
 		currentRunCount = 0;
 
-		if (startFactory()) {
+		if (startFactory(player)) {
 			player->sendSystemMessage("@manf_station:activated"); // Station activated
 			player->sendSystemMessage("This schematic limit is: " + String::valueOf(schematic->getManufactureLimit()));
 		}
@@ -533,7 +533,7 @@ void FactoryObjectImplementation::handleOperateToggle(CreatureObject* player) {
 	}
 }
 
-bool FactoryObjectImplementation::startFactory() {
+bool FactoryObjectImplementation::startFactory(CreatureObject* player) {
 	if (getContainerObjectsSize() == 0) {
 		return false;
 	}
@@ -568,6 +568,10 @@ bool FactoryObjectImplementation::startFactory() {
 #else
 	timer = 1;
 #endif
+
+	if (player->hasSkill("admin")) {
+		timer = 0.001;
+	}
 
 	if (!populateSchematicBlueprint(schematic))
 		return false;

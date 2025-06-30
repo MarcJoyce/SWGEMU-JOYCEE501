@@ -713,7 +713,7 @@ String WeaponObjectImplementation::repairAttempt(int repairChance) {
 	String message = "@error_message:";
 
 	if (repairChance > 100) {
-		repairChance = 0;
+		repairChance = 100;
 	}
 
 	if (repairChance < 0) {
@@ -758,7 +758,7 @@ void WeaponObjectImplementation::decay(CreatureObject* user) {
 	if (hasPowerup())
 		chance += 10;
 
-		chance /= 2;
+	chance /= 2;
 
 	if (roll < chance) {
 		Locker locker(_this.getReferenceUnsafeStaticCast());

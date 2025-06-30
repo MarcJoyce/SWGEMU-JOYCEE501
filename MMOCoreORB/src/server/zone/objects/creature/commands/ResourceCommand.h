@@ -56,6 +56,9 @@ public:
 			} else if(command == "create") {
 				giveResource(creature, &args);
 
+			} else if(command == "despawnall") {
+				despawnAllResources(creature, &args);
+
 			} else {
 				throw Exception();
 			}
@@ -119,6 +122,16 @@ public:
 		ResourceManager* resMan = creature->getZoneServer()->getResourceManager();
 
 		creature->sendSystemMessage(resMan->despawnResource(resourceName));
+	}
+
+	void despawnAllResources(CreatureObject* creature, StringTokenizer* args) const {
+		if (creature->getZoneServer() == nullptr) {
+			return;
+		}
+
+		ResourceManager* resMan = creature->getZoneServer()->getResourceManager();
+
+		creature->sendSystemMessage(resMan->despawnAllResources());
 	}
 
 	void listResourceInfo(CreatureObject* creature, StringTokenizer* args) const {

@@ -625,13 +625,13 @@ int ResourceSpawner::randomizeValue(int min, int max) {
 
 long ResourceSpawner::getRandomExpirationTime(const ResourceTreeEntry* resourceEntry) {
 	if (resourceEntry->isOrganic())
-		return getRandomUnixTimestamp(36500, 36500);
+		return getRandomUnixTimestamp(365, 365);
 
 	else if (resourceEntry->isJTL())
-		return getRandomUnixTimestamp(36500, 36500);
+		return getRandomUnixTimestamp(365, 365);
 
 	else
-		return getRandomUnixTimestamp(36500, 36500);
+		return getRandomUnixTimestamp(365, 365);
 }
 
 long ResourceSpawner::getRandomUnixTimestamp(int min, int max) const {
@@ -1309,4 +1309,19 @@ String ResourceSpawner::healthCheck() {
 	health << manualPool->healthCheck() << endl;
 
 	return health.toString();
+}
+
+void ResourceSpawner::despawnAllResources(const String& planet) const {
+	auto zoneMap = resourceMap->getZoneResourceList(planet);
+
+	ManagedReference<ResourceSpawn*> resourceSpawn;
+
+	for (int i = 0; i < zoneMap->size(); ++i) {
+		resourceSpawn = zoneMap->get(i);
+
+		if(resourceSpawn == nullptr)
+			continue;
+
+		resourceSpawn->setDespawned(time(0) - 1);
+	}
 }

@@ -32,6 +32,8 @@
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/managers/creature/PetManager.h"
 
+#define DEBUG_INSTALLATION
+
 void InstallationObjectImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	StructureObjectImplementation::loadTemplateData(templateData);
 
@@ -76,12 +78,20 @@ void InstallationObjectImplementation::fillAttributeList(AttributeListMessage* a
 void InstallationObjectImplementation::setActive(bool value, bool notifyClient) {
 	// updateInstallationWork();
 
-	if (active == value)
+	if (active == value) {
+		#ifdef DEBUG_INSTALLATION
+			info(true) << "active: " << active << " | value: " << value;
+		#endif
 		return;
-
+	}
+	
 	if (value && !isFactory()) {
-		if (currentSpawn == nullptr)
+		if (currentSpawn == nullptr) {
+			#ifdef DEBUG_INSTALLATION
+				info(true) << "value: " << value << " | currentSpawn: " << currentSpawn;
+			#endif
 			return;
+		}
 
 		spawnDensity = currentSpawn->getDensityAt(getZone()->getZoneName(), getPositionX(), getPositionY());
 
@@ -149,6 +159,9 @@ void InstallationObjectImplementation::setActive(bool value, bool notifyClient) 
 
 void InstallationObjectImplementation::setActiveResource(ResourceContainer* container) {
 	if (container == nullptr || !container->getSpawnObject()->inShift()) {
+		#ifdef DEBUG_INSTALLATION
+			info(true) << "container: " << container << " | container->getSpawnObject()->inShift(): " << container->getSpawnObject()->inShift();
+		#endif
 		return;
 	}
 
@@ -371,6 +384,9 @@ void InstallationObjectImplementation::updateHopper(Time& workingTime, bool shut
 	}
 
 	if (!errorString.isEmpty() && isActive()) {
+		#ifdef DEBUG_INSTALLATION
+			info(true) << "ErrorString is not empty and installation is active";
+		#endif
 		StringIdChatParameter stringId("shared", errorString);
 		broadcastToOperators(new ChatSystemMessage(stringId));
 
@@ -423,7 +439,22 @@ void InstallationObjectImplementation::updateHopper(Time& workingTime, bool shut
 	harvestAmount = (int) harvestAmount;
 
 	float currentQuantity = container->getQuantity();
-
+	
+	#ifdef DEBUG_INSTALLATION
+		info(true) << "lastHopperUpdate: " << String::valueOf(lastHopperUpdate);
+		info(true) << "elapsedTime: " << String::valueOf(elapsedTime);
+		info(true) << "spawnDensity: " << String::valueOf(spawnDensity);
+		info(true) << "harvestUntil: " << String::valueOf(harvestUntil);
+		info(true) << "availableCapacity: " << String::valueOf(availableCapacity);
+		info(true) << "extractionRemainder: " << String::valueOf(extractionRemainder);
+		info(true) << "currentQuantity: " << String::valueOf(currentQuantity);
+		info(true) << "isActive: " << String::valueOf(isActive());
+		info(true) << "harvestAmount: " << String::valueOf(harvestAmount);
+		info(true) << "getHopperSize: " << String::valueOf(getHopperSize());
+		info(true) << "getHopperSizeMax: " << String::valueOf(getHopperSizeMax());
+		info(true) << "spawnExpireTimestamp.compareTo(currentTime) > 0: " << String::valueOf(spawnExpireTimestamp.compareTo(currentTime) > 0);
+		info(true) << "spawnExpireTimestamp: " << String::valueOf((uint32)currentSpawn->getDespawned());
+	#endif
 
 	if(harvestAmount > 0 || !isActive()) {
 		Locker spawnLocker(currentSpawn);
@@ -563,7 +594,6 @@ void InstallationObjectImplementation::changeActiveResourceID(uint64 spawnID) {
 			resourceHopperTimestamp.updateToCurrentTime();
 			currentSpawn = nullptr;
 			setActive(false);
-
 		}
 
 		auto msg = error();
@@ -696,6 +726,10 @@ void InstallationObjectImplementation::updateResourceContainerQuantity(ResourceC
 	Time timeToWorkTill;
 
 	container->setQuantity(newQuantity, false, true, false);
+
+	#ifdef DEBUG_INSTALLATION
+		info(true) << "ResourceHopperSize is: " << String::valueOf(resourceHopper.size());
+	#endif
 
 	for (int i = 0; i < resourceHopper.size(); ++i) {
 		ResourceContainer* cont = resourceHopper.get(i);

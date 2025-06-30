@@ -454,6 +454,21 @@ String ResourceManagerImplementation::despawnResource(String& resourceName) {
 
 	spawn->setDespawned(time(0) - 1);
 	resourceSpawner->shiftResources();
-
+	
 	return resourceName + " despawned.";
+}
+
+String ResourceManagerImplementation::despawnAllResources() {
+	resourceSpawner->despawnAllResources("corellia");
+	resourceSpawner->despawnAllResources("dantooine");
+	resourceSpawner->despawnAllResources("dathomir");
+	resourceSpawner->despawnAllResources("endor");
+	resourceSpawner->despawnAllResources("lok");
+	resourceSpawner->despawnAllResources("naboo");
+	resourceSpawner->despawnAllResources("rori");
+	resourceSpawner->despawnAllResources("talus");
+	resourceSpawner->despawnAllResources("tatooine");
+	resourceSpawner->despawnAllResources("yavin4");
+	resourceSpawner->shiftResources();
+	return "All resources despawned.";
 }
