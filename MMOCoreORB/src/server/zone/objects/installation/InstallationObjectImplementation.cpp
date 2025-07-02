@@ -32,7 +32,7 @@
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/managers/creature/PetManager.h"
 
-#define DEBUG_INSTALLATION
+//#define DEBUG_INSTALLATION
 
 void InstallationObjectImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	StructureObjectImplementation::loadTemplateData(templateData);

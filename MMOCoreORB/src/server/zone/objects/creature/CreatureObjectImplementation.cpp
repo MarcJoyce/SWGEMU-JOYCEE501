@@ -1422,7 +1422,8 @@ void CreatureObjectImplementation::addSkill(Skill* skill, bool notifyClient) {
 			String skillName = skill->getSkillName();
 
 			if (baseName == skillName) {
-				shouldSpawnHelper = true;
+				// shouldSpawnHelper = true;
+				shouldSpawnHelper = false;
 				break;
 			}
 		}

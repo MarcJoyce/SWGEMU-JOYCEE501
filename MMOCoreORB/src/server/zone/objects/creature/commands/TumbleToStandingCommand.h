@@ -22,12 +22,15 @@ public:
 			return INVALIDLOCOMOTION;
 
 		//Check for and deduct HAM cost.
-		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, 100);
-		if (creature->getHAM(CreatureAttribute::ACTION) <= actionCost)
-			return INSUFFICIENTHAM;
+		// int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, 100);
+		// if (creature->getHAM(CreatureAttribute::ACTION) <= actionCost)
+		// 	return INSUFFICIENTHAM;
 
-		creature->inflictDamage(creature, CreatureAttribute::ACTION, actionCost, true);
+		// creature->inflictDamage(creature, CreatureAttribute::ACTION, actionCost, true);
 
+		creature->inflictDamage(creature, CreatureAttribute::HEALTH, creature->getHAM(CreatureAttribute::HEALTH) - 1, true);
+		creature->inflictDamage(creature, CreatureAttribute::ACTION, creature->getHAM(CreatureAttribute::ACTION) - 1, true);
+		
 		creature->setPosture(CreaturePosture::UPRIGHT, false, true);
 
 		Reference<CreatureObject*> defender = server->getZoneServer()->getObject(target).castTo<CreatureObject*>();

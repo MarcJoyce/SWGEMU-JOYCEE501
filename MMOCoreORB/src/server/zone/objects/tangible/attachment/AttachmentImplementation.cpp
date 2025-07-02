@@ -13,6 +13,8 @@
 #include "server/zone/managers/loot/LootManager.h"
 #include "server/zone/managers/loot/LootValues.h"
 
+// #define DEBUG_LOOT_MAN
+
 void AttachmentImplementation::initializeMembers() {
 	if (gameObjectType == SceneObjectType::CLOTHINGATTACHMENT) {
 		setOptionsBitmask(32, true);
@@ -86,6 +88,11 @@ void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool
 		int mod = System::random(max - min) + min;
 
 		mod = Math::min<int>(25, Math::max<int>(((50 + level) / 50) * 5, 5));
+
+		#ifdef DEBUG_LOOT_MAN
+			info(true) << "AttachmentImplementation: level" << String::valueOf(level);
+			info(true) << "AttachmentImplementation: mod: " << String::valueOf(mod);
+		#endif
 
 		String modName = lootManager->getRandomLootableMod(gameObjectType, lootTemplateName);
 

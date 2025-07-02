@@ -443,8 +443,13 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 		// addConditionDamage(prototype);
 	}
 
+	#ifdef DEBUG_LOOT_MAN
+			info(true) << "LootManagerImplementation: level" << String::valueOf(level);
+		#endif
+
 	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
-	craftingValues->addExperimentalAttribute("creatueLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
+	craftingValues->addExperimentalAttribute("creatureLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
+	craftingValues->setCurrentValue("creatureLevel", level);
 	craftingValues->setHidden("creatureLevel");
 
 	if (prototype != nullptr && prototype->isAttachment()) {
