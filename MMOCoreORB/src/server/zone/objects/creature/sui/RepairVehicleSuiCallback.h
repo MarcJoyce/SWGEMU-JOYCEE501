@@ -40,9 +40,6 @@ public:
 			return;
 		}
 
-		if (vehicle->isDisabled() && !player->getPlayerObject()->isPrivileged())
-			return;
-
 		int repairCost = vehicle->calculateRepairCost(player);
 		int totalFunds = player->getBankCredits();
 		int tax = 0;
@@ -68,6 +65,8 @@ public:
 		player->sendSystemMessage(params);
 
 		vehicle->healDamage(player, 0, vehicle->getConditionDamage(), true);
+		vehicle->setDecayCycle(vehicle->getDecayCycle() - 15);
+
 
 		String vehicleName = vehicle->getDisplayedName();
 

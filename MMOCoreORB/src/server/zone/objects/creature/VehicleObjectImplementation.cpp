@@ -26,7 +26,7 @@ void VehicleObjectImplementation::fillObjectMenuResponse(ObjectMenuResponse* men
 	menuResponse->addRadialMenuItem(205, 1, "@pet/pet_menu:menu_enter_exit");
 	menuResponse->addRadialMenuItem(61, 3, "");
 
-	if (player->getPlayerObject()->isPrivileged() || (checkInRangeGarage() && !isDisabled()))
+	if (player->getPlayerObject()->isPrivileged() || (checkInRangeGarage()))
 		menuResponse->addRadialMenuItem(62, 3, "@pet/pet_menu:menu_repair_vehicle"); //Repair Vehicle
 }
 
@@ -195,11 +195,6 @@ void VehicleObjectImplementation::repairVehicle(CreatureObject* player) {
 			return;
 		}
 
-		// Check if Vehicle is Disabled
-		if (isDisabled()) {
-			player->sendSystemMessage("@pet/pet_menu:cannot_repair_disabled"); //You may not repair a disabled vehicle.
-			return;
-		}
 
 		//Need to check if they are city banned.
 		ManagedReference<ActiveArea*> activeArea = getActiveRegion();
@@ -251,6 +246,10 @@ int VehicleObjectImplementation::calculateRepairCost(CreatureObject* player) {
 	if (player->getPlayerObject()->isPrivileged())
 		return 0;
 
+	if (isDisabled()) {
+		return getConditionDamage() * 400;
+	}
+
 	return getConditionDamage() * 4;
 }
 
@@ -272,9 +271,6 @@ int VehicleObjectImplementation::notifyObjectDestructionObservers(TangibleObject
 	ManagedReference<CreatureObject* > linkedCreature = this->linkedCreature.get();
 
 	if (linkedCreature != nullptr) {
-		if (!isDisabled())
-			linkedCreature->sendSystemMessage("@pet/pet_menu:veh_disabled");
-
 		try {
 			if (attacker != _this.getReferenceUnsafeStaticCast()) {
 				Locker clocker(linkedCreature, attacker);

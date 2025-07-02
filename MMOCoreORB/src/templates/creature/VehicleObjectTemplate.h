@@ -34,6 +34,14 @@ public:
 		return decayCycle;
 	}
 
+	void setDecayRate(int value) {
+		this->decayRate = value;
+	}
+
+	void setDecayCycle(int value) {
+		this->decayCycle = value;
+	}
+
 };
 
 #endif /* VEHICLEOBJECTTEMPLATE_H_ */
