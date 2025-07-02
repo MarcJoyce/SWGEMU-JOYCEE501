@@ -44,7 +44,7 @@
 object_building_player_city_theater_tatooine = object_building_player_city_shared_theater_tatooine:new {
 	lotSize = 3,
 	baseMaintenanceRate = 50,
-	allowedZones = {"dantooine", "lok", "tatooine"},
+	allowedZones = {"corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "talus", "tatooine", "yavin4" },
 	length = 5,
 	width = 6,
 	gameObjectType = 524,

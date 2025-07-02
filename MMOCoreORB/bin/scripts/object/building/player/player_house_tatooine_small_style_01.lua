@@ -45,7 +45,7 @@ object_building_player_player_house_tatooine_small_style_01 = object_building_pl
 	lotSize = 2,
 	publicStructure = 0,
 	baseMaintenanceRate = 16,
-	allowedZones = {"dantooine", "lok", "tatooine"},
+	allowedZones = {"corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "talus", "tatooine", "yavin4" },
 	skillMods = {
 		{"private_medical_rating", 100},
 		{"private_buff_mind", 100},

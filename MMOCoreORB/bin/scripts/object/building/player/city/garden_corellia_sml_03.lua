@@ -45,7 +45,7 @@ object_building_player_city_garden_corellia_sml_03 = object_building_player_city
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "talus"},
+	allowedZones = {"corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "talus", "tatooine", "yavin4" },
 	length = 3,
 	width = 3,
 	cityRankRequired = 1,
