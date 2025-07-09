@@ -16,68 +16,68 @@ WorldBossesScreenPlay = ScreenPlay:new {
     { "corellia", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = 547, z = 25, y = -308 }, " east of Lord Nyax's cult.",
-        { x = 4596, z = 22, y = 1426 }, " near the Rogue Corsec base.",
+        {{ x = 547, z = 25, y = -308 }, " east of Lord Nyax's cult."},
+        {{ x = 4596, z = 22, y = 1426 }, " near the Rogue Corsec base."}
       }
     },
     { "dantooine", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = -141, z = 10, y = -484 }, " tormenting Kunga's near their stronghold.",
-        { x = -640, z = 23, y = -4704 }, " south of the Warren.",
+        {{ x = -141, z = 10, y = -484 }, " tormenting Kunga's near their stronghold."},
+        {{ x = -640, z = 23, y = -4704 }, " south of the Warren."}
       }
     },
     { "dathomir", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = -141, z = 10, y = -484 }, " north of the Singing Mountain Clan, along the beach.",
-        { x = -640, z = 23, y = -4704 }, " near the Dathomir Tarpits.",
-        { x = -6048, z = 125, y = -32 }, " south of the Dathomir Imperial Prison.",
+        {{ x = -141, z = 10, y = -484 }, " north of the Singing Mountain Clan, along the beach."},
+        {{ x = -640, z = 23, y = -4704 }, " near the Dathomir Tarpits."},
+        {{ x = -6048, z = 125, y = -32 }, " south of the Dathomir Imperial Prison."}
       }
     },
     { "endor", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = -4409, z = 22, y = 4284 }, " escaped captivity of the Death Watch.",
-        { x = 3552, z = 9, y = 3552 }, " east of the Korga cave.",
-        { x = 1000, z = 31, y = -800 }, " between the Endorian outposts.",
+        {{ x = -4409, z = 22, y = 4284 }, " escaped captivity of the Death Watch."},
+        {{ x = 3552, z = 9, y = 3552 }, " east of the Korga cave."},
+        {{ x = 1000, z = 31, y = -800 }, " between the Endorian outposts."}
       }
     },
     { "lok", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = 2470, z = 18, y = -4217 }, " at the foot of Adi's Rest.",
-        { x = -2253, z = 11, y = -3070 }, " preparing to seige the Lokian Imperial Outpost.",
+        {{ x = 2470, z = 18, y = -4217 }, " at the foot of Adi's Rest."},
+        {{ x = -2253, z = 11, y = -3070 }, " preparing to seige the Lokian Imperial Outpost."}
       }
     },
     { "naboo", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = -5331, z = 11, y = 3498 }, " south of Theed",
-        { x = -2464, z = 61, y = -2992 }, " stalking Mordran",
+        {{ x = -5331, z = 11, y = 3498 }, " south of Theed"},
+        {{ x = -2464, z = 61, y = -2992 }, " stalking Mordran"}
       }
     },
     { "talus", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        { x = 4307, z = 6, y = 1015 }, " seeking refuge in the Lost Village of Durbin.",
-        { x = 395, z = 44, y = -821 }, " west of the Giant Fynock Cave.",
+        {{ x = 4307, z = 6, y = 1015 }, " seeking refuge in the Lost Village of Durbin."},
+        {{ x = 395, z = 44, y = -821 }, " west of the Giant Fynock Cave."}
       }
     },
     { "tatooine", 
     { "krayt_dragon_ancient", "tusken_witch_doctor" },
     { 
-      { x = -5870, z = 32, y = -5178 }, " north of Jabba's Palace.",
-      { x = 5376, z = 34, y = 2400 }, " east of Mos Taike.",
-      { x = -5456, z = 39, y = 6320 }, " west of Fort Tusken.",
-      { x = 1954, z = 0, y = -4879 }, " between Mos Eisley and Anchorhead.",
+      {{ x = -5870, z = 32, y = -5178 }, " north of Jabba's Palace."},
+      {{ x = 5376, z = 34, y = 2400 }, " east of Mos Taike."},
+      {{ x = -5456, z = 39, y = 6320 }, " west of Fort Tusken"},
+      {{ x = 1954, z = 0, y = -4879 }, " between Mos Eisley and Anchorhead."}
     }
   },
   { "yavin4", 
     { "acklay", "krayt_dragon_ancient" },
     { 
-      { x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun.",
-      { x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4.",
+      {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun."},
+      {{ x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4."}
     }
   },
   }
@@ -105,11 +105,11 @@ function WorldBossesScreenPlay:respawnBoss()
   local pMobile = spawnMobile(planet, template, 0, coords.x, coords.z, coords.y, 0, 0)
 
   if (pMobile ~= nil) then
-    printf("WorldBossesScreenPlay: " .. template .. " spawned on " .. planet .. " at " .. location.x .. ", " .. location.y .. ".")
+    printf("WorldBossesScreenPlay: " .. template .. " spawned on " .. planet .. " at " .. coords.x .. ", " .. coords.y .. ".")
     createObserver(OBJECTDESTRUCTION, "WorldBossesScreenPlay", "bossKilled", pMobile)
     broadcastToGalaxy(nullptr, message)
   else
-    printf("WorldBossesScreenPlay: ERROR spawning boss: " .. template .. " spawned on " .. planet .. " at " .. location.x .. ", " .. location.y .. ".")
+    printf("WorldBossesScreenPlay: ERROR spawning boss: " .. template .. " spawned on " .. planet .. " at " .. coords.x .. ", " .. coords.y .. ".")
   end
 
   -- local boss = self:getRandomBoss()
