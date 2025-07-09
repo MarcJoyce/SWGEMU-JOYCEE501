@@ -135,6 +135,14 @@ namespace creature {
 		int isPilotingShip(lua_State* L);
 		int storePets(lua_State* L);
 
+		// Custom
+
+		int buffSingleStat(lua_State* L);
+		int removeBuffs(lua_State* L);
+		int emptyStomach(lua_State* L);
+		int getActivePetsSize(lua_State* L);
+		int getActivePet(lua_State* L);
+
 		// JTL
 		int isRebelPilot(lua_State* L);
 		int isImperialPilot(lua_State* L);

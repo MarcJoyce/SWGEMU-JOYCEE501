@@ -1158,3 +1158,23 @@ float LootManagerImplementation::getRandomModifier(const LootItemTemplate* itemT
 
 	return modMax == modMin ? modMin : LootValues::getDistributedValue(modMin, modMax, level) + baseModifier;
 }
+
+TangibleObject* LootManagerImplementation::bazaarBotCreateLootItem(TransactionLog& trx, const String& lootItem, int level, bool maxCondition) {
+	Reference<const LootItemTemplate*> itemTemplate = lootGroupMap->getLootItemTemplate(lootItem);
+
+	if (itemTemplate == nullptr) {
+		warning("BazaarBot: Loot item template " + lootItem + " does not exist");
+		return 0;
+	}
+
+	TangibleObject* obj = nullptr;
+
+	obj = createLootObject(trx, itemTemplate, level, maxCondition);
+
+	if (obj == nullptr) {
+		warning("BazaarBot: obj for " + lootItem + " was nullptr");
+		return 0;
+	}
+
+	return obj;
+}

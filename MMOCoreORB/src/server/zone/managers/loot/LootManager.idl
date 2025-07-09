@@ -258,4 +258,7 @@ class LootManager extends ManagedService implements Logger {
 
 	@local
 	private native float getRandomModifier(final LootItemTemplate templateObject, int level, float excMod);
+
+	@local
+	public native TangibleObject bazaarBotCreateLootItem(@dereferenced TransactionLog trx, final string lootItem, int level = -1, boolean maxCondition = false);
 }

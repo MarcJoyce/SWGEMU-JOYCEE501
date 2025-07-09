@@ -759,3 +759,6 @@ includeFile("groups/jedi_clothing_attachments.lua")
 
 -- Deed
 includeFile("groups/resource/resource_deed.lua")
+
+-- Loot
+includeFile("groups/custom/world_boss.lua")

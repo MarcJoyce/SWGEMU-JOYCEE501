@@ -232,6 +232,12 @@ namespace server {
 		static int isJtlEnabled(lua_State* L);
 		static int grantStarterShip(lua_State* L);
 
+		// Bazaar Bot
+		static int bazaarBotCreateLootItem(lua_State* L);
+		static int bazaarBotCreateCraftedItem(lua_State* L);
+		static int bazaarBotListItem(lua_State* L);
+		static int logToFile(lua_State* L);
+
 	private:
 		static void setupLuaPackagePath(Lua* luaEngine);
 		static Logger& getEventLogger();

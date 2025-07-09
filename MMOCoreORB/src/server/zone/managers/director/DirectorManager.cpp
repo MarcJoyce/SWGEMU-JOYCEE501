@@ -108,6 +108,10 @@
 #include "server/zone/objects/ship/components/ShipComponent.h"
 #include "server/zone/objects/area/space/SpaceActiveArea.h"
 #include "server/zone/objects/area/areashapes/SphereAreaShape.h"
+#include "server/zone/objects/factorycrate/FactoryCrate.h"
+#include "server/zone/objects/draftschematic/DraftSchematic.h"
+#include "server/zone/managers/crafting/CraftingManager.h"
+#include "server/zone/managers/auction/AuctionManager.h"
 
 int DirectorManager::DEBUG_MODE = 0;
 int DirectorManager::ERROR_CODE = NO_ERROR;
@@ -498,6 +502,15 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("createLootSet", createLootSet);
 	luaEngine->registerFunction("createLootFromCollection", createLootFromCollection);
 	luaEngine->registerFunction("givePlayerResource", givePlayerResource);
+
+	// BazaarBotStuff start
+
+	luaEngine->registerFunction("bazaarBotCreateLootItem", bazaarBotCreateLootItem);
+	luaEngine->registerFunction("bazaarBotCreateCraftedItem", bazaarBotCreateCraftedItem);
+	luaEngine->registerFunction("bazaarBotListItem", bazaarBotListItem);
+	luaEngine->registerFunction("logToFile", logToFile);
+	
+	// BazaarBotStuff end
 
 	luaEngine->registerFunction("getRegion", getRegion);
 	luaEngine->registerFunction("writeScreenPlayData", writeScreenPlayData);
@@ -1171,6 +1184,220 @@ int DirectorManager::givePlayerResource(lua_State* L) {
 	resourceManager->harvestResourceToPlayer(trx, player, spawn, quantity);
 	trx.commit();
 
+	return 0;
+}
+
+int DirectorManager::bazaarBotCreateLootItem(lua_State* L) {
+	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -4);
+	String lootItem = lua_tostring(L, -3);
+	int level = lua_tonumber(L, -2);
+	bool maxCondition = lua_toboolean(L, -1);
+
+	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
+
+	if (inventory == nullptr) {
+		Logger::console.info("BazaarBot: Error loading target inventory");
+		return 0;
+	}
+
+	LootManager* lootManager = ServerCore::getZoneServer()->getLootManager();
+
+	TransactionLog trx(TrxCode::LUASCRIPT, creature);
+
+	TangibleObject* tano = lootManager->bazaarBotCreateLootItem(trx, lootItem, level, maxCondition);
+
+	if (!inventory->transferObject(tano, -1, true)) {
+		tano->destroyObjectFromDatabase(true);
+		Logger::console.info("BazaarBot: Error putting loot into target inventory");
+		return 0;
+	}
+
+	lua_pushlightuserdata(L, tano);
+
+	return 1;
+}
+
+int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
+	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -5);
+	String itemScript = lua_tostring(L, -4);
+	int quantity = lua_tonumber(L, -3);
+	int quality = lua_tonumber(L, -2);
+	int altTemplate = lua_tonumber(L, -1);
+	
+	quantity = Math::max(1, quantity);
+	quality = Math::max(1, quality);
+	
+	ManagedReference<CraftingManager*> craftingManager = creature->getZoneServer()->getCraftingManager();
+	
+	if (craftingManager == nullptr) {
+		return 0;
+	}
+
+	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
+
+	if (inventory == nullptr) {
+		Logger::console.info("BazaarBot: Error locating target inventory");
+		return 0;
+	}
+
+	try {
+
+		ManagedReference<DraftSchematic* > draftSchematic = creature->getZoneServer()->createObject(itemScript.hashCode(), 0).castTo<DraftSchematic*>();
+
+		if (draftSchematic == nullptr || !draftSchematic->isValidDraftSchematic()) {
+			Logger::console.info("BazaarBot Error: Invalid draft schematic provided when attempt to make a crafted item");
+			throw Exception();
+		}
+
+		ManagedReference<ManufactureSchematic* > manuSchematic = ( draftSchematic->createManufactureSchematic()).castTo<ManufactureSchematic*>();
+
+		if (manuSchematic == nullptr) {
+			Logger::console.info("BazaarBot: Error creating ManufactureSchematic from DraftSchematic");
+			throw Exception();
+		}
+
+		unsigned int targetTemplate = draftSchematic->getTanoCRC();
+
+		if (draftSchematic->getTemplateListSize() > 0) {
+			if (altTemplate >= draftSchematic->getTemplateListSize() || altTemplate < 0) {
+				Logger::console.info("BazaarBot Error: Invalid alternate crafting template requested");
+				throw Exception();
+			}
+
+			String requestedTemplate = draftSchematic->getTemplate(altTemplate);
+
+			String templateName = requestedTemplate.subString(0, requestedTemplate.lastIndexOf('/') + 1) + requestedTemplate.subString(requestedTemplate.lastIndexOf('/') + 8);
+
+			targetTemplate = templateName.hashCode();	
+		}
+
+		ManagedReference<TangibleObject *> prototype =  (creature->getZoneServer()->createObject(targetTemplate, 2)).castTo<TangibleObject*>();
+
+		if (prototype == nullptr) {
+			Logger::console.info("BazaarBot Error: Unable to create crafted item");
+			throw Exception();
+		}
+
+		Locker locker(prototype);
+		Locker mlock(manuSchematic, prototype);
+
+		craftingManager->setInitialCraftingValues(prototype, manuSchematic, CraftingManager::GREATSUCCESS);
+
+		Reference<CraftingValues*> craftingValues = manuSchematic->getCraftingValues();
+		craftingValues->setManufactureSchematic(manuSchematic);
+		craftingValues->setPlayer(creature);
+
+		if (quality > 0) {
+			for (int i = 0; i < craftingValues->getTotalVisibleAttributeGroups(); i++) {
+				String visibleGroup = craftingValues->getVisibleAttributeGroup(i);
+
+				for (int j = 0; j < craftingValues->getTotalExperimentalAttributes(); ++j) {
+					String attribute = craftingValues->getAttribute(j);
+					String group = craftingValues->getAttributeGroup(attribute);
+
+					if (group == visibleGroup) {
+						float maxValue = craftingValues->getMaxValue(attribute);
+						float minValue = craftingValues->getMinValue(attribute);
+
+						//float newValue = fabs(maxValue-minValue)*((float)quality/100.f) + Math::max(minValue, maxValue);
+						//craftingValues->setCurrentValue(attribute, newValue);
+
+						craftingValues->setCurrentPercentage(attribute, (float)quality/100.f, 100.f);
+					}
+				}
+			}
+
+			craftingValues->recalculateValues(true);
+		}
+
+		prototype->updateCraftingValues(craftingValues, true);
+
+		mlock.release();
+
+		prototype->createChildObjects();
+
+		String name = "BazaarBot";
+		prototype->setCraftersName(name);
+		prototype->setCraftersID(creature->getObjectID());
+
+		String serial = craftingManager->generateSerial();
+		prototype->setSerialNumber(serial);
+
+		prototype->updateToDatabase();
+
+		if (quantity > 1) {
+			String crateType = draftSchematic->getFactoryCrateType();
+
+			ManagedReference<FactoryCrate* > crate = prototype->createFactoryCrate(quantity, crateType, true);
+
+			if (crate == nullptr) {
+				prototype->destroyObjectFromDatabase(true);
+				return GENERAL_ERROR;
+			}
+
+			Locker cratelocker(crate);
+
+			crate->setUseCount(quantity);
+			
+			if (!inventory->transferObject(crate, -1, true)) {
+				crate->destroyObjectFromDatabase(true);
+				return GENERAL_ERROR;
+			}
+
+			crate->sendTo(creature, true);
+			lua_pushlightuserdata(L, crate);
+
+		} else {
+			if (!inventory->transferObject(prototype, -1, true)) {
+				prototype->destroyObjectFromDatabase(true);
+				throw Exception();
+			}
+
+			prototype->sendTo(creature, true);
+			lua_pushlightuserdata(L, prototype);
+		}
+		
+		return 1;
+		
+	} catch (Exception& e) {
+		lua_pushnil(L);
+		return 0;
+	}
+}
+
+int DirectorManager::bazaarBotListItem(lua_State* L) {
+	Reference<CreatureObject*> player = (CreatureObject*)lua_touserdata(L, -5);
+	Reference<SceneObject*> itemToSell = (SceneObject*)lua_touserdata(L, -4);
+	SceneObject* vendor = (SceneObject*) lua_touserdata(L, -3);
+	UnicodeString description = lua_tostring(L, -2);
+	int price = lua_tonumber(L, -1);
+	
+	AuctionManager* auctionManager = ServerCore::getZoneServer()->getAuctionManager();
+
+	if (auctionManager != NULL)
+		auctionManager->bazaarBotListItem(player, itemToSell, vendor, description, price);
+			
+	return 0;
+}
+
+int DirectorManager::logToFile(lua_State* L){
+	String message = lua_tostring(L, -2);
+	String pathAndFileName = lua_tostring(L, -1);
+	
+	time_t now = time(0);
+	String dt = ctime(&now);
+	String timeStamp = dt.replaceAll("\n", "");
+	 
+	StringBuffer msg;
+	msg << timeStamp << ": " << message << endl;
+	
+	File* file = new File(pathAndFileName);
+	FileWriter* writer = new FileWriter(file, true); // true for append new lines
+	writer->write(msg.toString());
+	writer->close();
+	delete file;
+	delete writer;
+	
 	return 0;
 }
 
