@@ -6,6 +6,7 @@ function NewsnetMenuComponent:fillObjectMenuResponse(pSceneObject, pMenuResponse
 	local menuResponse = LuaObjectMenuResponse(pMenuResponse)
 
 	menuResponse:addRadialMenuItem(20, 3, "@gcw:read_headline") -- Read Headline
+	menuResponse:addRadialMenuItem(40, 3, "Around the Galaxy") -- World Bosses
 end
 
 function NewsnetMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selectedID)
@@ -13,43 +14,47 @@ function NewsnetMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selectedI
 		return 0
 	end
 
-	if (selectedID ~= 20) then
-		return 0
-	end
+	if (selectedID == 20) then
+		local planet = SceneObject(pObject):getZoneName()
 
-	local planet = SceneObject(pObject):getZoneName()
+		if (planet == "") then
+			return 0
+		end
 
-	if (planet == "") then
-		return 0
-	end
+		local controllingFaction = getControllingFaction(planet)
 
-	local controllingFaction = getControllingFaction(planet)
+		if (planet ~= "naboo" and planet ~= "corellia") then
+			planet = "general"
+		end
 
-	if (planet ~= "naboo" and planet ~= "corellia") then
-		planet = "general"
-	end
+		local headline
 
-	local headline
+		if (controllingFaction == FACTIONREBEL) then -- Rebels winning
+			headline = "headline_" .. planet .. "_rebel_winning_" .. getRandomNumber(1,4)
+		elseif (controllingFaction == FACTIONIMPERIAL) then
+			headline = "headline_" .. planet .. "_rebel_losing_" .. getRandomNumber(1,4)
+		else
+			headline = "headline_" .. planet .. "_equal"
+		end
 
-	if (controllingFaction == FACTIONREBEL) then -- Rebels winning
-		headline = "headline_" .. planet .. "_rebel_winning_" .. getRandomNumber(1,4)
-	elseif (controllingFaction == FACTIONIMPERIAL) then
-		headline = "headline_" .. planet .. "_rebel_losing_" .. getRandomNumber(1,4)
+		-- Close open Newsnet SUIs and send the player a new one.
+		local pGhost = CreatureObject(pPlayer):getPlayerObject()
+
+		if (pGhost ~= nil) then
+			PlayerObject(pGhost):closeSuiWindowType( NEWSNET_INFO )
+		end
+
+		local suiManager = LuaSuiManager()
+		suiManager:sendMessageBox(pObject, pPlayer, "@gcw:" .. planet .. "_newsnet_name", "@gcw:" .. headline, "@ok", "NewsnetMenuComponent", "notifyOkPressed", NEWSNET_INFO)
+	elseif (selectedID == 40) then
+		-- World Bosses
+		local pAdminPlayer = getCreatureObject(281475000105551)
+		local suiManager = LuaSuiManager()
+		local message = readScreenPlayData(pAdminPlayer, "WorldBossesScreenPlay", "huntLocation")
+		suiManager:sendMessageBox(pObject, pPlayer, "Around the Galaxy", message, "@ok", "NewsnetMenuComponent", "notifyOkPressed", NEWSNET_INFO)
 	else
-		headline = "headline_" .. planet .. "_equal"
+		return 0
 	end
-
-	-- Close open Newsnet SUIs and send the player a new one.
-	local pGhost = CreatureObject(pPlayer):getPlayerObject()
-
-	if (pGhost ~= nil) then
-		PlayerObject(pGhost):closeSuiWindowType( NEWSNET_INFO )
-	end
-
-	local suiManager = LuaSuiManager()
-	suiManager:sendMessageBox(pObject, pPlayer, "@gcw:" .. planet .. "_newsnet_name", "@gcw:" .. headline, "@ok", "NewsnetMenuComponent", "notifyOkPressed", NEWSNET_INFO)
-
-	return 0
 end
 
 function NewsnetMenuComponent:notifyOkPressed()

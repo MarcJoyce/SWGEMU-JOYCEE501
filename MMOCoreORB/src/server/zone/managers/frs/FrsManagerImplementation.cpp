@@ -428,6 +428,8 @@ bool FrsManagerImplementation::isBanned(CreatureObject* player) {
 }
 
 void FrsManagerImplementation::validatePlayerData(CreatureObject* player, bool verifyBan) {
+	return;
+
 	if (player == nullptr)
 		return;
 

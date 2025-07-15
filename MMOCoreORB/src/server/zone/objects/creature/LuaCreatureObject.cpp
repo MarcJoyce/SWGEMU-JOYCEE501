@@ -175,6 +175,8 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "emptyStomach", &LuaCreatureObject::emptyStomach },
 		{ "getActivePetsSize", &LuaCreatureObject::getActivePetsSize },
 		{ "getActivePet", &LuaCreatureObject::getActivePet },
+		{ "addSkillMod", &LuaCreatureObject::addSkillMod },
+		
 
 		// JTL
 		{ "isRebelPilot", &LuaCreatureObject::isRebelPilot },
@@ -1695,4 +1697,21 @@ int LuaCreatureObject::getActivePet(lua_State* L) {
 	lua_pushlightuserdata(L, pet);
 
 	return 1;	
+}
+
+int LuaCreatureObject::addSkillMod(lua_State* L) {
+	int modType = lua_tonumber(L, -4);
+	String modName = lua_tostring(L, -3);
+	int modValue = lua_tonumber(L, -2);
+	bool notifyClient = lua_toboolean(L, -1);
+
+	Reference<PlayerObject*> player = realObject->getPlayerObject();
+
+	Locker locker(realObject);
+
+	realObject->addSkillMod(modType, modName, modValue, notifyClient);
+
+	player->recalculateForcePower();
+
+	return 1;
 }

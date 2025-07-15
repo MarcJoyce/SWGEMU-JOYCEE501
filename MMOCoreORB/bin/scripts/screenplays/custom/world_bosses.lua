@@ -1,5 +1,6 @@
 WorldBossesScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
+  BazaarBotID = 281475000105551,
   screenplayName = "WorldBossesScreenPlay",
   respawnFrequency = 1000 * 60,
   spawnTemplates = {
@@ -76,7 +77,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
   { "yavin4", 
     { "acklay", "krayt_dragon_ancient" },
     { 
-      {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun."},
+      {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun' Temple."},
       {{ x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4."}
     }
   },
@@ -96,6 +97,7 @@ function WorldBossesScreenPlay:respawnBoss()
   local planet = selection[1]
   local template = selection[2][getRandomNumber(1, #selection[2])]
   local location = selection[3][getRandomNumber(1, #selection[3])]
+  local pAdminPlayer = getCreatureObject(self.BazaarBotID)
 
   local coords = location[1]
   local suffixMessage = location[2]
@@ -107,6 +109,7 @@ function WorldBossesScreenPlay:respawnBoss()
   if (pMobile ~= nil) then
     printf("WorldBossesScreenPlay: " .. template .. " spawned on " .. planet .. " at " .. coords.x .. ", " .. coords.y .. ".")
     createObserver(OBJECTDESTRUCTION, "WorldBossesScreenPlay", "bossKilled", pMobile)
+    writeScreenPlayData(pAdminPlayer, "WorldBossesScreenPlay", "huntLocation", message)
     broadcastToGalaxy(nullptr, message)
   else
     printf("WorldBossesScreenPlay: ERROR spawning boss: " .. template .. " spawned on " .. planet .. " at " .. coords.x .. ", " .. coords.y .. ".")
@@ -152,7 +155,9 @@ function WorldBossesScreenPlay:bossKilled(pMobile)
     end
   end
 
+  local pAdminPlayer = getCreatureObject(self.BazaarBotID)
   createEvent(self.respawnFrequency, "WorldBossesScreenPlay", "respawnBoss", nil, "")
+  deleteScreenPlayData(pAdminPlayer, "WorldBossesScreenPlay", "huntLocation")
   return 1
 end
 

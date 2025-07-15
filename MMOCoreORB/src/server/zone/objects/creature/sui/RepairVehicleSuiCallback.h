@@ -12,6 +12,8 @@
 #include "server/zone/objects/creature/VehicleObject.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
 
+#include "templates/creature/VehicleObjectTemplate.h"
+
 class RepairVehicleSuiCallback : public SuiCallback {
 public:
 	RepairVehicleSuiCallback(ZoneServer* server)
@@ -65,8 +67,9 @@ public:
 		player->sendSystemMessage(params);
 
 		vehicle->healDamage(player, 0, vehicle->getConditionDamage(), true);
-		vehicle->setDecayCycle(vehicle->getDecayCycle() - 15);
-
+		
+		Reference<VehicleObjectTemplate*> vehicleTemplate = cast<VehicleObjectTemplate*>(vehicle->getObjectTemplate());
+		vehicleTemplate->setDecayCycle(vehicleTemplate->getDecayCycle() - 15);
 
 		String vehicleName = vehicle->getDisplayedName();
 

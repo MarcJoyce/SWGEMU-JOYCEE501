@@ -15,6 +15,10 @@ function VillageJediManagerHolocron.canUseHolocron(pPlayer)
 		return false
 	end
 
+	if (PlayerObject(pGhost):isPrivileged()) then 
+		return true
+	end
+
 	return PlayerObject(pGhost):isJedi() and CreatureObject(pPlayer):checkCooldownRecovery(USEDHOLOCRON)
 end
 
@@ -41,14 +45,36 @@ function VillageJediManagerHolocron.useTheHolocron(pSceneObject, pPlayer)
 		return
 	end
 
-	-- The holocrom hums softly as you feel your Force power replenish.
-	CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:holocron_force_replenish")
-	PlayerObject(pGhost):setForcePower(PlayerObject(pGhost):getForcePowerMax());
+	local holocronName = SceneObject(pSceneObject):getCustomObjectName()
+
+	if (holocronName == "Jedi Holocron") then
+		local mod = CreatureObject(pPlayer):getSkillMod("jedi_force_power_regen_add")
+		if (mod < 10) then
+			CreatureObject(pPlayer):addSkillMod(0x103, "jedi_force_power_regen_add", 10, true)
+		else
+			PlayerObject(pGhost):setForcePower(PlayerObject(pGhost):getForcePowerMax());
+		end
+	else 
+		local mod = CreatureObject(pPlayer):getSkillMod("jedi_force_power_max_add")
+		if (mod < 500) then
+			CreatureObject(pPlayer):addSkillMod(0x103, "jedi_force_power_max_add", 50, true)
+		else
+			PlayerObject(pGhost):setForcePower(PlayerObject(pGhost):getForcePowerMax());
+		end
+	end
+
+	CreatureObject(pPlayer):sendSystemMessage("The holocron hums softly as you feel it's power flow through you.")
 	CreatureObject(pPlayer):addCooldown(USEDHOLOCRON, HOLOCRONCOOLDOWNTIME)
+
+	-- The holocrom hums softly as you feel your Force power replenish.
+	-- CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:holocron_force_replenish")
+	-- PlayerObject(pGhost):setForcePower(PlayerObject(pGhost):getForcePowerMax());
 
 	SceneObject(pSceneObject):destroyObjectFromWorld()
 	SceneObject(pSceneObject):destroyObjectFromDatabase()
 end
+
+
 
 -- Send message to the player that he cannot replenish the force.
 -- @param pPlayer pointer to the creature object of the player that tries to use the holocron.
@@ -69,11 +95,11 @@ end
 -- @param pPlayer pointer to the creature object that used the holocron.
 function VillageJediManagerHolocron.useHolocron(pSceneObject, pPlayer)
 	if VillageJediManagerHolocron.canUseHolocron(pPlayer) then
-		if VillageJediManagerHolocron.canReplenishForce(pPlayer) then
-			VillageJediManagerHolocron.useTheHolocron(pSceneObject, pPlayer)
-		else
-			VillageJediManagerHolocron.cannotReplenishForce(pPlayer)
-		end
+		-- if VillageJediManagerHolocron.canReplenishForce(pPlayer) then
+		VillageJediManagerHolocron.useTheHolocron(pSceneObject, pPlayer)
+		-- else
+			-- VillageJediManagerHolocron.cannotReplenishForce(pPlayer)
+		-- end
 	else
 		VillageJediManagerHolocron.cannotUseHolocron(pPlayer)
 	end

@@ -2467,7 +2467,7 @@ void AuctionManagerImplementation::bazaarBotListItem(CreatureObject* player, Sce
 	}
 	
 	// Set some values used by createVendorItem
-	uint32 duration = 604800; // 7 days in seconds
+	uint32 duration = 86400; // in seconds
 	bool auction = false;
 	bool premium = false;
 

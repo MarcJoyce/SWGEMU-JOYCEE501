@@ -142,6 +142,7 @@ namespace creature {
 		int emptyStomach(lua_State* L);
 		int getActivePetsSize(lua_State* L);
 		int getActivePet(lua_State* L);
+		int addSkillMod(lua_State* L);
 
 		// JTL
 		int isRebelPilot(lua_State* L);

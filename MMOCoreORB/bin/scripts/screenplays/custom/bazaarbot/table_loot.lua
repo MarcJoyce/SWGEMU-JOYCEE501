@@ -4,7 +4,7 @@ BBLootConfig = {
 	maxLevel = 300, -- 300 is the game's max level
 	eventName = "BazaarBotAddLoot",
 	functionName = "addMoreLoot",
-	freq = 604800, -- Every x seconds
+	freq = 86400, -- Every x seconds
 }
 
 -- Organized by BBLootItems index number
