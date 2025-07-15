@@ -2426,6 +2426,7 @@ void PlayerObjectImplementation::activateForcePowerRegen() {
 		return;
 
 	float regen = (float)creature->getSkillMod("jedi_force_power_regen");
+	regen += (float)creature->getSkillMod("jedi_force_power_regen_add");
 
 	if(regen == 0.0f)
 		return;
@@ -2612,7 +2613,10 @@ int PlayerObjectImplementation::getForcePowerRegen() {
 		return 0;
 	}
 
-	return creature->getSkillMod("jedi_force_power_regen");
+	int regen = creature->getSkillMod("jedi_force_power_regen");
+	regen += creature->getSkillMod("jedi_force_power_regen_add");
+
+	return regen;
 }
 void PlayerObjectImplementation::activateMissions() {
 	ManagedReference<CreatureObject*> creature = dynamic_cast<CreatureObject*>(parent.get().get());
@@ -3696,6 +3700,7 @@ void PlayerObjectImplementation::recalculateForcePower() {
 	}
 
 	int maxForce = player->getSkillMod("jedi_force_power_max");
+	maxForce += player->getSkillMod("jedi_force_power_max_add");
 
 	int forcePowerMod = 0, forceControlMod = 0;
 
