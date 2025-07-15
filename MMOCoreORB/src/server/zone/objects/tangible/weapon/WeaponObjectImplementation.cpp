@@ -616,6 +616,11 @@ void WeaponObjectImplementation::updateCraftingValues(CraftingValues* values, bo
 	setMinDamage(Math::max(values->getCurrentValue("mindamage"), 0.f));
 	setMaxDamage(Math::max(values->getCurrentValue("maxdamage"), 0.f));
 
+	value = values->getCurrentValue("damagetype");
+	if (value != AttributesMap::VALUENOTFOUND) {
+		setDamageType((int)value);
+	}
+
 	setAttackSpeed(values->getCurrentValue("attackspeed"));
 	setHealthAttackCost((int)values->getCurrentValue("attackhealthcost"));
 	setActionAttackCost((int)values->getCurrentValue("attackactioncost"));
