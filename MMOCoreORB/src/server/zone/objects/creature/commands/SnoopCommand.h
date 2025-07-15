@@ -595,7 +595,7 @@ public:
 
 		if (targetGhost != nullptr) { // if we're not a PlayerObject, we don't hold force values
 			body << "Force Power:\t" << targetGhost->getForcePower() << " / " << targetGhost->getForcePowerMax() << endl;
-			body << "Force Regen:\t" << target->getSkillMod("jedi_force_power_regen") << endl;
+			body << "Force Regen:\t" << (target->getSkillMod("jedi_force_power_regen") + target->getSkillMod("jedi_force_power_regen_add")) << endl;
 		}
 
 		ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, 0);
