@@ -1,18 +1,8 @@
 WorldBossesScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
-  BazaarBotID = 281475000105551,
+  BazaarBotID = 281475000105551, -- PlayerID of Admin BazaarBot charactee
   screenplayName = "WorldBossesScreenPlay",
   respawnFrequency = 1000 * 60,
-  spawnTemplates = {
-    -- "acklay_boss", "krayt_dragon_elder_boss", "rancor_boss", "jedi_boss", "graul_boss", "tusken_boss"
-    "acklay", "krayt_dragon_ancient", "rancor", "dark_jedi_master", "graul", "tusken_king", "nightsister_elder", "singing_mountain_clan_councilwoman"
-  },
-  spawnPlanets = {
-    "corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "rori", "talus", "tatooine", "yavin4"
-  },
-  spawnLocations = {
-    {x = 0, z = 0, y = 0},
-  },
   spawns = {
     { "corellia", 
       { "acklay", "krayt_dragon_ancient" },
@@ -114,21 +104,6 @@ function WorldBossesScreenPlay:respawnBoss()
   else
     printf("WorldBossesScreenPlay: ERROR spawning boss: " .. template .. " spawned on " .. planet .. " at " .. coords.x .. ", " .. coords.y .. ".")
   end
-
-  -- local boss = self:getRandomBoss()
-  -- local planet = self:getRandomPlanet()
-  -- local location = self:getRandomLocation()
-
-  -- local pMobile = spawnMobile(planet, boss, 0, location.x, location.z, location.y, 0, 0)
-
-  -- if (pMobile ~= nil) then
-  --   printf("WorldBossesScreenPlay: " .. boss .. " spawned on " .. planet .. "at  " .. location.x .. ", " .. location.y .. ".")
-  --   createObserver(OBJECTDESTRUCTION, "WorldBossesScreenPlay", "bossKilled", pMobile)
-  -- else
-  --   printf("WorldBossesScreenPlay: Error spawning boss, pMobile is nil")
-  -- end
-
-  -- broadcastToGalaxy(nullptr, "Locals on " .. planet .. " have reported sighting dangerous creatures around " .. location.x .. ", " .. location.y .. "...")
 end
 
 function WorldBossesScreenPlay:bossKilled(pMobile)
@@ -159,19 +134,4 @@ function WorldBossesScreenPlay:bossKilled(pMobile)
   createEvent(self.respawnFrequency, "WorldBossesScreenPlay", "respawnBoss", nil, "")
   deleteScreenPlayData(pAdminPlayer, "WorldBossesScreenPlay", "huntLocation")
   return 1
-end
-
-function WorldBossesScreenPlay:getRandomBoss()
-  local index = getRandomNumber(1, #self.spawnTemplates)
-  return self.spawnTemplates[index]
-end
-
-function WorldBossesScreenPlay:getRandomPlanet()
-  local index = getRandomNumber(1, #self.spawnPlanets)
-  return self.spawnPlanets[index]
-end
-
-function WorldBossesScreenPlay:getRandomLocation()
-  local index = getRandomNumber(1, #self.spawnLocations)
-  return self.spawnLocations[index]
 end
