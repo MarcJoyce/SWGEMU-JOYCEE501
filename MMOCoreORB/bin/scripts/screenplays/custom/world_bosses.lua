@@ -29,7 +29,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
     { "endor", 
       { "acklay", "krayt_dragon_ancient" },
       { 
-        {{ x = -4409, z = 22, y = 4284 }, " escaped captivity of the Death Watch."},
+        {{ x = -4409, z = 22, y = 4284 }, " in close proximity of the Death Watch."},
         {{ x = 3552, z = 9, y = 3552 }, " east of the Korga cave."},
         {{ x = 1000, z = 31, y = -800 }, " between the Endorian outposts."}
       }
@@ -67,7 +67,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
   { "yavin4", 
     { "acklay", "krayt_dragon_ancient" },
     { 
-      {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun' Temple."},
+      {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun's Temple."},
       {{ x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4."}
     }
   },
