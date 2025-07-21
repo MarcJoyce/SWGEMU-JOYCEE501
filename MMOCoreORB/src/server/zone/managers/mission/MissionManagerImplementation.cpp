@@ -1075,16 +1075,18 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 	}
 
 	int level = 1;
-	int randomTexts = 25;
-	if (player->hasSkill("combat_bountyhunter_investigation_03")) {
-		level = 3;
-	} else if (player->hasSkill("combat_bountyhunter_investigation_01")) {
+	int randomTexts = 50;
+	if (player->hasSkill("combat_bountyhunter_investigation_01")) {
 		level = 2;
-		randomTexts = 50;
+	} else if (player->hasSkill("combat_bountyhunter_investigation_02")) {
+		level = 3;
+	} else if (player->hasSkill("combat_bountyhunter_investigation_03")) {
+		level = 4;
+	} else if (player->hasSkill("combat_bountyhunter_investigation_04")) {
+		level = 5;
+	} else if (player->hasSkill("combat_bountyhunter_master")) {
+		level = 6;
 	}
-
-	level = 3;
-	randomTexts = 50;
 
 	NameManager* nm = processor->getNameManager();
 
