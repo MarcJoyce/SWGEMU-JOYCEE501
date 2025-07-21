@@ -24,7 +24,7 @@ public:
 		}
 
 		float speed = 0.f;
-		int duration = 30;
+		int duration = 3600;
 
 		try {
 			UnicodeTokenizer tokenizer(arguments);
