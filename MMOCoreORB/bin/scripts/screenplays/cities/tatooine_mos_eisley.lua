@@ -154,6 +154,10 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"patron_quarren",60,17,-0.9,6.8,226,1082877, "npc_sitting_chair"},
 		{"stormtrooper",400,2.84,-0.894992,-6.3,16.0005,1082877, "npc_imperial"},
 		{"stormtrooper_squad_leader",400,3.62,-0.894992,-6.78,360.011,1082877, "npc_accusing"},
+		
+		{"boba_fett", 60, 11.0, -0.9, 1.1, 88, 1082877, "neutral"},
+		{"selogel", 60, 6.80, -0.89, 5.44, 198, 1082877, "npc_standing_drinking"},
+
 		{"doikk_nats",60,2.32,-0.894992,-16.47,44.0013,1082880, "themepark_music_3"},
 		{"figrin_dan",60,3.69,-0.894992,-14.4,50.0015,1082880, "themepark_music_3"},
 		{"nalan_cheel",60,0.54,-0.894992,-17.13,38.0011,1082880, "themepark_music_1"},
@@ -161,7 +165,6 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"tedn_dahai",60,1.29,-0.894992,-15.18,70.0021,1082880, "themepark_music_3"},
 		{"dravis",60,-21.2103,-0.894989,24.3324,164.437,1082886, "neutral"},
 		{"talon_karrde",60,-18.7,-0.9,24.9,-31.0,1082886, "npc_sitting_chair"},
-		{"boba_fett", 60, 11.0, -0.9, 1.1, 88, 1082877, "neutral"},
 
 		--western Tavern A
 		{"protocol_droid_3po",60,5.3,1.0,4.2,0,1188033, "conversation"},
@@ -336,6 +339,9 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"jawa_warlord",300,3450.7,0,-4526.2,20,0, "conversation"},
 		{"jawa_warlord",300,3663.3,5,-4856,143,0, "scared"},
 		{"jawa_warlord",300,3665,5,-4856.8,300,0, "worried"},
+
+		-- BazaarBot Helper
+		{"bazaar_bot_helper", 300, 3514, 5.5, -4929, 245, 0, ""},
 
 		{"junk_dealer", 0, 3355.75, 5, -4823.58, 122, 0, ""},
 		{"junk_dealer", 0, 3699.2, 5, -4822, 92, 0, ""},

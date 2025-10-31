@@ -243,7 +243,7 @@ void SkillManager::removeAbility(PlayerObject* ghost, const String& abilityName,
 
 	Ability* ability = abilityMap.get(abilityName);
 
-	if (ability != nullptr)
+	if (ability != nullptr && abilityName != "intimidate1")
 		ghost->removeAbility(ability, notifyClient);
 }
 
@@ -278,8 +278,11 @@ void SkillManager::removeAbilities(PlayerObject* ghost, const Vector<String>& ab
 
 		Ability* ability = abilityMap.get(abilityName);
 
-		if (ability != nullptr && ghost->hasAbility(abilityName))
-			abilities.add(ability);
+		if (ability != nullptr && ghost->hasAbility(abilityName)) {
+			if (abilityName != "intimidate1") {
+				abilities.add(ability);
+			}
+		}
 	}
 
 	ghost->removeAbilities(abilities, notifyClient);
@@ -361,7 +364,10 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 	if (ghost != nullptr) {
 		//Withdraw skill points.
-		ghost->addSkillPoints(-skill->getSkillPointsRequired());
+		if (!ghost->isAdmin()) {
+			// TODO: REMOVE THIS COMMENT WHEN GO LIVE
+			// ghost->addSkillPoints(-skill->getSkillPointsRequired());
+		}
 
 		//Witdraw experience.
 		if (!noXpRequired) {
@@ -466,6 +472,18 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		}
 	}
 
+	if (skill->getSkillName() == "social_politician_novice") {
+		awardSkill("social_politician_master", creature, true, true, true);
+	}
+
+	if (skill->getSkillName() == "crafting_merchant_novice") {
+		awardSkill("crafting_merchant_master", creature, true, true, true);
+	}
+
+	if (skill->getSkillName() == "social_imagedesigner_novice") {
+		awardSkill("social_imagedesigner_novice", creature, true, true, true);
+	}
+
 	/// Update client with new values for things like Terrain Negotiation
 	CreatureObjectDeltaMessage4* msg4 = new CreatureObjectDeltaMessage4(creature);
 	msg4->updateAccelerationMultiplierBase();
@@ -486,7 +504,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 }
 
 void SkillManager::removeSkillRelatedMissions(CreatureObject* creature, Skill* skill) {
-	if(skill->getSkillName().hashCode() == STRING_HASHCODE("combat_bountyhunter_investigation_03")) {
+	if(skill->getSkillName().hashCode() == STRING_HASHCODE("combat_bountyhunter_novice")) {
 		ManagedReference<ZoneServer*> zoneServer = creature->getZoneServer();
 		if(zoneServer != nullptr) {
 			ManagedReference<MissionManager*> missionManager = zoneServer->getMissionManager();
@@ -584,7 +602,10 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 	}
 
 	//Give the player the used skill points back.
-	ghost->addSkillPoints(skill->getSkillPointsRequired());
+	if (!ghost->isAdmin()) {
+		// TODO: REMOVE THIS COMMENT WHEN GO LIVE
+		// ghost->addSkillPoints(skill->getSkillPointsRequired());
+	}
 
 	//Remove abilities but only if the creature doesn't still have a skill that grants the
 	//ability.  Some abilities are granted by multiple skills. For example Dazzle for dancers
@@ -728,7 +749,10 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 
 			if (ghost != nullptr) {
 				//Give the player the used skill points back.
-				ghost->addSkillPoints(skill->getSkillPointsRequired());
+				if (!ghost->isAdmin()) {
+					// TODO: REMOVE THIS COMMENT WHEN GO LIVE
+					// ghost->addSkillPoints(skill->getSkillPointsRequired());
+				}
 
 				//Remove abilities
 				auto abilityNames = skill->getAbilities();
@@ -828,9 +852,15 @@ void SkillManager::updateXpLimits(PlayerObject* ghost) {
 
 	for (int i = 0; i < experienceList->size(); ++i) {
 		String xpType = experienceList->getKeyAt(i);
-		if (experienceList->get(xpType) > xpTypeCapList->get(xpType)) {
+		int xpCap = -1;
+		if (xpType == "jedi_general" || xpType == "force_rank_xp") {
+			xpCap = xpTypeCapList->get(xpType);
+		} else {
+			xpCap = xpTypeCapList->get(xpType) * 20;
+		}
+		if (experienceList->get(xpType) > xpCap) {
 			TransactionLog trx(TrxCode::EXPERIENCE, player);
-			ghost->addExperience(trx, xpType, xpTypeCapList->get(xpType) - experienceList->get(xpType), true);
+			ghost->addExperience(trx, xpType, xpCap - experienceList->get(xpType), true);
 		}
 	}
 }
@@ -859,6 +889,12 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 				return false;
 			}
 		}
+
+		if (ghost->isAdmin()) {
+			return true;
+		}
+			// TODO: REMOVE THIS WHEN GO LIVE
+			return true;
 
 		//Check if player has enough skill points to learn the skill.
 		if (ghost->getSkillPoints() < skill->getSkillPointsRequired()) {

@@ -1131,6 +1131,10 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
 
+		if (sellerName == "BazaarBot") {
+			bazaarBotLogSale(item->getBidderName(), itemName, item->getPrice());
+		}
+
 		if(auctionMap->getVendorItemCount(vendor, true) == 0)
 			sendVendorUpdateMail(vendor, true);
 
@@ -1180,6 +1184,10 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 		UnicodeString blankBody;
 		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
+
+		if (sellerName == "BazaarBot") {
+			bazaarBotLogSale(item->getBidderName(), itemName, item->getPrice());
+		}
 
 	}
 
@@ -2071,7 +2079,9 @@ void AuctionManagerImplementation::cancelItem(CreatureObject* player, uint64 obj
 			sellerBody.setTO(itemName);
 
 			//Send the Mail
-			cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName(), waypoint);
+			if (item->getOwnerName() != "BazaarBot") {
+				cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName(), waypoint);
+			}
 		}
 	}
 
@@ -2127,7 +2137,9 @@ void AuctionManagerImplementation::expireSale(AuctionItem* item) {
 
 	locker.release();
 
-	cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName());
+	if (item->getOwnerName() != "BazaarBot") {
+		cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName());
+	}
 
 	if (!item->isOnBazaar()) {
 		ManagedReference<SceneObject*> vendor = zoneServer->getObject(item->getVendorID());
@@ -2167,8 +2179,9 @@ void AuctionManagerImplementation::expireBidAuction(AuctionItem* item) {
 	item->clearAuctionWithdraw();
 
 	locker.release();
-
-	cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName());
+	if (item->getOwnerName() != "BazaarBot") {
+		cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName());
+	}
 }
 
 void AuctionManagerImplementation::expireAuction(AuctionItem* item) {

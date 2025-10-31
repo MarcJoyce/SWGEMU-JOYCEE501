@@ -77,41 +77,77 @@ void LightsaberCrystalComponentImplementation::generateCrystalStats() {
 
 	setMaxCondition(getRandomizedStat(minStat, maxStat, itemLevel));
 
-	if (color == 31) {
-		int minStat = crystalData->getMinDamage();
-		int maxStat = crystalData->getMaxDamage();
+	switch(color) {
+		case 31: { // Power Crystal
+			int minStat = crystalData->getMinDamage();
+			int maxStat = crystalData->getMaxDamage();
 
-		damage = getRandomizedStat(minStat, maxStat, itemLevel);
+			damage = getRandomizedStat(minStat, maxStat, itemLevel);
 
-		minStat = crystalData->getMinHealthSac();
-		maxStat = crystalData->getMaxHealthSac();
+			minStat = crystalData->getMinHealthSac();
+			maxStat = crystalData->getMaxHealthSac();
 
-		sacHealth = getRandomizedStat(minStat, maxStat, itemLevel);
+			sacHealth = getRandomizedStat(minStat, maxStat, itemLevel);
 
-		minStat = crystalData->getMinActionSac();
-		maxStat = crystalData->getMaxActionSac();
+			minStat = crystalData->getMinActionSac();
+			maxStat = crystalData->getMaxActionSac();
 
-		sacAction = getRandomizedStat(minStat, maxStat, itemLevel);
+			sacAction = getRandomizedStat(minStat, maxStat, itemLevel);
 
-		minStat = crystalData->getMinMindSac();
-		maxStat = crystalData->getMaxMindSac();
+			minStat = crystalData->getMinMindSac();
+			maxStat = crystalData->getMaxMindSac();
 
-		sacMind = getRandomizedStat(minStat, maxStat, itemLevel);
+			sacMind = getRandomizedStat(minStat, maxStat, itemLevel);
 
-		minStat = crystalData->getMinWoundChance();
-		maxStat = crystalData->getMaxWoundChance();
+			minStat = crystalData->getMinWoundChance();
+			maxStat = crystalData->getMaxWoundChance();
 
-		woundChance = getRandomizedStat(minStat, maxStat, itemLevel);
+			woundChance = getRandomizedStat(minStat, maxStat, itemLevel);
 
-		float minFloatStat = crystalData->getMinForceCost();
-		float maxFloatStat = crystalData->getMaxForceCost();
+			float minFloatStat = crystalData->getMinForceCost();
+			float maxFloatStat = crystalData->getMaxForceCost();
 
-		floatForceCost = getRandomizedStat(minFloatStat, maxFloatStat, itemLevel);
+			floatForceCost = getRandomizedStat(minFloatStat, maxFloatStat, itemLevel);
 
-		minFloatStat = crystalData->getMinAttackSpeed();
-		maxFloatStat = crystalData->getMaxAttackSpeed();
+			minFloatStat = crystalData->getMinAttackSpeed();
+			maxFloatStat = crystalData->getMaxAttackSpeed();
 
-		attackSpeed = Math::getPrecision(getRandomizedStat(minFloatStat, maxFloatStat, itemLevel), 2);
+			attackSpeed = Math::getPrecision(getRandomizedStat(minFloatStat, maxFloatStat, itemLevel), 2);
+			break;
+		}
+		case 12 ... 19: { // Dark Side named crystals
+			// damage = 100;
+			sacHealth = 0;
+			sacAction = 0;
+			sacMind = 0;
+			woundChance = 4;
+			// floatForceCost = 2.5f;
+			// attackSpeed = 0.0f;
+			
+			
+			damage = 100000;
+			floatForceCost = -20.0f;
+			attackSpeed = -5.0f;
+			break;
+		}
+		case 20 ... 30: { // Light Side name crystals
+			// damage = 50;
+			sacHealth = 0;
+			sacAction = 0;
+			sacMind = 0;
+			woundChance = 4;
+			// floatForceCost = -2.5f;
+			// attackSpeed = 0.0f;
+
+
+			damage = 100000;
+			floatForceCost = -20.0f;
+			attackSpeed = -5.0f;
+			break;
+		}
+		default: { // Base color crystals
+			break;
+		}
 	}
 
 	quality = getCrystalQuality();
@@ -295,7 +331,8 @@ void LightsaberCrystalComponentImplementation::fillAttributeList(AttributeListMe
 			StringBuffer str3;
 			str3 << "@jedi_spam:saber_color_" << getColor();
 			alm->insertAttribute("color", str3);
-		} else {
+		} 
+		if (getColor() > 11) {
 			if (ownerID != 0 || player->isPrivileged()) {
 				alm->insertAttribute("mindamage", damage);
 				alm->insertAttribute("maxdamage", damage);
@@ -364,12 +401,12 @@ int LightsaberCrystalComponentImplementation::handleObjectMenuSelect(CreatureObj
 			ownerID = 0;
 
 			String tuneName = StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
-			if (getCustomObjectName().toString().contains("(Exceptional)"))
-				tuneName = tuneName + " (Exceptional)\\#.";
-			else if (getCustomObjectName().toString().contains("(Legendary)"))
-				tuneName = tuneName + " (Legendary)\\#.";
-			else
-				tuneName = tuneName + "\\#.";
+			// if (getCustomObjectName().toString().contains("(Exceptional)"))
+			// 	tuneName = tuneName + " (Exceptional)\\#.";
+			// else if (getCustomObjectName().toString().contains("(Legendary)"))
+			// 	tuneName = tuneName + " (Legendary)\\#.";
+			// else
+			tuneName = tuneName + "\\#.";
 		}
 	}
 
@@ -430,12 +467,12 @@ void LightsaberCrystalComponentImplementation::tuneCrystal(CreatureObject* playe
 
 		// Color code is lime green.
 		String tuneName = StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
-		if (getCustomObjectName().toString().contains("(Exceptional)"))
-			tuneName = "\\#00FF00" + tuneName + " (Exceptional) (tuned)\\#.";
-		else if (getCustomObjectName().toString().contains("(Legendary)"))
-			tuneName = "\\#00FF00" + tuneName + " (Legendary) (tuned)\\#.";
-		else
-			tuneName = "\\#00FF00" + tuneName + " (tuned)\\#.";
+		// if (getCustomObjectName().toString().contains("(Exceptional)"))
+		// 	tuneName = "\\#00FF00" + tuneName + " (Exceptional) (tuned)\\#.";
+		// else if (getCustomObjectName().toString().contains("(Legendary)"))
+		// 	tuneName = "\\#00FF00" + tuneName + " (Legendary) (tuned)\\#.";
+		// else
+		tuneName = "\\#00FF00" + tuneName + " (tuned)\\#.";
 
 		setCustomObjectName(tuneName, true);
 		player->notifyObservers(ObserverEventType::TUNEDCRYSTAL, _this.getReferenceUnsafeStaticCast(), 0);

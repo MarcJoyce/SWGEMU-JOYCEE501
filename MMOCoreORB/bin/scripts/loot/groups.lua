@@ -762,3 +762,4 @@ includeFile("groups/resource/resource_deed.lua")
 
 -- Loot
 includeFile("groups/custom/world_boss.lua")
+includeFile("groups/custom/krayt_dragon_elder.lua")

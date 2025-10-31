@@ -34,7 +34,7 @@ klin_nif = Creature:new {
 			groups = {
 				{group = "klin_nif_drop", chance = 10000000}
 			},
-			lootChance = 10000000
+			lootChance = 100000000
 		}
 	},
 

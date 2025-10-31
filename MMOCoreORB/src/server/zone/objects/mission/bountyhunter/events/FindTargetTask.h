@@ -191,6 +191,7 @@ class FindTargetTask : public Task, public Logger {
 
 		int randomValue = System::random(100);
 
+		return true;
 		return randomValue < successChance;
 	}
 
@@ -213,7 +214,7 @@ class FindTargetTask : public Task, public Logger {
 
 		int time = 150 - checkedSkillMod;
 
-		if (time < 30) {
+		if (time >= 30) {
 			time = 30;
 		}
 

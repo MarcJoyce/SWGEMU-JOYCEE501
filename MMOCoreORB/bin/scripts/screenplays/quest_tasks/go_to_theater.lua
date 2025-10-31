@@ -28,13 +28,21 @@ GoToTheater = Task:new {
 	onTheaterCreated = nil,
 	onObjectsSpawned = nil,
 	onEnteredActiveArea = nil,
-	onTheaterDespawn = nil
+	onTheaterDespawn = nil,
+	planet = nil
 }
 
 function GoToTheater:taskStart(pPlayer)
 	local zoneName = SceneObject(pPlayer):getZoneName()
+	
 	local posX = SceneObject(pPlayer):getWorldPositionX()
 	local posY = SceneObject(pPlayer):getWorldPositionY()
+
+	if (planet ~= nil) then
+		zoneName = planet
+		posX = 0;
+		posY = 0;
+	end
 
 	local spawnPoint = getSpawnArea(zoneName, posX, posY, self.minimumDistance, self.maximumDistance, 20, 10, true)
 	local playerID = SceneObject(pPlayer):getObjectID()

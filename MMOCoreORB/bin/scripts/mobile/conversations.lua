@@ -333,3 +333,19 @@ includeFile("conversations/junk_dealer/junk_dealer_quich_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_reggi_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sheani_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
+
+
+-- Custom
+includeFile("conversations/custom/jedi/selogel_conv.lua")
+includeFile("conversations/custom/jedi/klik_klak_conv.lua")
+includeFile("conversations/custom/jedi/thalos_krenn_conv.lua")
+includeFile("conversations/custom/jedi/jabba_henchman_custom_conv.lua")
+includeFile("conversations/custom/jedi/han_solo_glowing_conv.lua")
+includeFile("conversations/custom/jedi/chewbacca_glowing_conv.lua")
+
+includeFile("conversations/custom/jedi/shadows/shadows_captive_one_conv.lua")
+includeFile("conversations/custom/jedi/shadows/konlan_voss_conv.lua")
+
+includeFile("conversations/custom/navi_gator_conv.lua")
+includeFile("conversations/custom/bazaar_bot_helper_conv.lua")
+includeFile("conversations/custom/dedlee_syn_conv.lua")

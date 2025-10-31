@@ -18,8 +18,12 @@ BBArtisanConfig = {
 BBArtisanItems = {
 	{1500, 1, 1, 0, "clothing_tool", "food_tool", "generic_tool", "space_tool", "structure_tool", "weapon_tool"},
 	{950, 1, 1, 0, "survey_tool_flora", "survey_tool_gas", "survey_tool_liquid", "survey_tool_mineral", "survey_tool_moisture", "survey_tool_solar", "survey_tool_wind"},
-	{12000, 1, 1, 0, "clothing_station", "food_station", "space_station", "structure_station", "weapon_station"},
+	{12000, 1, 1, 0, "clothing_station", "food_station", "structure_station", "weapon_station"},
 	--{95000, 4, 10, 0, "recycler_chemical", "recycler_creature", "recycler_flora",	"recycler_metal", "recycler_ore"},
+}
+
+BBArtisanItemsUnused = {
+	"space_station",
 }
 
 

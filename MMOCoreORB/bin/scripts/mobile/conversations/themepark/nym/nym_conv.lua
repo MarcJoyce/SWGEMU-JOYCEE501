@@ -207,10 +207,84 @@ nymConvoTemplate:addScreen(your_the_best);
 youre_done = ConvoScreen:new {
 	id = "youre_done",
 	leftDialog = "@celebrity/nym:youre_done", -- I appreciate the work you did for us. You're still in my good graces, so feel free to roam around on Lok.
-	stopConversation = "true",
+	stopConversation = "false",
 	options = {
+		{ "Let me know if you need any more muscle.", "get_out_of_here" }
 	}
 }
 nymConvoTemplate:addScreen(youre_done);
+
+get_out_of_here = ConvoScreen:new {
+	id = "get_out_of_here",
+	customDialogText = "Why? Do you know someone that has any? Ha, Get out of here!",
+	stopConversation = "true",
+	options = {}
+}
+nymConvoTemplate:addScreen(get_out_of_here);
+
+piece_of_eight_five_one = ConvoScreen:new {
+	id = "piece_of_eight_five_one",
+	customDialogText = "They're still out there? I told them all to leave. What's so important about this dammed shard",
+	stopConversation = "false",
+	options = {
+		{ "Shard?", "piece_of_eight_five_two" }
+	}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_one);
+
+piece_of_eight_five_two = ConvoScreen:new {
+	id = "piece_of_eight_five_two",
+	customDialogText = "Yeah, one of the boys picked this up on Tatooine and ever since I've had it, I've had the Empire, the Rebels, Jabba and every other syndicate out there trying to get their hands on it. To be honest, I'm tired of the attention. Too many eyes and all that.",
+	stopConversation = "false",
+	options = {
+		{ "I could take it off your hands, I'd be willing to pay, of course.", "piece_of_eight_five_three" }
+	}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_two);
+
+piece_of_eight_five_three = ConvoScreen:new {
+	id = "piece_of_eight_five_three",
+	customDialogText = "Ha, just what I wanted to hear. I'm not interested in your credits; I need something else from you. Ever heard of the Gorax?",
+	stopConversation = "false",
+	options = {
+		{ "Can't say I have.", "piece_of_eight_five_four" },
+		{ "I have.", "piece_of_eight_five_four" }
+	}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_three);
+
+piece_of_eight_five_four = ConvoScreen:new {
+	id = "piece_of_eight_five_four",
+	customDialogText = "Nasty piece of work they are. They're confined to Endor now, rumours say. Well, I want you to go kill one, and bring me back it's skull, I'll mount it out front to ward off anyone who thinks they can challenge us. Shouldn't be too hard for someone of your... skills.",
+	stopConversation = "false",
+	options = {
+		{ "Ok, I'll be back soon Nym.", "piece_of_eight_five_accept" }
+	}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_four);
+
+piece_of_eight_five_accept = ConvoScreen:new {
+	id = "piece_of_eight_five_accept",
+	customDialogText = "That's the spirit. I'll be here.",
+	stopConversation = "true",
+	options = {}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_accept);
+
+piece_of_eight_five_ongoing = ConvoScreen:new {
+	id = "piece_of_eight_five_ongoing",
+	customDialogText = "I know Lok's a beautiful place, but Endor is where the Gorax live.",
+	stopConversation = "true",
+	options = {}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_ongoing);
+
+piece_of_eight_five_complete = ConvoScreen:new {
+	id = "piece_of_eight_five_complete",
+	customDialogText = "My god you've done it; and here's your reward. Be careful mate, if the Empire, the Rebels and Jabba are after it; you'll have a target on your back for sure.",
+	stopConversation = "true",
+	options = {}
+}
+nymConvoTemplate:addScreen(piece_of_eight_five_complete);
 
 addConversationTemplate("nymConvoTemplate", nymConvoTemplate);

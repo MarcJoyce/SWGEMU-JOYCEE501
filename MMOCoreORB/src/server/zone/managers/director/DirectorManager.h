@@ -238,6 +238,9 @@ namespace server {
 		static int bazaarBotListItem(lua_State* L);
 		static int logToFile(lua_State* L);
 
+		// Weapon
+		static int generateWeapon(lua_State* L);
+
 	private:
 		static void setupLuaPackagePath(Lua* luaEngine);
 		static Logger& getEventLogger();

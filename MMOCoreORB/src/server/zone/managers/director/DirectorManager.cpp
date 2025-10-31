@@ -512,6 +512,10 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	
 	// BazaarBotStuff end
 
+	// CreateWeapon start
+	luaEngine->registerFunction("generateWeapon", generateWeapon);
+	// CreateWeaponEnd
+
 	luaEngine->registerFunction("getRegion", getRegion);
 	luaEngine->registerFunction("writeScreenPlayData", writeScreenPlayData);
 	luaEngine->registerFunction("readScreenPlayData", readScreenPlayData);
@@ -1208,7 +1212,7 @@ int DirectorManager::bazaarBotCreateLootItem(lua_State* L) {
 
 	if (!inventory->transferObject(tano, -1, true)) {
 		tano->destroyObjectFromDatabase(true);
-		Logger::console.info("BazaarBot: Error putting loot into target inventory");
+		Logger::console.info(true) << "BazaarBot: Error putting loot: " << lootItem << ", into target inventory.";
 		return 0;
 	}
 
@@ -1366,16 +1370,17 @@ int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
 }
 
 int DirectorManager::bazaarBotListItem(lua_State* L) {
-	Reference<CreatureObject*> player = (CreatureObject*)lua_touserdata(L, -5);
-	Reference<SceneObject*> itemToSell = (SceneObject*)lua_touserdata(L, -4);
+	ManagedReference<CreatureObject*> player = (CreatureObject*)lua_touserdata(L, -5);
+	ManagedReference<SceneObject*> itemToSell = (SceneObject*)lua_touserdata(L, -4);
 	SceneObject* vendor = (SceneObject*) lua_touserdata(L, -3);
 	UnicodeString description = lua_tostring(L, -2);
 	int price = lua_tonumber(L, -1);
 	
 	AuctionManager* auctionManager = ServerCore::getZoneServer()->getAuctionManager();
 
-	if (auctionManager != NULL)
+	if (auctionManager != nullptr && itemToSell != nullptr) {
 		auctionManager->bazaarBotListItem(player, itemToSell, vendor, description, price);
+	}
 			
 	return 0;
 }
@@ -1399,6 +1404,112 @@ int DirectorManager::logToFile(lua_State* L){
 	delete writer;
 	
 	return 0;
+}
+
+int DirectorManager::generateWeapon(lua_State* L){
+	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -4);
+	String objectTemplate = lua_tostring(L, -3);
+	int damageType = lua_tointeger(L, -2);
+	int tokensToSpend = lua_tointeger(L, -1);
+
+	ManagedReference<CraftingManager*> craftingManager = creature->getZoneServer()->getCraftingManager();
+
+	if (craftingManager == nullptr) {
+		return 0;
+	}
+
+	instance()->info(true) << "GenerateWeapon: Values received are: objectTemplate " << objectTemplate << ", damageType: " << damageType << ", tokensToSpend: " << tokensToSpend;
+
+	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
+
+	if (inventory == nullptr) {
+		instance()->info(true) << "GenerateWeapon: Error locating target inventory ";
+		return 0;
+	}
+	
+	try {
+		Reference<SharedObjectTemplate*> shot = TemplateManager::instance()->getTemplate(objectTemplate.hashCode());
+		
+		if (shot == nullptr) {
+			instance()->info(true) << "GenerateWeapon: Error creating shot for " << objectTemplate;
+			return 0;
+		}
+
+		ManagedReference<TangibleObject*> object = nullptr;
+
+		object = creature->getZoneServer()->createObject(shot->getServerObjectCRC(), 1).castTo<TangibleObject*>();
+
+		object->createChildObjects();
+
+		object->setCustomObjectName(object->getDisplayedName(), false);
+		object->setSerialNumber(craftingManager->generateSerial());
+
+		object->setForceNoTrade(true);
+		
+		ManagedReference<WeaponObject*> weaponObj = (object).castTo<WeaponObject*>();
+		
+		object->setMaxCondition(System::random(3000) + 2000);
+
+		String name = "Dedlee Syn";
+		object->setCraftersName(name);
+
+		String firstName = creature->getFirstName();
+
+		StringBuffer customName;
+		customName << firstName << "s " << object->getDisplayedName();
+		object->setCustomObjectName(customName.toString(), false);
+
+		weaponObj->setDamageType(damageType);
+		weaponObj->setAttackSpeed(System::random(20) / 10);
+
+		int tokenFactor = tokensToSpend / 5;
+
+		float minDamage = weaponObj->getMinDamage();
+		float maxDamage = weaponObj->getMaxDamage();
+
+		float newMinDamage = System::random(minDamage * tokenFactor * 0.5) + minDamage * tokenFactor;
+		float newMaxDamage = System::random(maxDamage * tokenFactor * 0.5) + maxDamage * tokenFactor;
+
+		weaponObj->setMinDamage(newMinDamage);
+		weaponObj->setMaxDamage(newMaxDamage);
+
+		int ap = weaponObj->getArmorPiercing();
+
+		if (tokenFactor > System::random(25)) {
+			weaponObj->setArmorPiercing(3);
+		}
+
+		float wound = weaponObj->getWoundsRatio();
+
+		float newWound = System::random(50) + 50 + wound;
+
+		weaponObj->setWoundsRatio(newWound);
+
+		weaponObj->setPointBlankAccuracy(System::random(100));
+		weaponObj->setIdealAccuracy(System::random(100));
+		weaponObj->setMaxRangeAccuracy(System::random(100));
+
+		weaponObj->setHealthAttackCost(System::random(25));
+		weaponObj->setActionAttackCost(System::random(25));
+		weaponObj->setMindAttackCost(System::random(25));
+
+		if (inventory->transferObject(weaponObj, -1, true)) {
+			instance()->info(true) << "GenerateWeapon: Success";
+			inventory->broadcastObject(weaponObj, true);
+		} else {
+			instance()->info(true) << "GenerateWeapon: Failed";
+			weaponObj->destroyObjectFromDatabase(true);
+			throw Exception();
+		}
+
+		lua_pushlightuserdata(L, weaponObj);
+
+		return 1;
+
+	} catch (Exception& e) {
+		lua_pushnil(L);
+		return 0;
+	}
 }
 
 int DirectorManager::getTimestamp(lua_State* L) {
@@ -2279,8 +2390,10 @@ int DirectorManager::getRandomNumber(lua_State* L) {
 		int max = lua_tointeger(L, -1);
 		random = System::random(max - 1) + 1;
 	} else {
-		int min = lua_tointeger(L, -2);
-		int max = lua_tointeger(L, -1);
+		int a = lua_tointeger(L, -2);
+		int b = lua_tointeger(L, -1);
+		int min = Math::min(a, b);
+		int max = Math::max(a, b);
 		random = min + System::random(max - min);
 	}
 	lua_pushinteger(L, random);

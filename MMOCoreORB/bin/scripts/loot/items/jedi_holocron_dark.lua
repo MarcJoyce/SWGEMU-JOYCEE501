@@ -3,7 +3,7 @@
 jedi_holocron_dark = {
 	minimumLevel = 0,
 	maximumLevel = -1,
-	customObjectName = "",
+	customObjectName = "Sith Holocron",
 	directObjectTemplate = "object/tangible/jedi/jedi_holocron_dark.iff",
 	craftingValues = {
 	},

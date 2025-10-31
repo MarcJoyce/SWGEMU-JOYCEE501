@@ -6,6 +6,9 @@ function PlayerTriggers:playerLoggedIn(pPlayer)
 	end
 	ServerEventAutomation:playerLoggedIn(pPlayer)
 	BestineElection:playerLoggedIn(pPlayer)
+	CustomGlowingScreenPlay:playerLoggedIn(pPlayer)
+	ShadowsScreenPlay:playerLoggedIn(pPlayer)
+	DedleeSynScreenPlay:playerLoggedIn(pPlayer)
 end
 
 function PlayerTriggers:playerLoggedOut(pPlayer)

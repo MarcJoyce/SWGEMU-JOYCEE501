@@ -44,20 +44,20 @@
 object_tangible_food_crafted_dish_bivoli_tempari = object_tangible_food_crafted_shared_dish_bivoli_tempari:new {
 	templateType = CONSUMABLE,
 
-	duration = 10,
+	duration = 20,
 	filling = 10,
 	nutrition = 10,
 
 	effectType = 4,
 
-	fillingMin = 29,
-	fillingMax = 19,
+	fillingMin = 30,
+	fillingMax = 20,
 	flavorMin = 720,
 	flavorMax = 1440,
 	nutritionMin = 7,
 	nutritionMax = 12,
-	quantityMin = 2,
-	quantityMax = 5,
+	quantityMin = 5,
+	quantityMax = 10,
 
 	modifiers = { "healing_wound_treatment", 0 },
 

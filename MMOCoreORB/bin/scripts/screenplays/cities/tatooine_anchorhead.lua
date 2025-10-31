@@ -7,7 +7,7 @@ TatooineAnchorheadScreenPlay = CityScreenPlay:new {
 
 	gcwMobs = {
 		{"specforce_technician", 65.685, 52, -5349.49, -4, 0, "", true},
-		{"specforce_technician", 49.2, 52, -5351, 350, 0, "", true},
+		-- {"specforce_technician", 49.2, 52, -5351, 350, 0, "", true},
 		{"specforce_technician", 125.5, 52, -5416, 279.008, 0, "", true},
 		{"specforce_technician", 55.2, 52.6, -5332.5, 184.005, 0, "", true},
 		{"specforce_heavy_weapons_specialist", 68, 52, -5382, 67, 0, "", true},

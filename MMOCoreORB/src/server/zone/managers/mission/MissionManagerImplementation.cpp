@@ -1075,17 +1075,12 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 	}
 
 	int level = 1;
-	int randomTexts = 50;
-	if (player->hasSkill("combat_bountyhunter_investigation_01")) {
-		level = 2;
-	} else if (player->hasSkill("combat_bountyhunter_investigation_02")) {
+	int randomTexts = 25;
+	if (player->hasSkill("combat_bountyhunter_investigation_03")) {
 		level = 3;
-	} else if (player->hasSkill("combat_bountyhunter_investigation_03")) {
-		level = 4;
-	} else if (player->hasSkill("combat_bountyhunter_investigation_04")) {
-		level = 5;
-	} else if (player->hasSkill("combat_bountyhunter_master")) {
-		level = 6;
+	} else if (player->hasSkill("combat_bountyhunter_investigation_01")) {
+		level = 2;
+		randomTexts = 50;
 	}
 
 	NameManager* nm = processor->getNameManager();
@@ -1093,7 +1088,7 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 	bool playerTarget = false;
 	int size = potentialTargets->size();
 
-	if (level == 3 && size > 0) {
+	if (level > 0 && size > 0) {
 		int compareValue = size > 25 ? 25 : size < 5 ? 5 : size;
 		if (System::random(100) < compareValue) {
 			playerTarget = true;
@@ -1211,11 +1206,11 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 		}
 
 		if (level == 1) {
-			reward = creoLevel * (200 + System::random(200));
+			reward = creoLevel * (200 + System::random(200 / 3));
 		} else if (level == 2) {
-			reward = creoLevel * (250 + System::random(250));
+			reward = creoLevel * (250 + System::random(250 / 3));
 		} else if (level == 3) {
-			reward = creoLevel * (300 + System::random(300));
+			reward = creoLevel * (300 + System::random(300 / 3));
 		}
 
 		mission->setRewardCredits(reward);

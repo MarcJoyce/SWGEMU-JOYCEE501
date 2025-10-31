@@ -24,3 +24,6 @@ includeFile("dressgroup/sith_shadow.lua")
 includeFile("dressgroup/thug.lua")
 includeFile("dressgroup/thug_male.lua")
 includeFile("dressgroup/thug_female.lua")
+
+includeFile("dressgroup/mtn_clan.lua")
+includeFile("dressgroup/nightsister.lua")

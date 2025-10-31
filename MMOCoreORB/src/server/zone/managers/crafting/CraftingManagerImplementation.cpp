@@ -95,7 +95,8 @@ int CraftingManagerImplementation::calculateExperimentationSuccess(CreatureObjec
 
 	/// Range 0-100
 	int luckRoll = System::random(100) + cityBonus;
-
+	// TODO: REMOVE THIS WHEN GO LIVE
+	return AMAZINGSUCCESS;
 	if(luckRoll > ((95 - expbonus) - forceSkill))
 		return AMAZINGSUCCESS;
 
@@ -127,8 +128,8 @@ int CraftingManagerImplementation::calculateExperimentationSuccess(CreatureObjec
 
 	if (experimentRoll > 20)
 		return OK;
-
-	return BARELYSUCCESSFUL;
+	
+	return OK;
 }
 
 String CraftingManagerImplementation::generateSerial() {

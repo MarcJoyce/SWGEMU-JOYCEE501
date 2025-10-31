@@ -22,6 +22,20 @@ BBStructuresItems = {
 	"installation_mining_liquid",
 	"installation_mining_ore",
 	"installation_mining_organic_flora",
+	},
+	{1000000, 1 ,1, 0,
+	"corellia_house_player_small_floorplan_02",
+	"corellia_house_player_small",
+	"corellia_house_player_small_style_02_floorplan_02",
+	"corellia_house_player_small_style_02",
+	"generic_house_player_small_floorplan_02",
+	"generic_house_player_small",
+	"generic_house_player_small_style_02_floorplan_02",
+	"generic_house_player_small_style_02",
+	"house_player_small",
+	"house_player_small_style_02",
+	"naboo_house_player_small",
+	"naboo_house_player_small_style_02",
 	}
 }
 

@@ -197,7 +197,9 @@ TalusNashalScreenPlay = CityScreenPlay:new {
 		{"artisan",60,2.49489,-0.894992,-5.58394,0,4265375, "conversation"},
 		{"info_broker",60,11.3604,-0.894992,5.58351,180.01,4265375, "conversation"},
 		{"commoner_technician",60,2.49489,-0.894992,-4.58394,179.992,4265375, "conversation"},
-		{"commoner",60,11.3604,-0.894992,4.58351,360.011,4265375, "nervous"}
+		{"commoner",60,11.3604,-0.894992,4.58351,360.011,4265375, "nervous"},
+
+		{"konlan_voss", 60, 6.80, -0.89, 5.44, 198, 4265375, "npc_standing_drinking"},
 	}
 }
 

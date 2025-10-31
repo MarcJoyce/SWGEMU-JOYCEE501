@@ -5,15 +5,16 @@ armor_component_advanced = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "armor_segment_bone_advanced", weight = 1111112},
-		{itemTemplate = "armor_segment_chitin_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_composite_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_kashyyykian_black_mtn_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_kashyyykian_ceremonial_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_kashyyykian_hunting_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_padded_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_ubese_advanced", weight = 1111111},
-		{itemTemplate = "armor_segment_zam_advanced", weight = 1111111}
+		{itemTemplate = "armor_segment_bone_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_chitin_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_composite_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_kashyyykian_black_mtn_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_kashyyykian_ceremonial_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_kashyyykian_hunting_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_padded_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_ubese_advanced", weight = 1000000},
+		{itemTemplate = "armor_segment_zam_advanced", weight = 1000000},
+		{itemTemplate = "armor_layer_lightsaber", weight = 1000000}
 	},
 }
 

@@ -17,13 +17,15 @@ BBFoodConfig = {
 -- Items that don't have altTemplates and should be the same price can be grouped together
 BBFoodItems = {
 	-- Expensive
-	{650, 1, 5, 0, 
+	{650, 1, 10, 0, 
 	"dessert_almond_kwevvu_crisp_munchies", 
 	"dessert_air_cake", 
 	"dessert_blap_biscuit", 
 	"dessert_citros_snow_cake", 
 	"dessert_sweesonberry_rolls",
 	"dessert_vagnerian_canape",
+	"dish_bivoli_tempari",
+	"dish_havla",
 	"dish_synthsteak",
 	"dish_thakitillo",
 	"dish_vercupti_of_agazza_boleruuee",
@@ -32,7 +34,7 @@ BBFoodItems = {
 	"drink_vasarian_brandy",
 	},
 	-- Modest
-	{350, 1, 5, 0, 
+	{350, 1, 10, 0, 
 	"dessert_felbar", 
 	"dessert_pastebread",
 	"dessert_pyollian_cake",
@@ -41,7 +43,7 @@ BBFoodItems = {
 	"drink_ithorian_mist",
 	},
 	-- Cheap
-	{150, 1, 5, 0,
+	{150, 1, 10, 0,
 	"dish_veghash", 
 	"dessert_dweezel",
 	"drink_accarragm",

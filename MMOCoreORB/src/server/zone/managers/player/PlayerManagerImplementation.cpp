@@ -2604,8 +2604,8 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 
 	if (xpType == "dance" || xpType == "entertainer_healing" || xpType == "music" || xpType == "squadleader") {
 			typeMultiplier = 100.0f;
-	} else if (xpType == "crafting_spice" || xpType == "slicing") {
-			typeMultiplier = 50.0f;
+	} else if (xpType == "crafting_spice" || xpType == "slicing" || xpType == "bountyhunter") {
+			typeMultiplier = 25.0f;
 	} else if (
 			xpType == "bio_engineer_dna_harvesting" ||
 			xpType == "crafting_clothing_armor" ||
@@ -2619,9 +2619,10 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			xpType == "creaturehandler" ||
 			xpType == "resource_harvesting_inorganic" ||
 			xpType == "scout" ||
-			xpType == "trapping"
+			xpType == "trapping" ||
+			xpType == "camp"
 	) {
-			typeMultiplier = 25.0f;
+			typeMultiplier = 15.0f;
 	} else if (xpType == "medical") {
 			typeMultiplier = 10.0f;
 	} else if (
@@ -2635,7 +2636,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			xpType == "combat_rangedspecialize_pistol" ||
 			xpType == "combat_rangedspecialize_rifle"
 	) {
-			typeMultiplier = 5.0f;
+			typeMultiplier = 2.0f;
 	} else {
 			typeMultiplier = 1.0f;
 	}
@@ -5178,7 +5179,7 @@ SortedVector<String> PlayerManagerImplementation::getTeachableSkills(CreatureObj
 
 		const auto& skillName = skill->getSkillName();
 
-		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_")) && skillManager->canLearnSkill(skillName, student, false))
+		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_") || skillName.contains("_investigation") || skillName.contains("bountyhunter_master")) && skillManager->canLearnSkill(skillName, student, false))
 			skills.put(skillName);
 	}
 

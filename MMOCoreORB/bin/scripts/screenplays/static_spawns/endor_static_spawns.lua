@@ -63,4 +63,7 @@ function EndorStaticSpawnsScreenPlay:spawnMobiles()
 	spawnMobile("endor", "merek_harvester", 300, 3915, 202, 5793, getRandomNumber(360), 0)
 	spawnMobile("endor", "merek_harvester", 300, 3942, 199, 5754, getRandomNumber(360), 0)
 	spawnMobile("endor", "merek_harvester", 300, 3938, 199, 5734, getRandomNumber(360), 0)
+
+
+	spawnMobile("endor", "stunted_black_sun", 1, -4654, 12, 4305, 0, 0)
 end

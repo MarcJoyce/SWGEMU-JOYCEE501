@@ -19,7 +19,7 @@ void SharedLabratory::initialize(ZoneServer* server) {
 }
 
 float SharedLabratory::calculateExperimentationValueModifier(int experimentationResult, int pointsAttempted) {
-	// Make it so failure detract
+	pointsAttempted *= 2;
 	float results;
 	switch (experimentationResult) {
 	case CraftingManager::AMAZINGSUCCESS:
@@ -29,31 +29,35 @@ float SharedLabratory::calculateExperimentationValueModifier(int experimentation
 		results = 0.07f;
 		break;
 	case CraftingManager::GOODSUCCESS:
-		results = 0.055f;
+		results = 0.06f;
 		break;
 	case CraftingManager::MODERATESUCCESS:
-		results = 0.015f;
+		results = 0.05f;
 		break;
 	case CraftingManager::SUCCESS:
-		results = 0.01f;
+		results = 0.04f;
 		break;
 	case CraftingManager::MARGINALSUCCESS:
-		results = 0.00f;
+		results = 0.03f;
 		break;
 	case CraftingManager::OK:
-		results = -0.04f;
+		results = 0.02f;
 		break;
 	case CraftingManager::BARELYSUCCESSFUL:
-		results = -0.07f;
+		results = 0.01f;
 		break;
 	case CraftingManager::CRITICALFAILURE:
-		results = -0.08f;
+		results = 0.0f;
 		break;
 	default:
 		results = 0;
 		break;
 	}
 	results *= pointsAttempted;
+
+	// TODO: REMOVE THIS WHEN GO LIVE	//
+	return 2.f;
+
 	return results;
 }
 float SharedLabratory::calculateAssemblyValueModifier(int assemblyResult) {
@@ -185,25 +189,30 @@ int SharedLabratory::calculateAssemblySuccess(CreatureObject* player,DraftSchema
 	luckRoll += System::random(player->getSkillMod("luck") + player->getSkillMod("force_luck"));
 
 	int assemblyRoll = (toolModifier * (luckRoll + (assemblyPoints * 5)));
+	// TODO: REMOVE THIS WHEN GO LIVE	//
+	return CraftingManager::AMAZINGSUCCESS;
 
-	if (assemblyRoll > 70)
-		return CraftingManager::GREATSUCCESS;
-
-	if (assemblyRoll > 60)
-		return CraftingManager::GOODSUCCESS;
+	if (assemblyRoll > 60) 
+		return CraftingManager::AMAZINGSUCCESS;
 
 	if (assemblyRoll > 50)
-		return CraftingManager::MODERATESUCCESS;
+		return CraftingManager::GREATSUCCESS;
 
 	if (assemblyRoll > 40)
-		return CraftingManager::SUCCESS;
+		return CraftingManager::GOODSUCCESS;
 
 	if (assemblyRoll > 30)
-		return CraftingManager::MARGINALSUCCESS;
+		return CraftingManager::MODERATESUCCESS;
 
 	if (assemblyRoll > 20)
-		return CraftingManager::OK;
+		return CraftingManager::SUCCESS;
 
-	return CraftingManager::BARELYSUCCESSFUL;
+	if (assemblyRoll > 10)
+		return CraftingManager::MARGINALSUCCESS;
+
+	if (assemblyRoll > 0)
+		return CraftingManager::OK;
+	
+	return CraftingManager::OK;
 }
 

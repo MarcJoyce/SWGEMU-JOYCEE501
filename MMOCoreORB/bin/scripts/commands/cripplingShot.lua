@@ -42,7 +42,7 @@
 --true = 1, false = 0
 
 CripplingShotCommand = {
-        name = "cripplingshot",
+	name = "cripplingshot",
 
 	damageMultiplier = 5.0,
 	speedMultiplier = 2.0,

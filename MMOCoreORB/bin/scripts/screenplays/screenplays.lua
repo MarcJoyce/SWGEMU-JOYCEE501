@@ -733,3 +733,33 @@ includeFile("../custom_scripts/screenplays/screenplays.lua")
 -- Mission handler
 includeFile("custom/mission/mission_direction.lua")
 includeFile("custom/mission/mission_level.lua")
+
+-- Custom
+includeFile("custom/conversations/navi_gator_convo_handler.lua")
+includeFile("custom/conversations/bazaar_bot_helper_convo_handler.lua")
+includeFile("custom/conversations/dedlee_syn_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/selogel_convo_handler.lua")
+includeFile("custom/jedi/conversations/klik_klak_convo_handler.lua")
+includeFile("custom/jedi/conversations/thalos_krenn_convo_handler.lua")
+includeFile("custom/jedi/conversations/jabba_henchman_custom_convo_handler.lua")
+includeFile("custom/jedi/conversations/han_solo_glowing_convo_handler.lua")
+includeFile("custom/jedi/conversations/chewbacca_glowing_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/shadows/shadows_captive_one_convo_handler.lua")
+includeFile("custom/jedi/conversations/shadows/konlan_voss_convo_handler.lua")
+
+includeFile("custom/jedi/custom_glowing.lua")
+
+includeFile("custom/jedi/shadows/shadows.lua")
+includeFile("custom/jedi/shadows/shadows_intro_theatre.lua")
+includeFile("custom/jedi/shadows/shadows_guard_detail.lua")
+includeFile("custom/jedi/shadows/shadows_meet_up_theatre.lua")
+
+includeFile("custom/navi_gator.lua")
+includeFile("custom/buff_terminals.lua")
+includeFile("custom/dedlee_syn.lua")
+
+includeFile("custom/bazaarbot/BazaarBot.lua")
+
+includeFile("custom/world_bosses.lua")

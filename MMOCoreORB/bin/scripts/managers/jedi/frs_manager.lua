@@ -22,8 +22,8 @@ baseMaintCost = 100
 requestDemotionCost = 2000
 voteChallengeCost = 1000
 
-maxPetitioners = 11
-maxChallenges = 20
+maxPetitioners = 1000
+maxChallenges = 1000
 missedVotePenalty = 100 -- FRS XP
 
 -- Restrict players from voting for and challenging other characters on their account

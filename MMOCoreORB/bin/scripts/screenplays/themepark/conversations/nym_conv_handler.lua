@@ -69,6 +69,15 @@ function NymConvoHandler:runNymScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Nym's Informant", "Nym's Informant", ThemeParkNym.waypointMap.gambler.x, 0, ThemeParkNym.waypointMap.gambler.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
 		setQuestStatus(playerID .. ":nymGamblerWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 2, "nym_theme_park_nymNpc")
+	elseif (screenID == "your_the_best" or screenID == "youre_done" and CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1")) then
+		clonedConversation:addOption("What's with the party outside?", "piece_of_eight_five_one")
+	elseif (screenID == "piece_of_eight_five_accept") then
+		CreatureObject(pPlayer):setScreenPlayState(1, "nym_trial")
+		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceFive", pPlayer)
+	elseif (screenID == "piece_of_eight_five_complete") then
+		CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_five")
+		CreatureObject(pPlayer):removeScreenPlayState(2, "nym_trial")
+		CreatureObject(pPlayer):sendSystemMessage("Nym hands you a piece of the orb")
 	end
 	return pConvScreen
 end
@@ -452,7 +461,11 @@ end
 function NymConvoHandler:getInitialNymScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
 	-- Nym states: 1 = initial talk, 2 = sent to berema, 4 = turned in grenade, 8 =turned in data, 16 = all completed
-	if (not CreatureObject(pPlayer):hasScreenPlayState(1, "nym_theme_park_nymNpc")) then
+	if (CreatureObject(pPlayer):hasScreenPlayState(2, "nym_trial")) then
+		return convoTemplate:getScreen("piece_of_eight_five_complete")
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "nym_trial")) then
+		return convoTemplate:getScreen("piece_of_eight_five_ongoing")
+	elseif (not CreatureObject(pPlayer):hasScreenPlayState(1, "nym_theme_park_nymNpc")) then
 		return convoTemplate:getScreen("first_time_hello")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(4, "nym_theme_park_nymNpc") and not CreatureObject(pPlayer):hasScreenPlayState(8, "nym_theme_park_nymNpc")) then
 		return convoTemplate:getScreen("wheres_drive")

@@ -44,21 +44,22 @@
 object_tangible_food_crafted_dish_havla = object_tangible_food_crafted_shared_dish_havla:new {
 	templateType = CONSUMABLE,
 
-	duration = 17,
+	duration = 20,
 	filling = 10,
 	nutrition = 10,
 
-	effectType = 3, -- Event Based Buff
-	eventTypes = {MEDPACKUSED},
+	-- effectType = 3, -- Event Based Buff
+	effectType = 4, -- Event Based Buff
+	-- eventTypes = {MEDPACKUSED},
 
-	fillingMin = 35,
-	fillingMax = 25,
-	flavorMin = 17,
-	flavorMax = 37,
+	fillingMin = 30,
+	fillingMax = 20,
+	flavorMin = 720,
+	flavorMax = 1440,
 	nutritionMin = 38,
 	nutritionMax = 60,
-	quantityMin = 3,
-	quantityMax = 9,
+	quantityMin = 5,
+	quantityMax = 10,
 
 	modifiers = { "heal_recovery", 0 },
 

@@ -294,6 +294,14 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 					player->sendSystemMessage("Not within combat.");
 					return;
 				}
+			} else if (templatePath == "teleport_dwb") {
+				player->switchZone("endor", -4657, 14.4, 4322.3, 0);
+			} else if (templatePath == "teleport_eisley") {
+				player->switchZone("tatooine",  3533.04, 5, -4796, 0);
+			} else if (templatePath == "teleport_lje") {
+				player->switchZone("yavin4",  -5575, 87.7, 4910, 0);
+			} else if (templatePath == "teleport_dje") {
+				player->switchZone("yavin4", 5068, 78.8, 310 , 0);
 			} else if (templatePath == "fill_force_bar") {
 				if (ghost->isJedi()) {
 					if (!player->isInCombat()) {
@@ -466,8 +474,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 			} else if (templatePath == "frs_dark_side") {
 				PlayerManager* pman = zserv->getPlayerManager();
 				pman->unlockFRSForTesting(player, 2);
-
-			} else if (templatePath == "color_crystals" || templatePath == "krayt_pearls") {
+			} else if (templatePath == "color_crystals" || templatePath == "krayt_pearls" || templatePath == "named_crystals" || templatePath == "jedi_clothing_attachments" || templatePath == "power_crystals" || templatePath == "death_watch_bunker_keys") {
 				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
 
 				if (inventory == nullptr)

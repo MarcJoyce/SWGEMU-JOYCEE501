@@ -17,8 +17,11 @@ BBMedicineConfig = {
 -- Items that don't have altTemplates and should be the same price can be grouped together
 BBMedicineItems = {
 	{50, 10, 20, 0, "med_stimpack_a"},
-	--{350, 2, 10, 0, "med_stimpack_area_a"},
-	--{150, 2, 10, 0, "med_stimpack_range_a"},
+	{250, 10, 20, 0, "med_stimpack_b"},
+	{500, 10, 20, 0, "med_stimpack_c"},
+	{350, 2, 10, 0, "med_stimpack_area_a"},
+	{150, 2, 10, 0, "med_stimpack_range_a"},
+	{5000, 10, 5, 0, "medpack_enhance_action_a", "medpack_enhance_constitution_a", "medpack_enhance_health_a", "medpack_enhance_quickness_a", "medpack_enhance_stamina_a", "medpack_enhance_strength_a"},
 	{50, 10, 20, 0, "medpack_wound_action_a", "medpack_wound_constitution_a", "medpack_wound_health_a", "medpack_wound_quickness_a", "medpack_wound_stamina_a", "medpack_wound_strength_a"},
 }
 
