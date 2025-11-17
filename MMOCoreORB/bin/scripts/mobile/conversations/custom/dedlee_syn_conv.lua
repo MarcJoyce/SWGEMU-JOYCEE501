@@ -7,7 +7,7 @@ dedlee_syn_convo_template = ConvoTemplate:new {
 
 first_screen_not_met = ConvoScreen:new {
   id = "first_screen_not_met",
-  customDialogText = "Hello traveller, how does fame and glory sound to you? I'll even throw in some out-of-this-world weapons for you!?",
+  customDialogText = "Ahh… a fresh face in the galaxy's underbelly. Tell me, traveler—does the promise of fame, fortune, and finely tuned firepower spark your interest?",
   stopConversation = "false",
   options = {
     { "Sounds like fun, what would you have me do?", "information" },
@@ -17,7 +17,7 @@ dedlee_syn_convo_template:addScreen(first_screen_not_met)
 
 first_screen_has_met = ConvoScreen:new {
   id = "first_screen_has_met",
-  customDialogText = "Welcome back, what can I do for you?",
+  customDialogText = "Back again, friend? The black-market winds favor you today. What can I offer?",
   stopConversation = "false",
   options = {
     { "Remind me, what's this all about?", "information" },
@@ -29,7 +29,7 @@ dedlee_syn_convo_template:addScreen(first_screen_has_met)
 
 information = ConvoScreen:new {
   id = "information",
-  customDialogText = "It's quite simple really, all you have to do is kill a certain target and you'll earn a token. Earn enough tokens and I'll reward you with a weapon of your choosing.",
+  customDialogText = "Here's the deal: you take down high-value targets, the kind that make Imperial tacticians flinch… and I hand you tokens. Stack enough tokens, and I'll arm you with weapons even Hutts whisper about.",
   stopConversation = "false",
   options = {
     { "How many tokens have I earned so far?", "score" },
@@ -40,7 +40,7 @@ dedlee_syn_convo_template:addScreen(information)
 
 score = ConvoScreen:new {
   id = "score",
-  customDialogText = "As of right now, you have earned this many tokens.",
+  customDialogText = "Your current token haul stands at this many. Not bad—some beings would've died collecting half that.",
   stopConversation = "false",
   options = {
     { "Remind me, what's this all about?", "information" },
@@ -51,7 +51,7 @@ dedlee_syn_convo_template:addScreen(score)
 
 shop = ConvoScreen:new {
   id = "shop",
-  customDialogText = "What kind of weapon are you looking for?",
+  customDialogText = "Let's outfit you properly. What kind of armament does your legend demand?",
   stopConversation = "false",
   options = {
 
@@ -61,7 +61,7 @@ dedlee_syn_convo_template:addScreen(shop)
 
 ranged = ConvoScreen:new {
   id = "ranged",
-  customDialogText = "What ranged weapon tickles your fancy?",
+  customDialogText = "Blasters at a distance, hm? A wise choice—no glory in getting vaporized up close.",
   stopConversation = "false",
   options = {
     { "Carbine", "carbine" },
@@ -75,7 +75,7 @@ dedlee_syn_convo_template:addScreen(ranged)
 
 carbine = ConvoScreen:new {
   id = "carbine",
-  customDialogText = "Carbine? Nice, middle of the pack!",
+  customDialogText = "A carbine connoisseur, I see. Compact, reliable, and deadly—just like I like my clients.",
   stopConversation = "false",
   options = {
     { "CDEF Carbine", "cdefcarbine" },
@@ -98,7 +98,7 @@ dedlee_syn_convo_template:addScreen(carbine)
 
 pistol = ConvoScreen:new {
   id = "pistol",
-  customDialogText = "Something more compact, ok I got you.",
+  customDialogText = "Going compact? Perfect for smugglers, spies, and anyone who prefers a quick draw over a long speech.",
   stopConversation = "false",
   options = {
     { "Black Metal Gaderiffi Baton", "blackmetalgaderiffibaton" },
@@ -129,7 +129,7 @@ dedlee_syn_convo_template:addScreen(pistol)
 
 rifle = ConvoScreen:new {
   id = "rifle",
-  customDialogText = "Didn't have you down for a sniper.",
+  customDialogText = "A rifle? So you *are* the patient type. Long-range justice—it has a certain poetry to it.",
   stopConversation = "false",
   options = {
     { "Berserker Rifle", "berserkerrifle" },
@@ -154,7 +154,7 @@ dedlee_syn_convo_template:addScreen(rifle)
 
 special = ConvoScreen:new {
   id = "special",
-  customDialogText = "Very nice, something special",
+  customDialogText = "Ahh… the exotic stuff. Hard to find, harder to survive, and very fun to point at someone else.",
   stopConversation = "false",
   options = {
     { "Flame Thrower", "flamethrower" },
@@ -167,7 +167,7 @@ dedlee_syn_convo_template:addScreen(special)
 
 melee = ConvoScreen:new {
   id = "melee",
-  customDialogText = "Like to get up close and personal, but whats your poison?",
+  customDialogText = "Nothing like the thrill of closing the distance and letting your enemies see their mistake up close. What's your style?",
   stopConversation = "false",
   options = {
     { "OneHanded", "onehanded" },
@@ -181,7 +181,7 @@ dedlee_syn_convo_template:addScreen(melee)
 
 onehanded = ConvoScreen:new {
   id = "onehanded",
-  customDialogText = "A dueling expert I see, very regal of you.",
+  customDialogText = "Elegant, precise—very old-Republic of you. A duelist's weapon for a duelist's ego.",
   stopConversation = "false",
   options = {
     { "Sword", "sword" },
@@ -201,7 +201,7 @@ dedlee_syn_convo_template:addScreen(onehanded)
 
 polearm = ConvoScreen:new {
   id = "polearm",
-  customDialogText = "You pikeman and your fancy spins.",
+  customDialogText = "A polearm? That sweeping, dramatic flair… you must enjoy looking impressive while ending lives.",
   stopConversation = "false",
   options = {
     { "Lance", "lance" },
@@ -220,7 +220,7 @@ dedlee_syn_convo_template:addScreen(polearm)
 
 twohanded = ConvoScreen:new {
   id = "twohanded",
-  customDialogText = "A mighty hammer, or a sharpened Scythe?!",
+  customDialogText = "Now that's commitment; two-handed destruction. Nothing subtle about it, and that's why I respect it.",
   stopConversation = "false",
   options = {
     { "Two-handed Curved Sword", "twohandedcurvedsword" },
@@ -239,7 +239,7 @@ dedlee_syn_convo_template:addScreen(twohanded)
 
 unarmed = ConvoScreen:new {
   id = "unarmed",
-  customDialogText = "Are you some kind of monk?",
+  customDialogText = "Unarmed? A fistfighter in a galaxy of blasters. Either brave… or slightly unhinged. I approve.",
   stopConversation = "false",
   options = {
     { "Vibro Knuckler", "vibroknuckler" },
@@ -337,7 +337,7 @@ local weaponIds = {
 for _, id in ipairs(weaponIds) do
   local screen = ConvoScreen:new {
     id = id,
-    customDialogText = "What damage do you want with that?",
+    customDialogText = "What flavor of devastation are we pairing with this fine piece of craftsmanship?",
     stopConversation = "false",
     options = {
       { "Kinetic", "kin" },
@@ -367,7 +367,7 @@ local damageTypeIds = {
 for _, id in ipairs(damageTypeIds) do
   local screen = ConvoScreen:new {
     id = id,
-    customDialogText = "And finally, how many tokens do you want to spend?",
+    customDialogText = "Last step—how many of your hard-earned tokens are you ready to part with?",
     stopConversation = "false",
     options = {}
   }
@@ -382,7 +382,7 @@ local tokens = {
 for _, id in ipairs(tokens) do
   local screen = ConvoScreen:new {
     id = id,
-    customDialogText =  "Well, here you go. Have fun killing... everything. This sure is a beauty.",
+    customDialogText =  "Take it—may it serve you well in the chaos ahead. Try not to vaporize anything you'll miss.",
     stopConversation = "true",
     options = {}
   }

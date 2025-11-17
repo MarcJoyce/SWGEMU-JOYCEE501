@@ -7,7 +7,7 @@ navi_gator_convo_template = ConvoTemplate:new {
 
 first_screen_not_met = ConvoScreen:new {
   id = "first_screen_not_met",
-  customDialogText = "Well, look who wandered into my hangar. You don't look the sort to cause trouble, so that's a good start. The name's Navi, but all my friends call me Gator. I move cargo, people, secrets, you name it. So... where in this blasted galaxy do you need to be?",
+  customDialogText = "Well, well… look who wandered into my hangar. You don't look like trouble, which is probably why you're still breathing. Name's Navi; folks who value their lives call me Gator. I move cargo, fugitives, credits, secrets… anything that fits in my ship or my schedule. So tell me, where in this kriffed-up galaxy are you trying to disappear to?",
   stopConversation = "false",
   options = {}
 }
@@ -16,7 +16,7 @@ navi_gator_convo_template:addScreen(first_screen_not_met)
 
 first_screen_has_met = ConvoScreen:new {
   id = "first_screen_has_met",
-  customDialogText = "Back already? Can't get enough of Gators charm, huh? Or is this another 'urgent' trip across the stars? Either way, you know the drill - fuel's not free, and neither is my time. Where to this time?",
+  customDialogText = "Back already? Stars above, you must really enjoy risking your neck with me. Another urgent jump? Another someone you'd rather avoid? Either way, you know how this works—fuel costs credits, danger costs extra. So… where to this time?",
   stopConversation = "false",
   options = {}
 }
@@ -25,7 +25,7 @@ navi_gator_convo_template:addScreen(first_screen_has_met)
 
 no_credits = ConvoScreen:new {
   id = "no_credits",
-  customDialogText = "Ahhh... the old 'I'll pay you next cycle' routine. Look, kid - I've flown through asteroid fields with a busted hyperdrive, out-manoeuvred Star Destroyers and even out-run Trade Federation blockades; but flying broke passengers is where I draw the line. Come back when your credits weight more than your promises.",
+  customDialogText = "Ahh, the classic ‘I'll pay you next cycle' routine. Kid, I've flown through ion storms with half a hyperdrive, slipped past Imperial scanners, and even outrun a Hutt debt collector—but hauling broke passengers? That's where I draw the line. Come back when your credits outweigh your excuses.",
   stopConversation = "true",
   options = {}
 }
@@ -34,7 +34,7 @@ navi_gator_convo_template:addScreen(no_credits)
 
 coronet = ConvoScreen:new {
   id = "coronet",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Coronet City? Civilized enough on the surface, but trust me—its shadows bite. Strap in.",
   stopConversation = "true",
   options = {}
 }
@@ -43,7 +43,7 @@ navi_gator_convo_template:addScreen(coronet)
 
 mos_eisley = ConvoScreen:new {
   id = "mos_eisley",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Mos Eisley? Heh… scum, villainy, and cheap drinks. My kind of place. Let's fly.",
   stopConversation = "true",
   options = {}
 }
@@ -52,7 +52,7 @@ navi_gator_convo_template:addScreen(mos_eisley)
 
 theed = ConvoScreen:new {
   id = "theed",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Theed, huh? Elegant… peaceful… boring. Let's make the trip quick.",
   stopConversation = "true",
   options = {}
 }
@@ -61,7 +61,7 @@ navi_gator_convo_template:addScreen(theed)
 
 jabba = ConvoScreen:new {
   id = "jabba",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Heading to Jabba's turf? Brave. Or stupid. Either way, get in the seat—we're leaving.",
   stopConversation = "true",
   options = {}
 }
@@ -70,7 +70,7 @@ navi_gator_convo_template:addScreen(jabba)
 
 dwb = ConvoScreen:new {
   id = "dwb",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Death Watch territory? You're either insane or impressively committed. Engines hot—let's go.",
   stopConversation = "true",
   options = {}
 }
@@ -79,7 +79,7 @@ navi_gator_convo_template:addScreen(dwb)
 
 geo = ConvoScreen:new {
   id = "geo",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Geonosian space. Hope you like dust, droids, and the constant feeling you're being watched. Buckle up.",
   stopConversation = "true",
   options = {}
 }
@@ -88,7 +88,7 @@ navi_gator_convo_template:addScreen(geo)
 
 ns_stronghold = ConvoScreen:new {
   id = "ns_stronghold",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Nightsister land? You sure about that? Those witches hate outsiders. Alright… your funeral, your fare.",
   stopConversation = "true",
   options = {}
 }
@@ -97,7 +97,7 @@ navi_gator_convo_template:addScreen(ns_stronghold)
 
 krayt = ConvoScreen:new {
   id = "krayt",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Krayt territory? Stars help you. Let's jump before something huge decides to eat my ship.",
   stopConversation = "true",
   options = {}
 }
@@ -106,7 +106,7 @@ navi_gator_convo_template:addScreen(krayt)
 
 fort_tusken = ConvoScreen:new {
   id = "fort_tusken",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Fort Tusken? The locals aren't exactly welcoming. Sit tight—don't make any sudden moves out there.",
   stopConversation = "true",
   options = {}
 }
@@ -115,7 +115,7 @@ navi_gator_convo_template:addScreen(fort_tusken)
 
 village = ConvoScreen:new {
   id = "village",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "A quiet little village? Finally—somewhere I'm not likely to get shot. Probably. Let's go.",
   stopConversation = "true",
   options = {}
 }
@@ -124,7 +124,7 @@ navi_gator_convo_template:addScreen(village)
 
 lje = ConvoScreen:new {
   id = "lje",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Jedi territory? I never liked flying near mystics. Messes with my instincts. Still—your credits, your call.",
   stopConversation = "true",
   options = {}
 }
@@ -133,7 +133,7 @@ navi_gator_convo_template:addScreen(lje)
 
 dje = ConvoScreen:new {
   id = "dje",
-  customDialogText = "Great, let's get going then. I don't wanna stay here any more than I need to.",
+  customDialogText = "Dark Jedi ruins… great. Nothing like ancient evil to ruin a pilot's day. Off we go then.",
   stopConversation = "true",
   options = {}
 }

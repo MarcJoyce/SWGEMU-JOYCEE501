@@ -7,7 +7,7 @@ klik_klak_convo_template = ConvoTemplate:new {
 
 first_screen = ConvoScreen:new {
   id = "first_screen",
-  customDialogText = "Ootini! Stranger looks... desperate hmm? Maybe Klik Klak has what you seek?",
+  customDialogText = "Ootini! Stranger come… looking shiny? Hmm? Maybe Klik-Klak has shiny thing stranger wants?",
   stopConversation = "false",
   options = {
     { "I'm looking for something shiny, something rare, do you have something like that?", "klik_klak_offer" },
@@ -18,7 +18,7 @@ klik_klak_convo_template:addScreen(first_screen)
 
 klik_klak_offer = ConvoScreen:new {
   id = "klik_klak_offer",
-  customDialogText = "Hehehe. Yes, Klik Klak has what you seek. How will the stranger pay?",
+  customDialogText = "Hehehe… yes, yes! Klik-Klak has shiny! How stranger pay, hmm?",
   stopConversation = "false",
   options = {
     { "Republic credits will do fine", "klik_klak_offer_two" },
@@ -29,7 +29,7 @@ klik_klak_convo_template:addScreen(klik_klak_offer)
 
 klik_klak_offer_two = ConvoScreen:new {
   id = "klik_klak_offer_two",
-  customDialogText = "Credits!! Yes, yes Klik Klak loves credits!! For you stranger, 10 million credits... Or stranger can kill the Tusken Queen.",
+  customDialogText = "Credits! Yes, yes! Klik-Klak loves credits! For stranger, 10 million credits… Or stranger can bring Tusken Queen head! Ootini!",
   stopConversation = "false",
   options = {
     { "10 million credits is too much, I will kill the Tusken.", "accept_kill" }
@@ -39,7 +39,7 @@ klik_klak_convo_template:addScreen(klik_klak_offer_two)
 
 accept_kill = ConvoScreen:new {
   id = "accept_kill",
-  customDialogText = "Good, good, Stranger must hurry, the Queen live in Fort Tusken, goodbye",
+  customDialogText = "Good, good! Stranger must hurry! Queen live in Fort Tusken… go, go! Klik-Klak wait… maybe.",
   stopConversation = "true",
   options = {}
 }
@@ -47,7 +47,7 @@ klik_klak_convo_template:addScreen(accept_kill)
 
 success_paid = ConvoScreen:new {
   id = "success_paid",
-  customDialogText = "Ootini!! Klik Klak thanks stranger. Klik Klak forgets you ever came here. Stranger should leave now",
+  customDialogText = "Ootini!! Klik-Klak thanks stranger! Shiny is yours… Klik-Klak forgets stranger come. Leave now, yes yes!",
   stopConversation = "true",
   options = {}
 }
@@ -55,7 +55,7 @@ klik_klak_convo_template:addScreen(success_paid)
 
 failed_payment = ConvoScreen:new {
   id = "failed_payment",
-  customDialogText = "Oh no, stranger is poor. Come back when you have cash credits, or with the Tusken Queens head.",
+  customDialogText = "Oh no… stranger poor! Come back when have credits, or with Tusken Queen head! Ootini!",
   stopConversation = "false",
   options = {
     { "I'll be back with the credits Klik Klak, dont go anywhere", "goodbye" },
@@ -66,7 +66,7 @@ klik_klak_convo_template:addScreen(failed_payment)
 
 go_away = ConvoScreen:new {
   id = "go_away",
-  customDialogText = "Ootini! Stranger looks... lost. Stranger shouldn't be here. Stranger should leave Klik Klak alone.",
+  customDialogText = "Ootini! Stranger lost… Stranger shouldn't be here. Leave Klik-Klak alone, yes yes.",
   stopConversation = "true",
   options = {}
 }
@@ -74,7 +74,7 @@ klik_klak_convo_template:addScreen(go_away)
 
 goodbye = ConvoScreen:new {
   id = "goodbye",
-  customDialogText = "Klik Klak forgets you ever came here. Stranger should leave now",
+  customDialogText = "Klik-Klak forgets stranger come. Leave now… leave now!",
   stopConversation = "true",
   options = {}
 }
@@ -82,7 +82,7 @@ klik_klak_convo_template:addScreen(goodbye)
 
 no_head = ConvoScreen:new {
   id = "no_head",
-  customDialogText = "No head, no shiny! You kill Queen or you pay credits",
+  customDialogText = "No head, no shiny! Stranger must kill Queen or pay credits! Ootini!",
   stopConversation = "true",
   options = {
     { "I'll pay.", "klik_klak_offer_two" },
@@ -93,7 +93,7 @@ klik_klak_convo_template:addScreen(no_head)
 
 success_kill = ConvoScreen:new {
   id = "success_kill",
-  customDialogText = "Klik Klak is pleased! The shiny is yours.",
+  customDialogText = "Klik-Klak pleased! Shiny is yours, stranger! Ootini!",
   stopConversation = "true",
   options = {}
 }
