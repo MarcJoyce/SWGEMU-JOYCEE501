@@ -50,7 +50,8 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_helmet = object_ta
 	-- 				"outdoors_squadleader_master",
 	-- 				"outdoors_ranger_master" },
 
-	playerRaces = { "object/creature/player/bothan_male.iff",
+	playerRaces = { 
+				"object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
 				"object/creature/player/human_male.iff",
 				"object/creature/player/human_female.iff",
@@ -66,6 +67,10 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_helmet = object_ta
 				"object/creature/player/twilek_female.iff",
 				"object/creature/player/zabrak_male.iff",
 				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/wookiee_male.iff",
+				"object/creature/player/wookiee_female.iff",
+				"object/creature/player/ithorian_male.iff",
+				"object/creature/player/ithorian_female.iff",
 				"object/mobile/vendor/aqualish_female.iff",
 				"object/mobile/vendor/aqualish_male.iff",
 				"object/mobile/vendor/bothan_female.iff",
@@ -86,7 +91,8 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_helmet = object_ta
 				"object/mobile/vendor/twilek_male.iff",
 				"object/mobile/vendor/weequay_male.iff",
 				"object/mobile/vendor/zabrak_female.iff",
-				"object/mobile/vendor/zabrak_male.iff" },
+				"object/mobile/vendor/zabrak_male.iff"
+			},
 	
 	-- Damage types in WeaponObject
 	-- vulnerability = COLD + ELECTRICITY + STUN + LIGHTSABER,
