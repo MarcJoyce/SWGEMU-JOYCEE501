@@ -9,7 +9,7 @@ BBVehicleConfig = {
   listingChance = 100
 }
 
-BBVehcileItems = {
+BBVehicleItems = {
   {5000, 5, 1, 0, "landspeeder_x34"},
   {25000, 5, 1, 0, "speeder_bike"},
   {50000, 5, 1, 0, "speeder_bike_swoop"}

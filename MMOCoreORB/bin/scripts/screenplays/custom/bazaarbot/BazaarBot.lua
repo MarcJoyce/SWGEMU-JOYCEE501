@@ -26,17 +26,17 @@ function BazaarBotScreenPlay:start()
 		return
 	end
 
-	self:validateEvent("BazaarBotAddArmor", "addMoreArmor", 10000)
-	self:validateEvent("BazaarBotAddClothing", "addMoreClothing", 20000)
-	self:validateEvent("BazaarBotAddFood", "addMoreFood", 30000)
-	self:validateEvent("BazaarBotAddFurniture", "addMoreFurniture", 40000)
-	self:validateEvent("BazaarBotAddArtisanItems", "addMoreArtisanItems", 50000)
-	self:validateEvent("BazaarBotAddMedicine", "addMoreMedicine", 60000)
-	self:validateEvent("BazaarBotAddStructures", "addMoreStructures", 70000)
-	self:validateEvent("BazaarBotAddVehicles", "addMoreVehicles", 80000)
-	self:validateEvent("BazaarBotAddWeapons", "addMoreWeapons", 90000)
+	self:validateEvent("BazaarBotAddArmor", "addMoreArmor", 10)
+	self:validateEvent("BazaarBotAddClothing", "addMoreClothing", 20)
+	self:validateEvent("BazaarBotAddFood", "addMoreFood", 30)
+	self:validateEvent("BazaarBotAddFurniture", "addMoreFurniture", 40)
+	self:validateEvent("BazaarBotAddArtisanItems", "addMoreArtisanItems", 50)
+	self:validateEvent("BazaarBotAddMedicine", "addMoreMedicine", 60)
+	self:validateEvent("BazaarBotAddStructures", "addMoreStructures", 70)
+	self:validateEvent("BazaarBotAddVehicles", "addMoreVehicles", 80)
+	self:validateEvent("BazaarBotAddWeapons", "addMoreWeapons", 90)
 
-	self:validateEvent("BazaarBotAddLoot", "addMoreLoot", 100000)
+	self:validateEvent("BazaarBotAddLoot", "addMoreLoot", 100)
 	
 	-- Schedule inventory purging
 	if (hasServerEvent("BazaarBotCleanInventory")) then
@@ -44,17 +44,22 @@ function BazaarBotScreenPlay:start()
 	else
 		createServerEvent(180 * 1000, "BazaarBotScreenPlay", "checkInventory", "BazaarBotCleanInventory")
 	end
-	-- end
 end
 
 function BazaarBotScreenPlay:validateEvent(eventName, functionName, freq)
 	self:logTroubleshoot("Validating event for: " .. eventName)
+
+	-- -- TESTING
+	-- rescheduleServerEvent(eventName, freq)
+	-- return;
+	-- -- TESTING
+
 	if (hasServerEvent(eventName)) then
 		local eventID = getServerEventID(eventName)
 		local timeLeft = getServerEventTimeLeft(eventID)
 		self:logTroubleshoot(eventName .. " is active and time left is: " .. timeLeft)
 		if (timeLeft < freq or timeLeft > 86400000) then
-			self:logTroubleshoot("Rescheduling event for " .. eventName .. " for " .. freq / 1000 .. "s")
+			self:logTroubleshoot("Rescheduling event for " .. eventName .. " for " .. freq .. "s")
 			rescheduleServerEvent(eventName, freq)
 		end
 	else
@@ -90,16 +95,32 @@ end
 function BazaarBotScreenPlay:cleanInventory(pBazaarBot, pInventory)
 	self:logFull("BazaarBotScreenPlay: Cleaning my inventory. This may kick out an error message about a table not being in range, which you can ignone.")
 
-	while (SceneObject(pInventory):getContainerObjectsSize() > 0) do
-		local pItem = SceneObject(pInventory):getContainerObject(0)
-		if (pItem == nil) then
-			self:logTroubleshoot("cleanInventory: pItem is nil")
-			return
-		end
 
-		SceneObject(pItem):destroyObjectFromDatabase()
-		SceneObject(pItem):destroyObjectFromWorld()
+
+	local numberOfItems = SceneObject(pInventory):getContainerObjectsSize()
+	for i = 0, numberOfItems - 1, 1 do
+		local pItem = SceneObject(pInventory):getContainerObject(0)
+		if (pItem ~= nil) then
+			SceneObject(pItem):destroyObjectFromWorld()
+			SceneObject(pItem):destroyObjectFromDatabase()
+		end
 	end
+
+
+	-- local limit = 100;
+	-- local count = 0;
+
+	-- while (SceneObject(pInventory):getContainerObjectsSize() > 0 and count < limit) do
+	-- 	local pItem = SceneObject(pInventory):getContainerObject(0)
+	-- 	if (pItem == nil) then
+	-- 		self:logTroubleshoot("cleanInventory: pItem is nil")
+	-- 		return
+	-- 	end
+
+	-- 	SceneObject(pItem):destroyObjectFromDatabase()
+	-- 	SceneObject(pItem):destroyObjectFromWorld()
+	-- 	count = count + 1
+	-- end
 	if (not hasServerEvent("BazaarBotCleanInventory")) then
 		createServerEvent(1 * 24 * 60 * 60 * 1000, "BazaarBotScreenPlay", "checkInventory", "BazaarBotCleanInventory")
 	end
@@ -126,7 +147,7 @@ function BazaarBotScreenPlay:chooseBazaarTerminal()
 	local vendorID = 0
 
 	if (#self.terminalIDs > 1) then
-		vendorID = self.vendorIDs[getRandomNumber(1, #self.terminalIDs)]
+		vendorID = self.terminalIDs[getRandomNumber(1, #self.terminalIDs)]
 	else
 		vendorID = self.terminalIDs[1]
 	end
@@ -171,22 +192,21 @@ function BazaarBotScreenPlay:addMoreClothing()
 end
 
 function BazaarBotScreenPlay:addMoreVehicles()
-	self:addMoreCraftedItems(BBVehicleConfig, BBVehcileItems)
+	self:addMoreCraftedItems(BBVehicleConfig, BBVehicleItems)
 end
 
 function BazaarBotScreenPlay:addMoreCraftedItems(configTable, itemTable)
-	self:checkInventory()
 	self:listCraftedItems(configTable, itemTable)
 	
-	-- local nextTime = configTable.freq * 1000 + getRandomNumber(1,300000)
 	local nextTime = configTable.freq * 1000;
+	-- local nextTime = 60 * 2 * 1000;
 
 	if (hasServerEvent(configTable.eventName)) then
 		rescheduleServerEvent(configTable.eventName, nextTime)
 	else
 		createServerEvent(nextTime, "BazaarBotScreenPlay", configTable.functionName, configTable.eventName)
 	end 
-	self:logFull("Scheduled " .. configTable.functionName .. " to run again in " .. tostring(configTable.freq) .. " seconds.")
+	self:logFull("Scheduled " .. configTable.functionName .. " to run again in " .. tostring(nextTime / 1000) .. " seconds.")
 end
 
 function BazaarBotScreenPlay:listCraftedItems(configTable, itemTable)
@@ -226,15 +246,15 @@ function BazaarBotScreenPlay:listCraftedItems(configTable, itemTable)
 
                     if (pItem ~= nil) then
 											bazaarBotListItem(pBazaarBot, pItem, pVendor, self.itemDescription, price)
+											self:logListing("Loot: " .. SceneObject(pItem):getObjectName() .. " (quality: " .. tostring(quality) .. ") " .. tostring(price) .. "cr")
                     else
-											self:logFull("Craft: " .. configTable.functionName .. "() Failed: " .. template)
+											self:logFull("Craft: " .. configTable.functionName .. ":" .. template .. "() Failed")
                     end
                 end
             end
         end
     end
     self:checkInventory()
-    self:logListing("Craft: " .. configTable.functionName .. "() OK")
 end
 
 function BazaarBotScreenPlay:addMoreLoot() 
@@ -294,12 +314,11 @@ function BazaarBotScreenPlay:addMoreLoot()
 					end
 
 					bazaarBotListItem(pBazaarBot, pItem, pVendor, self.itemDescription, price)
-					self:logListing("Loot: " .. SceneObject(pItem):getObjectName() .. " (" .. tostring(lootLevel) .. ") " .. tostring(price) .. "cr")
+					self:logListing("Loot: " .. SceneObject(pItem):getObjectName() .. " (level: " .. tostring(lootLevel) .. ") " .. tostring(price) .. "cr")
 			else
 					self:logFull("Loot: " .. lootName .. " (" ..tostring(lootLevel) .. ") failed")
 			end
 	end
-	self:checkInventory()
 end
 
 registerScreenPlay("BazaarBotScreenPlay", true)

@@ -1224,7 +1224,11 @@ Reference<FactoryCrate*> TangibleObjectImplementation::createFactoryCrate(int ma
 		}
 	}
 
-	crate->setCustomObjectName(getCustomObjectName(), false);
+	// crate->setCustomObjectName(getCustomObjectName(), false);
+
+	StringBuffer crateCustomName;
+	crateCustomName << crate->getDisplayedName() << " - " << getDisplayedName();
+	crate->setCustomObjectName(crateCustomName.toString(), false);
 
 	crate->setUseCount(1);
 
