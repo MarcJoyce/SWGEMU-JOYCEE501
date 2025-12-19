@@ -27,7 +27,7 @@ world_boss_nightsister = Creature:new {
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
-
+	lightsaberColors = { 0, 1 },
 	templates = {"object/mobile/dressed_dathomir_nightsister_elder.iff"},
 	lootGroups = {},
 

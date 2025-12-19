@@ -27,7 +27,7 @@ world_boss_singing_mountain_clan = Creature:new {
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
-
+	lightsaberColors = { 0, 1 },
 	templates = {"object/mobile/dressed_dathomir_sing_mt_clan_councilwoman.iff"},
 	lootGroups = {},
 

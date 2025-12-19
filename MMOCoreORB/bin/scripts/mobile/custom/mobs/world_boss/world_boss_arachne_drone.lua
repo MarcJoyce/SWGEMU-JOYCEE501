@@ -1,19 +1,17 @@
-world_boss_jedi = Creature:new {
-	objectName = "@mob/creature_names:dark_jedi_knight",
-	randomNameType = NAME_GENERIC,
-	randomNameTag = true,
-	mobType = MOB_NPC,
-	socialGroup = "dark_jedi",
+world_boss_arachne_drone = Creature:new {
+	objectName = "@mob/creature_names:arachne_drone",
+	socialGroup = "arachne",
 	faction = "",
-  level = 300,
-	chanceHit = 30,
-	damageMin = 2345,
-	damageMax = 4000,
-	baseXp = 50123,
-	baseHAM = 506000,
-	baseHAMmax = 552000,
-	armor = 3,
-	resists = {195,195,195,195,195,195,195,195,50},
+	mobType = MOB_CARNIVORE,
+	level = 27,
+	chanceHit = 0.36,
+	damageMin = 240,
+	damageMax = 250,
+	baseXp = 2730,
+	baseHAM = 5900,
+	baseHAMmax = 7200,
+	armor = 0,
+	resists = {25,25,25,25,25,25,25,25,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -24,25 +22,25 @@ world_boss_jedi = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER + STALKER,
+	creatureBitmask = PACK,
 	optionsBitmask = AIENABLED,
-	diet = HERBIVORE,
-  scale = 1.4,
-	lightsaberColors = { 0, 1 },
+	diet = CARNIVORE,
 
-	templates = { "dark_jedi" },
+	templates = {"object/mobile/angler_hue.iff"},
+	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
+	scale = 0.8,
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "dark_jedi_weapons_ranged",
+	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(lightsabermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	primaryAttacks = { {"strongpoison",""}, {"dizzyattack",""} },
+	secondaryAttacks = { {"strongpoison",""}, {"dizzyattack",""} }
 }
 
-CreatureTemplates:addCreatureTemplate(world_boss_jedi, "world_boss_jedi")
+CreatureTemplates:addCreatureTemplate(world_boss_arachne_drone, "world_boss_arachne_drone")

@@ -1,19 +1,18 @@
-world_boss_jedi = Creature:new {
-	objectName = "@mob/creature_names:dark_jedi_knight",
-	randomNameType = NAME_GENERIC,
-	randomNameTag = true,
+world_boss_death_watch = Creature:new {
+	objectName = "",
+	customName = "Kannan Bridger (a Death Watch Overlord)",
+	socialGroup = "death_watch",
 	mobType = MOB_NPC,
-	socialGroup = "dark_jedi",
 	faction = "",
-  level = 300,
-	chanceHit = 30,
-	damageMin = 2345,
-	damageMax = 4000,
-	baseXp = 50123,
-	baseHAM = 506000,
-	baseHAMmax = 552000,
+	level = 221,
+	chanceHit = 19,
+	damageMin = 1245,
+	damageMax = 2200,
+	baseXp = 20948,
+	baseHAM = 350000,
+	baseHAMmax = 350000,
 	armor = 3,
-	resists = {195,195,195,195,195,195,195,195,50},
+	resists = {80,80,80,80,80,80,80,80,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -24,25 +23,25 @@ world_boss_jedi = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER + STALKER,
+	creatureBitmask = KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
-  scale = 1.4,
-	lightsaberColors = { 0, 1 },
+	scale = 1.15,
 
-	templates = { "dark_jedi" },
+	templates = {"object/mobile/dressed_death_watch_gold.iff"},
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "dark_jedi_weapons_ranged",
+	primaryWeapon = "dark_trooper_weapons",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
+	thrownWeapon = "thrown_weapons",
 
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(lightsabermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	primaryAttacks = merge(riflemanmaster,fencermaster,marksmanmaster,brawlermaster),
+	secondaryAttacks = { }
 }
 
-CreatureTemplates:addCreatureTemplate(world_boss_jedi, "world_boss_jedi")
+CreatureTemplates:addCreatureTemplate(world_boss_death_watch, "world_boss_death_watch")

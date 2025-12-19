@@ -28,6 +28,7 @@ world_boss_jedi_drone = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
   scale = 1.2,
+	lightsaberColors = { 0, 1 },
 
 	templates = { "dark_jedi" },
 	lootGroups = {},

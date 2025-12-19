@@ -46,7 +46,7 @@ krayt_dragon_elder = Creature:new {
         {group = "jedi_clothing_attachments", chance = 2000000},
         {group = "krayt_dragon_elder", chance = 6000000},
       },
-      lootChance = 4000000
+      lootChance = 10000000
     }
 	},
 

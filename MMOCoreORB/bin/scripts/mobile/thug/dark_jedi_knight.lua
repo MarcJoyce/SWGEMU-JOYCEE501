@@ -27,6 +27,7 @@ dark_jedi_knight = Creature:new {
 	creatureBitmask = KILLER + STALKER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
+	lightsaberColors = { 0, 1 },
 
 	templates = { "dark_jedi" },
 	lootGroups = {

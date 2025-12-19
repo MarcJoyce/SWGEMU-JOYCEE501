@@ -1,18 +1,18 @@
-jabba_rancor = Creature:new {
-	-- objectName = "@mob/creature_names:jabbas_palace_rancor",
-	customName = "Pateesa",
-	socialGroup = "jabba ",
+world_boss_arachne = Creature:new {
+	objectName = "",
+	customName = "Arachne Mother",
+	socialGroup = "arachne",
 	faction = "",
 	mobType = MOB_CARNIVORE,
-	level = 61,
-	chanceHit = 0.590000,
-	damageMin = 485,
-	damageMax = 680,
-	baseXp = 5921,
-	baseHAM = 12000,
-	baseHAMmax = 12000,
-	armor = 0,
-	resists = {0,0,0,0,0,0,0,0,-1},
+	level = 278,
+	chanceHit = 27.25,
+	damageMin = 1520,
+	damageMax = 2750,
+	baseXp = 26654,
+	baseHAM = 321000,
+	baseHAMmax = 392000,
+	armor = 3,
+	resists = {100,100,100,100,100,100,100,100,50},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,24 +20,28 @@ jabba_rancor = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.000000,
+	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = NONE,
-	creatureBitmask = NONE,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = PACK + HERD + KILLER,
+	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
+	scale = 1.45,
 
-	templates = {"object/mobile/rancor.iff"},
+	templates = {"object/mobile/queen_arachne.iff"},
+	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
 	primaryWeapon = "unarmed",
 	secondaryWeapon = "none",
-
+	conversationTemplate = "",
+	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""}, {"intimidationattack",""} },
+	primaryAttacks = { {"creatureareapoison",""}, {"strongpoison",""} },
 	secondaryAttacks = { }
 }
 
-CreatureTemplates:addCreatureTemplate(jabba_rancor, "jabba_rancor")
+CreatureTemplates:addCreatureTemplate(world_boss_arachne, "world_boss_arachne")

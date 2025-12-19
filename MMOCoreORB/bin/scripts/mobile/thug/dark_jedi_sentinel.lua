@@ -27,6 +27,7 @@ dark_jedi_sentinel = Creature:new {
 	creatureBitmask = KILLER + PACK + HERD,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
+	lightsaberColors = { 0, 1 },
 	customAiMap = "enclaveSentinel",
 
 	templates = { "dark_jedi" },
