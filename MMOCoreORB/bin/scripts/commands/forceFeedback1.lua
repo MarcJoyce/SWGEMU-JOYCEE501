@@ -43,8 +43,8 @@
 
 ForceFeedback1Command = {
 	name = "forcefeedback1",
-	forceCost = 50,
-	duration = 30,
+	forceCost = 75,
+	duration = 900,
 	--animationCRC = hashCode()
 	clientEffect = "clienteffect/pl_force_feedback_self.cef",
 	buffClass = SINGLE_USE_BUFF,
