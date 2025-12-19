@@ -1131,7 +1131,7 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
 
-		if (sellerName == "BazaarBot") {
+		if (sellerName == "Stan") {
 			bazaarBotLogSale(item->getBidderName(), itemName, item->getPrice());
 		}
 
@@ -1185,7 +1185,7 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
 
-		if (sellerName == "BazaarBot") {
+		if (sellerName == "Stan") {
 			bazaarBotLogSale(item->getBidderName(), itemName, item->getPrice());
 		}
 
@@ -2023,7 +2023,11 @@ void AuctionManagerImplementation::cancelItem(CreatureObject* player, uint64 obj
 			return;
 		}
 		/// 7 Days
-		availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
+		availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
+		
+		if (item->getOwnerName() != "Stan") {
+			availableTime = currentTime;
+		}
 
 	} else {
 		BaseMessage* msg = new CancelLiveAuctionResponseMessage(objectID, CancelLiveAuctionResponseMessage::ALREADYCOMPLETED);
@@ -2079,7 +2083,7 @@ void AuctionManagerImplementation::cancelItem(CreatureObject* player, uint64 obj
 			sellerBody.setTO(itemName);
 
 			//Send the Mail
-			if (item->getOwnerName() != "BazaarBot") {
+			if (item->getOwnerName() != "Stan") {
 				cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName(), waypoint);
 			}
 		}
@@ -2126,10 +2130,14 @@ void AuctionManagerImplementation::expireSale(AuctionItem* item) {
 	uint64 currentTime = expireTime.getMiliTime() / 1000;
 	uint64 availableTime = 0;
 
-	if(item->isOnBazaar())
-		availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
-	else
+	if(item->isOnBazaar()) {
+		availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
+		if (item->getOwnerName() != "Stan") {
+			availableTime = currentTime;
+		}
+	} else {
 		availableTime = currentTime + AuctionManager::VENDOREXPIREPERIOD;
+	}
 
 	item->setStatus(AuctionItem::EXPIRED);
 	item->setExpireTime(availableTime);
@@ -2137,7 +2145,7 @@ void AuctionManagerImplementation::expireSale(AuctionItem* item) {
 
 	locker.release();
 
-	if (item->getOwnerName() != "BazaarBot") {
+	if (item->getOwnerName() != "Stan") {
 		cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName());
 	}
 
@@ -2169,17 +2177,21 @@ void AuctionManagerImplementation::expireBidAuction(AuctionItem* item) {
 	uint64 currentTime = expireTime.getMiliTime() / 1000;
 	uint64 availableTime = 0;
 
-	if(item->isOnBazaar())
-		availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
-	else
+	if(item->isOnBazaar()) {
+		availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
+		if (item->getOwnerName() != "Stan") {
+			availableTime = currentTime;
+		}
+	} else {
 		availableTime = currentTime + AuctionManager::VENDOREXPIREPERIOD;
+	}
 
 	item->setStatus(AuctionItem::EXPIRED);
 	item->setExpireTime(availableTime);
 	item->clearAuctionWithdraw();
 
 	locker.release();
-	if (item->getOwnerName() != "BazaarBot") {
+	if (item->getOwnerName() != "Stan") {
 		cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName());
 	}
 }
@@ -2210,7 +2222,11 @@ void AuctionManagerImplementation::expireAuction(AuctionItem* item) {
 
 	Time expireTime;
 	uint64 currentTime = expireTime.getMiliTime() / 1000;
-	uint64 availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
+	uint64 availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
+
+	if (item->getOwnerName() != "Stan") {
+		availableTime = currentTime;
+	}
 
 	Locker locker(item);
 	item->setExpireTime(availableTime);
@@ -2337,7 +2353,9 @@ void AuctionManagerImplementation::deleteExpiredSale(AuctionItem* item, bool sen
 		//Send the Mail
 		locker.release();
 
-		cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName(), waypoint);
+		if (item->getOwnerName() != "Stan") {
+			cman->sendMail(sender, sellerSubject, sellerBody, item->getOwnerName(), waypoint);
+		}
 	}
 
 	TransactionLog trx(vendor, TrxCode::AUCTIONEXPIRED, zoneServer->getObject(item->getAuctionedItemObjectID()));
