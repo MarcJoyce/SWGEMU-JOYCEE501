@@ -93,9 +93,19 @@ end
 -- Handling of the checkForceStatus command.
 -- @param pPlayer pointer to the creature object of the player who performed the command
 function Glowing:checkForceStatusCommand(pPlayer)
-	local progress = "@jedi_spam:fs_progress_" .. self:getCompletedBadgeTypeCount(pPlayer)
+	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_novice")) then
+		CreatureObject(pPlayer):sendSystemMessage("May the Force be with you")
+		return
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1")) then
+		CreatureObject(pPlayer):sendSystemMessage("You have already begun your journey... May the Force be with you.")
+		return
+	else
+		CreatureObject(pPlayer):sendSystemMessage("You feel uneasy, as if someone is calling out, drawing you to Mos Eisley cantina.")
+		return
+	end
+	-- local progress = "@jedi_spam:fs_progress_" .. self:getCompletedBadgeTypeCount(pPlayer)
 
-	CreatureObject(pPlayer):sendSystemMessage(progress)
+	-- CreatureObject(pPlayer):sendSystemMessage(progress)
 end
 
 return Glowing

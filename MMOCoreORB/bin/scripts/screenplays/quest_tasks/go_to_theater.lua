@@ -29,8 +29,13 @@ GoToTheater = Task:new {
 	onObjectsSpawned = nil,
 	onEnteredActiveArea = nil,
 	onTheaterDespawn = nil,
-	planet = nil
+	planet = {}
 }
+
+function GoToTheater:log(message)
+  local outputFile = "log/" .. self.taskName .. ".log"
+  logToFile(message, outputFile)
+end
 
 function GoToTheater:taskStart(pPlayer)
 	local zoneName = SceneObject(pPlayer):getZoneName()
@@ -38,8 +43,8 @@ function GoToTheater:taskStart(pPlayer)
 	local posX = SceneObject(pPlayer):getWorldPositionX()
 	local posY = SceneObject(pPlayer):getWorldPositionY()
 
-	if (planet ~= nil) then
-		zoneName = planet
+	if (self.planet ~= nil) then
+		zoneName = self.planet[getRandomNumber(1, #self.planet)]
 		posX = 0;
 		posY = 0;
 	end
@@ -96,6 +101,8 @@ function GoToTheater:taskStart(pPlayer)
 		end
 	end
 
+	self:log(self.taskName .. " spawned at: " .. zoneName .. " @ coords x = " .. spawnPoint[1] .. ", y = " .. spawnPoint[3])
+
 	self:callFunctionIfNotNil(self.onTheaterCreated, nil, pPlayer)
 
 	return true
@@ -108,7 +115,7 @@ function GoToTheater:enteredTheaterSpawnArea(pActiveArea, pPlayer)
 
 	local storedActiveAreaId = readData(SceneObject(pPlayer):getObjectID() .. self.taskName .. "spawnEnterAreaId")
 
-	if (storedActiveAreaId == SceneObject(pActiveArea):getObjectID()) then
+	if (storedActiveAreaId == SceneObject(pActiveArea):getObjectID() or self.taskName == "MeatlumpKingTheatre") then
 		self:spawnTheaterObjects(pPlayer)
 	end
 
@@ -148,6 +155,11 @@ function GoToTheater:spawnTheaterObjects(pPlayer)
 	local spawnPoint = { SceneObject(pTheater):getWorldPositionX(), SceneObject(pTheater):getWorldPositionZ(), SceneObject(pTheater):getWorldPositionY() }
 
 	local playerID = SceneObject(pPlayer):getObjectID()
+
+	if (self.taskName == "MeatlumpKingTheatre") then
+		local pStan = getCreatureObject(281475013738720)
+		playerID = SceneObject(pStan):getObjectID()
+	end
 
 	for i = 1, #self.theater, 1 do
 		local objectData = self.theater[i]
@@ -318,6 +330,12 @@ end
 
 function GoToTheater:getTheaterObject(pPlayer)
 	local theaterId = readData(SceneObject(pPlayer):getObjectID() .. self.taskName .. "theaterID")
+
+	if (self.taskName == "MeatlumpKingTheatre") then
+		local pStan = getCreatureObject(281475013738720)
+		theaterId = readData(SceneObject(pStan):getObjectID() .. self.taskName .. "theaterID")
+	end
+
 	local pTheater = getSceneObject(theaterId)
 
 	return pTheater

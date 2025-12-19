@@ -16,6 +16,140 @@ function trainerConvHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	return convoTemplate:getScreen("intro")
 end
 
+function trainerConvHandler:log(message)
+	local outputFile = "log/trainerConvHandler.log"
+	logToFile(message, outputFile)
+end
+
+function trainerConvHandler:isCraftingTrainer(trainerType)
+	if (trainerType == "trainer_artisan" or trainerType == "trainer_architect" or trainerType == "trainer_armorsmith" or trainerType == "trainer_droidengineer" or trainerType == "trainer_weaponsmith") then
+		return true
+	end
+
+	return false
+end
+
+function trainerConvHandler:hasAnySpecialItem(pPlayer, customItemPrefix) 
+	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+	local hasAny = false
+	for i = 1, 10 do
+		local itemFullName = customItemPrefix .. " (" .. i .. "/10)"
+		local pItem = getContainerObjectByCustomName(pInventory, itemFullName, true)
+
+		if (pItem ~= nil) then
+			hasAny = true
+			break
+		end
+	end
+
+	return hasAny
+end
+
+function trainerConvHandler:hasAllSpecialItem(pPlayer, customItemPrefix) 
+	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+	local hasAll = true
+	for i = 1, 10 do
+		local itemFullName = customItemPrefix .. " (" .. i .. "/10)"
+		local pItem = getContainerObjectByCustomName(pInventory, itemFullName, true)
+
+		if (pItem == nil) then
+			hasAll = false
+			break
+		end
+	end
+
+	return hasAll
+end
+
+function trainerConvHandler:removeSpecialItems(pPlayer, customItemPrefix) 
+	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+	for i = 1, 10 do
+		local itemFullName = customItemPrefix .. " (" .. i .. "/10)"
+		local pItem = getContainerObjectByCustomName(pInventory, itemFullName, true)
+
+			if (pItem ~= nil) then
+				SceneObject(pItem):destroyObjectFromWorld()
+				SceneObject(pItem):destroyObjectFromDatabase()
+			end
+	end
+end
+
+function trainerConvHandler:giveBarcSpeederDeed(pPlayer)
+	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+	local pItem = giveItem(pInventory, "object/tangible/deed/vehicle_deed/barc_speeder_deed.iff" , -1)
+
+	if (pItem ~= nil) then
+			SceneObject(pItem):sendTo(pPlayer)
+			CreatureObject(pPlayer):sendSystemMessage("You hand over the Aratech Repulsor Company Disks and receive a BARC Speeder deed.")
+	else 
+		self:log(CreatureObject(pPlayer):getFirstName() .. " could not be given BARC as their inventory was full.")
+	end
+end
+
+function trainerConvHandler:getNamedCrystals()
+		local namedLightsaberCrystals = {
+			{ "Baas's Wisdom", "crystal_baass_wisdom" },
+			{ "Bane's Heart", "crystal_banes_heart" },
+			{ "B'nar's Sacrifice", "crystal_bnars_sacrifice" },
+			{ "Bondara's Folly", "crystal_bondaras_folly" },
+			{ "Dawn of Dagobah", "crystal_dawn_of_dagobah" },
+			{ "Gallia's Intuition", "crystal_gallias_intuition" },
+			{ "Horn's Future", "crystal_horns_future" },
+			{ "Kenobi's Legacy", "crystal_kenobis_legacy" },
+			{ "Kit's Ferocity", "crystal_kits_ferocity" },
+			{ "Kun's Blood", "crystal_kuns_blood" },
+			{ "Maul's Vengence", "crystal_mauls_vengence" },
+			{ "Mundi's Response", "crystal_mundis_response" },
+			{ "Prowess of Plo Koon", "crystal_prowess_of_plo_koon" },
+			{ "Qui-Gon's Devotion", "crystal_qui-gons_devotion" },
+			{ "Quintessence of the Force", "crystal_quintessence_of_the_force" },
+			{ "Strength of Luminaria", "crystal_strength_of_luminaria" },
+			{ "Sunrider's Destiny", "crystal_sunriders_destiny" },
+			{ "Ulic's Redemption", "crystal_ulics_redemption" },
+			{ "Windu's Guile", "crystal_windus_guile"}
+	}
+
+	return namedLightsaberCrystals
+end
+
+function trainerConvHandler:hasNamedCrystal(pPlayer)
+	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+	local namedLightsaberCrystals = self:getNamedCrystals()
+
+	local hasCrystal = false
+	for i = 1, #namedLightsaberCrystals do
+		local pItem = getContainerObjectByCustomName(pInventory, namedLightsaberCrystals[i][1], true)
+
+		if (pItem ~= nil and SceneObject(pItem):getCustomObjectName() == namedLightsaberCrystals[i][1]) then
+			hasCrystal = true
+			break
+		end
+	end
+
+	return hasCrystal
+end
+
+function trainerConvHandler:giveInfusedLightsaberCrystal(pPlayer)
+	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+	local namedLightsaberCrystals = self:getNamedCrystals()
+	local crystalToBeRemoved = nil
+
+	for i = 1, #namedLightsaberCrystals do
+		local pItem = getContainerObjectByCustomName(pInventory, namedLightsaberCrystals[i][1], true)
+
+		if (pItem ~= nil and SceneObject(pItem):getCustomObjectName() == namedLightsaberCrystals[i][1]) then
+			crystalToBeRemoved = namedLightsaberCrystals[i][2]
+			SceneObject(pItem):destroyObjectFromWorld()
+			SceneObject(pItem):destroyObjectFromDatabase()
+			break
+		end
+	end
+
+	createLoot(pInventory, "infused_" .. crystalToBeRemoved, 350, true)
+
+	CreatureObject(pPlayer):sendSystemMessage("You hand over your Holocron Splinters and a named Lightsaber Crystal and receive an infused Lightsaber Crystal.")
+end
+
 function trainerConvHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
 	local screen = LuaConversationScreen(pConvScreen)
 	local screenID = screen:getScreenID()
@@ -43,8 +177,35 @@ function trainerConvHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 		clonedConversation:addOption("@skill_teacher:opt1_1", "msg2_1")
 		clonedConversation:addOption("@skill_teacher:opt1_2", "msg2_2")
 
+		if (self:isCraftingTrainer(trainerType)) then
+			if (self:hasAllSpecialItem(pPlayer, "Aratech Repulsor Company Disk")) then
+				clonedConversation:addOption("I couldn't help notice you have a collection of old Aratech Repulsor Company Disk's. May I have a look?", "barc_disks_all")
+			elseif (self:hasAnySpecialItem(pPlayer, "Aratech Repulsor Company Disk")) then
+				clonedConversation:addOption("I couldn't help notice you have an old Aratech Repulsor Company Disk. May I have a look?", "barc_disks_any")
+			end
+		end
+
+		if (isJediTrainer) then
+			if (self:hasAllSpecialItem(pPlayer, "Holocron Splinter") and self:hasNamedCrystal(pPlayer)) then
+				clonedConversation:addOption("I couldn't help notice you have a collection of Holocron splinters, and a special Lightsaber crystal. May I have a look?", "holocron_splinter_all")
+			elseif (self:hasAnySpecialItem(pPlayer, "Holocron Splinter")) then
+				clonedConversation:addOption("I couldn't help notice you have, what seems to be a Holocron splinter. May I have a look?", "holocron_splinter_any")
+			end
+		end
+
 		return pConvScreen
 	end
+
+	if (screenID == "barc_disks_all") then
+		self:removeSpecialItems(pPlayer, "Aratech Repulsor Company Disk")
+		self:giveBarcSpeederDeed(pPlayer)
+	end
+
+	if (screenID == "holocron_splinter_all") then
+		self:removeSpecialItems(pPlayer, "Holocron Splinter")
+		self:giveInfusedLightsaberCrystal(pPlayer)
+	end
+
 
 	local skillList
 

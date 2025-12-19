@@ -27,7 +27,14 @@ Yavin4StaticSpawnsScreenPlay = ScreenPlay:new {
 
 		-- Imp base camp outside Massassi Temple POI
 		{"stormtrooper", 360, -3196.7, 69.6, -3139.5, -100, 0},
-		{"stormtrooper", 360, -3195.8, 69.8, -3130.7, -104, 0}
+		{"stormtrooper", 360, -3195.8, 69.8, -3130.7, -104, 0},
+
+
+		-- Death Watch mando's for bh trials
+		{"black_sun_guard", 600, -7375, 103, 4401, -100, 0},
+		{"black_sun_assassin", 600, -7377, 103, 4402, -90, 0},
+		{"death_watch_bloodguard", 600, -7380, 103, 4408, 100, 0},
+		{"death_watch_wraith", 600, -7370, 103, 4409, 24, 0},
 	}
 }
 
@@ -48,7 +55,9 @@ function Yavin4StaticSpawnsScreenPlay:spawnMobiles()
 		local pMobile = spawnMobile(self.planet, mobile[1], mobile[2], mobile[3], mobile[4], mobile[5], mobile[6], mobile[7])
 
 		if pMobile ~= nil then
-			AiAgent(pMobile):addObjectFlag(AI_STATIC)
+			if (not mobile[2] == 600) then
+				AiAgent(pMobile):addObjectFlag(AI_STATIC)
+			end
 		end
 	end
 end

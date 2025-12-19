@@ -48,7 +48,7 @@ function NewsnetMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selectedI
 		suiManager:sendMessageBox(pObject, pPlayer, "@gcw:" .. planet .. "_newsnet_name", "@gcw:" .. headline, "@ok", "NewsnetMenuComponent", "notifyOkPressed", NEWSNET_INFO)
 	elseif (selectedID == 40) then
 		-- World Bosses
-		local pAdminPlayer = getCreatureObject(281475000105551)
+		local pAdminPlayer = getCreatureObject(281475013738720)
 		local suiManager = LuaSuiManager()
 		local message = readScreenPlayData(pAdminPlayer, "WorldBossesScreenPlay", "huntLocation")
 		suiManager:sendMessageBox(pObject, pPlayer, "Around the Galaxy", message, "@ok", "NewsnetMenuComponent", "notifyOkPressed", NEWSNET_INFO)

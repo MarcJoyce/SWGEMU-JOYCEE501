@@ -101,6 +101,9 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 	},
 
 	mobiles = {
+		-- Sskarr Vrenn
+		{"sskarr_vrenn", 0, 3588, 5, -4768, 163.664, 0, "worried"},
+
 		--Starport
 		{"chassis_dealer",60,2.32807,0.639422,67.8972,165.339,1106372, "neutral"},
 		{"ecik",60,1.1,0.639421,66.3,101.522,1106372, "neutral"},
@@ -275,6 +278,9 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"bounty_hunter",300,6.01244,7.01,-14.2554,63.6677,1076948, ""},
 		{"informant_npc_lvl_3",0,3.8,7,-12.5,84,1076948, ""},
 		{"junk_sneg", 0, -1.63376, 7.01, 7.35289, 203.569, 1076943, ""},
+
+		-- Jalen Vort
+		{"jalen_vort", 0, 15.3986, 7.01, -0.178, 270.673, 1076947, "npc_sitting_chair"},
 
 		--Lower Floor
 		{"vendor",60,30.8955,-0.255725,2.05785,180.009,1076968, "conversation"},

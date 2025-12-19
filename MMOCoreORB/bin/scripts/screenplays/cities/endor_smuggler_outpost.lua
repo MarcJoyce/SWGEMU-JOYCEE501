@@ -42,7 +42,7 @@ EndorSmugglerOutpostScreenPlay = CityScreenPlay:new {
 	},
 
 	stationaryCommoners = {"commoner", "commoner_fat", "commoner_old"},
-	stationaryNpcs = {"bodyguard", "bounty_hunter", "businessman", "commoner_technician", "contractor", "entertainer", "explorer", "fringer", "gambler", "medic", "mercenary", "miner", "noble", "pilot", "rancher", "scientist", "slicer"},
+	stationaryNpcs = {"bodyguard", "bounty_hunter", "businessman", "commoner_technician", "contractor", "entertainer", "explorer", "fringer", "gambler", "medic", "mercenary", "miner", "noble", "pilot", "informant_npc_lvl_1", "informant_npc_lvl_2", "informant_npc_lvl_3"},
 
 	--{respawn, x, z, y, direction, cell, mood}
 	stationaryMobiles = {
@@ -53,7 +53,7 @@ EndorSmugglerOutpostScreenPlay = CityScreenPlay:new {
 		{1, -956, 73, 1554, 135, 0, ""},
 		{1, -874.656, 80, 1564.76, 270, 0, ""},
 		{1, -845.301, 79.5, 1599.49, 197.393, 0, ""},
-		{1, -829.243, 76, 1567.61, 95.886, 0, ""},
+		{1, -829.243, 76, 1567.61, 95.886, 0, ""}
 	},
 }
 
