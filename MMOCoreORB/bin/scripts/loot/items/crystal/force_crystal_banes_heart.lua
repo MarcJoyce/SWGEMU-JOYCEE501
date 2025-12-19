@@ -1,7 +1,7 @@
 force_crystal_banes_heart = {
 	minimumLevel = 0,
 	maximumLevel = -1,
-	customObjectName = "Banes's Heart",
+	customObjectName = "Bane's Heart",
 	directObjectTemplate = "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff",
 	craftingValues = {
 		{"mindamage",75,75,0},
