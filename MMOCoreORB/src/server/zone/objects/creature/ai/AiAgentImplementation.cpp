@@ -805,13 +805,19 @@ WeaponObject* AiAgentImplementation::createWeapon(uint32 templateCRC, bool prima
 	} else if (petDeed != nullptr) {
 		newWeapon->setAttackSpeed(petDeed->getAttackSpeed());
 	}
-
-	int lightsaberColor = npcTemplate->getLightsaberColor();
-
-	if (newWeapon->isJediWeapon() && lightsaberColor > 0) {
-		newWeapon->setBladeColor(lightsaberColor);
-		newWeapon->setCustomizationVariable("/private/index_color_blade", lightsaberColor, true);
+	
+	if (newWeapon->isJediWeapon() && npcTemplate->getTotalLightsaberColors() > 0) {
+		int randLightsaberColor = npcTemplate->getRandomLightsaberColor();
+		newWeapon->setBladeColor(randLightsaberColor);
+		newWeapon->setCustomizationVariable("/private/index_color_blade", randLightsaberColor, true);
 	}
+
+	// int lightsaberColor = npcTemplate->getLightsaberColor();
+
+	// if (newWeapon->isJediWeapon() && lightsaberColor > 0) {
+	// 	newWeapon->setBladeColor(lightsaberColor);
+	// 	newWeapon->setCustomizationVariable("/private/index_color_blade", lightsaberColor, true);
+	// }
 
 	if (newWeapon != getDefaultWeapon()) {
 		if (inventory->transferObject(newWeapon, -1, false, true))
@@ -895,6 +901,7 @@ void AiAgentImplementation::createDefaultWeapon() {
 		StringBuffer weapName;
 		weapName << "AI_DEFAULT-" << getObjectID();
 		weap->setCustomObjectName(weapName.toString(), false);
+		weap->setAttackSpeed(weaponSpeed);
 
 		setDefaultWeapon(weap);
 		setCurrentWeapon(weap);

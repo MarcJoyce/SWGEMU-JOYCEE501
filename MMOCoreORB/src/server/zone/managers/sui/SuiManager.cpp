@@ -154,7 +154,7 @@ void SuiManager::handleBankTransfer(CreatureObject* player, SuiBox* suiBox, uint
 	if (bankObject == nullptr)
 		return;
 
-	if (!player->isInRange(bankObject, 5))
+	if (!player->isInRange(bankObject, 8))
 		return;
 
 	TransactionLog trx(player, player, TrxCode::BANK, 0, false);

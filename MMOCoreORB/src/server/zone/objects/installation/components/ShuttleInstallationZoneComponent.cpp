@@ -19,7 +19,7 @@ void ShuttleInstallationZoneComponent::notifyInsertToZone(SceneObject* sceneObje
 		return;
 	}
 
-	int bootDelay = ConfigManager::instance()->getInt("Core3.ShuttleZoneComponent.BootDelay", 5 * 60 * 1000);
+	int bootDelay = ConfigManager::instance()->getInt("Core3.ShuttleZoneComponent.BootDelay", 2 * 60 * 1000);
 	Reference<SceneObject*> sceneRef = sceneObject;
 	Reference<Zone*> zoneRef = zone;
 

@@ -317,13 +317,19 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	TemplateManager* templateManager = TemplateManager::instance();
 
 	auto client = callback->getClient();
-	auto maxchars = ConfigManager::instance()->getInt("Core3.PlayerCreationManager.MaxCharactersPerGalaxy", 10);
+	auto maxchars = ConfigManager::instance()->getInt("Core3.PlayerCreationManager.MaxCharactersPerGalaxy", 3);
 
-	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= maxchars) {
-		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to " + String::valueOf(maxchars) + " characters per galaxy.", 0x0);
-		client->sendMessage(errMsg);
+	if (client->getAccountID() == 17) {
+		maxchars = 100;
+	}
 
-		return false;
+	if (client->getAccountID() != 17) {
+		if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= maxchars) {
+			ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to " + String::valueOf(maxchars) + " characters per galaxy.", 0x0);
+			client->sendMessage(errMsg);
+			
+			return false;
+		}
 	}
 
 	PlayerManager* playerManager = zoneServer.get()->getPlayerManager();
@@ -426,6 +432,14 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 		addStartingItems(playerCreature, clientTemplate, true);
 		addRacialMods(playerCreature, fileName, &playerTemplate->getStartingSkills(), &playerTemplate->getStartingItems(), true);
 	}
+
+	Ability* ability = new Ability("intimidate1");
+	ghost->addAbility(ability);
+
+	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "manage_vendor", 1);
+	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "hiring", 10);
+	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "vendor_item_limit", 250);
+	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "slope_move", 50);
 
 	if (ghost != nullptr) {
 		int accID = client->getAccountID();
@@ -1027,15 +1041,6 @@ void PlayerCreationManager::addRacialMods(CreatureObject* creature,
 					creature, false, true, true);
 		}
 	}
-
-	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
-	Ability* ability = new Ability("intimidate1");
-	ghost->addAbility(ability);
-
-	creature->addSkillMod(SkillModManager::SKILLBOX, "manage_vendor", 1);
-	creature->addSkillMod(SkillModManager::SKILLBOX, "hiring", 10);
-	creature->addSkillMod(SkillModManager::SKILLBOX, "vendor_item_limit", 250);
-	creature->addSkillMod(SkillModManager::SKILLBOX, "slope_move", 50);
 
 	// Get inventory.
 	if (!equipmentOnly) {

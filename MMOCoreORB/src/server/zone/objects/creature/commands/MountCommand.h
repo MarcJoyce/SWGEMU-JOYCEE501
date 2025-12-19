@@ -69,7 +69,7 @@ public:
 		if (vehicle->getCreatureLinkID() != creature->getObjectID())
 			return GENERALERROR;
 
-		if (!vehicle->isInRange(creature, 7.f) || !CollisionManager::checkLineOfSight(vehicle, creature)) {
+		if (!vehicle->isInRange(creature, 8.f) || !CollisionManager::checkLineOfSight(vehicle, creature)) {
 			return GENERALERROR;
 		}
 

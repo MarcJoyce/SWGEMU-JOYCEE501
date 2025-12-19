@@ -45,7 +45,7 @@ void ShuttleZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* zo
 		uint32 startDiff = zone->getZoneServer()->getStartTimestamp()->miliDifference();
 
 		// Shuttles delayed 5 minutes for server start
-		int bootDelay = ConfigManager::instance()->getInt("Core3.ShuttleZoneComponent.BootDelay", 5 * 60 * 1000);
+		int bootDelay = ConfigManager::instance()->getInt("Core3.ShuttleZoneComponent.BootDelay", 2 * 60 * 1000);
 
 		delay = bootDelay - startDiff;
 

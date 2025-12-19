@@ -119,13 +119,13 @@ Reference<CallArakydTask*> BountyHunterDroid::callArakydDroid(SceneObject* droid
 		return nullptr;
 	}
 
-	SortedVector<ManagedReference<ActiveArea*>>* areas = player->getActiveAreas();
-	for (int i = 0; i < areas->size(); i++) {
-		if (areas->get(i)->isCityRegion()) {
-			player->sendSystemMessage("@mission/mission_generic:probe_droid_bad_location"); // You must move to a different area to call down a probe droid from orbit.
-			return nullptr;
-		}
-	}
+	// SortedVector<ManagedReference<ActiveArea*>>* areas = player->getActiveAreas();
+	// for (int i = 0; i < areas->size(); i++) {
+	// 	if (areas->get(i)->isCityRegion()) {
+	// 		player->sendSystemMessage("@mission/mission_generic:probe_droid_bad_location"); // You must move to a different area to call down a probe droid from orbit.
+	// 		return nullptr;
+	// 	}
+	// }
 
 	if (player->isRidingMount()) {
 		player->sendSystemMessage("@error_message:survey_on_mount"); // You cannot perform that action while mounted on a creature or driving a vehicle.

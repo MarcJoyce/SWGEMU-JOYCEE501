@@ -81,7 +81,9 @@ public:
 		for (int i = 0; i < group->getGroupSize(); i++) {
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
 
-			if (!member->isPlayerCreature() || !member->isInRange(leader, 128.0))
+			// if (!member->isPlayerCreature() || !member->isInRange(leader, 128.0))
+			// 	continue;
+			if (!member->isPlayerCreature())
 				continue;
 
 			if (!isValidGroupAbilityTarget(leader, member, false))

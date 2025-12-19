@@ -2641,6 +2641,12 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			typeMultiplier = 1.0f;
 	}
 
+	int itemMultiplier = player->getSkillMod("deity_whills");
+
+	if (itemMultiplier > 0) {
+		typeMultiplier *= (1 + (itemMultiplier / 100.f));
+	}
+
 	trx.addState("applyModifiers", applyModifiers);
 
 	if (applyModifiers) {
@@ -5179,7 +5185,7 @@ SortedVector<String> PlayerManagerImplementation::getTeachableSkills(CreatureObj
 
 		const auto& skillName = skill->getSkillName();
 
-		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_") || skillName.contains("_investigation") || skillName.contains("bountyhunter_master")) && skillManager->canLearnSkill(skillName, student, false))
+		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_") || skillName.contains("_investigation")) && skillManager->canLearnSkill(skillName, student, false))
 			skills.put(skillName);
 	}
 

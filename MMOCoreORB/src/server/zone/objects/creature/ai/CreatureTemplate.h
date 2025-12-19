@@ -88,6 +88,7 @@ protected:
 	unsigned int diet;
 	int lightsaberColor;
 
+	Vector<int> lightsaberColors;
 	Vector<int> hues;
 
 	Vector<String> templates;
@@ -368,6 +369,19 @@ public:
 
 	inline int getTotalHues() const {
 		return hues.size();
+	}
+
+	inline int getRandomLightsaberColor() const {
+		int randLsColor = System::random(lightsaberColors.size() - 1);
+		return lightsaberColors.get(randLsColor);
+	}
+
+	inline int getLightsaberColorCount() const {
+		return lightsaberColors.size();
+	}
+
+	inline int getTotalLightsaberColors() const {
+		return lightsaberColors.size();
 	}
 
 	inline int getAggroRadius() const {

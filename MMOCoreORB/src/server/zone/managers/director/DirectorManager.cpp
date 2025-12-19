@@ -491,6 +491,7 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("registerScreenPlay", registerScreenPlay);
 	luaEngine->registerFunction("getZoneByName", getZoneByName);
 	luaEngine->registerFunction("isZoneEnabled", isZoneEnabled);
+	luaEngine->registerFunction("getContainerObjectByCustomName", getContainerObjectByCustomName);
 	luaEngine->registerFunction("getContainerObjectByTemplate", getContainerObjectByTemplate);
 	luaEngine->registerFunction("updateCellPermission", updateCellPermission);
 	luaEngine->registerFunction("updateCellPermissionGroup", updateCellPermissionGroup);
@@ -509,6 +510,9 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("bazaarBotCreateCraftedItem", bazaarBotCreateCraftedItem);
 	luaEngine->registerFunction("bazaarBotListItem", bazaarBotListItem);
 	luaEngine->registerFunction("logToFile", logToFile);
+	luaEngine->registerFunction("getObjectFromDatabase", getObjectFromDatabase);
+
+	luaEngine->registerFunction("bazaarBotCreateCraftedItemAndList", bazaarBotCreateCraftedItemAndList);
 	
 	// BazaarBotStuff end
 
@@ -1192,10 +1196,13 @@ int DirectorManager::givePlayerResource(lua_State* L) {
 }
 
 int DirectorManager::bazaarBotCreateLootItem(lua_State* L) {
-	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -4);
-	String lootItem = lua_tostring(L, -3);
-	int level = lua_tonumber(L, -2);
-	bool maxCondition = lua_toboolean(L, -1);
+	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -7);
+	String lootItem = lua_tostring(L, -6);
+	int level = lua_tonumber(L, -5);
+	bool maxCondition = lua_toboolean(L, -4);
+	SceneObject* vendor = (SceneObject*) lua_touserdata(L, -3);
+	UnicodeString description = lua_tostring(L, -2);
+	int price = lua_tonumber(L, -1);
 
 	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
 
@@ -1210,15 +1217,188 @@ int DirectorManager::bazaarBotCreateLootItem(lua_State* L) {
 
 	TangibleObject* tano = lootManager->bazaarBotCreateLootItem(trx, lootItem, level, maxCondition);
 
-	if (!inventory->transferObject(tano, -1, true)) {
-		tano->destroyObjectFromDatabase(true);
-		Logger::console.info(true) << "BazaarBot: Error putting loot: " << lootItem << ", into target inventory.";
-		return 0;
+	AuctionManager* auctionManager = ServerCore::getZoneServer()->getAuctionManager();
+
+	// if (!inventory->transferObject(tano, -1, true)) {
+	// 	tano->destroyObjectFromDatabase(true);
+	// 	Logger::console.info(true) << "BazaarBot: Error putting loot: " << lootItem << ", into target inventory.";
+	// 	return 0;
+	// }
+
+	if (auctionManager != nullptr && tano != nullptr) {
+		auctionManager->bazaarBotListItem(creature, tano, vendor, description, price);
 	}
 
 	lua_pushlightuserdata(L, tano);
 
 	return 1;
+}
+
+int DirectorManager::bazaarBotCreateCraftedItemAndList(lua_State* L) {
+	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -8);
+	String itemScript = lua_tostring(L, -7);
+	int quantity = lua_tonumber(L, -6);
+	int quality = lua_tonumber(L, -5);
+	int altTemplate = lua_tonumber(L, -4);
+	SceneObject* vendor = (SceneObject*) lua_touserdata(L, -3);
+	UnicodeString description = lua_tostring(L, -2);
+	int price = lua_tonumber(L, -1);
+
+	quantity = Math::max(1, quantity);
+	quality = Math::max(1, quality);
+	
+	ManagedReference<CraftingManager*> craftingManager = creature->getZoneServer()->getCraftingManager();
+	AuctionManager* auctionManager = ServerCore::getZoneServer()->getAuctionManager();
+	
+	if (craftingManager == nullptr) {
+		return 0;
+	}
+
+	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
+
+	if (inventory == nullptr) {
+		Logger::console.info("BazaarBot: Error locating target inventory");
+		return 0;
+	}
+
+	try {
+
+		ManagedReference<DraftSchematic* > draftSchematic = creature->getZoneServer()->createObject(itemScript.hashCode(), 0).castTo<DraftSchematic*>();
+
+		if (draftSchematic == nullptr || !draftSchematic->isValidDraftSchematic()) {
+			Logger::console.info("BazaarBot Error: Invalid draft schematic provided when attempt to make a crafted item");
+			throw Exception();
+		}
+
+		ManagedReference<ManufactureSchematic* > manuSchematic = ( draftSchematic->createManufactureSchematic()).castTo<ManufactureSchematic*>();
+
+		if (manuSchematic == nullptr) {
+			Logger::console.info("BazaarBot: Error creating ManufactureSchematic from DraftSchematic");
+			throw Exception();
+		}
+
+		unsigned int targetTemplate = draftSchematic->getTanoCRC();
+
+		if (draftSchematic->getTemplateListSize() > 0) {
+			if (altTemplate >= draftSchematic->getTemplateListSize() || altTemplate < 0) {
+				Logger::console.info("BazaarBot Error: Invalid alternate crafting template requested");
+				throw Exception();
+			}
+
+			String requestedTemplate = draftSchematic->getTemplate(altTemplate);
+
+			String templateName = requestedTemplate.subString(0, requestedTemplate.lastIndexOf('/') + 1) + requestedTemplate.subString(requestedTemplate.lastIndexOf('/') + 8);
+
+			targetTemplate = templateName.hashCode();	
+		}
+
+		ManagedReference<TangibleObject *> prototype =  (creature->getZoneServer()->createObject(targetTemplate, 2)).castTo<TangibleObject*>();
+
+		if (prototype == nullptr) {
+			Logger::console.info("BazaarBot Error: Unable to create crafted item");
+			throw Exception();
+		}
+
+		Locker locker(prototype);
+		Locker mlock(manuSchematic, prototype);
+
+		craftingManager->setInitialCraftingValues(prototype, manuSchematic, CraftingManager::GREATSUCCESS);
+
+		Reference<CraftingValues*> craftingValues = manuSchematic->getCraftingValues();
+		craftingValues->setManufactureSchematic(manuSchematic);
+		craftingValues->setPlayer(creature);
+
+		if (quality > 0) {
+			for (int i = 0; i < craftingValues->getTotalVisibleAttributeGroups(); i++) {
+				String visibleGroup = craftingValues->getVisibleAttributeGroup(i);
+
+				for (int j = 0; j < craftingValues->getTotalExperimentalAttributes(); ++j) {
+					String attribute = craftingValues->getAttribute(j);
+					String group = craftingValues->getAttributeGroup(attribute);
+
+					if (group == visibleGroup) {
+						float maxValue = craftingValues->getMaxValue(attribute);
+						float minValue = craftingValues->getMinValue(attribute);
+
+						//float newValue = fabs(maxValue-minValue)*((float)quality/100.f) + Math::max(minValue, maxValue);
+						//craftingValues->setCurrentValue(attribute, newValue);
+
+						craftingValues->setCurrentPercentage(attribute, (float)quality / 50.f, 5.f);
+					}
+				}
+			}
+
+			craftingValues->recalculateValues(true);
+		}
+
+		prototype->updateCraftingValues(craftingValues, true);
+
+		mlock.release();
+
+		prototype->createChildObjects();
+
+		String name = "Stan";
+		prototype->setCraftersName(name);
+		prototype->setCraftersID(creature->getObjectID());
+
+		String serial = craftingManager->generateSerial();
+		prototype->setSerialNumber(serial);
+
+		prototype->updateToDatabase();
+
+		if (quantity > 1) {
+			String crateType = draftSchematic->getFactoryCrateType();
+
+			ManagedReference<FactoryCrate* > crate = prototype->createFactoryCrate(quantity, crateType, true);
+
+			if (crate == nullptr) {
+				prototype->destroyObjectFromDatabase(true);
+				return GENERAL_ERROR;
+			}
+
+			Locker cratelocker(crate);
+
+			crate->setUseCount(quantity);
+			
+			// Can I list the item here?
+
+			// if (!inventory->transferObject(crate, -1, true)) {
+			// 	crate->destroyObjectFromDatabase(true);
+			// 	return GENERAL_ERROR;
+			// }
+
+			// crate->sendTo(creature, true);
+
+			
+
+			if (auctionManager != nullptr && crate != nullptr) {
+				auctionManager->bazaarBotListItem(creature, crate, vendor, description, price);
+			}
+					
+			lua_pushlightuserdata(L, crate);
+		} else {
+
+			// Can I list the item here?
+			// if (!inventory->transferObject(prototype, -1, true)) {
+			// 	prototype->destroyObjectFromDatabase(true);
+			// 	throw Exception();
+			// }
+
+			// prototype->sendTo(creature, true);
+			if (auctionManager != nullptr && prototype != nullptr) {
+				auctionManager->bazaarBotListItem(creature, prototype, vendor, description, price);
+			}
+
+			lua_pushlightuserdata(L, prototype);
+		}
+		
+		return 1;
+		
+	} catch (Exception& e) {
+		lua_pushnil(L);
+		return 0;
+	}
+
 }
 
 int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
@@ -1306,7 +1486,7 @@ int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
 						//float newValue = fabs(maxValue-minValue)*((float)quality/100.f) + Math::max(minValue, maxValue);
 						//craftingValues->setCurrentValue(attribute, newValue);
 
-						craftingValues->setCurrentPercentage(attribute, (float)quality/100.f, 100.f);
+						craftingValues->setCurrentPercentage(attribute, (float)quality / 50.f, 5.f);
 					}
 				}
 			}
@@ -1320,7 +1500,7 @@ int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
 
 		prototype->createChildObjects();
 
-		String name = "BazaarBot";
+		String name = "Stan";
 		prototype->setCraftersName(name);
 		prototype->setCraftersID(creature->getObjectID());
 
@@ -1343,6 +1523,8 @@ int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
 
 			crate->setUseCount(quantity);
 			
+			// Can I list the item here?
+
 			if (!inventory->transferObject(crate, -1, true)) {
 				crate->destroyObjectFromDatabase(true);
 				return GENERAL_ERROR;
@@ -1352,6 +1534,8 @@ int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
 			lua_pushlightuserdata(L, crate);
 
 		} else {
+
+			// Can I list the item here?
 			if (!inventory->transferObject(prototype, -1, true)) {
 				prototype->destroyObjectFromDatabase(true);
 				throw Exception();
@@ -1370,7 +1554,7 @@ int DirectorManager::bazaarBotCreateCraftedItem(lua_State* L) {
 }
 
 int DirectorManager::bazaarBotListItem(lua_State* L) {
-	ManagedReference<CreatureObject*> player = (CreatureObject*)lua_touserdata(L, -5);
+	ManagedReference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -5);
 	ManagedReference<SceneObject*> itemToSell = (SceneObject*)lua_touserdata(L, -4);
 	SceneObject* vendor = (SceneObject*) lua_touserdata(L, -3);
 	UnicodeString description = lua_tostring(L, -2);
@@ -1379,7 +1563,7 @@ int DirectorManager::bazaarBotListItem(lua_State* L) {
 	AuctionManager* auctionManager = ServerCore::getZoneServer()->getAuctionManager();
 
 	if (auctionManager != nullptr && itemToSell != nullptr) {
-		auctionManager->bazaarBotListItem(player, itemToSell, vendor, description, price);
+		auctionManager->bazaarBotListItem(creature, itemToSell, vendor, description, price);
 	}
 			
 	return 0;
@@ -1404,6 +1588,26 @@ int DirectorManager::logToFile(lua_State* L){
 	delete writer;
 	
 	return 0;
+}
+
+int DirectorManager::getObjectFromDatabase(lua_State* L) {
+    if (checkArgumentCount(L, 1) == 1) {
+        printTraceError(L, "incorrect number of arguments passed to DirectorManager::getObjectFromDatabase");
+        ERROR_CODE = INCORRECT_ARGUMENTS;
+        return 0;
+    }
+
+    uint64 objectID = lua_tointeger(L, -1);
+    Reference<SceneObject*> object = Core::getObjectBroker()->lookUp(objectID).castTo<SceneObject*>();
+
+    if (object != nullptr) {
+        lua_pushlightuserdata(L, object.get());
+        object->_setUpdated(true);
+    } else {
+        lua_pushnil(L);
+    }
+
+    return 1;
 }
 
 int DirectorManager::generateWeapon(lua_State* L){
@@ -1448,7 +1652,7 @@ int DirectorManager::generateWeapon(lua_State* L){
 		
 		ManagedReference<WeaponObject*> weaponObj = (object).castTo<WeaponObject*>();
 		
-		object->setMaxCondition(System::random(3000) + 2000);
+		object->setMaxCondition(System::random(tokensToSpend * 25) + 1500);
 
 		String name = "Dedlee Syn";
 		object->setCraftersName(name);
@@ -1473,11 +1677,22 @@ int DirectorManager::generateWeapon(lua_State* L){
 		weaponObj->setMinDamage(newMinDamage);
 		weaponObj->setMaxDamage(newMaxDamage);
 
-		int ap = weaponObj->getArmorPiercing();
+		int ap;
+		int roll = System::random(25);
 
-		if (tokenFactor > System::random(25)) {
-			weaponObj->setArmorPiercing(3);
+		if (tokenFactor > 20) {
+			ap = 3;
+		} else if (tokenFactor > 10) {
+			ap = 2;
+		} else if (tokenFactor > 5) {
+			ap = 1;
+		} else {
+			ap = weaponObj->getArmorPiercing();
 		}
+
+		int newAp = Math::max(ap, weaponObj->getArmorPiercing());
+
+		weaponObj->setArmorPiercing(newAp);
 
 		float wound = weaponObj->getWoundsRatio();
 
@@ -1485,9 +1700,9 @@ int DirectorManager::generateWeapon(lua_State* L){
 
 		weaponObj->setWoundsRatio(newWound);
 
-		weaponObj->setPointBlankAccuracy(System::random(100));
-		weaponObj->setIdealAccuracy(System::random(100));
-		weaponObj->setMaxRangeAccuracy(System::random(100));
+		weaponObj->setPointBlankAccuracy(System::random(50) + 50);
+		weaponObj->setIdealAccuracy(System::random(50) + 50);
+		weaponObj->setMaxRangeAccuracy(System::random(50) + 50);
 
 		weaponObj->setHealthAttackCost(System::random(25));
 		weaponObj->setActionAttackCost(System::random(25));
@@ -2484,6 +2699,61 @@ int DirectorManager::getCreatureObject(lua_State* L) {
 	}
 
 	return 1;
+}
+
+int DirectorManager::getContainerObjectByCustomName(lua_State* L) {
+    if (checkArgumentCount(L, 3) == 1) {
+        String err = "incorrect number of arguments passed to DirectorManager::getContainerObjectByCustomName";
+        printTraceError(L, err);
+        ERROR_CODE = INCORRECT_ARGUMENTS;
+        return 0;
+    }
+
+    SceneObject* container = (SceneObject*)lua_touserdata(L, -3);
+    String customName = lua_tostring(L, -2);
+    bool checkChildren = lua_toboolean(L, -1);
+
+    if (container == nullptr) {
+        instance()->info("getContainerObjectByCustomName: SceneObject nullptr", true);
+        lua_pushnil(L);
+
+        return 1;
+    }
+
+    SceneObject* sco = nullptr;
+    SceneObject* child = nullptr;
+
+    for (int i = 0; i < container->getContainerObjectsSize(); i++) {
+        sco = container->getContainerObject(i);
+
+        if (sco == nullptr)
+            continue;
+
+        if (sco->getCustomObjectName().toString() == customName) {
+            sco->_setUpdated(true); //mark updated so the GC doesnt delete it while in LUA
+            lua_pushlightuserdata(L, sco);
+            return 1;
+        }
+
+        if (checkChildren && sco->getContainerObjectsSize() > 0) {
+            for (int j = 0; j < sco->getContainerObjectsSize(); j++) {
+                child = sco->getContainerObject(j);
+
+                if (child == nullptr)
+                    continue;
+
+                if (child->getCustomObjectName().toString() == customName) {
+                    child->_setUpdated(true); //mark updated so the GC doesnt delete it while in LUA
+                    lua_pushlightuserdata(L, child);
+                    return 1;
+                }
+            }
+        }
+    }
+
+    lua_pushnil(L);
+
+    return 1;
 }
 
 int DirectorManager::getContainerObjectByTemplate(lua_State* L) {

@@ -92,13 +92,13 @@ bool CraftingSessionImplementation::validateSession() {
 		auto droidParent = strongStation->getDroidParent().get();
 
 		if (droidParent != nullptr) {
-			if (!droidParent->isInRange(strongCrafter, 7.0f)) {
+			if (!droidParent->isInRange(strongCrafter, 8.0f)) {
 				StringIdChatParameter param("ui", "sui_out_of_range_prose"); // You have gone out of range of %TT, closing interface.
 				param.setTT(droidParent->getObjectID());
 				strongCrafter->sendSystemMessage(param);
 				return invalidSession();
 			}
-		} else if (!strongStation->isInRange(strongCrafter, 7.0f)) {
+		} else if (!strongStation->isInRange(strongCrafter, 8.0f)) {
 			StringIdChatParameter param("ui", "sui_out_of_range_prose"); // You have gone out of range of %TT, closing interface.
 			param.setTT(strongStation->getObjectID());
 			strongCrafter->sendSystemMessage(param);

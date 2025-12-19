@@ -150,7 +150,7 @@ bool CombatManager::attemptPeace(CreatureObject* creature) const {
 
 			SceneObject* mainDefender = threatTano->getMainDefender();
 
-			// If the defender is in range and is the maind defender of the creature, fail to peace
+			// If the defender is in range and is the main defender of the creature, fail to peace
 			if (creature->isInRange(threatTano, 128.f) && mainDefender != nullptr && mainDefender->getObjectID() == creatureID) {
 				return false;
 			}
@@ -1175,10 +1175,11 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	// PvP Damage Reduction.
 	if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForceAttack())
-		damage *= 0.25;
+		damage *= 0.10;
+		// damage *= 0.25;
 
-	if (damage < 1)
-		damage = 1;
+	if (damage < 25)
+		damage = 25;
 
 	debug() << "damage to be dealt is " << damage;
 
@@ -1331,10 +1332,19 @@ float CombatManager::applyDamageModifiers(CreatureObject* attacker, WeaponObject
 	if (damageMultiplier != 0)
 		damage *= damageMultiplier;
 
+	int itemDamageMultiplier = attacker->getSkillMod("private_item_damage_multiplier");
+	if (itemDamageMultiplier != 0) 
+		damage *= itemDamageMultiplier;
+
+
 	int damageDivisor = attacker->getSkillMod("private_damage_divisor");
 
 	if (damageDivisor != 0)
 		damage /= damageDivisor;
+	
+	int itemDamageDivisor = attacker->getSkillMod("private_item_damage_divisor");
+	if (itemDamageDivisor != 0) 
+		damage /= itemDamageDivisor;
 
 	// States Damage Reduction
 	float intimidateMod = attacker->getSkillMod("private_damage_divisor_intimidate");
@@ -1773,7 +1783,7 @@ void CombatManager::applyWeaponDots(CreatureObject* attacker, CreatureObject* de
 	}
 
 	for (int i = 0; i < weapon->getNumberOfDots(); i++) {
-		if (weapon->getDotUses(i) <= 0)
+		if (weapon->getDotUses(i) <= 0 && weapon->getDotUses(i) != -777)
 			continue;
 
 		int type = 0;
@@ -1784,15 +1794,15 @@ void CombatManager::applyWeaponDots(CreatureObject* attacker, CreatureObject* de
 		switch (weapon->getDotType(i)) {
 		case 1: // POISON
 			type = CreatureState::POISONED;
-			// resist = defender->getSkillMod("resistance_poison");
+			resist = defender->getSkillMod("resistance_poison");
 			break;
 		case 2: // DISEASE
 			type = CreatureState::DISEASED;
-			// resist = defender->getSkillMod("resistance_disease");
+			resist = defender->getSkillMod("resistance_disease");
 			break;
 		case 3: // FIRE
 			type = CreatureState::ONFIRE;
-			// resist = defender->getSkillMod("resistance_fire");
+			resist = defender->getSkillMod("resistance_fire");
 			break;
 		case 4: // BLEED
 			type = CreatureState::BLEEDING;
@@ -2165,8 +2175,7 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 			if ((!attacker->isTurret() && attackMask != WeaponType::GRENADEWEAPON) && (attackType == SharedWeaponObjectTemplate::RANGEDATTACK || attackMask == WeaponType::HEAVYWEAPON)) {
 				evadeTotal = evadeSkill = creoDefender->getSkillMod("saber_block");
 
-				// int threshold = 60;
-				int threshold = 100;
+				int threshold = 60;
 				int divisor = 5;
 				if (evadeTotal > 60) {
 					evadeTotal = (int)(threshold + ((evadeTotal - threshold) / divisor));
@@ -3162,20 +3171,20 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 		if (failed) {
 			switch (effectType) {
 			case CommandEffect::KNOCKDOWN:
-				if (!targetCreature->checkKnockdownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
-					targetCreature->setPosture(CreaturePosture::UPRIGHT);
-				creature->sendSystemMessage("@cbt_spam:knockdown_fail");
+				// if (!targetCreature->checkKnockdownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
+				// 	targetCreature->setPosture(CreaturePosture::UPRIGHT);
+				// creature->sendSystemMessage("@cbt_spam:knockdown_fail");
 				break;
 			case CommandEffect::POSTUREDOWN:
-				if (!targetCreature->checkPostureDownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
-					targetCreature->setPosture(CreaturePosture::UPRIGHT);
-				creature->sendSystemMessage("@cbt_spam:posture_change_fail");
+				// if (!targetCreature->checkPostureDownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
+				// 	targetCreature->setPosture(CreaturePosture::UPRIGHT);
+				// creature->sendSystemMessage("@cbt_spam:posture_change_fail");
 				break;
 			case CommandEffect::POSTUREUP:
-				if (!targetCreature->checkPostureUpRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
-					targetCreature->setPosture(CreaturePosture::UPRIGHT);
-				creature->sendSystemMessage("@cbt_spam:posture_change_fail");
-				break;
+				// if (!targetCreature->checkPostureUpRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
+				// 	targetCreature->setPosture(CreaturePosture::UPRIGHT);
+				// creature->sendSystemMessage("@cbt_spam:posture_change_fail");
+				// break;
 			case CommandEffect::NEXTATTACKDELAY:
 				if (data.getCommand()->getNameCRC() != STRING_HASHCODE("panicshot"))
 					targetCreature->showFlyText("combat_effects", "warcry_miss", 0xFF, 0, 0);

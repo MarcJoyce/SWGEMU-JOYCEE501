@@ -36,6 +36,7 @@ public:
 		uint64 parID = creature->getParentID();
 
 		String objName = "", tempName = "object/mobile/boba_fett.iff";
+		int numToSpawn = 1;
 		bool baby = false;
 		bool event = false;
 		int level = -1;
@@ -47,6 +48,10 @@ public:
 
 			if (tokenizer.hasMoreTokens())
 				tokenizer.getStringToken(tempName);
+
+			if (tokenizer.hasMoreTokens()) {
+				numToSpawn = tokenizer.getIntToken();
+			}
 
 			if (!tempName.isEmpty() && tempName.toLowerCase() == "checkthreads") {
 				ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, SuiWindowType::NONE);
@@ -198,19 +203,21 @@ public:
 		uint32 objTempl = objName.length() > 0 ? objName.hashCode() : 0;
 
 		AiAgent* npc = nullptr;
-		if (baby)
-			npc = cast<AiAgent*>(creatureManager->spawnCreatureAsBaby(templ, posX, posZ, posY, parID));
-		else if (event)
-			npc = cast<AiAgent*>(creatureManager->spawnCreatureAsEventMob(templ, level, posX, posZ, posY, parID));
-		else if (tempName.indexOf(".iff") != -1)
-			npc = cast<AiAgent*>(creatureManager->spawnCreatureWithAi(templ, posX, posZ, posY, parID));
-		else {
-			npc = cast<AiAgent*>(creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID));
-			if (npc != nullptr) {
-				npc->setAITemplate();
+		for (int i = 0; i < numToSpawn; i++) {
+			if (baby)
+				npc = cast<AiAgent*>(creatureManager->spawnCreatureAsBaby(templ, posX, posZ, posY, parID));
+			else if (event)
+				npc = cast<AiAgent*>(creatureManager->spawnCreatureAsEventMob(templ, level, posX, posZ, posY, parID));
+			else if (tempName.indexOf(".iff") != -1)
+				npc = cast<AiAgent*>(creatureManager->spawnCreatureWithAi(templ, posX, posZ, posY, parID));
+			else {
+				npc = cast<AiAgent*>(creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID));
+				if (npc != nullptr) {
+					npc->setAITemplate();
 
-				//Locker _nlocker(npc);
-				//npc->setAIDebug(true);
+					//Locker _nlocker(npc);
+					//npc->setAIDebug(true);
+				}
 			}
 		}
 

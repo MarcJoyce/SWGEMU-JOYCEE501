@@ -71,6 +71,8 @@ public:
 					patient->addMaxHAM(CreatureAttribute::getAttribute("mind"), amount);
 					patient->addMaxHAM(CreatureAttribute::getAttribute("focus"), amount);
 					patient->addMaxHAM(CreatureAttribute::getAttribute("willpower"), amount);
+				} else if (modifier == "reset") {
+					patient->clearBuffs(true, false);
 				}
 			}
 			else if (commandType.beginsWith("skill")) {
@@ -108,26 +110,6 @@ public:
 				Reference<PlayerObject*> ghost = patient->getSlottedObject("ghost").castTo<PlayerObject*>();
 
 				ghost->setVisibility(vis);
-			}
-			else if (commandType.beginsWith("screenplay")) {
-				String screenPlayName = args.getStringToken();
-				uint64 state = args.getLongToken();
-				Locker targetLock(patient);
-				patient->setScreenPlayState(screenPlayName, state);
-
-				creature->sendSystemMessage(patient->getFirstName() + " " + screenPlayName + " set to " + String::valueOf(patient->getScreenPlayState(screenPlayName)));
-			}
-			else if (commandType.beginsWith("screenplaydata")) {
-				String screenPlayName = args.getStringToken();
-				String screenPlayKey = args.getStringToken();
-				String screenPlayData = args.getStringToken();
-
-				Reference<PlayerObject*> ghost = patient->getSlottedObject("ghost").castTo<PlayerObject*>();
-
-				Locker targetLock(ghost);
-				ghost->setScreenPlayData(screenPlayName, screenPlayKey, screenPlayData);
-
-				creature->sendSystemMessage(patient->getFirstName() + " " + screenPlayName + " set to " + String::valueOf(patient->getScreenPlayState(screenPlayName)));
 			}
 
 		} catch (Exception& e) {

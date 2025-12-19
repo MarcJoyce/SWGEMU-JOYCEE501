@@ -40,7 +40,7 @@ protected:
 public:
 	TurretDataComponent() {
 		maxRange = 80.f;
-		attackSpeed = 1.f;
+		attackSpeed = 3.f;
 
 		nextAutoFireTime.updateToCurrentTime();
 

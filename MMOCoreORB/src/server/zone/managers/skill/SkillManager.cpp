@@ -484,6 +484,10 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		awardSkill("social_imagedesigner_novice", creature, true, true, true);
 	}
 
+	if (skill->getSkillName() == "combat_bountyhunter_novice") {
+		creature->sendSystemMessage(" \\#FFFF00\\<Incoming transmission>\\#FFFFFF\\Report to Jabba's Palace and initiate contact with Shae Torrvek for specialised BountyHunter training.");
+	}
+
 	/// Update client with new values for things like Terrain Negotiation
 	CreatureObjectDeltaMessage4* msg4 = new CreatureObjectDeltaMessage4(creature);
 	msg4->updateAccelerationMultiplierBase();

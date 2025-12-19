@@ -56,7 +56,7 @@ public:
 			if (socialType != "applaud" && socialType != "cheer" && socialType != "clap")
 				return SUCCESS;
 
-			if (creo->isEntertaining() && creo->isInRange(creature, 40.0f)) {
+			if (creo->isEntertaining() && creo->isInRange(creature, 32.0f)) {
 				ManagedReference<EntertainingSession*> session = creo->getActiveSession(SessionFacadeType::ENTERTAINING).castTo<EntertainingSession*>();
 
 				if (session != nullptr && session->getApplauseCount() < 100)

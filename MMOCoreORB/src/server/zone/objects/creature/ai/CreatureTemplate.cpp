@@ -249,6 +249,15 @@ void CreatureTemplate::readObject(LuaObject* templateData) {
 
 	hueTable.pop();
 
+	LuaObject lightsaberColorTable = templateData->getObjectField("lightsaberColors");
+	if (lightsaberColorTable.isValidTable()) {
+		for (int i = 1; i <= lightsaberColorTable.getTableSize(); ++i) {
+			lightsaberColors.add(lightsaberColorTable.getIntAt(i));
+		}
+	}
+
+	lightsaberColorTable.pop();
+
 	outfit = templateData->getStringField("outfit");
 
 	aiTemplate = templateData->getStringField("aiTemplate");

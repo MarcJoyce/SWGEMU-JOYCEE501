@@ -140,7 +140,7 @@ public:
 							//float newValue = fabs(maxValue-minValue)*((float)quality/100.f) + Math::max(minValue, maxValue);
 							//craftingValues->setCurrentValue(attribute, newValue);
 
-							craftingValues->setCurrentPercentage(attribute, (float)quality/100.f, 100.f);
+							craftingValues->setCurrentPercentage(attribute, (float)quality / 50.f, 5.f);
 						}
 					}
 				}

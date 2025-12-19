@@ -68,6 +68,7 @@ int CraftingManagerImplementation::calculateExperimentationSuccess(CreatureObjec
 	int experimentationSkill = player->getSkillMod(draftSchematic->getExperimentationSkill());
 	int forceSkill = player->getSkillMod("force_experimentation");
 	experimentationSkill += forceSkill;
+	experimentationSkill += player->getSkillMod("deity_techno_union");
 
 	float experimentingPoints = ((float)experimentationSkill) / 10.0f;
 

@@ -82,7 +82,7 @@ public:
 		if (craftingStation != nullptr) {
 			ManagedReference<SceneObject*> parent = craftingStation->getParent().get();
 
-			if ((parent != nullptr && !parent->isCellObject()) || !creature->isInRange(craftingStation, 7.0)) {
+			if ((parent != nullptr && !parent->isCellObject()) || !creature->isInRange(craftingStation, 8.0)) {
 				return GENERALERROR;
 			}
 		}

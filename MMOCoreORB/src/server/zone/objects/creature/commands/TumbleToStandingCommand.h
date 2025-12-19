@@ -30,6 +30,7 @@ public:
 
 		creature->inflictDamage(creature, CreatureAttribute::HEALTH, creature->getHAM(CreatureAttribute::HEALTH) - 1, true);
 		creature->inflictDamage(creature, CreatureAttribute::ACTION, creature->getHAM(CreatureAttribute::ACTION) - 1, true);
+		creature->inflictDamage(creature, CreatureAttribute::MIND, creature->getHAM(CreatureAttribute::MIND) - 1, true);
 		
 		creature->setPosture(CreaturePosture::UPRIGHT, false, true);
 

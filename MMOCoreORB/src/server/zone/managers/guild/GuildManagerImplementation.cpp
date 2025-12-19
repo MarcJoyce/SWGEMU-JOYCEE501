@@ -1452,7 +1452,8 @@ void GuildManagerImplementation::sponsorPlayer(CreatureObject* player, const Str
 
 	Locker _lock(target, player);
 
-	if (!target->isOnline() || !player->isInRange(target, 32)) {
+	// if (!target->isOnline() || !player->isInRange(target, 32)) {
+	if (!target->isOnline()) {
 		player->sendSystemMessage("@guild:sponsor_not_found"); // The specified person to sponsor could not be found nearby.
 		return;
 	}

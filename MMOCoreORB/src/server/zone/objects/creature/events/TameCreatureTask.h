@@ -48,7 +48,7 @@ public:
 			return;
 		}
 
-		if (!creature->isInRange(player, 8.0f)) {
+		if (!creature->isInRange(player, 16.0f)) {
 			player->sendSystemMessage("@hireling/hireling:taming_toofar"); // You are too far away to continue taming.
 			creature->showFlyText("npc_reaction/flytext","toofar", 204, 0, 0);  // You are too far away to tame the creature.
 			resetStatus();

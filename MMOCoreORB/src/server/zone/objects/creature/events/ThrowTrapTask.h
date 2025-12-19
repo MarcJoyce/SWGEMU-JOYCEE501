@@ -155,9 +155,9 @@ public:
 
 				Locker agentLock(targetAgent, attacker);
 
-				if (!targetAgent->isInRange(target, 5.f)) {
-					continue;
-				}
+				// if (!targetAgent->isInRange(target, 5.f)) {
+				// 	continue;
+				// }
 
 				// Handle combat start
 				combatManager->startCombat(attacker, attacker->getWeapon(), targetAgent, false);

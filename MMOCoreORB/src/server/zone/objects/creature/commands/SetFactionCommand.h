@@ -120,8 +120,8 @@ public:
 
 			if (rank < 0)
 				rank = 0;
-			else if (rank > 15)
-				rank = 15;
+			else if (rank > 21)
+				rank = 21;
 
 			targetRank = rank;
 		}

@@ -246,8 +246,8 @@ int CommandQueue::handleRunningState() {
 
 	 if (creature->isAiAgent()) {
 		if (priority == QueueCommand::NORMAL) {
-			time = 2;
-			nextActionTime->addMiliTime(2000);
+			uint64 miliTime = time * 1000;
+		  nextActionTime->addMiliTime(miliTime);
 		} else {
 			return DEFAULTTIME;
 		}

@@ -178,6 +178,7 @@ namespace server {
 		static int getRegion(lua_State* L);
 		static int forcePeace(lua_State* L);
 		static int getObjectTemplatePathByCRC(lua_State* L);
+		static int getContainerObjectByCustomName(lua_State* L);
 		static int getContainerObjectByTemplate(lua_State* L);
 		static int updateCellPermission(lua_State* L);
 		static int updateCellPermissionGroup(lua_State* L);
@@ -237,6 +238,9 @@ namespace server {
 		static int bazaarBotCreateCraftedItem(lua_State* L);
 		static int bazaarBotListItem(lua_State* L);
 		static int logToFile(lua_State* L);
+		static int getObjectFromDatabase(lua_State* L);
+
+		static int bazaarBotCreateCraftedItemAndList(lua_State* L);
 
 		// Weapon
 		static int generateWeapon(lua_State* L);

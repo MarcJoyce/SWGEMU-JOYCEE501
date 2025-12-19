@@ -125,6 +125,7 @@ bool DestroyMissionLairObserverImplementation::checkForNewSpawns(TangibleObject*
 	VectorMap<String, int> objectsToSpawn;
 
 	const Vector<String>* mobiles = lairTemplate->getWeightedMobiles();
+	const VectorMap<String, int>* bossMobiles = lairTemplate->getBossMobiles();
 	int amountToSpawn = 0;
 
 	if (isCreatureLair) {
@@ -144,15 +145,20 @@ bool DestroyMissionLairObserverImplementation::checkForNewSpawns(TangibleObject*
 	for (int i = 0; i < amountToSpawn; i++) {
 		int num = System::random(mobiles->size() - 1);
 		const String& mob = mobiles->get(num);
-
 		int find = objectsToSpawn.find(mob);
-
+		
 		if (find != -1) {
 			int& value = objectsToSpawn.elementAt(find).getValue();
-
+			
 			++value;
 		} else {
-			objectsToSpawn.put(mob, 1);
+			if (bossMobiles->size() > 0 && System::random(100) < 20) { // 20% chance to spawn a boss mobile along with regular mobile
+				const String& bossMob = bossMobiles->elementAt(System::random(bossMobiles->size() - 1)).getKey();
+				objectsToSpawn.put(bossMob, 1);
+				objectsToSpawn.put(mob, 1);
+			} else {
+				objectsToSpawn.put(mob, 1);
+			}
 		}
 	}
 

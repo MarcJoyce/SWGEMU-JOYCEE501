@@ -151,6 +151,7 @@ int SharedLabratory::calculateAssemblySuccess(CreatureObject* player,DraftSchema
 
 	int assemblySkill = player->getSkillMod(draftSchematic->getAssemblySkill());
 	assemblySkill += player->getSkillMod("force_assembly");
+	assemblySkill += player->getSkillMod("deity_techno_union");
 
 	float assemblyPoints = ((float)assemblySkill) / 10.0f;
 	int failMitigate = (player->getSkillMod(draftSchematic->getAssemblySkill()) - 100 + cityBonus) / 7;

@@ -72,7 +72,7 @@ public:
 				if (groupMember == nullptr)
 					continue;
 
-				if (!groupMember->isInRange(player, 50.0f))
+				if (!groupMember->isInRange(player, 64.0f))
 					continue;
 
 				Locker clocker(groupMember, group);

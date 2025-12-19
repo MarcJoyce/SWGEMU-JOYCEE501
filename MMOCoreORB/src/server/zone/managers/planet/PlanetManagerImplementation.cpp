@@ -1357,7 +1357,7 @@ bool PlanetManagerImplementation::isBuildingPermittedAt(float x, float y, SceneO
 		return false;
 	}
 
-	if (isInRangeWithPoi(x, y, 150))
+	if (isInRangeWithPoi(x, y, 100))
 		return false;
 
 	return true;
@@ -1391,7 +1391,7 @@ bool PlanetManagerImplementation::isCampingPermittedAt(float x, float y, float m
 		return false;
 	}
 
-	if (isInRangeWithPoi(x, y, 150))
+	if (isInRangeWithPoi(x, y, 25))
 		return false;
 
 	return true;

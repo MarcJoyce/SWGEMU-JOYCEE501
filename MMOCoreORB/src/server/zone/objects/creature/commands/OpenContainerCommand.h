@@ -44,7 +44,7 @@ public:
 		bool clientObject = rootParent != nullptr && rootParent->isClientObject();
 
 		if (craftingStation) {
-			if (!creature->isInRange(objectsParent, 12.0f)) {
+			if (!creature->isInRange(objectsParent, 16.0f)) {
 				StringIdChatParameter param;
 				param.setStringId("@container_error_message:container09_prose"); // You are out of range of %TT.
 				param.setTT(objectsParent->getObjectName());
@@ -60,7 +60,7 @@ public:
 				return GENERALERROR;
 			}
 		} else if (objectToOpen->isTurret() || (!playerItem && (objectsParent == nullptr || clientObject))) { //Perform checks if not player item and outside, or inside in clientObject structure
-			if (!creature->isInRange(objectToOpen, 7.0f)) {
+			if (!creature->isInRange(objectToOpen, 16.0f)) {
 				StringIdChatParameter param;
 				param.setStringId("@container_error_message:container09_prose"); // You are out of range of %TT.
 				param.setTT(objectToOpen->getObjectName());

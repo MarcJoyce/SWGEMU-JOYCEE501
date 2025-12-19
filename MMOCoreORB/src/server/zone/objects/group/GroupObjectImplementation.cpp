@@ -543,7 +543,7 @@ float GroupObjectImplementation::getGroupHarvestModifier(CreatureObject* player)
 
 			if (groupMember->hasSkill(skillNovice)) {
 
-				if (groupMember->isInRange(player, 64.0f)) {
+				// if (groupMember->isInRange(player, 64.0f)) {
 
 					if (groupMember->hasSkill(skillMaster)) {
 						modifier = 1.4f;
@@ -551,7 +551,7 @@ float GroupObjectImplementation::getGroupHarvestModifier(CreatureObject* player)
 					}
 
 					modifier = 1.3f;
-				}
+				// }
 			}
 		}
 	}

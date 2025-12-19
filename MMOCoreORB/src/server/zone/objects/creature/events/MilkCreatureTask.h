@@ -28,7 +28,7 @@ public:
 
 		Locker _clocker(player, creature);
 
-		if (!creature->isInRange(player, 7.f) || creature->isDead()) {
+		if (!creature->isInRange(player, 8.f) || creature->isDead()) {
 			updateMilkState(CreatureManager::NOTMILKED);
 			player->sendSystemMessage("@skl_use:milk_too_far"); // The creature has moved too far away to continue milking it.
 			return;
