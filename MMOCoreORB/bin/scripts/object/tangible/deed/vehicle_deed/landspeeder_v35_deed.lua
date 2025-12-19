@@ -41,29 +41,22 @@
 --this exception also makes it possible to release a modified version 
 
 
+object_tangible_deed_vehicle_deed_landspeeder_v35_deed = object_tangible_deed_vehicle_deed_shared_landspeeder_v35_deed:new {
 
---Children folder includes
+	templateType = VEHICLEDEED,
 
--- Server Objects
-includeFile("tangible/deed/vehicle_deed/jetpack_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_av21_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_x31_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_x34_deed.lua")
-includeFile("tangible/deed/vehicle_deed/speederbike_deed.lua")
-includeFile("tangible/deed/vehicle_deed/speederbike_flash_deed.lua")
-includeFile("tangible/deed/vehicle_deed/speederbike_swoop_deed.lua")
-includeFile("tangible/deed/vehicle_deed/vehicle_deed_base.lua")
-includeFile("tangible/deed/vehicle_deed/vehicular_prototype_bike_deed.lua")
-includeFile("tangible/deed/vehicle_deed/vehicular_prototype_deed.lua")
+	controlDeviceObjectTemplate = "object/intangible/vehicle/landspeeder_v35_pcd.iff",
+	generatedObjectTemplate = "object/mobile/vehicle/landspeeder_v35.iff",
 
-includeFile("tangible/deed/vehicle_deed/barc_speeder_imperial_deed.lua")
-includeFile("tangible/deed/vehicle_deed/barc_speeder_deed.lua")
-includeFile("tangible/deed/vehicle_deed/barc_speeder_rebel_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_ab1_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_desert_skiff_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_lava_skiff_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_tantive4_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_usv5_deed.lua")
-includeFile("tangible/deed/vehicle_deed/landspeeder_v35_deed.lua")
-includeFile("tangible/deed/vehicle_deed/pod_racer_one_deed.lua")
-includeFile("tangible/deed/vehicle_deed/pod_racer_two_deed.lua")
+	numberExperimentalProperties = {1, 1, 1},
+	experimentalProperties = {"XX", "XX", "SR"},
+	experimentalWeights = {1, 1, 1},
+	experimentalGroupTitles = {"null", "null", "exp_durability"},
+	experimentalSubGroupTitles = {"null", "null", "hit_points"},
+	experimentalMin = {0, 0, 25000},
+	experimentalMax = {0, 0, 50000},
+	experimentalPrecision = {0, 0, 0},
+	experimentalCombineType = {0, 0, 1},
+}
+
+ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_landspeeder_v35_deed, "object/tangible/deed/vehicle_deed/landspeeder_v35_deed.iff")

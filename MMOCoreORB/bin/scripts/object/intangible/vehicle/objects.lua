@@ -90,6 +90,105 @@ object_intangible_vehicle_shared_jetpack_pcd = SharedIntangibleObjectTemplate:ne
 
 ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_jetpack_pcd, "object/intangible/vehicle/shared_jetpack_pcd.iff")
 
+object_intangible_vehicle_shared_barc_speeder_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_barc_speeder_pcd.iff"
+	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
+--[[
+	appearanceFilename = "appearance/jetpack_mandalorian_s01.apt",
+	arrangementDescriptorFilename = "",
+
+	clearFloraRadius = 0,
+	clientDataFile = "",
+	clientGameObjectType = 2056,
+	collisionActionBlockFlags = 0,
+	collisionActionFlags = 0,
+	collisionActionPassFlags = 0,
+	collisionMaterialBlockFlags = 0,
+	collisionMaterialFlags = 0,
+	collisionMaterialPassFlags = 0,
+	containerType = 0,
+	containerVolumeLimit = 0,
+
+	detailedDescription = "@monster_detail:jetpack",
+
+	gameObjectType = 2056,
+
+	locationReservationRadius = 0,
+	lookAtText = "string_id_table",
+
+	noBuildRadius = 0,
+
+	objectName = "@monster_name:jetpack",
+	onlyVisibleInTools = 0,
+
+	portalLayoutFilename = "",
+
+	scale = 0,
+	scaleThresholdBeforeExtentTest = 0.5,
+	sendToClient = 1,
+	slotDescriptorFilename = "abstract/slot/descriptor/mount_pcd.iff",
+	snapToTerrain = 0,
+	surfaceType = 0,
+
+	totalCellNumber = 0,
+
+	clientObjectCRC = 2096609656,
+	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/intangible/base/shared_base_intangible.iff", "object/intangible/vehicle/shared_vehicle_pcd_base.iff"}
+]]
+}
+
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_pcd, "object/intangible/vehicle/shared_barc_speeder_pcd.iff")
+
+object_intangible_vehicle_shared_barc_speeder_imperial_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_barc_speeder_imperial_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_imperial_pcd, "object/intangible/vehicle/shared_barc_speeder_imperial_pcd.iff")
+
+object_intangible_vehicle_shared_barc_speeder_rebel_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_barc_speeder_rebel_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_rebel_pcd, "object/intangible/vehicle/shared_barc_speeder_rebel_pcd.iff")
+
+object_intangible_vehicle_shared_landspeeder_ab1_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_ab1_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_ab1_pcd, "object/intangible/vehicle/shared_landspeeder_ab1_pcd.iff")
+
+object_intangible_vehicle_shared_landspeeder_desert_skiff_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_desert_skiff_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_desert_skiff_pcd, "object/intangible/vehicle/shared_landspeeder_desert_skiff_pcd.iff")
+
+object_intangible_vehicle_shared_landspeeder_lava_skiff_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_lava_skiff_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_lava_skiff_pcd, "object/intangible/vehicle/shared_landspeeder_lava_skiff_pcd.iff")
+
+object_intangible_vehicle_shared_landspeeder_tantive4_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_tantive4_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_tantive4_pcd, "object/intangible/vehicle/shared_landspeeder_tantive4_pcd.iff")
+
+object_intangible_vehicle_shared_landspeeder_usv5_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_usv5_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_usv5_pcd, "object/intangible/vehicle/shared_landspeeder_usv5_pcd.iff")
+
+object_intangible_vehicle_shared_landspeeder_v35_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_v35_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_v35_pcd, "object/intangible/vehicle/shared_landspeeder_v35_pcd.iff")
+
+object_intangible_vehicle_shared_pod_racer_one_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_pod_racer_one_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_pod_racer_one_pcd, "object/intangible/vehicle/shared_pod_racer_one_pcd.iff")
+
+object_intangible_vehicle_shared_pod_racer_two_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_pod_racer_two_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_pod_racer_two_pcd, "object/intangible/vehicle/shared_pod_racer_two_pcd.iff")
+
 object_intangible_vehicle_shared_landspeeder_av21_pcd = SharedIntangibleObjectTemplate:new {
 	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_av21_pcd.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
