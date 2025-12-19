@@ -3,14 +3,16 @@ local Logger = require("utils.logger")
 
 DedleeSynScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
-  BazaarBotID = 281475000105551, -- PlayerID of Admin BazaarBot charactee
+  AdminPlayerID = 281475013738720, -- PlayerID of Admin character
   screenplayName = "DedleeSynScreenPlay",
   respawnFrequency = 1000 * 86400,
   spawns = {
+    { "tusken_witch_doctor", "Tusken Witch Doctor" },
+    { "tusken_observer", "Tusken Observer" },
+    { "dark_jedi_knight", "Dark Jedi Knight" },
+    { "spiderclan_elder", "SpiderClan Nightsister Elder" },
     { "nightsister_elder", "Nightsister Elder" },
-    { "durni", "Durni" },
-    { "tusken_raider", "Tusken Raider" },
-    { "janta_hunter", "Janta Hunter" },
+    { "singing_mountain_clan_councilwoman", "Singing Mountain Clan Councilwoman" },
     { "krayt_dragon_ancient", "Ancient Krayt Dragon" },
   },
   messages = {
@@ -60,7 +62,7 @@ function DedleeSynScreenPlay:spawnMobiles()
 end
 
 function DedleeSynScreenPlay:setHuntMob()
-  local pAdminPlayer = getCreatureObject(self.BazaarBotID)
+  local pAdminPlayer = getCreatureObject(self.AdminPlayerID)
 
   if (pAdminPlayer == nil) then
     self:log("pAdminPlayer is nil")
@@ -90,7 +92,7 @@ function DedleeSynScreenPlay:notifyKilledCreature(pPlayer, pVictim)
 		return 1
 	end
 
-  local pAdminPlayer = getCreatureObject(self.BazaarBotID)
+  local pAdminPlayer = getCreatureObject(self.AdminPlayerID)
   local huntCount = tonumber(readScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount")) or 0
   local huntTarget = readScreenPlayData(pAdminPlayer, "DedleeSynScreenPlay", "huntTargetTemplate")
 	local victimName = SceneObject(pVictim):getObjectName()

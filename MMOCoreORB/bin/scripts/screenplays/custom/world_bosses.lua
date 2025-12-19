@@ -1,9 +1,8 @@
 WorldBossesScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
-  BazaarBotID = 281475000105551, -- PlayerID of Admin BazaarBot character
+  AdminPlayerID = 281475013738720, -- PlayerID of Admin character
   screenplayName = "WorldBossesScreenPlay",
-  -- respawnFrequency = 1000 * 60,
-  respawnFrequency = 1000 * 1,
+  respawnFrequency = 1000 * 300,
   specialSpawns = { 
     {
       { "world_boss_jedi", 1 },
@@ -85,9 +84,17 @@ WorldBossesScreenPlay = ScreenPlay:new {
       { 
         {
           { "blurrg", 1 },
+        },
+        {
+          { "world_boss_death_watch", 1 },
+          { "world_boss_death_watch_drone", 10 }
+        },
+        {
+          { "world_boss_arachne", 1 },
+          { "world_boss_arachne_warrior", 3 },
+          { "world_boss_arachne_drone", 12 }
         }
       },
-      -- { "boss_death_watch", "boss_bark_mite", "boss_arachne", "boss_blurrg" },
       { 
         {{ x = -4409, z = 22, y = 4284 }, " in close proximity of the Death Watch."},
         {{ x = 3552, z = 9, y = 3552 }, " east of the Korga cave."},
@@ -100,7 +107,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
           { "kimogila", 1 },
         }
       },
-      -- { "boss_kimo", "boss_droideka", "boss_gurk", "boss_kusak" },
+      -- { "boss_kimo", "boss_gurk" },
       { 
         {{ x = 2470, z = 18, y = -4217 }, " at the foot of Adi's Rest."},
         {{ x = -2253, z = 11, y = -3070 }, " preparing to seige the Lokian Imperial Outpost."}
@@ -112,7 +119,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
           { "peko_peko_albatross", 1 },
         }
       },
-      -- { "boss_gungan", "boss_capper_spineflap", "boss_nuna", "boss_peko_peko" },
+      -- { "boss_peko_peko", "boss_battle_droid" },
       { 
         {{ x = -5331, z = 11, y = 3498 }, " south of Theed"},
         {{ x = -2080, z = 61, y = -5157 }, " stalking Mordran"}
@@ -124,7 +131,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
           { "greater_sludge_panther", 1 },
         }
       },
-      -- { "boss_fynock", "boss_greater_sludge_panther", "boss_huf_dun" },
+      -- { "boss_fynock", "boss_greater_sludge_panther" },
       { 
         {{ x = 4307, z = 6, y = 1015 }, " seeking refuge in the Lost Village of Durbin."},
         {{ x = 395, z = 44, y = -821 }, " west of the Giant Fynock Cave."}
@@ -139,9 +146,12 @@ WorldBossesScreenPlay = ScreenPlay:new {
         {
           { "world_boss_jedi", 1 },
           { "world_boss_jedi_drone", 1 }
+        },
+        {
+          { "world_boss_jabba_overlord", 1 },
+          { "world_boss_jabba_henchman", 20 }
         }
       },
-    -- { "boss_tusken", "boss_womp_rat", "boss_dragonet", "boss_squill"},
       {
         {{ x = -5870, z = 32, y = -5178 }, " north of Jabba's Palace."},
         {{ x = 5376, z = 34, y = 2400 }, " east of Mos Taike."},
@@ -154,9 +164,13 @@ WorldBossesScreenPlay = ScreenPlay:new {
         {
           { "world_boss_jedi", 1 },
           { "world_boss_jedi_drone", 1 }
+        },
+        {
+          { "world_boss_death_watch", 1 },
+          { "world_boss_death_watch_drone", 15 }
         }
       },
-      -- { "boss_acklay", "boss_angler", "boss_kliknik", "boss_black_sun" },
+      -- { "boss_acklay" },
       { 
         {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun's Temple."},
         {{ x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4."}
@@ -185,7 +199,7 @@ function WorldBossesScreenPlay:respawnBoss()
   end
 
   local location = selection[3][getRandomNumber(1, #selection[3])]
-  local pAdminPlayer = getCreatureObject(self.BazaarBotID)
+  local pAdminPlayer = getCreatureObject(self.AdminPlayerID)
 
   local coords = location[1]
   local suffixMessage = location[2]
@@ -239,7 +253,7 @@ function WorldBossesScreenPlay:bossKilled(pMobile)
     end
   end
 
-  local pAdminPlayer = getCreatureObject(self.BazaarBotID)
+  local pAdminPlayer = getCreatureObject(self.AdminPlayerID)
   createEvent(self.respawnFrequency, "WorldBossesScreenPlay", "respawnBoss", nil, "")
   deleteScreenPlayData(pAdminPlayer, "WorldBossesScreenPlay", "huntLocation")
   return 1

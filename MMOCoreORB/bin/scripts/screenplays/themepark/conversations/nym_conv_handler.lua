@@ -57,7 +57,7 @@ function NymConvoHandler:runNymScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 			PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
 			removeQuestStatus(playerID .. ":nymFacilityWaypointID")
 		end
-		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Imperial Research Facility", "Imperial Research Facility", ThemeParkNym.waypointMap.researchfacility.x, 0, ThemeParkNym.waypointMap.researchfacility.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
+		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Imperial Research Facility", "Imperial Research Facility", ThemeParkNym.waypointMap.researchfacility.x, 0, ThemeParkNym.waypointMap.researchfacility.y, WAYPOINT_YELLOW, true, true, 0)
 		setQuestStatus(playerID .. ":nymFacilityWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 1, "nym_theme_park_nymNpc")
 	elseif (screenID == "go_to_officer") then
@@ -66,7 +66,7 @@ function NymConvoHandler:runNymScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 			PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
 			removeQuestStatus(playerID .. ":nymGamblerWaypointID")
 		end
-		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Nym's Informant", "Nym's Informant", ThemeParkNym.waypointMap.gambler.x, 0, ThemeParkNym.waypointMap.gambler.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
+		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Nym's Informant", "Nym's Informant", ThemeParkNym.waypointMap.gambler.x, 0, ThemeParkNym.waypointMap.gambler.y, WAYPOINT_YELLOW, true, true, 0)
 		setQuestStatus(playerID .. ":nymGamblerWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 2, "nym_theme_park_nymNpc")
 	elseif (screenID == "your_the_best" or screenID == "youre_done" and CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1")) then
@@ -118,7 +118,7 @@ function NymConvoHandler:runJinkinsScreenHandlers(pConvTemplate, pPlayer, pNpc, 
 			PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
 			removeQuestStatus(playerID .. ":nymPirateCaveWaypointID")
 		end
-		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Sulfur Lake Pirate Hideout", "", ThemeParkNym.waypointMap.piratecave.x, 0, ThemeParkNym.waypointMap.piratecave.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
+		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Sulfur Lake Pirate Hideout", "", ThemeParkNym.waypointMap.piratecave.x, 0, ThemeParkNym.waypointMap.piratecave.y, WAYPOINT_YELLOW, true, true, 0)
 		setQuestStatus(playerID .. ":nymPirateCaveWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 1, "nym_theme_park_jinkinsNpc")
 
@@ -129,7 +129,7 @@ function NymConvoHandler:runJinkinsScreenHandlers(pConvTemplate, pPlayer, pNpc, 
 			PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
 			removeQuestStatus(playerID .. ":nymHermitWaypointID")
 		end
-		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Hermit", "", ThemeParkNym.waypointMap.choster.x, 0, ThemeParkNym.waypointMap.choster.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
+		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Hermit", "", ThemeParkNym.waypointMap.choster.x, 0, ThemeParkNym.waypointMap.choster.y, WAYPOINT_YELLOW, true, true, 0)
 		setQuestStatus(playerID .. ":nymHermitWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 1, "nym_theme_park_chosterNpc")
 
@@ -193,7 +193,7 @@ function NymConvoHandler:runKoleScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 			PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
 			removeQuestStatus(playerID .. ":nymGasMineWaypointID")
 		end
-		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Imperial Gas Mine", "", ThemeParkNym.waypointMap.gasmine.x, 0, ThemeParkNym.waypointMap.gasmine.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
+		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Imperial Gas Mine", "", ThemeParkNym.waypointMap.gasmine.x, 0, ThemeParkNym.waypointMap.gasmine.y, WAYPOINT_YELLOW, true, true, 0)
 		setQuestStatus(playerID .. ":nymGasMineWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 1, "nym_theme_park_koleNpc")
 
@@ -205,7 +205,7 @@ function NymConvoHandler:runKoleScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 			removeQuestStatus(playerID .. ":nymBribeWaypointID")
 		end
 
-		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Sergeant Moore", "", ThemeParkNym.waypointMap.imperialbribe.x, 0, ThemeParkNym.waypointMap.imperialbribe.y, WAYPOINT_COLOR_PURPLE, true, true, 0)
+		local waypointID = PlayerObject(pGhost):addWaypoint("lok", "Sergeant Moore", "", ThemeParkNym.waypointMap.imperialbribe.x, 0, ThemeParkNym.waypointMap.imperialbribe.y, WAYPOINT_YELLOW, true, true, 0)
 
 		setQuestStatus(playerID .. ":nymBribeWaypointID", waypointID)
 		self.themePark:setState(CreatureObject(pPlayer), 1, "nym_theme_park_mooreNpc")

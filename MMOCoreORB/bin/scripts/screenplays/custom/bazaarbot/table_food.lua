@@ -1,12 +1,12 @@
 BBFoodConfig = {
 	path = "object/draft_schematic/food/",
-	qualityMin = 35,
-	qualityAvg = 45, -- 10% chance to use this as the min value and qualityMax as the max value
-	qualityMax = 50, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
+	qualityMin = 50,
+	qualityAvg = 75, -- 10% chance to use this as the min value and qualityMax as the max value
+	qualityMax = 95, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
 	freq = 86400, -- Every x seconds
 	eventName = "BazaarBotAddFood",
 	functionName = "addMoreFood",
-	listingChance = 50
+	listingChance = 100
 }
 
 -- {price, quantity, crateQuantity, "altTemplate", "templates"...},

@@ -13,9 +13,9 @@ CustomGlowingScreenPlay = ScreenPlay:new {}
 --  7 - Thalos Krenn (Jedi Sympathizer) x 
 --  8 - Lars Homestead ("object/tangible/container/loot/placable_loot_crate_skeleton_human.iff") x 
 -- Trial two - Combat Profession x
--- Trial three - Kill Vessa Kael 
+-- Trial three - Vessa Kael x
 -- Trial four - Support Profession x
--- Trial five - Cozmic (Rodian) vs Sap (Trando) War between Wookiees and Trandoshans
+-- Trial five - Cozmic (Rodian) vs Sap (Trando) War between Wookiees and Trandoshans x
 -- Trial six - Mega Riddle
 -- Trial seven - Jedi and Sith Holocron
 -- Trial eight - Surrender all Skills
@@ -25,6 +25,10 @@ registerScreenPlay("CustomGlowingScreenPlay", true)
 function CustomGlowingScreenPlay:start()
   if (isZoneEnabled("dantooine")) then
     self:spawnMobilesDantooine()
+  end
+
+  if (isZoneEnabled("dathomir")) then
+    self:spawnMobilesDathomir()
   end
 
   if (isZoneEnabled("tatooine")) then
@@ -38,29 +42,60 @@ function CustomGlowingScreenPlay:start()
   if (isZoneEnabled("lok")) then
     self:spawnMobilesLok()
   end
+
+  if (isZoneEnabled("endor")) then
+    self:spawnMobilesEndor()
+  end
 end
 
 function CustomGlowingScreenPlay:playerLoggedIn(pPlayer)
+  -- Drop all current observers
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceOne", pPlayer)
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer);
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceSix", pPlayer)
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceFive", pPlayer)
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveTrandoshan", pPlayer)
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveWookiee", pPlayer)
+  dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialSixKrayt", pPlayer)
+  dropObserver(OBJECTDESTRUCTION, "CustomGlowingScreenPlay", "notifyKilledPlayerTrialSix", pPlayer);
+  dropObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
+
+
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "tusken_queen_head") and not CreatureObject(pPlayer):hasScreenPlayState(2, "tusken_queen_head")) then
-    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceOne", pPlayer)
     createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceOne", pPlayer)
   end
   
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1") and not CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_two")) then
-    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer);
     createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer);
   end
 
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "krayt_dragon") and not CreatureObject(pPlayer):hasScreenPlayState(2, "krayt_dragon")) then
-    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceSix", pPlayer)
     createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceSix", pPlayer)
   end
-
+  
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "nym_trial") and not CreatureObject(pPlayer):hasScreenPlayState(2, "nym_trial")) then
-    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceFive", pPlayer)
     createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceFive", pPlayer)
   end
 
+  if (CreatureObject(pPlayer):hasScreenPlayState(1, "cozmic") and not CreatureObject(pPlayer):hasScreenPlayState(2, "cozmic") and not CreatureObject(pPlayer):hasScreenPlayState(2, "sap")) then
+    createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveTrandoshan", pPlayer)
+  end
+
+  if (CreatureObject(pPlayer):hasScreenPlayState(1, "sap") and not CreatureObject(pPlayer):hasScreenPlayState(2, "sap") and not CreatureObject(pPlayer):hasScreenPlayState(2, "cozmic")) then
+    createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveWookiee", pPlayer)
+  end
+
+  if (CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher") and not CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher_krayt")) then
+    createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialSixKrayt", pPlayer)
+  end
+
+  if (CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher") and not CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher_death")) then
+    createObserver(OBJECTDESTRUCTION, "CustomGlowingScreenPlay", "notifyKilledPlayerTrialSix", pPlayer)
+  end
+
+  if (CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_complete_decipher") and not CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_6")) then
+    createObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
+  end
 end
 
 function CustomGlowingScreenPlay:spawnMobilesDantooine()
@@ -70,22 +105,20 @@ function CustomGlowingScreenPlay:spawnMobilesDantooine()
   AiAgent(pMobile):addObjectFlag(AI_STATIC)
 end
 
+function CustomGlowingScreenPlay:spawnMobilesDathomir()
+  spawnMobile("dathomir", "lazarus", 300, 3640.5, 111.9, 1573.3, 29.5418, 0)
+end
+
 function CustomGlowingScreenPlay:spawnMobilesTatooine()
   -- Piece of eight one - Klik Klik
   spawnMobile("tatooine", "klik_klak", 300, -6184.270, 7.253, 1852.560, 154.785, 0)
   -- Piece of eight one - Tusken Queen
   spawnMobile("tatooine", "tusken_queen", 300, -4.7, 37.9, -3.3, 92, 1189188)
 
-  -- Piece of eight six - Jabba's Palace
-  spawnMobile("tatooine", "jabba_henchman_custom", 300, -14.6, 2, 40.9, 49.6179, 1177487)
-
-  -- Piece of eight four - Anchorhead
-  self:arrangePieceFour()
-
   -- Piece of eight three - Fort Tusken
   local spawnedSceneObject = LuaSceneObject(nil)
   local spawnedPointer = spawnSceneObject("tatooine", "object/tangible/container/loot/placable_loot_crate_trashpile.iff", -8.3, 37.9, -31.8, 1189186, 89.617);
-
+  
   if (spawnedPointer ~= nil) then
     spawnedSceneObject:_setObject(spawnedPointer)
     SceneObject(spawnedPointer):setContainerInheritPermissionsFromParent(false)
@@ -93,8 +126,14 @@ function CustomGlowingScreenPlay:spawnMobilesTatooine()
 	  SceneObject(spawnedPointer):setContainerDefaultAllowPermission(OPEN + MOVEOUT)
     createObserver(OPENCONTAINER, "CustomGlowingScreenPlay", "boxLootedTrialOnePieceThree", spawnedPointer)
   end
+  
+  -- Piece of eight four - Anchorhead
+  self:arrangePieceFour()
+  
+  -- Piece of eight six - Jabba's Palace
+  spawnMobile("tatooine", "jabba_henchman_custom", 300, -14.6, 2, 40.9, 49.6179, 1177487)
 
--- Piece of eight eight - Lars Homestead
+  -- Piece of eight eight - Lars Homestead
   spawnedPointer = spawnSceneObject("tatooine", "object/tangible/container/loot/placable_loot_crate_skeleton_human.iff", -2582.22, 0, -5513.91, 0, 43.63);
 
   if (spawnedPointer ~= nil) then
@@ -105,6 +144,11 @@ function CustomGlowingScreenPlay:spawnMobilesTatooine()
     createObserver(OPENCONTAINER, "CustomGlowingScreenPlay", "boxLootedTrialOnePieceEight", spawnedPointer)
   end
 
+  -- Glowing trial 3 - Vessa Kael
+  spawnMobile("tatooine", "vessa_kael", 300, -1148, 98, -3893, 69.1543, 0)
+
+  -- Glowing trial 6 - Hermit
+  spawnMobile("tatooine", "hermit_trial", 300, -4503, 35, -2258, 197.825, 0)
 end
 
 function CustomGlowingScreenPlay:spawnMobilesNaboo()
@@ -122,6 +166,11 @@ function CustomGlowingScreenPlay:spawnMobilesLok()
   spawnMobile("lok", "jabba_trooper", 300, 476, 12, 4884, 180, 0)
   spawnMobile("lok", "jabba_commander", 300, 477, 12, 4884, 180, 0)
   spawnMobile("lok", "jabba_trooper", 300, 478, 12, 4884, 180, 0)
+end
+
+function CustomGlowingScreenPlay:spawnMobilesEndor()
+  spawnMobile("endor", "cozmic", 300, 3197, 24, -3450, 178.257, 0)
+  spawnMobile("endor", "sap", 300, 3202, 24, -3450, 178.257, 0)
 end
 
 function CustomGlowingScreenPlay:arrangePieceFour()
@@ -175,7 +224,6 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceOne(pPlayer, p
 	end
 
 	local victimName = SceneObject(pVictim):getCustomObjectName()
-	local playerID = SceneObject(pPlayer):getObjectID()
 
   if (victimName == "Tusken Queen") then
     CreatureObject(pPlayer):setScreenPlayState(2, "tusken_queen_head");
@@ -198,7 +246,6 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceTwo(pPlayer, p
 	end
 
 	local victimName = SceneObject(pVictim):getCustomObjectName()
-	local playerID = SceneObject(pPlayer):getObjectID()
 
   if (victimName == "Brian Cohen") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_two")
@@ -220,7 +267,6 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceSix(pPlayer, p
 	end
 
 	local victimName = SceneObject(pVictim):getCustomObjectName()
-	local playerID = SceneObject(pPlayer):getObjectID()
 
   if (victimName == "Elder Krayt Dragon") then
     CreatureObject(pPlayer):setScreenPlayState(2, "krayt_dragon")
@@ -244,9 +290,6 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceFive(pPlayer, 
 	end
 
 	local victimName = SceneObject(pVictim):getObjectName()
-	local playerID = SceneObject(pPlayer):getObjectID()
-
-  printf("Victim name is " .. victimName .. "\n")
 
   if (victimName == "gorax") then
     CreatureObject(pPlayer):setScreenPlayState(2, "nym_trial")
@@ -256,4 +299,134 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceFive(pPlayer, 
   end
 
 	return 0
+end
+
+function CustomGlowingScreenPlay:notifyKilledCreatureTrialFiveTrandoshan(pPlayer, pVictim)
+  printf("notifyKilledCreatureTrialFiveTrandoshan function called")
+	if (pVictim == nil) then
+    printf("pVictim is nil")
+		return 0
+	end
+
+	if (pPlayer == nil) then
+    printf("pPlayer is nil")
+		return 1
+	end
+
+	local victimName = SceneObject(pVictim):getCustomObjectName()
+
+  if (victimName == "Ssethrix Vosskrall") then
+    CreatureObject(pPlayer):setScreenPlayState(2, "cozmic")
+    CreatureObject(pPlayer):removeScreenPlayState(1, "cozmic")
+    CreatureObject(pPlayer):sendSystemMessage("You have slain the Trandoshan slave leader and should return to Cozmic")
+    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveTrandoshan", pPlayer);
+    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveWookiee", pPlayer);
+  end
+
+	return 0
+end
+
+function CustomGlowingScreenPlay:notifyKilledCreatureTrialFiveWookiee(pPlayer, pVictim)
+  printf("notifyKilledCreatureTrialFiveWookiee function called")
+	if (pVictim == nil) then
+    printf("pVictim is nil")
+		return 0
+	end
+
+	if (pPlayer == nil) then
+    printf("pPlayer is nil")
+		return 1
+	end
+
+	local victimName = SceneObject(pVictim):getCustomObjectName()
+
+  if (victimName == "Karrhukk Rroshkaar") then
+    CreatureObject(pPlayer):setScreenPlayState(2, "sap")
+    CreatureObject(pPlayer):removeScreenPlayState(1, "sap")
+    CreatureObject(pPlayer):sendSystemMessage("You have slain the Wookiee tribe leader and should return to Sap")
+    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveWookiee", pPlayer);
+    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialFiveTrandoshan", pPlayer);
+  end
+
+	return 0
+end
+
+function CustomGlowingScreenPlay:notifyKilledCreatureTrialSixKrayt(pPlayer, pVictim)
+	if (pVictim == nil) then
+    printf("pVictim is nil")
+		return 0
+	end
+
+	if (pPlayer == nil) then
+    printf("pPlayer is nil")
+		return 1
+	end
+
+	local victimName = SceneObject(pVictim):getObjectName()
+  local numberOfKraytsKilled = tonumber(readScreenPlayData(pPlayer, "Trial6Krayt", "numberOfKraytsKilled")) or 0
+
+  if (victimName == "krayt_dragon_ancient") then
+    numberOfKraytsKilled = numberOfKraytsKilled + 1
+    writeScreenPlayData(pPlayer, "Trial6Krayt", "numberOfKraytsKilled", numberOfKraytsKilled)  
+  end
+
+  if (numberOfKraytsKilled >= 10) then
+    CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_krayt")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through you as the Krayt Dragon falls.")
+
+    local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
+    writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
+
+    dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialSixKrayt", pPlayer);
+
+    if (tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) == 4) then
+      CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\ Head back to Mos Eisley as soon as you can, the inscription is now clear.")
+    end
+  end
+
+	return 0
+end
+
+function CustomGlowingScreenPlay:notifyKilledPlayerTrialSix(pPlayer, pVictim, nothing)
+  if (pPlayer == nil or pVictim == nil) then
+    return 0
+  end
+
+  CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_death")
+  CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through you as your body fades.")
+
+  local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
+  writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
+
+  if (tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) == 4) then
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\ Head back to Mos Eisley as soon as you can, the inscription is now clear.")
+  end
+
+  dropObserver(OBJECTDESTRUCTION, "CustomGlowingScreenPlay", "notifyKilledPlayerTrialSix", pPlayer);
+
+  return 1
+end
+
+function CustomGlowingScreenPlay:notifyChatSent(pPlayer, pChatMessage)
+  if (pPlayer == nil or not SceneObject(pPlayer):isPlayerCreature() or pChatMessage == nil) then
+		return 0
+	end
+
+  local trialNumber = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trial"))
+
+	local trialData = trialSixRiddles[trialNumber]
+
+  local trialAnswer = trialData.answer
+
+  local chatMessage = getChatMessage(pChatMessage)
+
+  if (chatMessage == nil or chatMessage == "") then
+		return 0
+	end
+
+  if (string.upper(chatMessage) == string.upper(trialAnswer)) then
+    CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_6")
+
+    dropObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
+  end
 end

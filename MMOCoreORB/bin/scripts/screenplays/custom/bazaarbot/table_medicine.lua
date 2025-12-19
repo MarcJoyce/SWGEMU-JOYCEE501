@@ -1,8 +1,8 @@
 BBMedicineConfig = {
 	path = "object/draft_schematic/chemistry/",
-	qualityMin = 55,
-	qualityAvg = 60, -- 10% chance to use this as the min value and qualityMax as the max value
-	qualityMax = 65, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
+	qualityMin = 50,
+	qualityAvg = 75, -- 10% chance to use this as the min value and qualityMax as the max value
+	qualityMax = 95, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
 	freq = 86400, -- Every x seconds
 	eventName = "BazaarBotAddMedicine",
 	functionName = "addMoreMedicine",
@@ -17,12 +17,12 @@ BBMedicineConfig = {
 -- Items that don't have altTemplates and should be the same price can be grouped together
 BBMedicineItems = {
 	{50, 10, 20, 0, "med_stimpack_a"},
-	{250, 10, 20, 0, "med_stimpack_b"},
-	{500, 10, 20, 0, "med_stimpack_c"},
-	{350, 2, 10, 0, "med_stimpack_area_a"},
-	{150, 2, 10, 0, "med_stimpack_range_a"},
-	{5000, 10, 5, 0, "medpack_enhance_action_a", "medpack_enhance_constitution_a", "medpack_enhance_health_a", "medpack_enhance_quickness_a", "medpack_enhance_stamina_a", "medpack_enhance_strength_a"},
-	{50, 10, 20, 0, "medpack_wound_action_a", "medpack_wound_constitution_a", "medpack_wound_health_a", "medpack_wound_quickness_a", "medpack_wound_stamina_a", "medpack_wound_strength_a"},
+	{250, 5, 20, 0, "med_stimpack_b"},
+	{500, 5, 20, 0, "med_stimpack_c"},
+	{350, 1, 10, 0, "med_stimpack_area_a"},
+	{150, 1, 10, 0, "med_stimpack_range_a"},
+	{5000, 1, 5, 0, "medpack_enhance_action_a", "medpack_enhance_constitution_a", "medpack_enhance_health_a", "medpack_enhance_quickness_a", "medpack_enhance_stamina_a", "medpack_enhance_strength_a"},
+	{50, 1, 20, 0, "medpack_wound_action_a", "medpack_wound_constitution_a", "medpack_wound_health_a", "medpack_wound_quickness_a", "medpack_wound_stamina_a", "medpack_wound_strength_a"},
 }
 
 -- These are here to make it easier to add them in later. Just cut/paste into the above table and set the prices. 

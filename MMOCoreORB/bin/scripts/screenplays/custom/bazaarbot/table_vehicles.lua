@@ -1,8 +1,8 @@
 BBVehicleConfig = {
   path = "object/draft_schematic/vehicle/civilian/",
-  qualityMin = 30,
-  qualityAvg = 35,
-  qualityMax = 45,
+  qualityMin = 50,
+	qualityAvg = 75, -- 10% chance to use this as the min value and qualityMax as the max value
+	qualityMax = 95, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
   freq = 86400,
   eventName = "BazaarBotAddVehicles",
   functionName = "addMoreVehicles",
