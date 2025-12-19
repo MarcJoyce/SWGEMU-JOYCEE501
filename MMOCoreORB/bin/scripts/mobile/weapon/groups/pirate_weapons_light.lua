@@ -1,5 +1,7 @@
 pirate_weapons_light = {
 	"object/weapon/ranged/pistol/pistol_dl44.iff",
+	"object/weapon/ranged/carbine/carbine_dh17.iff",
+	"object/weapon/ranged/rifle/rifle_e11.iff",
 	"object/weapon/melee/baton/baton_gaderiffi.iff",
 	"object/weapon/melee/baton/baton_stun.iff",
 	"object/weapon/melee/polearm/lance_staff_wood_s1.iff",
