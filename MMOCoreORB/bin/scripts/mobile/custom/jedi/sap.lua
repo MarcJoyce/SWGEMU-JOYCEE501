@@ -1,19 +1,18 @@
-shadows_exile = Creature:new {
-customName="a shadow exile",
-  randomNameType = NAME_GENERIC,
-	randomNameTag = true,
-	socialGroup = "sith_shadow",
-	faction = "sith_shadow",
+  sap = Creature:new {
+	objectName = "",
+  customName = "Sap",
+	socialGroup = "slaver",
+	faction = "",
 	mobType = MOB_NPC,
-	level = 32,
-	chanceHit = 0.39,
-	damageMin = 290,
-	damageMax = 300,
-	baseXp = 3279,
-	baseHAM = 8400,
-	baseHAMmax = 10200,
+	level = 777,
+	chanceHit = 0.5,
+	damageMin = 415,
+	damageMax = 540,
+	baseXp = 4916,
+	baseHAM = 11000,
+	baseHAMmax = 13000,
 	armor = 1,
-	resists = {75,75,75,75,75,75,75,75,-1},
+	resists = {25,25,25,25,25,25,25,25,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -23,26 +22,24 @@ customName="a shadow exile",
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE + AGGRESSIVE + ENEMY,
-	creatureBitmask = PACK + KILLER,
-	optionsBitmask = AIENABLED,
+	pvpBitmask = NONE,
+	creatureBitmask = HERD,
+	optionsBitmask = INVULNERABLE + CONVERSABLE,
 	diet = HERBIVORE,
 
-	templates = { "sith_shadow" },
+  templates = {"object/mobile/dressed_tatooine_trandoshan_slaver.iff"},
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
+	primaryWeapon = "pirate_weapons_light",
 	secondaryWeapon = "unarmed",
-	thrownWeapon = "thrown_weapons",
-
-	conversationTemplate = "",
-
+	conversationTemplate = "sap_convo_template",
+	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster,tkamaster),
+	primaryAttacks = merge(marksmannovice,brawlernovice),
 	secondaryAttacks = { }
 }
 
-CreatureTemplates:addCreatureTemplate(shadows_exile, "shadows_exile")
+CreatureTemplates:addCreatureTemplate(sap, "sap")

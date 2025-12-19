@@ -7,7 +7,7 @@ dedlee_syn_convo_template = ConvoTemplate:new {
 
 first_screen_not_met = ConvoScreen:new {
   id = "first_screen_not_met",
-  customDialogText = "Ahh… a fresh face in the galaxy's underbelly. Tell me, traveler—does the promise of fame, fortune, and finely tuned firepower spark your interest?",
+  customDialogText = "Ahh... a fresh face in the galaxy's underbelly. Tell me, traveler, does the promise of fame, fortune, and finely tuned firepower spark your interest?",
   stopConversation = "false",
   options = {
     { "Sounds like fun, what would you have me do?", "information" },
@@ -29,7 +29,7 @@ dedlee_syn_convo_template:addScreen(first_screen_has_met)
 
 information = ConvoScreen:new {
   id = "information",
-  customDialogText = "Here's the deal: you take down high-value targets, the kind that make Imperial tacticians flinch… and I hand you tokens. Stack enough tokens, and I'll arm you with weapons even Hutts whisper about.",
+  customDialogText = "Here's the deal: you take down high-value targets, the kind that make Imperial tacticians flinch... and I hand you tokens. Stack enough tokens, and I'll arm you with weapons even Hutts whisper about.",
   stopConversation = "false",
   options = {
     { "How many tokens have I earned so far?", "score" },
@@ -40,7 +40,7 @@ dedlee_syn_convo_template:addScreen(information)
 
 score = ConvoScreen:new {
   id = "score",
-  customDialogText = "Your current token haul stands at this many. Not bad—some beings would've died collecting half that.",
+  customDialogText = "Your current token haul stands at this many. Not bad, some beings would've died collecting half that.",
   stopConversation = "false",
   options = {
     { "Remind me, what's this all about?", "information" },
@@ -61,7 +61,7 @@ dedlee_syn_convo_template:addScreen(shop)
 
 ranged = ConvoScreen:new {
   id = "ranged",
-  customDialogText = "Blasters at a distance, hm? A wise choice—no glory in getting vaporized up close.",
+  customDialogText = "Blasters at a distance, hm? A wise choice, no glory in getting vaporized up close.",
   stopConversation = "false",
   options = {
     { "Carbine", "carbine" },
@@ -75,7 +75,7 @@ dedlee_syn_convo_template:addScreen(ranged)
 
 carbine = ConvoScreen:new {
   id = "carbine",
-  customDialogText = "A carbine connoisseur, I see. Compact, reliable, and deadly—just like I like my clients.",
+  customDialogText = "A carbine connoisseur, I see. Compact, reliable, and deadly, just like I like my clients.",
   stopConversation = "false",
   options = {
     { "CDEF Carbine", "cdefcarbine" },
@@ -129,7 +129,7 @@ dedlee_syn_convo_template:addScreen(pistol)
 
 rifle = ConvoScreen:new {
   id = "rifle",
-  customDialogText = "A rifle? So you *are* the patient type. Long-range justice—it has a certain poetry to it.",
+  customDialogText = "A rifle? So you *are* the patient type. Long-range justice, it has a certain poetry to it.",
   stopConversation = "false",
   options = {
     { "Berserker Rifle", "berserkerrifle" },
@@ -154,7 +154,7 @@ dedlee_syn_convo_template:addScreen(rifle)
 
 special = ConvoScreen:new {
   id = "special",
-  customDialogText = "Ahh… the exotic stuff. Hard to find, harder to survive, and very fun to point at someone else.",
+  customDialogText = "Ahh... the exotic stuff. Hard to find, harder to survive, and very fun to point at someone else.",
   stopConversation = "false",
   options = {
     { "Flame Thrower", "flamethrower" },
@@ -181,7 +181,7 @@ dedlee_syn_convo_template:addScreen(melee)
 
 onehanded = ConvoScreen:new {
   id = "onehanded",
-  customDialogText = "Elegant, precise—very old-Republic of you. A duelist's weapon for a duelist's ego.",
+  customDialogText = "Elegant, precise, very old-Republic of you. A duelist's weapon for a duelist's ego.",
   stopConversation = "false",
   options = {
     { "Sword", "sword" },
@@ -201,7 +201,7 @@ dedlee_syn_convo_template:addScreen(onehanded)
 
 polearm = ConvoScreen:new {
   id = "polearm",
-  customDialogText = "A polearm? That sweeping, dramatic flair… you must enjoy looking impressive while ending lives.",
+  customDialogText = "A polearm? That sweeping, dramatic flair... you must enjoy looking impressive while ending lives.",
   stopConversation = "false",
   options = {
     { "Lance", "lance" },
@@ -239,7 +239,7 @@ dedlee_syn_convo_template:addScreen(twohanded)
 
 unarmed = ConvoScreen:new {
   id = "unarmed",
-  customDialogText = "Unarmed? A fistfighter in a galaxy of blasters. Either brave… or slightly unhinged. I approve.",
+  customDialogText = "Unarmed? A fistfighter in a galaxy of blasters. Either brave... or slightly unhinged. I approve.",
   stopConversation = "false",
   options = {
     { "Vibro Knuckler", "vibroknuckler" },
@@ -367,7 +367,7 @@ local damageTypeIds = {
 for _, id in ipairs(damageTypeIds) do
   local screen = ConvoScreen:new {
     id = id,
-    customDialogText = "Last step—how many of your hard-earned tokens are you ready to part with?",
+    customDialogText = "Last step, how many of your hard-earned tokens are you ready to part with?",
     stopConversation = "false",
     options = {}
   }
@@ -382,7 +382,7 @@ local tokens = {
 for _, id in ipairs(tokens) do
   local screen = ConvoScreen:new {
     id = id,
-    customDialogText =  "Take it—may it serve you well in the chaos ahead. Try not to vaporize anything you'll miss.",
+    customDialogText =  "Take it, may it serve you well in the chaos ahead. Try not to vaporize anything you'll miss.",
     stopConversation = "true",
     options = {}
   }

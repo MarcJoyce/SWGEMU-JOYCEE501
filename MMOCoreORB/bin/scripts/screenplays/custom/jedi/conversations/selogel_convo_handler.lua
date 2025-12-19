@@ -2,100 +2,6 @@ local ObjectManager = require("managers.object.object_manager")
 
 selogelConvoHandler = conv_handler:new {}
 
--- trials = {
-	-- 	1 = {
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	2 = {
-	-- 		options = {
-	-- 			{ "combat_brawler_master"},
-	-- 			{ "combat_carbine_master"},
-	-- 			{ "combat_commando_master"},
-	-- 			{ "combat_1hsword_master"},
-	-- 			{ "combat_marksman_master"},
-	-- 			{ "combat_polearm_master"},
-	-- 			{ "combat_pistol_master"},
-	-- 			{ "combat_rifleman_master"},
-	-- 			{ "combat_smuggler_master"},
-	-- 			{ "combat_2hsword_master"},
-	-- 			{ "combat_unarmed_master"}
-	-- 		},
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	3 = {
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	4 = {
-	-- 		options = {
-	-- 			{ "crafting_architect_master"},
-	-- 			{ "crafting_armorsmith_master"},
-	-- 			{ "crafting_artisan_master"},
-	-- 			{ "outdoors_bio_engineer_master"},
-	-- 			{ "crafting_chef_master"},
-	-- 			{ "science_combatmedic_master"},
-	-- 			{ "outdoors_creaturehandler_master"},
-	-- 			{ "social_dancer_master"},
-	-- 			{ "science_doctor_master"},
-	-- 			{ "crafting_droidengineer_master"},
-	-- 			{ "social_entertainer_master"},
-	-- 			{ "social_imagedesigner_master"},
-	-- 			{ "science_medic_master"},
-	-- 			{ "crafting_merchant_master"},
-	-- 			{ "social_musician_master"},
-	-- 			{ "outdoors_ranger_master"},
-	-- 			{ "outdoors_scout_master"},
-	-- 			{ "outdoors_squadleader_master"},
-	-- 			{ "crafting_tailor_master"},
-	-- 			{ "crafting_weaponsmith_master"},
-	-- 		},
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	5 = {
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	6 = {
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	7 = {
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- 	8 = {
-	-- 		states = {
-	-- 			1, -- Quest accepted
-	-- 			2, -- Quest complete but not turned in
-	-- 			4  -- Quest complete and turned in
-	-- 		}
-	-- 	},
-	-- }
-
 function selogelConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local convoTemplate = LuaConversationTemplate(pConvTemplate)
 
@@ -103,25 +9,21 @@ function selogelConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 
 	local accountID = 0
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
-
-	if pGhost == nil then
 		
-	else
-		accountID = PlayerObject(pGhost):getAccountID()
-	end
-
-	if (not accountID == 17) then
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_8")) then	
 		return convoTemplate:getScreen("hello_friend")
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_8")) then	
-		return convoTemplate:getScreen("trial_8_complete")
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_8")) then	
-		return convoTemplate:getScreen("trial_8_ongoing")
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_7")) then	
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7") and BestineElection:hasItemInInventory(pPlayer, "object/tangible/jedi/jedi_holocron_dark.iff") and BestineElection:hasItemInInventory(pPlayer, "object/tangible/jedi/jedi_holocron_light.iff")) then	
 		return convoTemplate:getScreen("trial_7_complete")
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7")) then	
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7")) then
 		return convoTemplate:getScreen("trial_7_ongoing")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_6")) then	
 		return convoTemplate:getScreen("trial_6_complete")
+	elseif (tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) == 4) then
+		return convoTemplate:getScreen("trial_6_complete_decipher")
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher")) then
+		return convoTemplate:getScreen("trial_6_ongoing_decipher")
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "lazarus")) then
+		return convoTemplate:getScreen("completed_lazarus")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_6")) then	
 		return convoTemplate:getScreen("trial_6_ongoing")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_5")) then	
@@ -173,7 +75,7 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		return pConvScreen
 	end
 
-  if screenID == "trial_1_start" then
+  	if screenID == "trial_1_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_1");
 		
 		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer)
@@ -186,8 +88,7 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		CreatureObject(pPlayer):sendSystemMessage(self:getProfessionString(pPlayer, "combat", "Trial2"))
 	elseif screenID == "trial_3_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_3");
-		CreatureObject(pPlayer):setScreenPlayState(1, "shadows_one");
-		ShadowsIntroTheatre:start(pPlayer)
+		PlayerObject(pGhost):addWaypoint("tatooine", "Vessa Kael", "", -1148, 98, -3893, WAYPOINT_YELLOW, true, true, 0)
 	elseif screenID == "trial_4_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_4");
 		local professionString = self:getAndSetProfession(pPlayer, "support", "Trial4")
@@ -196,8 +97,28 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		CreatureObject(pPlayer):sendSystemMessage(self:getProfessionString(pPlayer, "support", "Trial4"))
 	elseif screenID == "trial_5_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_5");
+	elseif (screenID == "trial_5_complete") then
+		local decipherTrial = getRandomNumber(1, #trialSixRiddles)
+		writeScreenPlayData(pPlayer, "DecipherQuest", "trial", decipherTrial)
+	elseif (screenID == "trial_6_explain_two") then
+		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0
+		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\" .. self:getTrialSixString(pPlayer, decipherQuestsCompleted))
+	elseif (screenID == "completed_lazarus") then
+		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0
+		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\" .. self:getTrialSixString(pPlayer, decipherQuestsCompleted))
 	elseif screenID == "trial_6_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_6");
+	elseif (screenID == "trial_6_decipher_start" ) then
+		CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher");
+		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialSixKrayt", pPlayer)
+		createObserver(OBJECTDESTRUCTION, "CustomGlowingScreenPlay", "notifyKilledPlayerTrialSix", pPlayer)
+	elseif (screenID == "trial_6_ongoing_decipher") then
+		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0
+		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\" .. self:getTrialSixString(pPlayer, decipherQuestsCompleted))
+	elseif (screenID == "trial_6_complete_decipher") then
+		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0
+		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\" .. self:getTrialSixString(pPlayer, decipherQuestsCompleted))
+		createObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
 	elseif screenID == "trial_7_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_7");
 	elseif screenID == "trial_8_start" then
@@ -300,3 +221,62 @@ function selogelConvoHandler:doesPlayerHaveProfession(pPlayer, professionType, t
 		return CreatureObject(pPlayer):hasSkill(skillList[tonumber(readScreenPlayData(pPlayer, "CustomGlowyScreenPlay", trialNumber))][1])
 	end
 end
+
+function selogelConvoHandler:getTrialSixString(pPlayer, num) 
+	local trialNumber = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trial"))
+
+	local trialData = trialSixRiddles[trialNumber]
+
+	return self:jumbleString(trialData.line, num)
+end
+
+function selogelConvoHandler:log(message)
+  local outputFile = "log/selogel.log"
+  logToFile(message, outputFile)
+end
+
+function selogelConvoHandler:jumbleString(str, intensity)
+    math.randomseed(os.time())
+
+    local jumbleFraction = (4- intensity) * 0.25
+
+    local chars = {}
+    for c in str:gmatch(".") do
+        table.insert(chars, c)
+    end
+
+    local letterIndices = {}
+    for i, c in ipairs(chars) do
+        if c:match("%a") then
+            table.insert(letterIndices, i)
+        end
+    end
+
+    local jumbleCount = math.floor(#letterIndices * jumbleFraction + 0.5)
+    if jumbleCount == 0 then return str end
+
+    local selectedIndices = {}
+    local temp = {table.unpack(letterIndices)}
+    for i = 1, jumbleCount do
+        local idx = math.random(#temp)
+        table.insert(selectedIndices, temp[idx])
+        table.remove(temp, idx)
+    end
+
+    local lettersToJumble = {}
+    for _, idx in ipairs(selectedIndices) do
+        table.insert(lettersToJumble, chars[idx])
+    end
+
+    for i = #lettersToJumble, 2, -1 do
+        local j = math.random(i)
+        lettersToJumble[i], lettersToJumble[j] = lettersToJumble[j], lettersToJumble[i]
+    end
+
+    for i, idx in ipairs(selectedIndices) do
+        chars[idx] = lettersToJumble[i]
+    end
+
+    return table.concat(chars)
+end
+

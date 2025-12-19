@@ -15,7 +15,7 @@ jabba_henchman_custom_convo_template:addScreen(first_screen)
 
 free = ConvoScreen:new {
   id = "free",
-  customDialogText = "Boss say you okay. Hmph. Take shiny… but no touch anything else! Hmph!",
+  customDialogText = "Boss say you okay. Hmph. Take shiny... but no touch anything else! Hmph!",
   stopConversation = "true",
   options = {}
 }
@@ -23,7 +23,7 @@ jabba_henchman_custom_convo_template:addScreen(free)
 
 pay = ConvoScreen:new {
   id = "pay",
-  customDialogText = "You not friend… but not bad. Shiny cost big. One million credits. You pay, yes?",
+  customDialogText = "You not friend... but not bad. Shiny cost big. One million credits. You pay, yes?",
   stopConversation = "false",
   options = {}
 }
@@ -47,7 +47,7 @@ jabba_henchman_custom_convo_template:addScreen(pay_failed)
 
 kill = ConvoScreen:new {
   id = "kill",
-  customDialogText = "Boss no like you. No credits. You want shiny? Kill big sand lizard. Krayt. Not baby… Ancient Krayt.",
+  customDialogText = "Boss no like you. No credits. You want shiny? Kill big sand lizard. Krayt. Not baby... Elder Krayt Dragon.",
   stopConversation = "false",
   options = {
     {"A krayt dragon? Fine. I'll be back with its head.", "kill_bye" },
@@ -66,7 +66,7 @@ jabba_henchman_custom_convo_template:addScreen(kill_bye)
 
 kill_bye_two = ConvoScreen:new {
   id = "kill_bye_two",
-  customDialogText = "No! Kill Krayt… get shiny. Now go, hmm!",
+  customDialogText = "No! Kill Krayt... get shiny. Now go, hmm!",
   stopConversation = "true",
   options = {}
 }
@@ -74,7 +74,7 @@ jabba_henchman_custom_convo_template:addScreen(kill_bye_two)
 
 kill_success = ConvoScreen:new {
   id = "kill_success",
-  customDialogText = "You live. Kill Krayt… good. Boss happy. Shiny is yours. Hmph!",
+  customDialogText = "You live. Kill Krayt... good. Boss happy. Shiny is yours. Hmph!",
   stopConversation = "true",
   options = {}
 }
@@ -82,7 +82,7 @@ jabba_henchman_custom_convo_template:addScreen(kill_success)
 
 kill_ongoing = ConvoScreen:new {
   id = "kill_ongoing",
-  customDialogText = "Kill Krayt… get shiny. Leave now, hmm!",
+  customDialogText = "Kill Krayt... get shiny. Leave now, hmm!",
   stopConversation = "true",
   options = {}
 }
@@ -97,3 +97,4 @@ go_away = ConvoScreen:new {
 jabba_henchman_custom_convo_template:addScreen(go_away)
 
 addConversationTemplate("jabba_henchman_custom_convo_template", jabba_henchman_custom_convo_template);
+

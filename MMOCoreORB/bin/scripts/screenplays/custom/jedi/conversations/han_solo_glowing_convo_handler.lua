@@ -1,5 +1,10 @@
 hanSoloConvoHandler = conv_handler:new {}
 
+function hanSoloConvoHandler:log(message)
+  local outputFile = "log/han_solo_glowing.log"
+  logToFile(message, outputFile)
+end
+
 function hanSoloConvoHandler:getInitialScreen(pPlayer, nNpc, pConvTemplate)
   local convoTemplate = LuaConversationTemplate(pConvTemplate)
 
@@ -44,9 +49,10 @@ function hanSoloConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_four")
   elseif (screenID == "accept_quest") then
     CreatureObject(pPlayer):setScreenPlayState(1, "han_solo_glowing")
+    PlayerObject(pGhost):addWaypoint("tatooine", "Chewbacca", "", -181, 5, -5145, WAYPOINT_YELLOW, true, true, 0)
   elseif (screenID == "first_screen") then
     if (isImperial) then
-      clonedConversation:addOption("Wait, aren't you Han Solo? You're under arrest for crimes against the Empire!", "imperial")
+      clonedConversation:addOption("@conversation/custom_string:han_solo_glowing_imperial_question", "imperial")
     end
   end
 

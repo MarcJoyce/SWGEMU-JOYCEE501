@@ -7,7 +7,7 @@ thalos_krenn_convo_template = ConvoTemplate:new {
 
 first_screen = ConvoScreen:new {
   id = "first_screen",
-  customDialogText = "You're far from home, traveler… and your shadow lingers too long. Stormtroopers have been watching this district, and you're drawing their gaze. Tell me—why hunt for remnants of the Jedi?",
+  customDialogText = "You're far from home, traveler... and your shadow lingers too long. Stormtroopers have been watching this district, and you're drawing their gaze. Tell me, why hunt for remnants of the Jedi?",
   stopConversation = "false",
   options = {
     { "I believe in what they stood for. The Jedi meant something", "honest" },
@@ -19,7 +19,7 @@ thalos_krenn_convo_template:addScreen(first_screen)
 
 honest = ConvoScreen:new {
   id = "honest",
-  customDialogText = "You speak with conviction… rare, these days. There was a time when hope echoed across the stars. Perhaps… perhaps you are the one the Force has been quietly nudging toward me.",
+  customDialogText = "You speak with conviction... rare, these days. There was a time when hope echoed across the stars. Perhaps... perhaps you are the one the Force has been quietly nudging toward me.",
   stopConversation = "false",
   options = {
     { "What is it you have?", "reward" }
@@ -39,7 +39,7 @@ thalos_krenn_convo_template:addScreen(greed)
 
 drawn = ConvoScreen:new {
   id = "drawn",
-  customDialogText = "Then the Force has brushed against you. Few feel its whisper. Fewer heed it. If something pulled you here… we should not ignore it.",
+  customDialogText = "Then the Force has brushed against you. Few feel its whisper. Fewer heed it. If something pulled you here... we should not ignore it.",
   stopConversation = "false",
   options = {
     { "Then let me seee what it's guided me to.", "reward" }
@@ -65,7 +65,7 @@ thalos_krenn_convo_template:addScreen(not_ready)
 
 complete = ConvoScreen:new {
   id = "complete",
-  customDialogText = "Then our paths part here. Walk carefully—and may the Force be with you, wherever it leads.",
+  customDialogText = "Then our paths part here. Walk carefully, and may the Force be with you, wherever it leads.",
   stopConversation = "true",
   options = {}
 }

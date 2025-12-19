@@ -1,17 +1,18 @@
-konlan_voss = Creature:new {
-	customName = "Konlan Voss",
-	socialGroup = "townsperson",
-	faction = "townsperson",
+cozmic = Creature:new {
+	objectName = "",
+  customName = "Cozmic Debris",
 	mobType = MOB_NPC,
+	socialGroup = "thug",
+	faction = "thug",
 	level = 777,
-	chanceHit = 0.24,
-	damageMin = 40,
+	chanceHit = 0.23,
+	damageMin = 35,
 	damageMax = 45,
 	baseXp = 62,
-	baseHAM = 113,
-	baseHAMmax = 138,
-	armor = 3,
-	resists = {200,200,200,200,200,200,200,200,200},
+	baseHAM = 90,
+	baseHAMmax = 110,
+	armor = 0,
+	resists = {0,0,0,0,0,0,0,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -26,19 +27,19 @@ konlan_voss = Creature:new {
 	optionsBitmask = INVULNERABLE + CONVERSABLE,
 	diet = HERBIVORE,
 
-	templates = { "object/mobile/dressed_dark_jedi_human_male_01.iff" },
+	templates = { "object/mobile/dressed_criminal_thug_rodian_female_01.iff" },
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "dark_jedi_weapons_ranged",
-	conversationTemplate = "konlan_voss_convo_template",
-
+	primaryWeapon = "pirate_weapons_light",
+	secondaryWeapon = "unarmed",
+	conversationTemplate = "cozmic_convo_template",
+	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(lightsabermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	primaryAttacks = merge(marksmannovice,brawlernovice),
+	secondaryAttacks = { }
 }
 
-CreatureTemplates:addCreatureTemplate(konlan_voss, "konlan_voss")
+CreatureTemplates:addCreatureTemplate(cozmic, "cozmic")
