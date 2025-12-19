@@ -57,9 +57,9 @@ ForceLightningSingle2Command = {
 			{},
 			{},
 			{ "jedi_state_defense" },
-			30,
+			60,
 			0,
-			10
+			30
 		)
 	},
 

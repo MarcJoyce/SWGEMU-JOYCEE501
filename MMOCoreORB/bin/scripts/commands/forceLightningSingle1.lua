@@ -62,6 +62,18 @@ ForceLightningSingle1Command = {
 	forceAttack = true,
 	damageType = ELECTRICITY_DAMAGE,
 
+	stateEffects = {
+		StateEffect(
+			STUN_EFFECT,
+			{},
+			{},
+			{ "jedi_state_defense" },
+			30,
+			0,
+			30
+		)
+	},
+
 	frsLightMinDamageModifier = 2.5,
 	frsLightMaxDamageModifier = 5,
 	frsDarkMinDamageModifier = 2.5,
