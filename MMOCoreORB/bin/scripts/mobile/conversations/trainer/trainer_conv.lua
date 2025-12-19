@@ -106,6 +106,40 @@ function createTrainerConversationTemplate(templateName, typeOfTrainer)
 		options = {}
 	}
 	trainerConvoTemplate:addScreen(nsf_skill_points);
+	
+	barc_disks_any = ConvoScreen:new {
+		id = "barc_disks_any",
+		customDialogText = "After the Republic became the Galactic Empire, the Aratech Repulsor Company was forced to halt production on their BARC Speeder line, but many information disks were kept by employees looking to make a quick credit. Find 10 of these and bring them back to me and we'll see if we can't recreate the speeder for you.",
+		leftDialog = "",
+		stopConversation = "true",
+		options = {}
+	}
+	trainerConvoTemplate:addScreen(barc_disks_any);
+	
+	barc_disks_all = ConvoScreen:new {
+		id = "barc_disks_all",
+		customDialogText = "After the Republic became the Galactic Empire, the Aratech Repulsor Company was forced to halt production on their BARC Speeder line, but many information disks were kept by employees looking to make a quick credit. Now you've found all 10 disks, it shouldn't be too much work to recreate the speeder.",
+		stopConversation = "true",
+		options = {}
+	}
+	trainerConvoTemplate:addScreen(barc_disks_all);
+	
+	holocron_splinter_any = ConvoScreen:new {
+		id = "holocron_splinter_any",
+		customDialogText = "In the early days of the Jedi and the Sith, it was rumoured that fusing 10 Holocron Splinters with an untuned irregular Lightsaber Crystal could make it more powerful. It you want to try this, bring me 10 Splinters, and an untuned named Lightsaber Crystal.",
+		leftDialog = "",
+		stopConversation = "true",
+		options = {}
+	}
+	trainerConvoTemplate:addScreen(holocron_splinter_any);
+	
+	holocron_splinter_all = ConvoScreen:new {
+		id = "holocron_splinter_all",
+		customDialogText = "In the early days of the Jedi and the Sith, it was rumoured that fusing 10 Holocron Splinters with an untuned irregular Lightsaber Crystal could make it more powerful. Now you've brought me the 10 Splinters and an untuned named Lightsaber Crystal, let's see what we can do...",
+		stopConversation = "true",
+		options = {}
+	}
+	trainerConvoTemplate:addScreen(holocron_splinter_all);
 
 	addConversationTemplate(templateName, trainerConvoTemplate);
 end

@@ -746,15 +746,27 @@ includeFile("custom/jedi/conversations/jabba_henchman_custom_convo_handler.lua")
 includeFile("custom/jedi/conversations/han_solo_glowing_convo_handler.lua")
 includeFile("custom/jedi/conversations/chewbacca_glowing_convo_handler.lua")
 
-includeFile("custom/jedi/conversations/shadows/shadows_captive_one_convo_handler.lua")
-includeFile("custom/jedi/conversations/shadows/konlan_voss_convo_handler.lua")
+includeFile("custom/jedi/conversations/vessa_kael_convo_handler.lua")
+includeFile("custom/jedi/conversations/rarruk_graal_convo_handler.lua")
+includeFile("custom/jedi/conversations/jalen_vort_convo_handler.lua")
+includeFile("custom/jedi/conversations/sskarr_vrenn_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/cozmic_convo_handler.lua")
+includeFile("custom/jedi/conversations/sap_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/lazarus_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/hermit_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/herald_convo_handler.lua")
+
+includeFile("custom/bountyhunter/conversations/shae_torrvek_convo_handler.lua")
 
 includeFile("custom/jedi/custom_glowing.lua")
 
-includeFile("custom/jedi/shadows/shadows.lua")
-includeFile("custom/jedi/shadows/shadows_intro_theatre.lua")
-includeFile("custom/jedi/shadows/shadows_guard_detail.lua")
-includeFile("custom/jedi/shadows/shadows_meet_up_theatre.lua")
+includeFile("custom/jedi/riddles.lua")
+
+includeFile("custom/bountyhunter/bountyhunterguild.lua")
 
 includeFile("custom/navi_gator.lua")
 includeFile("custom/buff_terminals.lua")
@@ -763,3 +775,13 @@ includeFile("custom/dedlee_syn.lua")
 includeFile("custom/bazaarbot/BazaarBot.lua")
 
 includeFile("custom/world_bosses.lua")
+
+includeFile("custom/encounters/jediEncounters.lua")
+includeFile("custom/encounters/bountyhunters.lua")
+includeFile("custom/encounters/padawan.lua")
+includeFile("custom/encounters/knight.lua")
+includeFile("custom/encounters/master.lua")
+includeFile("custom/encounters/vader.lua")
+
+includeFile("custom/meatlump_king.lua")
+includeFile("custom/meatlump_king_theatre.lua")

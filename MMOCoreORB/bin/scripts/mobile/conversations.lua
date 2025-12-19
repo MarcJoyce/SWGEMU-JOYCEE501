@@ -343,9 +343,21 @@ includeFile("conversations/custom/jedi/jabba_henchman_custom_conv.lua")
 includeFile("conversations/custom/jedi/han_solo_glowing_conv.lua")
 includeFile("conversations/custom/jedi/chewbacca_glowing_conv.lua")
 
-includeFile("conversations/custom/jedi/shadows/shadows_captive_one_conv.lua")
-includeFile("conversations/custom/jedi/shadows/konlan_voss_conv.lua")
+includeFile("conversations/custom/jedi/vessa_kael_conv.lua")
+includeFile("conversations/custom/jedi/rarruk_graal_conv.lua")
+includeFile("conversations/custom/jedi/jalen_vort_conv.lua")
+includeFile("conversations/custom/jedi/sskarr_vrenn_conv.lua")
+
+includeFile("conversations/custom/jedi/cozmic_conv.lua")
+includeFile("conversations/custom/jedi/sap_conv.lua")
+
+includeFile("conversations/custom/jedi/lazarus_conv.lua")
+
+includeFile("conversations/custom/jedi/hermit_conv.lua")
+
+includeFile("conversations/custom/jedi/herald_conv.lua")
 
 includeFile("conversations/custom/navi_gator_conv.lua")
 includeFile("conversations/custom/bazaar_bot_helper_conv.lua")
 includeFile("conversations/custom/dedlee_syn_conv.lua")
+includeFile("conversations/custom/shae_torrvek_conv.lua")

@@ -234,6 +234,137 @@ knightTrialQuests = {
 	},
 }
 
+bhTrials = {
+	{
+		trialName = "Tusken Raider",
+		trialType = TRIAL_HUNT,
+		huntTarget = "tusken_raider",
+		-- huntGoal = 50,
+		huntGoal = 1,
+		reward = 1000
+	},
+	{
+		trialName = "Tusken Guard",
+		trialType = TRIAL_HUNT,
+		huntTarget = "tusken_guard",
+		-- huntGoal = 40,
+		huntGoal = 1,
+		reward = 1250
+	},
+	{
+		trialName = "Tusken Chief",
+		trialType = TRIAL_HUNT,
+		huntTarget = "tusken_chief",
+		-- huntGoal = 30,
+		huntGoal = 1,
+		reward = 1500
+	},
+	{
+		trialName = "Tusken War Master",
+		trialType = TRIAL_HUNT,
+		huntTarget = "tusken_war_master",
+		-- huntGoal = 30,
+		huntGoal = 1,
+		reward = 1750
+	},
+	{
+		trialName = "Nightsister Initiate",
+		trialType = TRIAL_HUNT,
+		huntTarget = "nightsister_initiate",
+		-- huntGoal = 25,
+		huntGoal = 1,
+		reward = 2000
+	},
+	{
+		trialName = "Nightsister Rancor Tamer",
+		trialType = TRIAL_HUNT,
+		huntTarget = "nightsister_rancor_tamer",
+		-- huntGoal = 25,
+		huntGoal = 1,
+		reward = 2250
+	},
+	{
+		trialName = "Nightsister Outcast",
+		trialType = TRIAL_HUNT,
+		huntTarget = "nightsister_outcast",
+		-- huntGoal = 25,
+		huntGoal = 1,
+		reward = 2500
+	},
+	{
+		trialName = "Nightsister Stalker",
+		trialType = TRIAL_HUNT,
+		huntTarget = "nightsister_stalker",
+		-- huntGoal = 25,
+		huntGoal = 1,
+		reward = 2750
+	},
+	{
+		trialName = "Black Sun Guard",
+		trialType = TRIAL_HUNT,
+		huntTarget = "mand_bunker_blksun_guard",
+		-- huntGoal = 10,
+		huntGoal = 1,
+		reward = 5000
+	},
+	{
+		trialName = "Black Sun Assassin",
+		trialType = TRIAL_HUNT,
+		huntTarget = "mand_bunker_blksun_assassin",
+		-- huntGoal = 10,
+		huntGoal = 1,
+		reward = 5000
+	},
+	{
+		trialName = "Death Watch Bloodguard",
+		trialType = TRIAL_HUNT,
+		huntTarget = "mand_bunker_dthwatch_red",
+		-- huntGoal = 10,
+		huntGoal = 1,
+		reward = 7500
+	},
+	{
+		trialName = "Death Watch Wraith",
+		trialType = TRIAL_HUNT,
+		huntTarget = "mand_bunker_dthwatch_silver",
+		-- huntGoal = 5,
+		huntGoal = 1,
+		reward = 10000
+	},
+	{
+		trialName = "Spiderclan Elder",
+		trialType = TRIAL_HUNT,
+		huntTarget = "spider_nightsister_elder",
+		-- huntGoal = 5,
+		huntGoal = 1,
+		reward = 15000
+	},
+	{
+		trialName = "Nightsister Elder",
+		trialType = TRIAL_HUNT,
+		huntTarget = "nightsister_elder",
+		-- huntGoal = 5,
+		huntGoal = 1,
+		reward = 25000
+	},
+	{
+		trialName = "Dark Jedi Knight",
+		trialType = TRIAL_HUNT,
+		huntTarget = "dark_jedi_knight",
+		-- huntGoal = 2,
+		huntGoal = 1,
+		reward = 250000
+	},
+	{
+		trialName = "Dark Jedi Master",
+		trialType = TRIAL_HUNT,
+		huntTarget = "dark_jedi_master",
+		-- huntGoal = 1,
+		huntGoal = 1,
+		reward = 1500000
+	},
+}
+
 trialsCivilizedPlanets = { "corellia", "naboo", "rori", "talus", "tatooine" }
 
 trialsCivilizedPlanetCities = {
