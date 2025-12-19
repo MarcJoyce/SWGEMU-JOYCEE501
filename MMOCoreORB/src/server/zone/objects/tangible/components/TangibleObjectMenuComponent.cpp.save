@@ -62,33 +62,8 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 		if (wearable->isWearableObject() || wearable->isArmorObject()) {
 			VectorMap<String, int>* mods = wearable->getWearableSkillMods();
 			if (mods->size() > 0) {
-				int price;
-				int value = mods->elementAt(0).getValue();
-
-				if (value > 20) {
-					price = mods->size() * (value * 12000);
-				} else if (value > 15) {
-					price = mods->size() * (value * 11000);
-				} else if (value > 10) {
-					price = mods->size() * (value * 10000);
-				} else if (value > 5 ) {
-					price = mods->size() * (value * 9000);
-				} else {
-					price = mods->size() * (value * 8000);
-				}
-
-				bool hasForbiddenMods = false;
-				for (int i = 0; i<mods->size(); i++) {
-					String key = mods->elementAt(i).getKey().toLowerCase();
-
-					if (key.contains("deity_")) {
-						hasForbiddenMods = true;
-						break;
-					}
-				}
-				if (!hasForbiddenMods) {
-					menuResponse->addRadialMenuItem(89, 3, "Extract Skill Mods (Destroys Item - " + String::valueOf(price / 1000) + "k Credit Fee)");
-				}
+				int price = mods->size() * 50;
+				menuResponse->addRadialMenuItem(89, 3, "Extract Skill Mods (Destroys Item - " + String::valueOf(price)  + "k Credit Fee)");
 			}
 		}
 	}
@@ -162,21 +137,9 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 
 				VectorMap<String, int>* mods = wearable->getWearableSkillMods();
 				if (mods->size() > 0) {
-					int price;
-					int value = mods->elementAt(0).getValue();
-
-					if (value > 20) {
-						price = mods->size() * (value * 12000);
-					} else if (value > 15) {
-						price = mods->size() * (value * 11000);
-					} else if (value > 10) {
-						price = mods->size() * (value * 10000);
-					} else {
-						price = mods->size() * (value * 9000);
-					}
-					// int price = 50000 * mods->size();
+					int price = mods->size() * 50000;
 					if (player->getCashCredits() < price) {
-						player->sendSystemMessage("You do not have enough credits to extract the skill mods.");
+						player->sendSystemMessage("You do not have enough credits");
 						return 0;
 					}
 					int i,j;
@@ -223,9 +186,8 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 
 					wearable->destroyObjectFromWorld(true);
 					wearable->destroyObjectFromDatabase(true);
-					player->subtractCashCredits(price);
-
-					player->sendSystemMessage("Skill mods extracted successfully. " + String::valueOf(price) + " credits have been deducted.");
+					player->subtractCashCredits(100000);
+					player->sendSystemMessage("Skill mods extracted successfully. 100,000 credits have been deducted.");
 				}
 			}
 		}

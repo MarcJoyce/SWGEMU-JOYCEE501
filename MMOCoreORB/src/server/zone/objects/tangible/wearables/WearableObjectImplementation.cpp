@@ -193,8 +193,82 @@ void WearableObjectImplementation::applySkillModsTo(CreatureObject* creature) co
 		String name = wearableSkillMods.elementAt(i).getKey();
 		int value = wearableSkillMods.get(name);
 
-		if (!SkillModManager::instance()->isWearableModDisabled(name))
-		{
+		if (name.toLowerCase() == "deity_han_solo") {
+			int variableOne = 10;
+			int variableTwo = 4;
+			// Increased Ranged Accuracy
+			creature->addSkillMod(SkillModManager::SKILLBOX, "private_ranged_accuracy_bonus", variableOne * value);
+			
+			// Increase Dodge
+			creature->addSkillMod(SkillModManager::SKILLBOX, "dodge", variableOne * value);
+			// Increase CounterAttack
+			creature->addSkillMod(SkillModManager::SKILLBOX, "counterattack", variableOne * value);
+			// Increase Block
+			creature->addSkillMod(SkillModManager::SKILLBOX, "block", variableOne * value);
+		} else if (name.toLowerCase() == "deity_chewbacca") {
+			int variableOne = 100;
+			
+			// Increase All HAM stats
+			for (int j = 0; j <= 8; j++) {
+				creature->addMaxHAM(j, variableOne * value);
+			}
+		} else if (name.toLowerCase() == "deity_darth_vader") {
+			int variableOne = 2;
+			int variableTwo = -4;
+
+			// Increase Damage Done
+			creature->addSkillMod(SkillModManager::SKILLBOX, "private_item_damage_multiplier", 100 + (variableOne * value));
+			creature->addSkillMod(SkillModManager::SKILLBOX, "private_item_damage_divisor", 100);
+			// Decrease all defenses
+			creature->addSkillMod(SkillModManager::SKILLBOX, "posture_change_down_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "posture_change_up_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "blind_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "dizzy_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "stun_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "knockdown_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "intimidate_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "ranged_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "melee_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "combat_bleeding_defense", variableTwo * value);
+		} else if (name.toLowerCase() == "deity_obi_wan") {
+			int variableOne = -2;
+			int variableTwo = 4;
+
+			// Decrease Damage Done
+			creature->addSkillMod(SkillModManager::SKILLBOX, "private_item_damage_multiplier", 100);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "private_item_damage_divisor", 100 + (variableOne * value));
+			// Increase all defenses
+			creature->addSkillMod(SkillModManager::SKILLBOX, "posture_change_down_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "posture_change_up_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "blind_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "dizzy_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "stun_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "knockdown_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "intimidate_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "ranged_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "melee_defense", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "combat_bleeding_defense", variableTwo * value);
+		} else if (name.toLowerCase() == "deity_techno_union") {
+			int variableOne = 1;
+
+			// Increase Assembly and Experimentation
+			creature->addSkillMod(SkillModManager::SKILLBOX, "deity_techno_union", variableOne * value);
+		} else if (name.toLowerCase() == "deity_whills") {
+			int variableOne = 1;
+			creature->addSkillMod(SkillModManager::SKILLBOX, "deity_whills", variableOne * value);
+		} else if (name.toLowerCase() == "deity_oola") {
+			int variableOne = 1;
+			int variableTwo = 5;
+			
+			// Increase Entertainer mods
+			creature->addSkillMod(SkillModManager::SKILLBOX, "healing_dance_mind", variableOne * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "healing_music_mind", variableOne * value);
+			// Increase Entertrainer Healing mods
+			creature->addSkillMod(SkillModManager::SKILLBOX, "healing_dance_shock", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "healing_dance_wound", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "healing_music_shock", variableTwo * value);
+			creature->addSkillMod(SkillModManager::SKILLBOX, "healing_music_wound", variableTwo * value);
+		} else if (!SkillModManager::instance()->isWearableModDisabled(name)) {
 			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
 			creature->updateSpeedAndAccelerationMods();
 		}
@@ -212,8 +286,82 @@ void WearableObjectImplementation::removeSkillModsFrom(CreatureObject* creature)
 		String name = wearableSkillMods.elementAt(i).getKey();
 		int value = wearableSkillMods.get(name);
 
-		if (!SkillModManager::instance()->isWearableModDisabled(name))
-		{
+		if (name.toLowerCase() == "deity_han_solo") {
+			int variableOne = 10;
+			int variableTwo = 4;
+			// Increased Ranged Accuracy
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "private_ranged_accuracy_bonus", variableOne * value);
+			
+			// Increase Dodge
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "dodge", variableOne * value);
+			// Increase CounterAttack
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "counterattack", variableOne * value);
+			// Increase Block
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "block", variableOne * value);
+		} else if (name.toLowerCase() == "deity_chewbacca") {
+			int variableOne = -100;
+			
+			// Increase All HAM stats
+			for (int j = 0; j <= 8; j++) {
+				creature->addMaxHAM(j, variableOne * value);
+			}
+		} else if (name.toLowerCase() == "deity_darth_vader") {
+			int variableOne = 2;
+			int variableTwo = -4;
+
+			// Increase Damage Done
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "private_item_damage_multiplier", 100 + (variableOne * value));
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "private_item_damage_divisor", 100);
+			// Decrease all defenses
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "posture_change_down_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "posture_change_up_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "blind_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "dizzy_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "stun_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "knockdown_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "intimidate_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "ranged_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "melee_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "combat_bleeding_defense", variableTwo * value);
+		} else if (name.toLowerCase() == "deity_obi_wan") {
+			int variableOne = -2;
+			int variableTwo = 4;
+
+			// Decrease Damage Done
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "private_item_damage_multiplier", 100);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "private_item_damage_divisor", 100 + (variableOne * value));
+			// Increase all defenses
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "posture_change_down_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "posture_change_up_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "blind_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "dizzy_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "stun_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "knockdown_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "intimidate_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "ranged_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "melee_defense", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "combat_bleeding_defense", variableTwo * value);
+		} else if (name.toLowerCase() == "deity_techno_union") {
+			int variableOne = 1;
+
+			// Increase Assembly and Experimentation
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "deity_techno_union", variableOne * value);
+		} else if (name.toLowerCase() == "deity_whills") {
+			int variableOne = 1;
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "deity_whills", variableOne * value);
+		} else if (name.toLowerCase() == "deity_oola") {
+			int variableOne = 1;
+			int variableTwo = 5;
+			
+			// Increase Entertainer mods
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "healing_dance_mind", variableOne * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "healing_music_mind", variableOne * value);
+			// Increase Entertrainer Healing mods
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "healing_dance_shock", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "healing_dance_wound", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "healing_music_shock", variableTwo * value);
+			creature->removeSkillMod(SkillModManager::SKILLBOX, "healing_music_wound", variableTwo * value);
+		} else if (!SkillModManager::instance()->isWearableModDisabled(name)) {
 			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
 			creature->updateSpeedAndAccelerationMods();
 		}

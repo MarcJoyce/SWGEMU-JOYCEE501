@@ -83,6 +83,16 @@ int SaberInventoryContainerComponent::notifyObjectInserted(SceneObject* sceneObj
 			weao->setMindAttackCost(weao->getMindAttackCost() + crystal->getSacMind());
 			weao->setWoundsRatio(weao->getWoundsRatio() + crystal->getWoundChance());
 			weao->setForceCost(weao->getForceCost() + crystal->getForceCost());
+
+			int dots = crystal->getNumberOfDots();
+			for (int i = 0; i < dots; ++i) {
+				weao->addDotType(crystal->getDotType(i));
+				weao->addDotAttribute(crystal->getDotAttribute(i));
+				weao->addDotStrength(crystal->getDotStrength(i));
+				weao->addDotDuration(crystal->getDotDuration(i));
+				weao->addDotPotency(crystal->getDotPotency(i));
+				weao->addDotUses(crystal->getDotUses(i));
+			}
 		}
 
 		if (crystal->getColor() != 31) {
@@ -120,6 +130,7 @@ int SaberInventoryContainerComponent::notifyObjectRemoved(SceneObject* sceneObje
 				weao->setMindAttackCost(weao->getMindAttackCost() - crystal->getSacMind());
 				weao->setWoundsRatio(weao->getWoundsRatio() - crystal->getWoundChance());
 				weao->setForceCost(weao->getForceCost() - crystal->getForceCost());
+				weao->clearDots();
 			}
 
 			if (crystal->getColor() != 31) {

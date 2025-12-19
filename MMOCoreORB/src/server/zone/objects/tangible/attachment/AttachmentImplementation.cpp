@@ -116,3 +116,7 @@ void AttachmentImplementation::fillAttributeList(AttributeListMessage* msg, Crea
 		name.deleteAll();
 	}
 }
+
+void AttachmentImplementation::updateAttachmentValues(const String& modName, int value) {
+	skillModifiers.put(modName, value);
+}

@@ -9,6 +9,8 @@ import server.zone.packets.scene.AttributeListMessage;
 include server.zone.packets.object.ObjectMenuResponse;
 include server.zone.objects.creature.CreatureObject;
 import server.zone.objects.tangible.TangibleObject;
+import system.util.Vector;
+import system.util.VectorMap;
 
 include server.zone.objects.manufactureschematic.craftingvalues.CraftingValues;
 
@@ -36,6 +38,19 @@ class LightsaberCrystalComponent extends Component {
 
 	protected unsigned long ownerID;
 	protected string ownerName;
+
+	@dereferenced
+	protected Vector<int> dotType;
+	@dereferenced
+	protected Vector<int> dotAttribute;
+	@dereferenced
+	protected Vector<int> dotStrength;
+	@dereferenced
+	protected Vector<int> dotDuration;
+	@dereferenced
+	protected Vector<int> dotPotency;
+	@dereferenced
+	protected Vector<int> dotUses;
 
 	// TODO: Remove these after a server wipe
 	protected int forceCost;
@@ -170,6 +185,10 @@ class LightsaberCrystalComponent extends Component {
 		itemLevel = value;
 	}
 
+	public void setDamage(int value) {
+		damage = value;
+	}
+
 	public void setMinimumDamage(int value) {
 		minimumDamage = value;
 	}
@@ -205,6 +224,78 @@ class LightsaberCrystalComponent extends Component {
 	@dirty
 	public boolean isLightsaberCrystalObject() {
 		return true;
+	}
+
+	@read
+	public int getNumberOfDots() {
+		return dotType.size();
+	}
+
+	@read
+	public int getDotType(int index) {
+		return dotType.elementAt(index);
+	}
+
+	@read
+	public int getDotAttribute(int index) {
+		return dotAttribute.elementAt(index);
+	}
+
+	@read
+	public int getDotStrength(int index) {
+		return dotStrength.elementAt(index);
+	}
+
+	@read
+	public int getDotDuration(int index) {
+		return dotDuration.elementAt(index);
+	}
+
+	@read
+	public int getDotPotency(int index) {
+		return dotPotency.elementAt(index);
+	}
+
+	@read
+	public int getDotUses(int index) {
+		return dotUses.elementAt(index);
+	}
+
+	public void addDotType(int t) {
+		dotType.add(t);
+	}
+
+	public void addDotAttribute(int a) {
+		dotAttribute.add(a);
+	}
+
+	public void addDotStrength(int s) {
+		dotStrength.add(s);
+	}
+
+	public void addDotDuration(int du) {
+		dotDuration.add(du);
+	}
+
+	public void addDotPotency(int po) {
+		dotPotency.add(po);
+	}
+
+	public void addDotUses(int u) {
+		dotUses.add(u);
+	}
+
+	public void setDotUses(int u, int index) {
+		dotUses.elementAt(index) = u;
+	}
+
+	public void clearDots() {
+		dotType.removeAll();
+		dotAttribute.removeAll();
+		dotStrength.removeAll();
+		dotDuration.removeAll();
+		dotPotency.removeAll();
+		dotUses.removeAll();
 	}
 }
 

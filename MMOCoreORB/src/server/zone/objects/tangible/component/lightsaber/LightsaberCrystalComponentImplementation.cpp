@@ -115,36 +115,44 @@ void LightsaberCrystalComponentImplementation::generateCrystalStats() {
 			attackSpeed = Math::getPrecision(getRandomizedStat(minFloatStat, maxFloatStat, itemLevel), 2);
 			break;
 		}
-		case 12 ... 19: { // Dark Side named crystals
-			// damage = 100;
-			sacHealth = 0;
-			sacAction = 0;
-			sacMind = 0;
-			woundChance = 4;
-			// floatForceCost = 2.5f;
-			// attackSpeed = 0.0f;
-			
-			
-			damage = 100000;
-			floatForceCost = -20.0f;
-			attackSpeed = -5.0f;
+		case 12 ... 30: {
+			damage = getDamage();
+			sacHealth = getSacHealth();
+			sacAction = getSacAction();
+			sacMind = getSacMind();
+			woundChance = getWoundChance();
+			floatForceCost = getForceCost();
+			attackSpeed = getAttackSpeed();
 			break;
 		}
-		case 20 ... 30: { // Light Side name crystals
-			// damage = 50;
-			sacHealth = 0;
-			sacAction = 0;
-			sacMind = 0;
-			woundChance = 4;
-			// floatForceCost = -2.5f;
-			// attackSpeed = 0.0f;
+		// case 12 ... 19: { // Dark Side named crystals
+		// 	damage = 100;
+		// 	sacHealth = 0;
+		// 	sacAction = 0;
+		// 	sacMind = 0;
+		// 	woundChance = 6;
+		// 	floatForceCost = 2.5f;
+		// 	attackSpeed = 0.0f;
+			
+		// 	// damage = 100000;
+		// 	// floatForceCost = -20.0f;
+		// 	// attackSpeed = -5.0f;
+		// 	break;
+		// }
+		// case 20 ... 30: { // Light Side name crystals
+		// 	damage = 50;
+		// 	sacHealth = 0;
+		// 	sacAction = 0;
+		// 	sacMind = 0;
+		// 	woundChance = 4;
+		// 	floatForceCost = -2.5f;
+		// 	attackSpeed = 0.0f;
 
-
-			damage = 100000;
-			floatForceCost = -20.0f;
-			attackSpeed = -5.0f;
-			break;
-		}
+		// 	// damage = 100000;
+		// 	// floatForceCost = -20.0f;
+		// 	// attackSpeed = -5.0f;
+		// 	break;
+		// }
 		default: { // Base color crystals
 			break;
 		}
@@ -343,6 +351,93 @@ void LightsaberCrystalComponentImplementation::fillAttributeList(AttributeListMe
 				alm->insertAttribute("wpn_attack_cost_mind", sacMind);
 				alm->insertAttribute("forcecost", Math::getPrecision(getForceCost(), 2));
 
+
+				for (int i = 0; i < getNumberOfDots(); i++) {
+
+					String dt;
+
+					switch (getDotType(i)) {
+					case 1:
+						dt = "Poison";
+						break;
+					case 2:
+						dt = "Disease";
+						break;
+					case 3:
+						dt = "Fire";
+						break;
+					case 4:
+						dt = "Bleeding";
+						break;
+					default:
+						dt = "Unknown";
+						break;
+					}
+
+					StringBuffer type;
+					type << "cat_wpn_dot_0" << i << ".wpn_dot_type";
+					alm->insertAttribute(type.toString(), dt);
+
+					String da;
+
+					switch (getDotAttribute(i)) {
+					case 0:
+						da = "Health";
+						break;
+					case 1:
+						da = "Strength";
+						break;
+					case 2:
+						da = "Constitution";
+						break;
+					case 3:
+						da = "Action";
+						break;
+					case 4:
+						da = "Quickness";
+						break;
+					case 5:
+						da = "Stamina";
+						break;
+					case 6:
+						da = "Mind";
+						break;
+					case 7:
+						da = "Focus";
+						break;
+					case 8:
+						da = "Willpower";
+						break;
+					default:
+						da = "Unknown";
+						break;
+					}
+
+					StringBuffer attrib;
+					attrib << "cat_wpn_dot_0" << i << ".wpn_dot_attrib";
+					alm->insertAttribute(attrib.toString(), da);
+
+					StringBuffer str;
+					str << "cat_wpn_dot_0" << i << ".wpn_dot_strength";
+					alm->insertAttribute(str.toString(), getDotStrength(i));
+
+					StringBuffer dotDur;
+					dotDur << getDotDuration(i) << "s";
+					StringBuffer dur;
+					dur << "cat_wpn_dot_0" << i << ".wpn_dot_duration";
+					alm->insertAttribute(dur.toString(), dotDur);
+
+					StringBuffer dotPot;
+					dotPot << getDotPotency(i) << "%";
+					StringBuffer pot;
+					pot << "cat_wpn_dot_0" << i << ".wpn_dot_potency";
+					alm->insertAttribute(pot.toString(), dotPot);
+
+					StringBuffer use;
+					use << "cat_wpn_dot_0" << i << ".wpn_dot_uses";
+					alm->insertAttribute(use.toString(), getDotUses(i));
+				}
+
 				// For debugging
 				if (player->isPrivileged()) {
 					StringBuffer str;
@@ -466,13 +561,15 @@ void LightsaberCrystalComponentImplementation::tuneCrystal(CreatureObject* playe
 		ownerName = player->getDisplayedName();
 
 		// Color code is lime green.
-		String tuneName = StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
+		// String tuneName = StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
 		// if (getCustomObjectName().toString().contains("(Exceptional)"))
 		// 	tuneName = "\\#00FF00" + tuneName + " (Exceptional) (tuned)\\#.";
 		// else if (getCustomObjectName().toString().contains("(Legendary)"))
 		// 	tuneName = "\\#00FF00" + tuneName + " (Legendary) (tuned)\\#.";
 		// else
-		tuneName = "\\#00FF00" + tuneName + " (tuned)\\#.";
+		// tuneName = "\\#00FF00" + tuneName + " (tuned)\\#.";
+
+		String tuneName = "\\#00FF00" + getCustomObjectName().toString() + " Crystal (tuned)\\#.";
 
 		setCustomObjectName(tuneName, true);
 		player->notifyObservers(ObserverEventType::TUNEDCRYSTAL, _this.getReferenceUnsafeStaticCast(), 0);
@@ -498,12 +595,56 @@ void LightsaberCrystalComponentImplementation::updateCraftingValues(CraftingValu
 		updateCrystal(31);
 	}
 
+	int level = 1;
+
 	if (values->hasExperimentalAttribute("creatureLevel")) {
-		int level = values->getCurrentValue("creatureLevel");
+		level = values->getCurrentValue("creatureLevel");
 		setItemLevel(level);
 	}
 
-	generateCrystalStats();
+	
+	if (color > 11 && color < 31) {
+		level = values->getCurrentValue("creatureLevel");
+
+		int minStat = values->getMaxValue("mindamage");
+		int maxStat = values->getMaxValue("maxdamage");
+
+		damage = maxStat;
+
+		minStat = values->getMinValue("attackhealthcost");
+		maxStat = values->getMaxValue("attackhealthcost");
+
+		sacHealth = getRandomizedStat(minStat, maxStat, level);
+
+		minStat = values->getMinValue("attackactioncost");
+		maxStat = values->getMaxValue("attackactioncost");
+
+		sacAction = getRandomizedStat(minStat, maxStat, level);
+
+		minStat = values->getMinValue("attackmindcost");
+		maxStat = values->getMaxValue("attackmindcost");
+
+		sacMind = getRandomizedStat(minStat, maxStat, level);
+
+		minStat = values->getMinValue("woundchance");
+		maxStat = values->getMaxValue("woundchance");
+
+		woundChance = getRandomizedStat(minStat, maxStat, level);
+
+		float minFloatStat = values->getMinValue("forcecost");
+		float maxFloatStat = values->getMaxValue("forcecost");
+
+		floatForceCost = getRandomizedStat(minFloatStat, maxFloatStat, level);
+
+		minFloatStat = values->getMinValue("attackspeed");
+		maxFloatStat = values->getMaxValue("attackspeed");
+
+		attackSpeed = Math::getPrecision(getRandomizedStat(minFloatStat, maxFloatStat, level), 2);
+
+		quality = values->getMaxValue("quality");
+	} else {
+		generateCrystalStats();
+	}
 
 	ComponentImplementation::updateCraftingValues(values, firstUpdate);
 }

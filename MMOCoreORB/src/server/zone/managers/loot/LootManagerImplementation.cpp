@@ -9,6 +9,7 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
+#include "server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.h"
 #include "server/zone/managers/crafting/CraftingManager.h"
 #include "templates/LootItemTemplate.h"
 #include "templates/LootGroupTemplate.h"
@@ -433,7 +434,7 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 	}
 
 	// Add static DoT's to weapons and check for chance to add random DoTs
-	if (prototype->isWeaponObject()) {
+	if (prototype->isWeaponObject() || prototype->isLightsaberCrystalObject()) {
 		addStaticDots(prototype, templateObject, level);
 		addRandomDots(prototype, templateObject, level, excMod);
 	}
@@ -487,15 +488,6 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 			prototype->setObjectName(attachmentName, false);
 			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
 		}
-
-		#ifdef DEBUG_LOOT_MAN
-			info(true) << "attachmentCustomName" << attachmentCustomName;
-			info(true) << "attachmentName" << attachmentName.getFullPath();
-			info(true) << "highest" << highest;
-			info(true) << "key" << key;
-			info(true) << "prototype->getDisplayedName()" << prototype->getDisplayedName();
-			info(true) << "prototype->getCustomObjectName()" << prototype->getCustomObjectName();
-		#endif
 
 		prototype->setCustomObjectName(attachmentCustomName, false);	
 	}
@@ -637,6 +629,19 @@ void LootManagerImplementation::setSkillMods(TangibleObject* prototype, const Lo
 	}
 
 	VectorMap<String,int> skillMods = *templateObject->getSkillMods();
+
+	for (int i = 0; i < skillMods.size(); ++i) {
+    const String& key = skillMods.elementAt(i).getKey();
+    int value = skillMods.elementAt(i).getValue();
+
+    if (value <= 0) {
+        int min = Math::clamp(-1, (int)round(0.075f * level) - 1, 25);
+        int max = Math::clamp(-1, (int)round(0.125f * level) + 1, 25);
+        int mod = System::random(Math::max(1, max - min)) + min;
+        mod = Math::min<int>(25, Math::max<int>(((50 + level) / 50) * 5, 5));
+        skillMods.put(key, ((mod <= 0) ? 1 : mod));
+    }
+	}
 
 	float modifier = Math::max(getRandomModifier(templateObject, level, excMod), baseModifier);
 	int chance = LootValues::getLevelRankValue(level, 0.2f, 0.9f) * modifier * levelChance;
@@ -781,7 +786,7 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 
 		rolls.add(roll);
 
-		if (roll > lootChance && level <= 200)
+		if (roll > lootChance && level <= 150)
 			continue;
 
  		// Start at 0
@@ -821,6 +826,61 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 	}
 
 	return objectID > 0 ? true : false;
+}
+
+TangibleObject* LootManagerImplementation::createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value) {
+	
+	const String& directTemplateObject = templateObject->getDirectObjectTemplate();
+	
+	ManagedReference<TangibleObject*> prototype = zoneServer->createObject(directTemplateObject.hashCode(), 2).castTo<TangibleObject*>();
+	
+	if (prototype == nullptr) {
+		error("could not create loot object: " + directTemplateObject);
+		return NULL;
+	}
+
+	Locker objLocker(prototype);
+
+	prototype->createChildObjects();
+
+	String serial = craftingManager->generateSerial();
+	prototype->setSerialNumber(serial);
+
+	if(prototype->isAttachment()){
+		Attachment* attachment = cast<Attachment*>(prototype.get());
+
+		attachment->updateAttachmentValues(modName, value);
+    attachment->addSkillMod(SkillModManager::WEARABLE, modName, value, false);
+	
+		VectorMap<String, int>* mods = attachment->getSkillMods();
+		
+		StringId attachmentName;
+		String key = "";
+		int highest = -1;
+		String attachmentType = "[AA] ";
+		String attachmentCustomName = "";
+
+		if(attachment->isClothingAttachment()){
+			attachmentType = "[CA] ";
+		}
+
+		for (int i = 0; i < mods->size(); i++) {
+			auto key = mods->elementAt(i).getKey();
+			auto value = mods->elementAt(i).getValue();
+
+			if (value > highest) {
+				highest = value;
+			}
+
+			attachmentName.setStringId("stat_n", key);
+			prototype->setObjectName(attachmentName, false);
+			attachmentCustomName = attachmentType + prototype->getDisplayedName() + " : " + String::valueOf(value);
+		}
+
+		prototype->setCustomObjectName(attachmentCustomName, false);
+	}
+	return prototype;
+
 }
 
 uint64 LootManagerImplementation::createLoot(TransactionLog& trx, SceneObject* container, const String& lootMapEntry, int level, bool maxCondition) {
@@ -944,9 +1004,20 @@ void LootManagerImplementation::addStaticDots(TangibleObject* object, const Loot
 		return;
 	}
 
-	auto weapon = dynamic_cast<WeaponObject*>(object);
+	WeaponObject* weapon = nullptr;
+	LightsaberCrystalComponent* crystal = nullptr;
 
-	if (weapon == nullptr) {
+	if (templateObject->getCustomObjectName().contains("(Infused)")) {
+		crystal = dynamic_cast<LightsaberCrystalComponent*>(object);
+	} else {
+ 		weapon = dynamic_cast<WeaponObject*>(object);
+	}
+
+	#ifdef DEBUG_LOOT_MAN
+		info(true) << "addStaticDots: templateObject: customObjectName" << templateObject->getCustomObjectName() << ". Does it contain (Infused) " << templateObject->getCustomObjectName().contains("(Infused)") << ". templateObject staticDots: " << templateObject->getStaticDotValues()->size();
+	#endif
+
+	if (weapon == nullptr && crystal == nullptr) {
 		return;
 	}
 
@@ -1009,18 +1080,27 @@ void LootManagerImplementation::addStaticDots(TangibleObject* object, const Loot
 		}
 	}
 
-	if (strength <= 0 || duration <= 0 || potency <= 0 || uses <= 0) {
+	if (strength <= 0 || duration <= 0 || potency <= 0) {
 		return;
 	}
 
-	weapon->addDotType(dotType);
-	weapon->addDotAttribute(attribute);
-	weapon->addDotStrength(strength);
-	weapon->addDotDuration(duration);
-	weapon->addDotPotency(potency);
-	weapon->addDotUses(uses);
+	if (weapon) {
+		weapon->addDotType(dotType);
+		weapon->addDotAttribute(attribute);
+		weapon->addDotStrength(strength);
+		weapon->addDotDuration(duration);
+		weapon->addDotPotency(potency);
+		weapon->addDotUses(uses);
 
-	weapon->addMagicBit(false);
+		weapon->addMagicBit(false);
+	} else {
+		crystal->addDotType(dotType);
+		crystal->addDotAttribute(attribute);
+		crystal->addDotStrength(strength);
+		crystal->addDotDuration(duration);
+		crystal->addDotPotency(potency);
+		crystal->addDotUses(uses);
+	}
 }
 
 void LootManagerImplementation::addRandomDots(TangibleObject* object, const LootItemTemplate* templateObject, int level, float excMod) {
