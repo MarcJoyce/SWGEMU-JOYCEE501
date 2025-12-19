@@ -1,6 +1,6 @@
-dantooine_graul_mauler_lair_neutral_large_boss_01 = Lair:new {
-	mobiles = {{"graul_mauler",1},{"graul_mangler",2}},
-	bossMobiles = {{"graul_marauder",2}},
+endor_gorax_neutral_small = Lair:new {
+	mobiles = {{"minor_gorax",1}},
+  bossMobiles = {{"gorax",2}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_red.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_red.iff"},
@@ -9,4 +9,4 @@ dantooine_graul_mauler_lair_neutral_large_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_red.iff"},
 }
 
-addLairTemplate("dantooine_graul_mauler_lair_neutral_large_boss_01", dantooine_graul_mauler_lair_neutral_large_boss_01)
+addLairTemplate("endor_gorax_neutral_small", endor_gorax_neutral_small)

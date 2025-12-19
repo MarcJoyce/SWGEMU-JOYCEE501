@@ -152,6 +152,18 @@ factional_imperial_destroy_missions = {
 			maxDifficulty = 27,
 			size = 25,
 		},
+		{
+			lairTemplateName = "global_rebel_patrol_camp2_rebel_small_theater",
+			minDifficulty = 23,
+			maxDifficulty = 27,
+			size = 25,
+		},
+		{
+			lairTemplateName = "global_surface_marshal_rebel_none",
+			minDifficulty = 26,
+			maxDifficulty = 30,
+			size = 25,
+		},
 	}
 }
 

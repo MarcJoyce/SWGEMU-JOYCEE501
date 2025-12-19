@@ -1,5 +1,6 @@
 endor_blurrg_crimson_neutral_small = Lair:new {
 	mobiles = {{"crimson_blurrg",1}},
+	bossMobiles = {{"blurrg_raptor", 2}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_bones_fog_red.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_bones_fog_red.iff"},
