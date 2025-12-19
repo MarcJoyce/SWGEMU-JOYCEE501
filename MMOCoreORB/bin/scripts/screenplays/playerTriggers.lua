@@ -7,7 +7,6 @@ function PlayerTriggers:playerLoggedIn(pPlayer)
 	ServerEventAutomation:playerLoggedIn(pPlayer)
 	BestineElection:playerLoggedIn(pPlayer)
 	CustomGlowingScreenPlay:playerLoggedIn(pPlayer)
-	ShadowsScreenPlay:playerLoggedIn(pPlayer)
 	DedleeSynScreenPlay:playerLoggedIn(pPlayer)
 end
 

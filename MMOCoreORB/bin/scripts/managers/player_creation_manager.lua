@@ -47,14 +47,19 @@ marojMelon = "object/tangible/food/foraged/foraged_fruit_s1.iff"
 
 x31Speeder = "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff"
 
+paddedArmorHelmet = "object/tangible/wearables/armor/padded/armor_padded_s01_helmet.iff"
+paddedArmorGloves = "object/tangible/wearables/armor/padded/armor_padded_s01_gloves.iff"
+paddedArmorBoots = "object/tangible/wearables/armor/padded/armor_padded_s01_boots.iff"
+paddedArmorChest = "object/tangible/wearables/armor/padded/armor_padded_s01_chest_plate.iff"
+
 professionSpecificItems = {
-	combat_brawler = {  },
-	combat_marksman = {  },
-	crafting_artisan = {  },
-	jedi = { },
-	outdoors_scout = {  },
-	science_medic = {  },
-	social_entertainer = {  }
+        combat_brawler = {  },
+        combat_marksman = {  },
+        crafting_artisan = {  },
+        jedi = { },
+        outdoors_scout = {  },
+        science_medic = {  },
+        social_entertainer = { slitherhorn }
 }
 
-commonStartingItems = { marojMelon }
+commonStartingItems = { foodTool, marojMelon, survivalKnife, x31Speeder, genericTool, brawlerOneHander, brawlerPolearm, brawlerTwoHander, marksmanCarbine, marksmanPistol, marksmanRifle, mineralTool, chemicalTool, paddedArmorBoots, paddedArmorChest, paddedArmorGloves, paddedArmorHelmet }

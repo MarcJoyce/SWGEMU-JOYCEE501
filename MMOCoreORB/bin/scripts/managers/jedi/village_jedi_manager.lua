@@ -78,6 +78,8 @@ function VillageJediManager:onPlayerLoggedIn(pPlayer)
 	end
 
 	JediTrials:onPlayerLoggedIn(pPlayer)
+
+	JediEncounters:onPlayerLoggedIn(pPlayer)
 end
 
 function VillageJediManager:onPlayerLoggedOut(pPlayer)
@@ -129,7 +131,7 @@ function VillageJediManager:canSurrenderSkill(pPlayer, skillName)
 		return false
 	end
 
-	if string.find(skillName, "force_sensitive_") and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) <= 8 then
+	if string.find(skillName, "force_sensitive_") and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and (string.find(skillName, "_04") and VillageJediManagerCommon.getLearnedForceSensitiveBranches(pPlayer) < 3) then
 		CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:revoke_force_sensitive")
 		return false
 	end
