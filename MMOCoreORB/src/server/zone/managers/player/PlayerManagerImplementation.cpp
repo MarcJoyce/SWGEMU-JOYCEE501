@@ -2622,7 +2622,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			xpType == "trapping" ||
 			xpType == "camp"
 	) {
-			typeMultiplier = 15.0f;
+			typeMultiplier = 10.0f;
 	} else if (xpType == "medical") {
 			typeMultiplier = 10.0f;
 	} else if (
@@ -2636,7 +2636,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			xpType == "combat_rangedspecialize_pistol" ||
 			xpType == "combat_rangedspecialize_rifle"
 	) {
-			typeMultiplier = 2.0f;
+			typeMultiplier = 2.5f;
 	} else {
 			typeMultiplier = 1.0f;
 	}

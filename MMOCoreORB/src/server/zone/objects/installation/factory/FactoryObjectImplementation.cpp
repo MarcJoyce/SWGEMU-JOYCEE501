@@ -149,10 +149,12 @@ void FactoryObjectImplementation::fillAttributeList(AttributeListMessage* alm, C
 			alm->insertAttribute("manufacture_object", prototype->getDisplayedName());
 		}
 
-		if (object->hasSkill("admin")) {
-			timer = 0;
-		} else {
+		ManagedReference<PlayerObject*> ghost = object->getPlayerObject();
+
+		if (ghost->hasAbility("admin")) {
 			timer = 1;
+		} else {
+			timer = 1000;
 		}
 
 		alm->insertAttribute("manufacture_time", timer);
@@ -528,6 +530,14 @@ void FactoryObjectImplementation::handleOperateToggle(CreatureObject* player) {
 		currentUserName = player->getFirstName();
 		currentRunCount = 0;
 
+		ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
+		
+		if (ghost != nullptr && ghost->hasAbility("admin")) {
+			timer = 1;
+		} else {
+			timer = 1000;
+		}
+
 		if (startFactory()) {
 			player->sendSystemMessage("@manf_station:activated"); // Station activated
 			player->sendSystemMessage("This schematic limit is: " + String::valueOf(schematic->getManufactureLimit()));
@@ -568,21 +578,12 @@ bool FactoryObjectImplementation::startFactory() {
 			return false;
 	}
 
-#ifdef DEBUG_FACTORIES
-	timer = 30;
-	info(true) << "Factory Testing Timer Set To: " << timer;
-#else
-	if (timer != 0) {
-		timer = 1;
-	}
-#endif
-
 	if (!populateSchematicBlueprint(schematic))
 		return false;
 
 	// Add sampletask
 	Reference<CreateFactoryObjectTask*> createFactoryObjectTask = new CreateFactoryObjectTask(_this.getReferenceUnsafeStaticCast());
-	addPendingTask("createFactoryObject", createFactoryObjectTask, timer * 1000);
+	addPendingTask("createFactoryObject", createFactoryObjectTask, timer);
 
 	setActive(true, true);
 
@@ -767,7 +768,7 @@ void FactoryObjectImplementation::createNewObject() {
 	Reference<Task*> pending = getPendingTask("createFactoryObject");
 
 	if (pending != nullptr)
-		pending->reschedule(timer * 1000);
+		pending->reschedule(timer);
 	else
 		stopFactory("manf_error", "", "", -1);
 }
