@@ -99,8 +99,9 @@ function CustomGlowingScreenPlay:playerLoggedIn(pPlayer)
 end
 
 function CustomGlowingScreenPlay:spawnMobilesDantooine()
-  -- Piece of eight two - Dantooine Jedi Temple
-  local pMobile = spawnMobile("dantooine", "brian_cohen", 300, 4195, 9, 5203, 23.8, 0)
+  -- Piece of eight two - Dantooine Bottom of Force Crystal Cave
+  local pMobile = spawnMobile("dantooine", "brian_cohen",1800,76.3,-77,-89.3,-81,8535486);
+  -- local pMobile = spawnMobile("dantooine", "brian_cohen", 300, 4195, 9, 5203, 23.8, 0)
 
   AiAgent(pMobile):addObjectFlag(AI_STATIC)
 end

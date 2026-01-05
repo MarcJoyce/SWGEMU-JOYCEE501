@@ -1,6 +1,6 @@
 MeatlumpKingScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
-  AdminPlayerID = 281475013738720, -- PlayerID of Admin character
+  AdminPlayerID = 281474993546765, -- PlayerID of Admin character
   screenplayName = "MeatlumpKingScreenPlay",
   respawnFrequency = 86400 * 1000, -- 24 Hours
   -- respawnFrequency = 60 * 1000, -- 60 seconds

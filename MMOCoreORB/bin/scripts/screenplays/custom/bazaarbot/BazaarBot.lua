@@ -12,7 +12,7 @@ includeFile("custom/bazaarbot/table_vehicles.lua")
 
 BazaarBotScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
-	AdminPlayerID = 281475013738720,
+	AdminPlayerID = 281474993546765,
 	terminalIDs = {4685572},
 	itemDescription = "This item has been produced by the BazaarBot.",
 }
@@ -236,7 +236,7 @@ function BazaarBotScreenPlay:listCraftedItems(configTable, itemTable)
                         maxQuality = configTable.qualityMax
                     end
                 
-                    local quality = getRandomNumber(minQuality,maxQuality)
+                    local quality = getRandomNumber(minQuality, maxQuality)
                     local price = itemTable[j][1] * ((quality/200) + 1) * crateQuantity * 1.5
                   
 										

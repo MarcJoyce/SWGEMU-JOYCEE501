@@ -1,8 +1,8 @@
 brian_cohen = Creature:new {
 	customName = "Brian Cohen",
-	socialGroup = "townsperson",
-	faction = "townsperson",
 	mobType = MOB_NPC,
+	socialGroup = "kun",
+	faction = "",
 	level = 300,
 	chanceHit = 30,
 	damageMin = 1645,

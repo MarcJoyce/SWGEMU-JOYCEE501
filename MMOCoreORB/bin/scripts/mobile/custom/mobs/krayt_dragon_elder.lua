@@ -40,14 +40,14 @@ krayt_dragon_elder = Creature:new {
 			},
 			lootChance = 10000000
 		},
-    {
-      groups = {
-        {group = "named_crystals", chance = 2000000},
-        {group = "jedi_clothing_attachments", chance = 2000000},
-        {group = "krayt_dragon_elder", chance = 6000000},
-      },
-      lootChance = 10000000
-    }
+		{
+			groups = {
+				{group = "named_crystals", chance = 2000000},
+				{group = "jedi_clothing_attachments", chance = 2000000},
+				{group = "krayt_dragon_elder", chance = 6000000},
+			},
+			lootChance = 10000000
+		}
 	},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
