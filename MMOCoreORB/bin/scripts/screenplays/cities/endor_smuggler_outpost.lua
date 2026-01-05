@@ -42,7 +42,7 @@ EndorSmugglerOutpostScreenPlay = CityScreenPlay:new {
 	},
 
 	stationaryCommoners = {"commoner", "commoner_fat", "commoner_old"},
-	stationaryNpcs = {"bodyguard", "bounty_hunter", "businessman", "commoner_technician", "contractor", "entertainer", "explorer", "fringer", "gambler", "medic", "mercenary", "miner", "noble", "pilot", "informant_npc_lvl_1", "informant_npc_lvl_2", "informant_npc_lvl_3"},
+	stationaryNpcs = {"bodyguard", "bounty_hunter", "businessman", "commoner_technician", "contractor", "entertainer", "explorer", "fringer", "gambler", "medic", "mercenary", "miner", "noble", "pilot"},
 
 	--{respawn, x, z, y, direction, cell, mood}
 	stationaryMobiles = {
@@ -81,4 +81,6 @@ function EndorSmugglerOutpostScreenPlay:spawnMobiles()
 		self:setMoodString(pNpc, "npc_sitting_chair")
 		CreatureObject(pNpc):setOptionsBitmask(0)
 	end
+
+	local pNpc = spawnMobile("endor", "informant_npc_lvl_3", 60, -905, 80, 1624, 30.4788, 0)
 end

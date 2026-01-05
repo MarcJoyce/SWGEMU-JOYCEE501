@@ -284,6 +284,18 @@ tatooine_destroy_missions = {
 			maxDifficulty = 36,
 			size = 25,
 		},
+		{
+			lairTemplateName = "tatooine_tusken_raider_kingdom_neutral_large_theater",
+			minDifficulty = 35,
+			maxDifficulty = 45,
+			size = 25,
+		},
+		{
+			lairTemplateName = "tatooine_canyon_krayt_dragon_lair_neutral_large",
+			minDifficulty = 75,
+			maxDifficulty = 80,
+			size = 25,
+		},
 	}
 }
 

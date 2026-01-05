@@ -1,6 +1,6 @@
 yavin4_kliknik_kliknik_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"kliknik_dark_warrior",1}, {"kliknik_dark_defender", 2}, {"kliknik_dark_queen", 3}},
-	bossMobiles = {{"acklay",1}},
+	bossMobiles = {{"kliknik_acklay",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_warren_large_fog_red.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_warren_large_fog_red.iff"},
