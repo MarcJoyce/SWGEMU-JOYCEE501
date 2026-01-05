@@ -90,6 +90,8 @@ includeFile("custom/bazaarBotHelper.lua")
 includeFile("custom/dedlee_syn.lua")
 
 includeFile("custom/mobs/krayt_dragon_elder.lua")
+includeFile("custom/mobs/kliknik_acklay.lua")
+
 includeFile("custom/mobs/world_boss/world_boss_butterfly_drone.lua")
 includeFile("custom/mobs/world_boss/world_boss_butterfly.lua")
 includeFile("custom/mobs/world_boss/world_boss_durni.lua")
