@@ -425,17 +425,17 @@ int PlayerObjectImplementation::calculateBhReward() {
 		minReward = 50000;
 
 	int skillPoints = getSpentJediSkillPoints();
-	int reward = skillPoints * 1000;
+	int reward = skillPoints * 10000;
 
 	int frsRank = getFrsData()->getRank();
 
 	if (frsRank > 0)
-		reward += frsRank * 100000; // +100k per frs rank
+		reward += frsRank * 150000; // +150k per frs rank
 
 	if (reward < minReward)
 		reward = minReward;
 
-	return reward * 100;
+	return reward;
 }
 
 void PlayerObjectImplementation::sendBaselinesTo(SceneObject* player) {

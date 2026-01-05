@@ -2184,15 +2184,15 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 				atkSaberBreak = creoAttacker->getSkillMod("saber_break");
 				evadeTotal -= atkSaberBreak;
 
-				if (evadeTotal > 0 && System::random(100) <= evadeTotal) {
+				if ((evadeTotal > 0 && System::random(100) <= evadeTotal) && creoDefender->getPosture() == CreaturePosture::UPRIGHT) {
 					hitResult = HitStatus::RICOCHET;
 
-					int forceCost = 1;
+					int forceCost = damage * 0.05f;
 
-					ManagedReference<PlayerObject*> playerObject = creoAttacker->getPlayerObject();
+					ManagedReference<PlayerObject*> playerObject = creoDefender->getPlayerObject();
 					if (playerObject != nullptr) {
 						if (playerObject->getForcePower() <= forceCost) {
-							creoAttacker->sendSystemMessage("@jedi_spam:no_force_power");
+							creoDefender->sendSystemMessage("@jedi_spam:no_force_power");
 							hitResult = HitStatus::HIT;
 						} else {
 							playerObject->setForcePower(playerObject->getForcePower() - forceCost);

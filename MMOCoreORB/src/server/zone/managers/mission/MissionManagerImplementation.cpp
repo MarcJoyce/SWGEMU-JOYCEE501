@@ -266,8 +266,8 @@ void MissionManagerImplementation::handleMissionAccept(MissionTerminal* missionT
 
 	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 
-	//Limit to two missions (only one of them can be a bounty mission)
-	if (ghost->hasAbility("admin") && (missionCount >= 4 || (hasBountyMission && mission->getTypeCRC() == MissionTypes::BOUNTY))) {
+	//Limit to four missions (only one of them can be a bounty mission)
+	if (!ghost->hasAbility("admin") && (missionCount >= 4 || (hasBountyMission && mission->getTypeCRC() == MissionTypes::BOUNTY))) {
 		StringIdChatParameter stringId("mission/mission_generic", "too_many_missions");
 		player->sendSystemMessage(stringId);
 		return;

@@ -78,6 +78,8 @@ void DroidPlaybackModuleDataComponent::doFlourish(int number) {
 	int actionDrain = (int)round((flourishActionDrain * 10 + 0.5) / 10.0); // Round to nearest dec for actual int cost
 	actionDrain = droid->calculateCostAdjustment(CreatureAttribute::QUICKNESS, actionDrain);
 
+	actionDrain /= 10;
+
 	if (droid->getHAM(CreatureAttribute::ACTION) > actionDrain) {
 		droid->inflictDamage(droid, CreatureAttribute::ACTION, actionDrain, false, true);
 		Flourish* flourish = new Flourish(droid, number);

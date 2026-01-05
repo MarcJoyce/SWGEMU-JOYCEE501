@@ -331,9 +331,9 @@ public:
 				validateFloatTokenErrors(&args, creature, &errors, &wound, 0, 999, "Wounds", 2);
 
 				// Range Modifiers
-				validateIntTokenErrors(&args, creature, &errors, &pbacc, -50, 100, "Point Blank Acc");
-				validateIntTokenErrors(&args, creature, &errors, &idealacc, -50, 100, "Ideal Acc");
-				validateIntTokenErrors(&args, creature, &errors, &mracc, -50, 100, "Max Range Acc");
+				validateIntTokenErrors(&args, creature, &errors, &pbacc, -100, 250, "Point Blank Acc");
+				validateIntTokenErrors(&args, creature, &errors, &idealacc, -100, 250, "Ideal Acc");
+				validateIntTokenErrors(&args, creature, &errors, &mracc, -100, 250, "Max Range Acc");
 
 				// Range Distance
 				validateIntTokenErrors(&args, creature, &errors, &idealrange, 0, 255, "Ideal Range");
@@ -458,7 +458,7 @@ public:
 				validateIntTokenErrors(&args, creature, &errors, &maxCondition, condition, 999999, "Max Condition");
 
 				// Sockets
-				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 4, "Sockets");
+				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 6, "Sockets");
 
 				// Skill Mods
 				validateSkillModTokens(&args, creature, &errors, &skillModType01);
@@ -553,7 +553,7 @@ public:
 				validateIntTokenErrors(&args, creature, &errors, &maxCondition, condition, 999999, "Max Condition");
 
 				// Sockets
-				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 4, "Sockets");
+				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 6, "Sockets");
 
 				// If errors, do not generate armor
 				if (errors)

@@ -129,65 +129,65 @@ public:
 
 	inline float getKinetic() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::KINETIC))
-			return Math::min(kinetic - 100, 90.0f);
+			return Math::min(kinetic - 100, 95.0f);
 		else
-			return Math::min(kinetic, 90.0f);
+			return Math::min(kinetic, 95.0f);
 	}
 
 	inline float getEnergy() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::ENERGY))
-			return Math::min(energy - 100, 90.0f);
+			return Math::min(energy - 100, 95.0f);
 		else
-			return Math::min(energy, 90.0f);
+			return Math::min(energy, 95.0f);
 	}
 
 	inline float getElectricity() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::ELECTRICITY))
-			return Math::min(electricity - 100, 90.0f);
+			return Math::min(electricity - 100, 95.0f);
 		else
-			return Math::min(electricity, 90.0f);
+			return Math::min(electricity, 95.0f);
 	}
 
 	inline float getStun() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::STUN))
-			return Math::min(stun - 100, 90.0f);
+			return Math::min(stun - 100, 95.0f);
 		else
-			return Math::min(stun, 90.0f);
+			return Math::min(stun, 95.0f);
 	}
 
 	inline float getBlast() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::BLAST))
-			return Math::min(blast - 100, 90.0f);
+			return Math::min(blast - 100, 95.0f);
 		else
-			return Math::min(blast, 90.0f);
+			return Math::min(blast, 95.0f);
 	}
 
 	inline float getHeat() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::HEAT))
-			return Math::min(heat - 100, 90.0f);
+			return Math::min(heat - 100, 95.0f);
 		else
-			return Math::min(heat, 90.0f);
+			return Math::min(heat, 95.0f);
 	}
 
 	inline float getCold() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::COLD))
-			return Math::min(cold - 100, 90.0f);
+			return Math::min(cold - 100, 95.0f);
 		else
-			return Math::min(cold, 90.0f);
+			return Math::min(cold, 95.0f);
 	}
 
 	inline float getAcid() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::ACID))
-			return Math::min(acid - 100, 90.0f);
+			return Math::min(acid - 100, 95.0f);
 		else
-			return Math::min(acid, 90.0f);
+			return Math::min(acid, 95.0f);
 	}
 
 	inline float getLightSaber() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::LIGHTSABER))
-			return Math::min(lightSaber - 100, 90.0f);
+			return Math::min(lightSaber - 100, 95.0f);
 		else
-			return Math::min(lightSaber, 90.0f);
+			return Math::min(lightSaber, 95.0f);
 	}
 
 	inline bool isStalker() const {

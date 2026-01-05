@@ -54,6 +54,11 @@ public:
 				String modifier;
 				args.getStringToken(modifier);
 
+				if (modifier == "reset") {
+					patient->clearBuffs(true, false);
+					return SUCCESS;
+				}
+
 				int amount;
 				amount = args.getIntToken();
 
@@ -61,6 +66,7 @@ public:
 					modifier == "action" || modifier == "stamina" || modifier == "quickness" ||
 					modifier == "mind" || modifier == "focus" || modifier == "willpower") {
 					patient->addMaxHAM(CreatureAttribute::getAttribute(modifier), amount);
+					return SUCCESS;
 				} else if (modifier == "all") {
 					patient->addMaxHAM(CreatureAttribute::getAttribute("health"), amount);
 					patient->addMaxHAM(CreatureAttribute::getAttribute("strength"), amount);
@@ -71,8 +77,7 @@ public:
 					patient->addMaxHAM(CreatureAttribute::getAttribute("mind"), amount);
 					patient->addMaxHAM(CreatureAttribute::getAttribute("focus"), amount);
 					patient->addMaxHAM(CreatureAttribute::getAttribute("willpower"), amount);
-				} else if (modifier == "reset") {
-					patient->clearBuffs(true, false);
+					return SUCCESS;
 				}
 			}
 			else if (commandType.beginsWith("skill")) {
@@ -90,6 +95,7 @@ public:
 				int skillModDelta = amount - currentSkillModValue;
 
 				patient->addSkillMod(SkillModManager::BUFF, skillMod, skillModDelta, true);
+				return SUCCESS;
 				} else if (state.beginsWith("perm")) {
 					String skillMod;
 					args.getStringToken(skillMod);
@@ -101,6 +107,7 @@ public:
 					int skillModDelta = amount - currentSkillModValue;
 
 					patient->addSkillMod(SkillModManager::SKILLBOX, skillMod, skillModDelta, true);
+					return SUCCESS;
 				}
 			}
 			else if (commandType.beginsWith("vis")) {
@@ -110,6 +117,7 @@ public:
 				Reference<PlayerObject*> ghost = patient->getSlottedObject("ghost").castTo<PlayerObject*>();
 
 				ghost->setVisibility(vis);
+				return SUCCESS;
 			}
 
 		} catch (Exception& e) {

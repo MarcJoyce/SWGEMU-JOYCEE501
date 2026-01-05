@@ -39,5 +39,5 @@ uint32 EnhancePackImplementation::calculatePower(CreatureObject* healer, Creatur
 		float modSkill = (float) healer->getSkillMod("healing_wound_treatment");
 
 		float initialPower = power * modEnvironment * (100 + modSkill) / 100;
-		return initialPower / 2;
+		return initialPower / 4 * 3;
 }
