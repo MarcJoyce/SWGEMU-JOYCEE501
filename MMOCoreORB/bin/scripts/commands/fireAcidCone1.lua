@@ -63,7 +63,7 @@ FireAcidCone1Command = {
 	dotEffects = {
 	  DotEffect( 
 		DISEASED, 
-		{"resistance_fire", "fire_resist"},
+		{ "resistance_disease", "poison_disease_resist" },
 		ACTION,
 		true,
 		0,
