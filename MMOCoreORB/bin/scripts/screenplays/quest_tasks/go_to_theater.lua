@@ -39,15 +39,21 @@ end
 
 function GoToTheater:taskStart(pPlayer)
 	local zoneName = SceneObject(pPlayer):getZoneName()
-	
-	local posX = SceneObject(pPlayer):getWorldPositionX()
-	local posY = SceneObject(pPlayer):getWorldPositionY()
+    
+    local posX = SceneObject(pPlayer):getWorldPositionX()
+    local posY = SceneObject(pPlayer):getWorldPositionY()
 
-	if (self.planet ~= nil) then
-		zoneName = self.planet[getRandomNumber(1, #self.planet)]
-		posX = 0;
-		posY = 0;
-	end
+	if (self.planet ~= nil and self.planet ~= "") then
+        if type(self.planet) == "table" and #self.planet > 0 then
+            zoneName = self.planet[getRandomNumber(1, #self.planet)]
+            posX = 0
+            posY = 0
+        elseif type(self.planet) == "string" then
+            zoneName = self.planet
+            posX = 0
+            posY = 0
+        end
+    end
 
 	local spawnPoint = getSpawnArea(zoneName, posX, posY, self.minimumDistance, self.maximumDistance, 20, 10, true)
 	local playerID = SceneObject(pPlayer):getObjectID()

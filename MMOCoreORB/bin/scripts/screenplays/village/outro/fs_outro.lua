@@ -8,7 +8,7 @@ FsOutro = ScreenPlay:new {
 	FORCESHRINE = 4,
 
 	stepDelay = {
-		[1] = { 30, 180 }, -- Old man visit, 1 hour to 1 day
+		[1] = { 10, 30 }, -- Old man visit, 1 hour to 1 day
 	}
 }
 
@@ -50,11 +50,11 @@ function FsOutro:onLoggedIn(pPlayer)
 
 	if (curStep == self.OLDMANWAIT) then
 		if (self:hasDelayPassed(pPlayer)) then
-			createEvent(getRandomNumber(300, 900) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
+			createEvent(getRandomNumber(10, 30) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
 		end
 	elseif (curStep == self.OLDMANMEET) then
 		QuestManager.resetQuest(pPlayer, QuestManager.quests.OLD_MAN_FINAL)
-		createEvent(getRandomNumber(300, 900) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
+		createEvent(getRandomNumber(10, 30) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
 		self:setCurrentStep(pPlayer, self.OLDMANWAIT)
 	elseif (curStep == self.MELLICHAETHEATER) then
 		if (MellichaeOutroTheater:hasTaskStarted(pPlayer)) then
@@ -117,14 +117,14 @@ function FsOutro:doOldManSpawn(pPlayer)
 	end
 
 	if (CreatureObject(pPlayer):isDead() or CreatureObject(pPlayer):isIncapacitated() or not Encounter:isPlayerInPositionForEncounter(pPlayer)) then
-		createEvent(getRandomNumber(300, 900) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
+		createEvent(getRandomNumber(10, 30) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
 		return
 	end
 
 	local result = OldManOutroEncounter:start(pPlayer)
 
 	if (not result) then
-		createEvent(getRandomNumber(300, 900) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
+		createEvent(getRandomNumber(10, 30) * 1000, "FsOutro", "doOldManSpawn", pPlayer, "")
 		return
 	end
 end

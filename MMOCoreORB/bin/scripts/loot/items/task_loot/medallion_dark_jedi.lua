@@ -1,6 +1,6 @@
 medallion_dark_jedi = {
-	minimumLevel = 0,
-	maximumLevel = 0,
+	minimumLevel = 350,
+	maximumLevel = 350,
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/loot/misc/medallion_dark_jedi_s01.iff",
 	craftingValues = {},
