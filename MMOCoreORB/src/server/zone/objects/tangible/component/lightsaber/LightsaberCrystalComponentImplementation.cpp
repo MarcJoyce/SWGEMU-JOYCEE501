@@ -544,7 +544,7 @@ void LightsaberCrystalComponentImplementation::tuneCrystal(CreatureObject* playe
 		if (ghost == nullptr)
 			return;
 
-		int tuningCost = 100 + (quality * 75);
+		int tuningCost = 100;
 
 		if (ghost->getForcePower() <= tuningCost) {
 			player->sendSystemMessage("@jedi_spam:no_force_power");
