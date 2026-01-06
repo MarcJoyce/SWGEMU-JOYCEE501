@@ -3171,20 +3171,20 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 		if (failed) {
 			switch (effectType) {
 			case CommandEffect::KNOCKDOWN:
-				// if (!targetCreature->checkKnockdownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
-				// 	targetCreature->setPosture(CreaturePosture::UPRIGHT);
-				// creature->sendSystemMessage("@cbt_spam:knockdown_fail");
+				if (targetCreature->isPlayerCreature() && !targetCreature->checkKnockdownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
+					targetCreature->setPosture(CreaturePosture::UPRIGHT);
+				creature->sendSystemMessage("@cbt_spam:knockdown_fail");
 				break;
 			case CommandEffect::POSTUREDOWN:
-				// if (!targetCreature->checkPostureDownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
-				// 	targetCreature->setPosture(CreaturePosture::UPRIGHT);
-				// creature->sendSystemMessage("@cbt_spam:posture_change_fail");
+				if (!targetCreature->checkPostureDownRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
+					targetCreature->setPosture(CreaturePosture::UPRIGHT);
+				creature->sendSystemMessage("@cbt_spam:posture_change_fail");
 				break;
 			case CommandEffect::POSTUREUP:
-				// if (!targetCreature->checkPostureUpRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
-				// 	targetCreature->setPosture(CreaturePosture::UPRIGHT);
-				// creature->sendSystemMessage("@cbt_spam:posture_change_fail");
-				// break;
+				if (!targetCreature->checkPostureUpRecovery() && targetCreature->getPosture() != CreaturePosture::UPRIGHT)
+					targetCreature->setPosture(CreaturePosture::UPRIGHT);
+				creature->sendSystemMessage("@cbt_spam:posture_change_fail");
+				break;
 			case CommandEffect::NEXTATTACKDELAY:
 				if (data.getCommand()->getNameCRC() != STRING_HASHCODE("panicshot"))
 					targetCreature->showFlyText("combat_effects", "warcry_miss", 0xFF, 0, 0);

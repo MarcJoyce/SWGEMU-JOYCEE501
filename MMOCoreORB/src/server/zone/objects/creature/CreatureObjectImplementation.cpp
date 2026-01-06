@@ -1697,8 +1697,6 @@ float CreatureObjectImplementation::getSpeedModifier() const {
 		}
 	}
 
-	modifier += 1.f;
-
 	return modifier;
 }
 
@@ -1710,8 +1708,6 @@ float CreatureObjectImplementation::getAccelerationModifier() const {
 			modifier = getSkillMod("private_acceleration_multiplier") * 0.01f;
 		}
 	}
-
-	modifier += 1.f;
 
 	return modifier;
 }

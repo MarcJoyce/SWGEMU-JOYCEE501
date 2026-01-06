@@ -652,9 +652,10 @@ public:
 			break;
 		case CommandEffect::KNOCKDOWN:
 			if (!defender->checkKnockdownRecovery()) {
-				// if (defender->getPosture() != CreaturePosture::UPRIGHT)
-				// 	defender->setPosture(CreaturePosture::UPRIGHT, false, false);
-				// break;
+				if (defender->isPlayerCreature() && defender->getPosture() != CreaturePosture::UPRIGHT) {
+					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
+				}
+				break;
 			}
 
 			if (defender->isRidingMount()) {
@@ -676,9 +677,10 @@ public:
 			break;
 		case CommandEffect::POSTUREUP:
 			if (!defender->checkPostureUpRecovery()) {
-				// if (defender->getPosture() != CreaturePosture::UPRIGHT)
-				// 	defender->setPosture(CreaturePosture::UPRIGHT, false, false);
-				// break;
+				if (defender->isPlayerCreature() && defender->getPosture() != CreaturePosture::UPRIGHT) {
+					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
+				}
+				break;
 			}
 
 			if (defender->isRidingMount()) {
@@ -703,9 +705,10 @@ public:
 			break;
 		case CommandEffect::POSTUREDOWN:
 			if (!defender->checkPostureDownRecovery()) {
-				// if (defender->getPosture() != CreaturePosture::UPRIGHT)
-				// 	defender->setPosture(CreaturePosture::UPRIGHT, false, false);
-				// break;
+				if (defender->isPlayerCreature() && defender->getPosture() != CreaturePosture::UPRIGHT) {
+					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
+				}
+				break;
 			}
 
 			if (defender->isRidingMount()) {
