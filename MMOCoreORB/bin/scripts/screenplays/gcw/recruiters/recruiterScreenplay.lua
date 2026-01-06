@@ -122,6 +122,11 @@ function recruiterScreenplay:isUniform(faction, strItem)
 	return factionRewardData.uniforms[strItem] ~= nil
 end
 
+function recruiterScreenplay:isVehicle(faction, strItem)
+	local factionRewardData = self:getFactionDataTable(faction)
+	return factionRewardData.vehicles[strItem] ~= nil
+end
+
 function recruiterScreenplay:isHireling(faction, strItem)
 	local factionRewardData = self:getFactionDataTable(faction)
 	return factionRewardData.hirelings[strItem] ~= nil
@@ -254,6 +259,22 @@ function recruiterScreenplay:getUniformsOptions(faction, gcwDiscount, smugglerDi
 	return optionsTable
 end
 
+function recruiterScreenplay:getVehicleOptions(faction, gcwDiscount, smugglerDiscount)
+	local optionsTable = { }
+	local factionRewardData = self:getFactionDataTable(faction)
+	for k,v in pairs(factionRewardData.vehicleList) do
+		if ( factionRewardData.vehicles[v] ~= nil and factionRewardData.vehicles[v].display ~= nil and factionRewardData.vehicles[v].cost ~= nil ) then
+			local option = {self:generateCustomSuiString(factionRewardData.vehicles[v].display, math.ceil(factionRewardData.vehicles[v].cost * gcwDiscount * smugglerDiscount)), 0}
+			table.insert(optionsTable, option)
+		end
+	end
+	return optionsTable
+end
+
+function recruiterScreenplay:generateCustomSuiString(item, cost)
+	return item .. " (Cost: " .. cost .. ")"
+end
+
 function recruiterScreenplay:generateSuiString(item, cost)
 	return getStringId(item) .. " (Cost: " .. cost .. ")"
 end
@@ -264,6 +285,8 @@ function recruiterScreenplay:getItemCost(faction, itemString)
 		return factionRewardData.weaponsArmor[itemString].cost
 	elseif self:isUniform(faction, itemString) and factionRewardData.uniforms[itemString].cost ~= nil then
 		return factionRewardData.uniforms[itemString].cost
+	elseif self:isVehicle(faction, itemString) and factionRewardData.vehicles[itemString].cost ~= nil then
+		return factionRewardData.vehicles[itemString].cost
 	elseif self:isFurniture(faction, itemString) and factionRewardData.furniture[itemString].cost ~= nil then
 		return factionRewardData.furniture[itemString].cost
 	elseif self:isInstallation(faction, itemString) and factionRewardData.installations[itemString].cost ~= nil then
@@ -282,6 +305,8 @@ function recruiterScreenplay:getTemplatePath(faction, itemString)
 		return factionRewardData.weaponsArmor[itemString].item
 	elseif self:isUniform(faction, itemString) then
 		return factionRewardData.uniforms[itemString].item
+	elseif self:isVehicle(faction, itemString) then
+		return factionRewardData.vehicles[itemString].item
 	elseif self:isFurniture(faction, itemString) then
 		return factionRewardData.furniture[itemString].item
 	elseif self:isInstallation(faction, itemString) then
@@ -300,6 +325,8 @@ function recruiterScreenplay:getDisplayName(faction, itemString)
 		return factionRewardData.weaponsArmor[itemString].display
 	elseif self:isUniform(faction, itemString) then
 		return factionRewardData.uniforms[itemString].display
+	elseif self:isVehicle(faction, itemString) then
+		return factionRewardData.vehicles[itemString].display
 	elseif self:isFurniture(faction, itemString) then
 		return factionRewardData.furniture[itemString].display
 	elseif self:isInstallation(faction, itemString) then
@@ -370,6 +397,8 @@ function recruiterScreenplay:sendPurchaseSui(pNpc, pPlayer, screenID, gcwDiscoun
 		options = self:getInstallationsOptions(faction, gcwDiscount, smugglerDiscount)
 	elseif screenID == "fp_uniforms" then
 		options = self:getUniformsOptions(faction, gcwDiscount, smugglerDiscount)
+	elseif screenID == "fp_vehicle" then
+		options = self:getVehicleOptions(faction, gcwDiscount, smugglerDiscount)
 	elseif screenID == "fp_hirelings" then
 		options = self:getHirelingsOptions(faction, gcwDiscount, smugglerDiscount)
 	elseif screenID == "fp_schematics" then
@@ -750,6 +779,8 @@ function recruiterScreenplay:getItemListTable(faction, screenID)
 		return table
 	elseif screenID == "fp_uniforms" then
 		return dataTable.uniformList
+	elseif screenID == "fp_vehicle" then
+		return dataTable.vehicleList
 	elseif screenID == "fp_hirelings" then
 		return dataTable.hirelingList
 	elseif screenID == "fp_schematics" then

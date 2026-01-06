@@ -421,6 +421,7 @@ faction_purchase = ConvoScreen:new {
 	options = {
 		{ "@conversation/faction_recruiter_imperial:s_328", "fp_installations" }, -- I need a base of operations.
 		{ "@conversation/faction_recruiter_imperial:s_332", "fp_uniforms"}, -- I need a new uniform.
+		{ "I need transportation", "fp_vehicle" }, 
 		{ "@conversation/faction_recruiter_imperial:s_336", "fp_weapons_armor" }, -- I need personal protection and armament.
 		{ "@conversation/faction_recruiter_imperial:s_340", "fp_schematics" }, -- I want to see what schematics you have.
 		{ "@conversation/faction_recruiter_imperial:s_344", "fp_furniture"}, -- Furniture. I am improving my quality of my life.
@@ -437,6 +438,14 @@ fp_uniforms = ConvoScreen:new {
 	options = {	},
 }
 imperialRecruiterConvoTemplate:addScreen(fp_uniforms);
+
+fp_vehicle = ConvoScreen:new {
+	id = "fp_vehicle",
+	leftDialog = "@conversation/faction_recruiter_imperial:s_330", -- Very well. I will show you what is available.
+	stopConversation = "true",
+	options = {},
+}
+imperialRecruiterConvoTemplate:addScreen(fp_vehicle);
 
 fp_furniture = ConvoScreen:new {
 	id = "fp_furniture",

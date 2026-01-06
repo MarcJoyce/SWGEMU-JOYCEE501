@@ -420,6 +420,7 @@ faction_purchase = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{ "@conversation/faction_recruiter_rebel:s_484", "fp_installations" }, -- We have some things. What do you need?
+		{ "I need transportation", "fp_vehicle" }, 
 		{ "@conversation/faction_recruiter_rebel:s_488", "fp_weapons_armor" }, -- I need better weaponry and armor.
 		{ "@conversation/faction_recruiter_rebel:s_492", "fp_schematics" }, -- I like to build. What schematics are available?
 		{ "@conversation/faction_recruiter_rebel:s_496", "fp_furniture"}, -- I would like to do some decorating. I need furniture.
@@ -436,6 +437,14 @@ fp_furniture = ConvoScreen:new {
 	options = {	},
 }
 rebelRecruiterConvoTemplate:addScreen(fp_furniture);
+
+fp_vehicle = ConvoScreen:new {
+	id = "fp_vehicle",
+	leftDialog = "@conversation/faction_recruiter_rebel:s_498", -- What suits your style? This is what I have available.
+	stopConversation = "true",
+	options = {	},
+}
+rebelRecruiterConvoTemplate:addScreen(fp_vehicle);
 
 fp_weapons_armor = ConvoScreen:new {
 	id = "fp_weapons_armor",

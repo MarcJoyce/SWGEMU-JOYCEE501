@@ -8,6 +8,7 @@ factionRewardType = {
 	installation = 7,
 	hireling = 8,
 	schematic = 9,
+	vehicle = 10,
 }
 
 rebelRewardData = {
@@ -59,6 +60,14 @@ rebelRewardData = {
 		turret_tower_lg = { type=factionRewardType.installation, display="@deed:turret_tower_lg", item="object/tangible/deed/faction_perk/turret/tower_lg_deed.iff", generatedObjectTemplate="object/installation/faction_perk/turret/tower_lg.iff", cost=6300 },
 		covert_detector_32m = { type=factionRewardType.installation, display="@deed:covert_detector_32m", item="object/tangible/deed/faction_perk/covert_detector/detector_32m_deed.iff", generatedObjectTemplate="object/installation/faction_perk/covert_detector/detector_32m.iff", cost=3000 },
 		minefield_1x1 = { type=factionRewardType.installation, display="@deed:minefield_1x1", item="object/tangible/deed/faction_perk/minefield/field_1x1_deed.iff", generatedObjectTemplate="object/installation/faction_perk/minefield/field_1x1.iff", cost=5000 },
+	},
+
+	vehicleList = {
+		"barc_speeder_rebel_deed"
+	},
+
+	vehicles = {
+		barc_speeder_rebel_deed = { type=factionRewardType.vehicle, display="Barc Speeder", item="object/tangible/deed/vehicle_deed/barc_speeder_rebel_deed.iff", cost=75000}
 	},
 
 	furnitureList = {
@@ -147,6 +156,14 @@ imperialRewardData = {
 		hat_imp_s01 = { type=factionRewardType.uniform, display="@wearables_name:hat_imp_s01", item="object/tangible/wearables/hat/hat_imp_s01.iff", cost=140 },
 		jacket_s03 = { type=factionRewardType.uniform, display="@wearables_name:jacket_s03", item="object/tangible/wearables/jacket/jacket_s03.iff", cost=140 },
 		pants_s15  = { type=factionRewardType.uniform, display="@wearables_name:pants_s15", item="object/tangible/wearables/pants/pants_s15.iff", cost=140 },
+	},
+
+	vehicleList = {
+		"barc_speeder_imperial_deed"
+	},
+
+	vehicles = {
+		barc_speeder_imperial_deed = { type=factionRewardType.vehicle, display="Barc Speeder", item="object/tangible/deed/vehicle_deed/barc_speeder_imperial_deed.iff", cost=75000}
 	},
 
 	installationsList = {
