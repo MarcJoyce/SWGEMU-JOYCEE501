@@ -8,6 +8,7 @@ function PlayerTriggers:playerLoggedIn(pPlayer)
 	BestineElection:playerLoggedIn(pPlayer)
 	CustomGlowingScreenPlay:playerLoggedIn(pPlayer)
 	DedleeSynScreenPlay:playerLoggedIn(pPlayer)
+	GCWEncounters:onPlayerLoggedIn(pPlayer)
 end
 
 function PlayerTriggers:playerLoggedOut(pPlayer)

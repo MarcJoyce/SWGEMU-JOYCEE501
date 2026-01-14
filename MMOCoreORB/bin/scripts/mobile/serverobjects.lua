@@ -128,6 +128,7 @@ includeFile("custom/mobs/encounters/encounter_knight.lua")
 includeFile("custom/mobs/encounters/encounter_master.lua")
 includeFile("custom/mobs/encounters/encounter_vader.lua")
 includeFile("custom/mobs/encounters/encounter_stormtrooper.lua")
+includeFile("custom/mobs/encounters/encounter_luke.lua")
 
 includeFile("custom/mobs/meatlump_king.lua")
 includeFile("custom/mobs/meatlump_king_buffoon.lua")
