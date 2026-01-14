@@ -86,7 +86,12 @@ lootableJediStatMods = {
 	"jedi_force_power_max",
 	"onehandlightsaber_accuracy",
 	"twohandlightsaber_accuracy",
-	"polearmlightsaber_accuracy"
+	"polearmlightsaber_accuracy",
+	"forceknockdown_accuracy",
+	"forceintimidate_accuracy",
+	"forcelightning_accuracy",
+	"forceweaken_accuracy",
+	-- "saber_block",
 }
 
 lootableArmorAttachmentStatMods = {
