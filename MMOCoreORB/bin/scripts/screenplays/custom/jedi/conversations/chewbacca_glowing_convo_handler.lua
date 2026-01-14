@@ -33,15 +33,15 @@ function chewbaccaConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
 
   if (screenID == "friendly") then
     if (canSpeakWookie) then
-      clonedConversation:setDialogTextStringId("@conversation/custom_string:chewbacca_friendly_basic")
+      clonedConversation:setDialogTextStringId("Rooha cacoohaanwaww's rwo anharoracwwrr raroohawwwa acworvo.")
     else
-      clonedConversation:setDialogTextStringId("@conversation/custom_string:chewbacca_friendly_wookiee")
+      clonedConversation:setDialogTextStringId("ACs'c raanorarc rrooowa soo cwowo ra wwracwowwwa!")
     end
   else 
     if (canSpeakWookie) then
-      clonedConversation:setDialogTextStringId("@conversation/custom_string:chewbacca_cautious_basic")
+      clonedConversation:setDialogTextStringId("You shouldn't be lurking around here.")
     else
-      clonedConversation:setDialogTextStringId("@conversation/custom_string:chewbacca_cautious_wookiee")
+      clonedConversation:setDialogTextStringId("It's always good to see a friend!")
     end
   end
 

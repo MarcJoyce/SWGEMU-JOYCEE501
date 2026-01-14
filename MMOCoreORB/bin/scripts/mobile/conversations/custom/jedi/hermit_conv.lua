@@ -7,7 +7,7 @@ hermit_convo_template = ConvoTemplate:new {
 
 init_screen = ConvoScreen:new {
   id = "init_screen",
-  leftDialog = "@conversation/custom_string:hermit_init_screen",
+  customDialogText = "Care to help an old man?",
   stopConversation = "false",
   options =  { },
 }
@@ -15,7 +15,7 @@ hermit_convo_template:addScreen(init_screen);
 
 success = ConvoScreen:new {
   id = "success",
-  leftDialog = "@conversation/custom_string:hermit_success",
+  customDialogText = "Thank you, thank you stranger, your kindness will be rewarded.",
   stopConversation = "true",
   options =  { },
 }

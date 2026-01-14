@@ -33,6 +33,8 @@ function hermitConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
     if (screenID == "init_screen") then
         if (CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher")) then
             clonedConversation:addOption("Here, old man, take some credits, get some help", "success")
+				else 
+					clonedConversation:setStopConversation(true)
         end
     elseif (screenID == "success") then
         CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_hermit")

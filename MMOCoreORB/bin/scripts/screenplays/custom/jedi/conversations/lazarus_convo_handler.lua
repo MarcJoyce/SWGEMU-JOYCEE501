@@ -37,8 +37,8 @@ function lazarusConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
       writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
     end
   elseif (screenID == "question_one") then
-    clonedConversation:addOption("@conversation/custom_string:lazarus_question_one_response_one", "fail")
-    clonedConversation:addOption("@conversation/custom_string:lazarus_question_one_response_two", "fail")
+    clonedConversation:addOption("Obi-Wan Kenobi", "fail")
+    clonedConversation:addOption("Sheeve Palpatine", "fail")
     clonedConversation:addOption(fullName, "question_two")
   elseif (screenID == "fail") then
     for i = 1, 2, 1 do

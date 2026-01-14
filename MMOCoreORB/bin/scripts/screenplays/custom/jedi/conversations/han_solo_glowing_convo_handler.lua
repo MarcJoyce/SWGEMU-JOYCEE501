@@ -52,7 +52,7 @@ function hanSoloConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
     PlayerObject(pGhost):addWaypoint("tatooine", "Chewbacca", "", -181, 5, -5145, WAYPOINT_YELLOW, true, true, 0)
   elseif (screenID == "first_screen") then
     if (isImperial) then
-      clonedConversation:addOption("@conversation/custom_string:han_solo_glowing_imperial_question", "imperial")
+      clonedConversation:addOption("Wait you're Han Solo, you're under arrest for crimes against the Empire!", "imperial")
     end
   end
 
