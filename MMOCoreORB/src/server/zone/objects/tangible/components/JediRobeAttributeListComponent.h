@@ -24,7 +24,7 @@ public:
 		auto config = ConfigManager::instance();
 		StringBuffer noTrade;
 
-		noTrade << "\\#FF0000" << config->getForceNoTradeMessage() || "\\#." << endl;
+		noTrade << "\\#FF0000" << config->getForceNoTradeMessage() << "\\#." << endl;
 
 		if (robe->isForceNoTrade()) {
 			alm->insertAttribute("no_trade", noTrade);
