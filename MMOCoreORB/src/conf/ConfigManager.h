@@ -618,7 +618,7 @@ namespace conf {
 
 			if (configVersion.get() > cachedVersion) {
 				Locker guard(&mutex);
-				cachedNoTradeMessage = getString("Core3.TangibleObject.NoTradeMessage", "");
+				cachedNoTradeMessage = getString("Core3.TangibleObject.NoTradeMessage", "No Trade");
 				cachedVersion = configVersion.get();
 			}
 
@@ -631,7 +631,7 @@ namespace conf {
 
 			if (configVersion.get() > cachedVersion) {
 				Locker guard(&mutex);
-				cachedForceNoTradeMessage = getString("Core3.TangibleObject.ForceNoTradeMessage", "");
+				cachedForceNoTradeMessage = getString("Core3.TangibleObject.ForceNoTradeMessage", "No Trade");
 				cachedVersion = configVersion.get();
 			}
 
@@ -644,7 +644,7 @@ namespace conf {
 
 			if (configVersion.get() > cachedVersion) {
 				Locker guard(&mutex);
-				cachedForceNoTradeADKMessage = getString("Core3.TangibleObject.ForceNoTradeADKMessage", "");
+				cachedForceNoTradeADKMessage = getString("Core3.TangibleObject.ForceNoTradeADKMessage", "No Trade");
 				cachedVersion = configVersion.get();
 			}
 
@@ -844,7 +844,7 @@ namespace conf {
 
 			if (configVersion.get() > cachedVersion) {
 				Locker guard(&mutex);
-				cachedLaunchFromDevice = getBool("Core3.JTL.LaunchFromDevice", false);
+				cachedLaunchFromDevice = getBool("Core3.JTL.LaunchFromDevice", true);
 				cachedVersion = configVersion.get();
 			}
 

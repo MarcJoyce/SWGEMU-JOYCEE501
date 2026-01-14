@@ -1664,27 +1664,38 @@ int DirectorManager::generateWeapon(lua_State* L){
 		object->setCustomObjectName(customName.toString(), false);
 
 		weaponObj->setDamageType(damageType);
-		weaponObj->setAttackSpeed(System::random(20) / 10);
+		weaponObj->setAttackSpeed(1.0f);
 
 		int tokenFactor = tokensToSpend / 5;
 
-		float minDamage = weaponObj->getMinDamage();
-		float maxDamage = weaponObj->getMaxDamage();
+		bool isMeleeWeapon = weaponObj->isMeleeWeapon();
 
-		float newMinDamage = System::random(minDamage * tokenFactor * 0.5) + minDamage * tokenFactor;
-		float newMaxDamage = System::random(maxDamage * tokenFactor * 0.5) + maxDamage * tokenFactor;
+		int weaponFactor;
+		if (isMeleeWeapon) {
+			weaponFactor = 950;
+		} else {
+			weaponFactor = 925;
+		}
+		
+		// float maxDamage = weaponObj->getMaxDamage();
+		float baseMaxDamage = (tokenFactor * tokenFactor - 45 * tokenFactor + weaponFactor) / 3.0f;
+
+		float minDamage = (System::random(baseMaxDamage * tokenFactor * 0.5) + baseMaxDamage * tokenFactor) / 100 * (100 - System::random(25));
+		float maxDamage = System::random(baseMaxDamage * tokenFactor * 0.5) + baseMaxDamage * tokenFactor;
+
+		float newMinDamage = Math::min(minDamage, maxDamage);
+		float newMaxDamage = Math::max(minDamage, maxDamage);
 
 		weaponObj->setMinDamage(newMinDamage);
 		weaponObj->setMaxDamage(newMaxDamage);
 
 		int ap;
-		int roll = System::random(25);
 
-		if (tokenFactor > 20) {
+		if (tokenFactor >= 20) {
 			ap = 3;
-		} else if (tokenFactor > 10) {
+		} else if (tokenFactor >= 10) {
 			ap = 2;
-		} else if (tokenFactor > 5) {
+		} else if (tokenFactor >= 5) {
 			ap = 1;
 		} else {
 			ap = weaponObj->getArmorPiercing();

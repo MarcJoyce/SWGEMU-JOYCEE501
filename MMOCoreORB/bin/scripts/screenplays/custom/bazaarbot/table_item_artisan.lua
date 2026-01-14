@@ -1,8 +1,8 @@
 BBArtisanConfig = {
 	path = "object/draft_schematic/item/item_",
 	qualityMin = 50,
-	qualityAvg = 75, -- 10% chance to use this as the min value and qualityMax as the max value
-	qualityMax = 95, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
+	qualityAvg = 50, -- 10% chance to use this as the min value and qualityMax as the max value
+	qualityMax = 50, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
 	freq = 86400, -- Every x seconds
 	eventName = "BazaarBotAddArtisanItems",
 	functionName = "addMoreArtisanItems",

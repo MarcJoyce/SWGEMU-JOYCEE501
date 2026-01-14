@@ -8,15 +8,18 @@ DedleeSynScreenPlay = ScreenPlay:new {
   respawnFrequency = 1000 * 86400,
   spawns = {
     { "tusken_witch_doctor", "Tusken Witch Doctor" },
+    { "tusken_executioner", "Tusken Executioner" },
     { "tusken_observer", "Tusken Observer" },
     { "dark_jedi_knight", "Dark Jedi Knight" },
+    { "dark_jedi_master", "Dark Jedi Master" },
     { "spiderclan_elder", "SpiderClan Nightsister Elder" },
     { "nightsister_elder", "Nightsister Elder" },
     { "singing_mountain_clan_councilwoman", "Singing Mountain Clan Councilwoman" },
     { "krayt_dragon_ancient", "Ancient Krayt Dragon" },
+    { "graul_marauder", "Graul Marauder" },
   },
   messages = {
-    "Boom! That one's not getting back up. Nice kill, ace. Remind me not to stand in your line of fire!",
+    "Boom! That one's not getting back up. Nice kill, ace. Remind me not to stand in your way!",
     "Wasted! That was smoother than a speeder on cruise control. On to the next dance, partner.",
     "Confirmed kill! If you keep this up, we're gonna have to start charging admission.",
     "They never saw it coming-classic you. Let's keep this streak hotter than a twin-sunned tatoo.",
@@ -24,7 +27,7 @@ DedleeSynScreenPlay = ScreenPlay:new {
     "That's a wrap for that poor soul! Someone call the med droid... or maybe just fetch a shovel.",
     "Bang! Headshot city. Are you secretly a droid, or just that damm good? Either way, we're impressed.",
     "Nice work! You're racking up more kills than a krayt dragon at a Jawa party.",
-    "Target down. Dignity gone! Yours or theirs? Kidding. Let's keep this party going!",
+    "Target down. Dignity gone! Yours or theirs? Just kidding. Let's keep this party going!",
     "You just sent that one to respawn purgatory. I hope they brought snacks.",
     "Whew! That folded faster than a sabaac rookie. Keep this up and you'll clear the whole sector solo.",
     "Zap! Target toasy. Remind me to stay behind you when the blasters start flying.",
@@ -37,7 +40,7 @@ DedleeSynScreenPlay = ScreenPlay:new {
     "Another one down! You're cleaning house like a protocol droid with a grudge.",
     "Done and dusted! I swear you're farming kills like a moisture farmer chases rain.",
     "Damm, did that one owe you credits? Chasing cheques and breaking necks, am I right?!",
-    "There's a rumour that when the boogeyman goes to sleep, he checks under his bed for you!"
+    "There's a rumour that when the boogeyman goes to sleep, they check under the bed for you!"
   },
 }
 
@@ -106,7 +109,7 @@ function DedleeSynScreenPlay:notifyKilledCreature(pPlayer, pVictim)
     local message = self.messages[getRandomNumber(1, #self.messages)]
     CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\" .. message)
 
-    local tokens = 1000;
+    local tokens = 1;
 
     writeScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount", huntCount + tokens)
   end

@@ -71,7 +71,8 @@ int HeroRingMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Crea
 
 		player->removeFeignedDeath();
 
-		data->setCharges(charges - 1);
+		// data->setCharges(charges - 1);
+		data->setCharges(charges);
 
 		String hardpoint = "";
 

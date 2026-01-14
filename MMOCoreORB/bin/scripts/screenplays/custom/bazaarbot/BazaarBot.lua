@@ -237,7 +237,7 @@ function BazaarBotScreenPlay:listCraftedItems(configTable, itemTable)
                     end
                 
                     local quality = getRandomNumber(minQuality, maxQuality)
-                    local price = itemTable[j][1] * ((quality/200) + 1) * crateQuantity * 1.5
+                    local price = itemTable[j][1] * (((quality/200) + 1) * crateQuantity) * 3
                   
 										
 					local pItem = bazaarBotCreateCraftedItemAndList(pBazaarBot, template, crateQuantity, quality, altTemplate, pVendor, self.itemDescription, price)

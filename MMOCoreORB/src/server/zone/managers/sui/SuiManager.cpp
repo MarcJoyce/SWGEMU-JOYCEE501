@@ -32,6 +32,8 @@
 #include "server/zone/managers/crafting/CraftingManager.h"
 #include "server/zone/objects/draftschematic/DraftSchematic.h"
 #include "server/zone/objects/manufactureschematic/ManufactureSchematic.h"
+#include "server/zone/objects/player/sessions/MigrateStatsSession.h"
+#include "server/zone/managers/player/creation/PlayerCreationManager.h"
 
 SuiManager::SuiManager() : Logger("SuiManager") {
 	server = nullptr;
@@ -281,6 +283,21 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 				SkillManager::instance()->surrenderAllSkills(player, true, false, true);
 				player->sendSystemMessage("All skills unlearned.");
 
+			} else if (templatePath == "reset_stat_migration") {
+				ManagedReference<Facade*> facade = player->getActiveSession(SessionFacadeType::MIGRATESTATS);
+				ManagedReference<MigrateStatsSession*> session = dynamic_cast<MigrateStatsSession*>(facade.get());
+
+				session->setAttributeToModify(0, PlayerCreationManager::instance()->getMinimumAttributeLimit(player->getSpeciesName(), 0));
+				session->setAttributeToModify(1, PlayerCreationManager::instance()->getMaximumAttributeLimit(player->getSpeciesName(), 1));
+				session->setAttributeToModify(2, PlayerCreationManager::instance()->getMaximumAttributeLimit(player->getSpeciesName(), 2));
+				session->setAttributeToModify(3, PlayerCreationManager::instance()->getMinimumAttributeLimit(player->getSpeciesName(), 3));
+				session->setAttributeToModify(4, PlayerCreationManager::instance()->getMaximumAttributeLimit(player->getSpeciesName(), 4));
+				session->setAttributeToModify(5, PlayerCreationManager::instance()->getMaximumAttributeLimit(player->getSpeciesName(), 5));
+				session->setAttributeToModify(6, PlayerCreationManager::instance()->getMinimumAttributeLimit(player->getSpeciesName(), 6));
+				session->setAttributeToModify(7, PlayerCreationManager::instance()->getMaximumAttributeLimit(player->getSpeciesName(), 7));
+				session->setAttributeToModify(8, PlayerCreationManager::instance()->getMaximumAttributeLimit(player->getSpeciesName(), 8));
+
+				session->migrateStats();
 			} else if (templatePath == "cleanse_character") {
 				if (!player->isInCombat()) {
 					player->sendSystemMessage("You have been cleansed from the signs of previous battles.");

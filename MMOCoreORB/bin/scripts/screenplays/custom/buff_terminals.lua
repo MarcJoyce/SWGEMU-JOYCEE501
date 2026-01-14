@@ -5,9 +5,9 @@ BuffTerminal = ScreenPlay:new {
 	buffPetSecondaryStats = 1, -- 0 = No, 1 = Yes. Will also buff the pet's secondary stats.
 	buffs = {
 		-- Legend: {name, price, duration in hours, health, strength, constitution, action, quickness, stamina, mind, focus, willpower},
-		{"Starter Buff", 0, 4, 300, 100, 100, 300, 100, 100, 300, 100, 100, requiredSkills = {}, requiredSkillNames = ""}, -- Free!
-		{"Basic Buff", 5000, 3, 600, 150, 150, 600, 150, 150, 600, 150, 100, requiredSkills = {}, requiredSkillNames = ""},
-		{"Premium Buff", 25000, 2, 1500, 250, 250, 1500, 250, 250, 1500, 250, 250, requiredSkills = {"", ""}, requiredSkillNames = ""},
+		{"Starter Buff", 0, 4, 500, 250, 250, 500, 250, 250, 500, 250, 250, requiredSkills = {}, requiredSkillNames = ""}, -- Free!
+		{"Basic Buff", 5000, 3, 1000, 500, 500, 1000, 500, 500, 1000, 500, 500, requiredSkills = {}, requiredSkillNames = ""},
+		{"Premium Buff", 25000, 2, 1500, 750, 750, 1500, 750, 750, 1500, 750, 750, requiredSkills = {"", ""}, requiredSkillNames = ""},
 	},
 	termModel = "object/tangible/terminal/terminal_light_enclave_voting.iff",
 	termName = "Medical Services Terminal",

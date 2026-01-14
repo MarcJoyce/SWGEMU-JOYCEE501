@@ -799,22 +799,22 @@ void TangibleObjectImplementation::removeDefender(SceneObject* defender) {
 void TangibleObjectImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	SceneObjectImplementation::fillAttributeList(alm, object);
 
+	auto config = ConfigManager::instance();
+	StringBuffer noTrade;
+
+	noTrade << "\\#FF0000" << config->getForceNoTradeMessage() << "\\#." << endl;
+
+	if (isForceNoTrade() || (antiDecayKitObject != nullptr && antiDecayKitObject->isForceNoTrade()) || isNoTrade() || containsNoTradeObjectRecursive()) {
+		alm->insertAttribute("no_trade", noTrade);
+	}
+
 	if (maxCondition > 0) {
 		StringBuffer cond;
 		cond << (maxCondition-(int)conditionDamage) << "/" << maxCondition;
 
-		auto config = ConfigManager::instance();
-
-		if (isForceNoTrade()) {
-			cond << config->getForceNoTradeMessage();
-		} else if (antiDecayKitObject != nullptr && antiDecayKitObject->isForceNoTrade()) {
-			cond << config->getForceNoTradeADKMessage();
-		} else if (isNoTrade() || containsNoTradeObjectRecursive()) {
-			cond << config->getNoTradeMessage();
-		}
-
 		alm->insertAttribute("condition", cond);
 	}
+
 
 	int volumeLimit = getContainerVolumeLimit();
 

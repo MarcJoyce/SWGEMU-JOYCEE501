@@ -39,7 +39,7 @@ class CreatureManager extends ZoneManager {
 	public static final short DNADEATH = 0x03;
 
 	public static final unsigned int CREATURE_LAIR_MIN = 1000;
-	public static final unsigned int CREATURE_LAIR_MAX = 64000;
+	public static final unsigned int CREATURE_LAIR_MAX = 32000;
 
 	public CreatureManager(Zone planet) {
 		super("CreatureManager " + planet.getZoneName());

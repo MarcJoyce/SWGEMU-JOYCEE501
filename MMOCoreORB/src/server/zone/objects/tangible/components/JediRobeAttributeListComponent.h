@@ -21,17 +21,20 @@ public:
 			return;
 		}
 
+		auto config = ConfigManager::instance();
+		StringBuffer noTrade;
+
+		noTrade << "\\#FF0000" << config->getForceNoTradeMessage() || "\\#." << endl;
+
+		if (robe->isForceNoTrade()) {
+			alm->insertAttribute("no_trade", noTrade);
+		}
+
 		int maxCondition = robe->getMaxCondition();
 
 		if (maxCondition > 0) {
 			StringBuffer cond;
 			cond << maxCondition << "/" << maxCondition;
-
-			auto config = ConfigManager::instance();
-
-			if (robe->isForceNoTrade()) {
-				cond << config->getForceNoTradeMessage();
-			}
 
 			alm->insertAttribute("condition", cond);
 		}

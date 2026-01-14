@@ -9,9 +9,9 @@ mission_level = ScreenPlay:new {
         {levelRange = "2222 Elite Combat", levelSelect = 15},
         {levelRange = "Master Elite Combat", levelSelect = 25},
         {levelRange = "Tri Elite Combat", levelSelect = 75},
-        {levelRange = "Level 1", levelSelect = 100},
-        {levelRange = "Level 2", levelSelect = 200},
-        {levelRange = "Max", levelSelect = 300}
+        {levelRange = "Level 100", levelSelect = 100},
+        {levelRange = "Level 200", levelSelect = 200},
+        {levelRange = "Level 300", levelSelect = 300}
     }
 }
 

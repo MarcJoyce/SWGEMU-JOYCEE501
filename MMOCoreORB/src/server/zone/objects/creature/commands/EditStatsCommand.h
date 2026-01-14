@@ -5,6 +5,7 @@
 #ifndef EDITSTATSCOMMAND_H_
 #define EDITSTATSCOMMAND_H_
 
+#include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/objects/scene/SceneObject.h"
 
 class EditStatsCommand : public QueueCommand {
@@ -18,6 +19,7 @@ public:
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
+		PlayerManager* playerManager = server->getZoneServer()->getPlayerManager();
 
 		if (object != nullptr) {
 			if (!object->isCreatureObject()) {
@@ -59,28 +61,49 @@ public:
 					return SUCCESS;
 				}
 
-				int amount;
-				amount = args.getIntToken();
+				int medicalBuff;
+				medicalBuff = args.getIntToken();
 
-				if (modifier == "health" || modifier == "strength" || modifier == "constitution" ||
-					modifier == "action" || modifier == "stamina" || modifier == "quickness" ||
-					modifier == "mind" || modifier == "focus" || modifier == "willpower") {
-					patient->addMaxHAM(CreatureAttribute::getAttribute(modifier), amount);
-					return SUCCESS;
-				} else if (modifier == "all") {
-					patient->addMaxHAM(CreatureAttribute::getAttribute("health"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("strength"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("constitution"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("action"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("stamina"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("quickness"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("mind"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("focus"), amount);
-					patient->addMaxHAM(CreatureAttribute::getAttribute("willpower"), amount);
-					return SUCCESS;
+				int medicalDuration = 7200; // 2 hours in seconds
+				if (args.hasMoreTokens()) {
+					int parsedDuration = args.getIntToken();
+					if (parsedDuration > 0) {
+						medicalDuration = parsedDuration * 60 * 60;
+					} else {
+						creature->sendSystemMessage("Invalid duration; using default duration (7200s).");
+					}
 				}
-			}
-			else if (commandType.beginsWith("skill")) {
+				
+				if (modifier == "health") {
+					playerManager->doEnhanceCharacter(0x98321369, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 0); // medical_enhance_health
+				} else if (modifier == "strength") {
+					playerManager->doEnhanceCharacter(0x815D85C5, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 1); // medical_enhance_strength
+				} else if (modifier == "constitution") {
+					playerManager->doEnhanceCharacter(0x7F86D2C6, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 2); // medical_enhance_constitution
+				} else if (modifier == "action") {
+					playerManager->doEnhanceCharacter(0x4BF616E2, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 3); // medical_enhance_action
+				} else if (modifier == "stamina") {
+					playerManager->doEnhanceCharacter(0xED0040D9, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 5); // medical_enhance_stamina
+				} else if (modifier == "quickness") {
+					playerManager->doEnhanceCharacter(0x71B5C842, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 4); // medical_enhance_quickness
+				} else if (modifier == "mind") {
+					playerManager->doEnhanceCharacter(0x11C1772E, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 6); // performance_enhance_dance_mind
+				} else if (modifier == "focus") {
+					playerManager->doEnhanceCharacter(0x2E77F586, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 7); // performance_enhance_music_focus
+				} else if (modifier == "willpower") {
+					playerManager->doEnhanceCharacter(0x3EC6FCB6, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 8); // performance_enhance_music_willpower
+				} else if (modifier == "all") {
+					playerManager->doEnhanceCharacter(0x98321369, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 0); // medical_enhance_health
+					playerManager->doEnhanceCharacter(0x815D85C5, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 1); // medical_enhance_strength
+					playerManager->doEnhanceCharacter(0x7F86D2C6, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 2); // medical_enhance_constitution
+					playerManager->doEnhanceCharacter(0x4BF616E2, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 3); // medical_enhance_action
+					playerManager->doEnhanceCharacter(0xED0040D9, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 5); // medical_enhance_stamina
+					playerManager->doEnhanceCharacter(0x71B5C842, patient, medicalBuff, medicalDuration, BuffType::MEDICAL, 4); // medical_enhance_quickness
+					playerManager->doEnhanceCharacter(0x11C1772E, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 6); // performance_enhance_dance_mind
+					playerManager->doEnhanceCharacter(0x2E77F586, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 7); // performance_enhance_music_focus
+					playerManager->doEnhanceCharacter(0x3EC6FCB6, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 8); // performance_enhance_music_willpower
+				}
+			} else if (commandType.beginsWith("skill")) {
 				String state;
 				args.getStringToken(state);
 
@@ -121,10 +144,8 @@ public:
 			}
 
 		} catch (Exception& e) {
-			creature->sendSystemMessage("Syntax: /editStats buff health, action... / all amount");
+			creature->sendSystemMessage("Syntax: /editStats buff health, action... / all amount duration(hours)");
 			creature->sendSystemMessage("Syntax: /editStats skill temp/perm skill_modifier amount");
-			creature->sendSystemMessage("Syntax: /editStats screenplay screenplay screenplayValue");
-			creature->sendSystemMessage("Syntax: /editStats screenplaydata screenplay screenplayKey screenplayValue");
 			creature->sendSystemMessage("Syntax: /editStats vis amount");
 		}
 

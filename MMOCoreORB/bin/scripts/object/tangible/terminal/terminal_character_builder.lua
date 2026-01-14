@@ -3005,6 +3005,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					"Master", "crafting_weaponsmith_master"
 				}
 			},
+			"Reset Stat Migration", "reset_stat_migration",
 			"Unlearn All Skills", "unlearn_all_skills",
 			"Cleanse Character", "cleanse_character",
 			"Teleport to DWB", "teleport_dwb",

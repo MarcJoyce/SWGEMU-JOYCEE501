@@ -231,11 +231,11 @@ class CreatureObject extends TangibleObject {
 
 	public static transient float DEFAULTRUNSPEED;
 
-	public static final unsigned long DEAD_TOO_LONG = 1800000; //30 minutes - How long can someone be dead and still be resuscitated in Miliseconds
+	public static final unsigned long DEAD_TOO_LONG = 86400000; //1 day - How long can someone be dead and still be resuscitated in Miliseconds
 
 	public transient unsigned long tradeTargetID;
 
-	public static final int CONVERSATION_MAX_DISTANCE = 7; // Max range for conversations
+	public static final int CONVERSATION_MAX_DISTANCE = 8; // Max range for conversations
 
 	/**
 	 * CreatureObject constructor, used to initialized the object
@@ -1450,7 +1450,7 @@ class CreatureObject extends TangibleObject {
 	}
 
 	public void updatePostureDownRecovery() {
-		cooldownTimerMap.updateToCurrentAndAddMili("postureDownRecovery", 30000);
+		cooldownTimerMap.updateToCurrentAndAddMili("postureDownRecovery", 20000);
 	}
 
 	@read
@@ -1459,7 +1459,7 @@ class CreatureObject extends TangibleObject {
 	}
 
 	public void updatePostureUpRecovery() {
-		cooldownTimerMap.updateToCurrentAndAddMili("postureUpRecovery", 30000);
+		cooldownTimerMap.updateToCurrentAndAddMili("postureUpRecovery", 20000);
 	}
 
 	@read
@@ -1468,7 +1468,7 @@ class CreatureObject extends TangibleObject {
 	}
 
 	public void updateKnockdownRecovery() {
-		cooldownTimerMap.updateToCurrentAndAddMili("knockdownRecovery", 30000);
+		cooldownTimerMap.updateToCurrentAndAddMili("knockdownRecovery", 20000);
 	}
 
 	@read
