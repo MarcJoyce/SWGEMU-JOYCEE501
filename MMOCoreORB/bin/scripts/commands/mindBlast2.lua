@@ -95,10 +95,10 @@ MindBlast2Command = {
 	forceAttack = true,
 	damageType = LIGHTSABER_DAMAGE,
 
-	frsLightMinDamageModifier = 2,
-	frsLightMaxDamageModifier = 3,
-	frsDarkMinDamageModifier = 2,
-	frsDarkMaxDamageModifier = 3,
+	frsLightMinDamageModifier = 4,
+	frsLightMaxDamageModifier = 6,
+	frsDarkMinDamageModifier = 4,
+	frsDarkMaxDamageModifier = 6,
 
 	range = 32
 }
