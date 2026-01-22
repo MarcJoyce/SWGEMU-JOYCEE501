@@ -796,3 +796,5 @@ includeFile("custom/encounters/gcwTroopersRebel.lua")
 
 includeFile("custom/meatlump_king.lua")
 includeFile("custom/meatlump_king_theatre.lua")
+
+includeFile("custom/arena/arena.lua")

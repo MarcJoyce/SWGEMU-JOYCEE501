@@ -97,7 +97,7 @@ function JediEncounters:doDelayedStep(pPlayer)
 	end
 
 	if (not encounterResult) then
-		local rescheduleDelay = getRandomNumber(15, 30) * 60 * 1000
+		local rescheduleDelay = getRandomNumber(300, 900) * 60 * 1000
 		createEvent(rescheduleDelay, "JediEncounters", "doDelayedStep", pPlayer, "")
 	end
 end

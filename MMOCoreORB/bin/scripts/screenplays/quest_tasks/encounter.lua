@@ -87,6 +87,13 @@ function Encounter:isPlayerInNpcCity(pPlayer)
 	return CityRegion(pCityRegion):isClientRegion()
 end
 
+function Encounter:isPlayerInNonEncounterEvent(pPlayer)
+	if (tonumber(readScreenPlayData(pPlayer, "NontEncounterEvent", "inEvent")) == 1) then
+		return true
+	end
+	return false
+end
+
 -- Check if the player is in a position where the encounter can be spawned.
 -- @param pPlayer pointer to the player object of the player.
 function Encounter:isPlayerInPositionForEncounter(pPlayer)
@@ -94,7 +101,7 @@ function Encounter:isPlayerInPositionForEncounter(pPlayer)
 		return false
 	end
 
-	return self:isPlayerOnline(pPlayer) and not self:isPlayerInABuilding(pPlayer) and not self:isPlayerInNpcCity(pPlayer)
+	return self:isPlayerOnline(pPlayer) and not self:isPlayerInABuilding(pPlayer) and not self:isPlayerInNpcCity(pPlayer) and not self:isPlayerInNonEncounterEvent(pPlayer)
 end
 
 -- Empty handler for the handleEncounterInRange event.
