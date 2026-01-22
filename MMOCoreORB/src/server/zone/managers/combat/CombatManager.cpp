@@ -1173,8 +1173,13 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 			damage *= 1.f / (1.f + ((float)forceDefense / 100.f));
 	}
 
+	if (!attacker->isPlayerCreature() && defender->isPlayerCreature()) {
+		int totalHam = defender->getMaxHAM(CreatureAttribute::HEALTH) + defender->getMaxHAM(CreatureAttribute::ACTION) + defender->getMaxHAM(CreatureAttribute::MIND);
+		damage = Math::min(damage, totalHam / 100.f * 3.33f);
+	}
+
 	// PvP Damage Reduction.
-	if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForceAttack())
+	if (attacker->isPlayerCreature() && defender->isPlayerCreature())
 		damage *= 0.10;
 		// damage *= 0.25;
 
