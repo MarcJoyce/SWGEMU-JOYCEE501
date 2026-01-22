@@ -102,18 +102,18 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_gloves = object_ta
 	mindEncumbrance = 0,
 
 	-- LIGHT, MEDIUM, HEAVY
-	rating = HEAVY,
+	rating = MEDIUM,
 	maxCondition = 100000,
 
 	kinetic = 90,
 	energy = 90,
 	electricity = 90,
-	stun = 90,
+	stun = 45,
 	blast = 90,
 	heat = 90,
 	cold = 90,
 	acid = 90,
-	lightSaber = 90
+	lightSaber = 45
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_mandalorian_armor_mandalorian_gloves, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_gloves.iff")
