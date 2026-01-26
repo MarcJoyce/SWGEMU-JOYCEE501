@@ -48,10 +48,12 @@ function klikKlakConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, se
   elseif (screenID == "success_paid") then
     CreatureObject(pPlayer):subtractCashCredits(10000000)
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_one")
+    logToFile(playerID .. " received piece_of_eight_one", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):setScreenPlayState(4, "tusken_queen_head")
     CreatureObject(pPlayer):sendSystemMessage("Klik Klak hands you a piece of the orb")
   elseif (screenID == "success_kill") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_one")
+    logToFile(playerID .. " received piece_of_eight_one", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):setScreenPlayState(4, "tusken_queen_head")
     CreatureObject(pPlayer):sendSystemMessage("Klik Klak hands you a piece of the orb")
   end

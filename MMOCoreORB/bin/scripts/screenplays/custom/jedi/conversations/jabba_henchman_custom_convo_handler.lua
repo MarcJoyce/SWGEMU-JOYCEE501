@@ -50,6 +50,7 @@ function jabbaHenchmanCustomConvoHandler:runScreenHandlers(pConvTemplate, pPlaye
 
   elseif (screenID == "free") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_six")
+    logToFile(playerID .. " received piece_of_eight_six", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):sendSystemMessage("Gurkk hands you a piece of the orb")
   elseif (screenID == "pay") then
     local playerCredits = CreatureObject(pPlayer):getCashCredits()
@@ -63,6 +64,7 @@ function jabbaHenchmanCustomConvoHandler:runScreenHandlers(pConvTemplate, pPlaye
   elseif (screenID == "pay_success") then
     CreatureObject(pPlayer):subtractCashCredits(1000000)
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_six")
+    logToFile(playerID .. " received piece_of_eight_six", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):removeScreenPlayState(1, "pay_jabba")
     CreatureObject(pPlayer):sendSystemMessage("Gurkk hands you a piece of the orb")
   elseif (screenID == "kill") then
@@ -72,6 +74,7 @@ function jabbaHenchmanCustomConvoHandler:runScreenHandlers(pConvTemplate, pPlaye
     CreatureObject(pPlayer):removeScreenPlayState(1, "krayt_dragon")
     CreatureObject(pPlayer):removeScreenPlayState(2, "krayt_dragon")
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_six")
+    logToFile(playerID .. " received piece_of_eight_six", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):sendSystemMessage("Gurkk hands you a piece of the orb")
   end
 

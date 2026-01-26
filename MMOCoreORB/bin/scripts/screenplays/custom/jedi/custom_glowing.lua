@@ -194,6 +194,12 @@ function CustomGlowingScreenPlay:notifyEnteredArea(pActiveArea, pPlayer)
 
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "han_solo_glowing")) then
     CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>  \\#FFFFFF\\Ok Kid, looks like she's all in one piece, head on back.")
+    local pGhost = CreatureObject(pPlayer):getPlayerObject()
+    local playerID = SceneObject(pPlayer):getObjectID()
+    local oldWaypointID = tonumber(getQuestStatus(playerID .. ":han_solo_glowing_find_chewbacca"))
+    PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
+    removeQuestStatus(playerID .. ":han_solo_glowing_find_chewbacca")
+
     CreatureObject(pPlayer):removeScreenPlayState(1, "han_solo_glowing")
     CreatureObject(pPlayer):setScreenPlayState(2, "han_solo_glowing")
     return 0
@@ -202,15 +208,19 @@ function CustomGlowingScreenPlay:notifyEnteredArea(pActiveArea, pPlayer)
 end
 
 function CustomGlowingScreenPlay:boxLootedTrialOnePieceThree(pSceneObject, pPlayer)
+  local playerID = SceneObject(pPlayer):getObjectID()
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1") and not CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_three")) then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_three")
+    logToFile(playerID .. " received piece_of_eight_three", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):sendSystemMessage("At the bottom of the container you find a piece of the orb.");
   end
 end
 
 function CustomGlowingScreenPlay:boxLootedTrialOnePieceEight(pSceneObject, pPlayer)
+  local playerID = SceneObject(pPlayer):getObjectID()
   if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1") and not CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_eight")) then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_eight")
+    logToFile(playerID .. " received piece_of_eight_eight", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):sendSystemMessage("In amongst the remains, you find a piece of the orb.");
   end
 end
@@ -248,8 +258,11 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceTwo(pPlayer, p
 
 	local victimName = SceneObject(pVictim):getCustomObjectName()
 
+  local playerID = SceneObject(pPlayer):getObjectID()
+
   if (victimName == "Brian Cohen") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_two")
+    logToFile(playerID .. " received piece_of_eight_two", "log/custom_glowing/" .. playerID .. ".log")
     CreatureObject(pPlayer):sendSystemMessage("Searching through the remains, you find a piece of the orb.");
 
     dropObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer);
@@ -413,6 +426,8 @@ function CustomGlowingScreenPlay:notifyChatSent(pPlayer, pChatMessage)
 		return 0
 	end
 
+  local playerID = SceneObject(pPlayer):getObjectID()
+
   local trialNumber = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trial"))
 
 	local trialData = trialSixRiddles[trialNumber]
@@ -427,6 +442,7 @@ function CustomGlowingScreenPlay:notifyChatSent(pPlayer, pChatMessage)
 
   if (string.upper(chatMessage) == string.upper(trialAnswer)) then
     CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_6")
+    logToFile(playerID .. " completed trial 6", "log/custom_glowing/" .. playerID .. ".log")
 
     dropObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
   end

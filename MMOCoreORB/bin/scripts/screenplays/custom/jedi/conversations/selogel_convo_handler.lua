@@ -12,7 +12,7 @@ function selogelConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 		
 	if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_8")) then	
 		return convoTemplate:getScreen("hello_friend")
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7") and BestineElection:hasItemInInventory(pPlayer, "object/tangible/jedi/jedi_holocron_dark.iff") and BestineElection:hasItemInInventory(pPlayer, "object/tangible/jedi/jedi_holocron_light.iff")) then	
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7") and BestineElection:hasItemInInventory(pPlayer, "object/tangible/jedi/jedi_holocron_dark.iff") and BestineElection:hasItemInInventory(pPlayer, "object/tangible/jedi/jedi_holocron_light.iff")) then
 		return convoTemplate:getScreen("trial_7_complete")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7")) then
 		return convoTemplate:getScreen("trial_7_ongoing")
@@ -75,17 +75,21 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		return pConvScreen
 	end
 
-  	if screenID == "trial_1_start" then
+	if screenID == "trial_1_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_1");
-		
 		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer)
-
+	elseif screenID == "trial_1_complete" then
+		CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_1")
+		logToFile(playerID .. " completed trial 1", "log/custom_glowing/" .. playerID .. ".log")
 	elseif screenID == "trial_2_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_2");
 		local professionString = self:getAndSetProfession(pPlayer, "combat", "Trial2")
 		CreatureObject(pPlayer):sendSystemMessage(professionString)
 	elseif screenID == "trial_2_ongoing" then
 		CreatureObject(pPlayer):sendSystemMessage(self:getProfessionString(pPlayer, "combat", "Trial2"))
+	elseif screenID == "trial_2_complete" then
+		CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_2")
+		logToFile(playerID .. " completed trial 2", "log/custom_glowing/" .. playerID .. ".log")
 	elseif screenID == "trial_3_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_3");
 		PlayerObject(pGhost):addWaypoint("tatooine", "Vessa Kael", "", -1148, 98, -3893, WAYPOINT_YELLOW, true, true, 0)
@@ -95,6 +99,9 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		CreatureObject(pPlayer):sendSystemMessage(professionString)
 	elseif screenID == "trial_4_ongoing" then
 		CreatureObject(pPlayer):sendSystemMessage(self:getProfessionString(pPlayer, "support", "Trial4"))
+	elseif screenID == "trial_4_complete" then
+		CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_4")
+		logToFile(playerID .. " completed trial 4", "log/custom_glowing/" .. playerID .. ".log")
 	elseif screenID == "trial_5_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_5");
 	elseif (screenID == "trial_5_complete") then
@@ -121,6 +128,9 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		createObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
 	elseif screenID == "trial_7_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_7");
+	elseif screenID == "trial_7_complete" then
+		CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_7")
+		logToFile(playerID .. " completed trial 7", "log/custom_glowing/" .. playerID .. ".log")
 	elseif screenID == "trial_8_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_8");
 	end
