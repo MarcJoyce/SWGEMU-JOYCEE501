@@ -347,7 +347,7 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"jawa_warlord",300,3665,5,-4856.8,300,0, "worried"},
 
 		-- BazaarBot Helper
-		{"bazaar_bot_helper", 300, 3514, 5.5, -4929, 245, 0, ""},
+		-- {"bazaar_bot_helper", 300, 3514, 5.5, -4929, 245, 0, ""},
 
 		{"junk_dealer", 0, 3355.75, 5, -4823.58, 122, 0, ""},
 		{"junk_dealer", 0, 3699.2, 5, -4822, 92, 0, ""},

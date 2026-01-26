@@ -29,7 +29,7 @@ int PlaceStructureComponent::notifyStructurePlaced(StructureDeed* deed, Creature
 	if (structureObject->isInstallationObject()) {
 		InstallationObject* installationObject = cast<InstallationObject*>(structureObject);
 		installationObject->setExtractionRate(deed->getExtractionRate());
-		installationObject->setHopperSizeMax(deed->getHopperSize());
+		installationObject->setHopperSizeMax(deed->getHopperSizeMax());
 	}
 
 	return 0;
