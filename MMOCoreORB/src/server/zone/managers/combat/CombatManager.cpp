@@ -2635,7 +2635,7 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		// inflict condition damage
 		Locker alocker(armor);
 
-		armor->inflictDamage(armor, 0, damage * 0.2 * 1.5, true, true);
+		armor->inflictDamage(armor, 0, damage * 0.2, true, true);
 	}
 
 	return damage;
@@ -2828,7 +2828,7 @@ float CombatManager::doObjectDetonation(TangibleObject* attackerTanO, CreatureOb
 				// inflict condition damage
 				Locker alocker(armor, attackerTanO);
 
-				armor->inflictDamage(armor, 0, damage * 0.2 * 1.5, true, true);
+				armor->inflictDamage(armor, 0, damage * 0.2, true, true);
 			}
 		}
 
