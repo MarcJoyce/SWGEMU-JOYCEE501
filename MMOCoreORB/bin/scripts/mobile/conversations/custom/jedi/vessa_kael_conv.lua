@@ -54,7 +54,7 @@ vessa_kael_convo_template:addScreen(rarrukk);
 
 jalen = ConvoScreen:new {
   id = "jalen",
-  customDialogText = "Jalen Vort, a disgraced former imperial officer, who will be no doubt be lurking deep in a bar.",
+  customDialogText = "Jalen Vort, a disgraced former imperial officer, who will be no doubt be lurking deep in some shady Tatoo bar.",
   stopConversation = "false",
   options = {
     { "Tell me more about Rarrukk Graal", "rarrukk" },
@@ -117,7 +117,7 @@ final_two = ConvoScreen:new {
     customDialogText = "Wookiee superstition. He smells 'fear' in every shadow.",
     stopConversation = "false",
     options = {
-      { "Jalen Vort checked the requisition logs. Someone wiped the terminal minutes before the murder. Only an active-duty Imperial soldier could have done that.", "final_three" }
+      { "Jalen Vort checked the requisition logs. Someone wiped the terminal minutes before the murder. Only an active-duty Imperial officer could have done that.", "final_three" }
     }
 }
 vessa_kael_convo_template:addScreen(final_two);

@@ -76,7 +76,7 @@ function NymConvoHandler:runNymScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceFive", pPlayer)
 	elseif (screenID == "piece_of_eight_five_complete") then
 		CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_five")
-		logToFile(playerID .. " received piece_of_eight_five", "log/custom_glowing/" .. playerID .. ".log")
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_five", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 		CreatureObject(pPlayer):removeScreenPlayState(2, "nym_trial")
 		CreatureObject(pPlayer):sendSystemMessage("Nym hands you a piece of the orb")
 	end

@@ -40,7 +40,7 @@ end
 function ForceCrystalCaveScreenPlay:spawnMobiles()   
 	spawnMobile("dantooine", "force_crystal_hunter",1800,89,-62,-13.4,-139,8535485)
 	spawnMobile("dantooine", "force_crystal_hunter",1800,52.5,-67.9,-42.9,32,8535484)
-	spawnMobile("dantooine", "brian_cohen",1800,76.3,-77,-89.3,-81,8535486)
+	-- spawnMobile("dantooine", "brian_cohen",1800,76.3,-77,-89.3,-81,8535486)
 	
 	spawnMobile("dantooine", "force_sensitive_crypt_crawler",1800,26.1,-43,-68.3,84,8535484)
 	spawnMobile("dantooine", "force_sensitive_crypt_crawler",1800,64.1,-68.9,-36.8,86,8535485)

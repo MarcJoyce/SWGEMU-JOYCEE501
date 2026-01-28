@@ -42,7 +42,7 @@ function heraldConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
       VillageJediManagerCommon.setJediProgressionScreenPlayState(pPlayer, VILLAGE_JEDI_PROGRESSION_GLOWING)
       FsIntro:startPlayerOnIntro(pPlayer)
       CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_8")
-      logToFile(playerID .. " completed trial 8", "log/custom_glowing/" .. playerID .. ".log")
+      logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 8", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
     end
 
     return pConvScreen

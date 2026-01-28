@@ -16,15 +16,15 @@ EndorEwokTreeVillage01ScreenPlay = ScreenPlay:new {
 		--First Floor
 		{"wookiee_hunter",180,66,19,48,135,0},--Guard
 		{"wookiee_warrior",180,62,19,52,135,0},--OverLook#1
-		{"panshee_shaman",180,59,19,46,-30,0},--Hut
+		{"wookiee_hunter",180,59,19,46,-30,0},--Hut
 		{"wookiee_warrior",180,51,19,40,45,0},--OverLook#2
 		--Second Floor(Top Floor)
 		{"wookiee_hunter",180,69,29,41,135,0},--Two Guards
 		{"wookiee_hunter",180,70,29,42,135,0},--Two Guards
 		{"wookiee_warrior",180,62,29,52,135,0},--OverLook#1
-		{"panshee_shaman",180,59,29,45,-45,0},--Hut#1
+		{"wookiee_hunter",180,59,29,45,-45,0},--Hut#1
 		{"wookiee_warrior",180,52,29,40,45,0},--OverLook#2
-		{"panshee_shaman",180,59,29,35,-135,0},--Hut#2
+		{"wookiee_hunter",180,59,29,35,-135,0},--Hut#2
 
 		--Tree # 2
 		--On the ground
@@ -33,10 +33,10 @@ EndorEwokTreeVillage01ScreenPlay = ScreenPlay:new {
 		{"wookiee_hunter",180,83.3,9.3,79.8,48,0},--GuardingStairs
 		--First Floor
 		{"wookiee_hunter",180,80.5,19,66.6,-148,0},--Guard
-		{"panshee_shaman",180,86.4,19.1,67.1,144,0},--Hut
+		{"wookiee_hunter",180,86.4,19.1,67.1,144,0},--Hut
 		--Second Floor
 		{"wookiee_warrior",180,71,29.3,71.7,48,0},--OverLook#1
-		{"panshee_shaman",180,78.7,29.1,67,-149,0},--Hut
+		{"wookiee_hunter",180,78.7,29.1,67,-149,0},--Hut
 		{"wookiee_warrior",180,82.6,29.3,60.9,-4,0},--OverLook#2
 		-- Wookiee Boss
 		{"karrhukk_rroshkaar",180,86.1,29.1,77.5,38,0},--Hut#2
@@ -49,13 +49,13 @@ EndorEwokTreeVillage01ScreenPlay = ScreenPlay:new {
 		{"wookiee_hunter",180,81.5,9.3,3.1,-146,0},--GuardingStairs
 		--First Floor
 		{"wookiee_hunter",180,83.2,19,16.6,33,0},--Guard
-		{"panshee_shaman",180,77.7,19.1,13.9,-56,0},--Hut
+		{"wookiee_hunter",180,77.7,19.1,13.9,-56,0},--Hut
 		{"wookiee_warrior",180,71.2,19.3,10.4,62,0},--OverLook#1
 		--Second Floor
 		{"wookiee_warrior",180,93.8,29.3,10.9,-125,0},--OverLook#1
 		{"wookiee_warrior",180,82.4,29.3,21.9,171,0},--OverLook#2
 		{"wookiee_warrior",180,70.9,29.3,10.3,61,0},--OverLook#2
-		{"panshee_shaman",180,77.8,29,7.2,-124,0},--Hut
+		{"wookiee_hunter",180,77.8,29,7.2,-124,0},--Hut
 
 		--Tree # 4
 		--On the ground
@@ -64,12 +64,12 @@ EndorEwokTreeVillage01ScreenPlay = ScreenPlay:new {
 		{"wookiee_hunter",180,112.7,9.3,71.4,159,0},--GuardingStairs
 		--First Floor
 		{"wookiee_hunter",180,99.2,19,73.8,-61,0},--Guard
-		{"panshee_shaman",180,101.1,19.1,67.4,-146,0},--Hut
+		{"wookiee_hunter",180,101.1,19.1,67.4,-146,0},--Hut
 		{"wookiee_warrior",180,105.3,19.3,61.2,-37,0},--OverLook#1
 		--Second Floor
 		{"wookiee_warrior",180,104.2,29.3,83.3,141,0},--OverLook#1
-		{"panshee_shaman",180,101.3,29.1,77.7,-36,0},--Hut#1
-		{"panshee_shaman",180,110.3,29,68.8,116,0},--Hut#2
+		{"wookiee_hunter",180,101.3,29.1,77.7,-36,0},--Hut#1
+		{"wookiee_hunter",180,110.3,29,68.8,116,0},--Hut#2
 
 		--Tree # 5
 		--On the ground
@@ -79,13 +79,13 @@ EndorEwokTreeVillage01ScreenPlay = ScreenPlay:new {
 		{"wookiee_hunter",180,112.5,9.3,39.5,126,0},--GuardingStairs
 		--First Floor
 		{"wookiee_hunter",180,93.7,19.3,40.1,50,0},--Guard
-		{"panshee_shaman",180,100,19.0,36.7,-124,0},--Hut
+		{"wookiee_hunter",180,100,19.0,36.7,-124,0},--Hut
 		{"wookiee_warrior",180,105.1,19.3,29.1,-35,0},--OverLook#1
 		--Second Floor
 		{"wookiee_warrior",180,104.4,29,46.6,7,0},--OverPassGuard#1
 		{"wookiee_warrior",180,99,29,40.6,-88,0},--OverPassGuard#2
 		{"wookiee_warrior",180,105.5,29.3,29.1,-36,0},--OverLook#1
-		{"panshee_shaman",180,110.1,29.1,37.2,126,0}--Hut#1
+		{"wookiee_hunter",180,110.1,29.1,37.2,126,0}--Hut#1
 	}
 }
 

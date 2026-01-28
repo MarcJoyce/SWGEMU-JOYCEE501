@@ -38,7 +38,7 @@ function sapConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selecte
     if (not CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_5")) then 
       CreatureObject(pPlayer):addCashCredits(100000)
       CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_5")
-      logToFile(playerID .. " completed trial 5", "log/custom_glowing/" .. playerID .. ".log")
+      logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 5", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
       return pConvScreen
     end
   end

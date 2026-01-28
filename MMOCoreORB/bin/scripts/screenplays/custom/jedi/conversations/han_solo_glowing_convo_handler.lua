@@ -47,7 +47,7 @@ function hanSoloConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
     CreatureObject(pPlayer):addCashCredits(10000, true)
     CreatureObject(pPlayer):sendSystemMessage("Han Solo hands you a piece of the orb")
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_four")
-    logToFile(playerID .. " received piece_of_eight_four", "log/custom_glowing/" .. playerID .. ".log")
+    logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_four", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
   elseif (screenID == "accept_quest") then
     CreatureObject(pPlayer):setScreenPlayState(1, "han_solo_glowing")
     local waypointId = PlayerObject(pGhost):addWaypoint("tatooine", "Chewbacca", "", -181, 5, -5145, WAYPOINT_YELLOW, true, true, 0)

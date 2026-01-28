@@ -59,7 +59,7 @@ function GCWEncounters:startStepDelay(pPlayer, step)
 	self:setCurrentStep(pPlayer, step)
 	local stepDelay = getRandomNumber(stepData[1], stepData[2])
 
-	self:log("StartStepDelay: StepDelay: " .. stepDelay .. ", os.time(): " .. os.time() .. ", os.time() + stepDelay: " .. stepDelay + os.time())
+	self:log("StartStepDelay: for " .. CreatureObject(pPlayer):getFirstName() .. "StepDelay: " .. stepDelay .. ", os.time(): " .. os.time() .. ", os.time() + stepDelay: " .. stepDelay + os.time())
 	writeScreenPlayData(pPlayer, "GCWEncounters", "EncounterDelay", stepDelay + os.time())
 	createEvent(stepDelay * 1000, "GCWEncounters", "doDelayedStep", pPlayer, "")
 end

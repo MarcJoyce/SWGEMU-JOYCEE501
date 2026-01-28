@@ -38,7 +38,7 @@ function hermitConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
         end
     elseif (screenID == "success") then
         CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_hermit")
-		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through after aiding the hermit.")
+		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through you, after aiding the hermit.")
 
 		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
 		writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)

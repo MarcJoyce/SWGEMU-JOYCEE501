@@ -131,7 +131,7 @@ selogelConvoTemplate:addScreen(explain_nine);
 
 explain_ten = ConvoScreen:new {
   id = "explain_ten",
-  customDialogText = "There are eight steps to awakening your connection to the Force. When they're complete, a friend, one you haven't met yet, will guide you towardecoming a Jedi. I've unlocked what I can... but more of the artifact remains veiled.",
+  customDialogText = "There are eight steps to awakening your connection to the Force. When they're complete, a friend, one you haven't met yet, will guide you toward becoming a Jedi. I've unlocked what I can... but more of the artifact remains veiled.",
   stopConversation = "false",
   options = {
     {"What do I need to do?", "explain_eleven" },

@@ -27,7 +27,7 @@ brian_cohen = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 	lightsaberColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 },
-	templates = { "dark_jedi", "light_jedi" },
+	templates = { "object/mobile/kitonak_male.iff" },
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)

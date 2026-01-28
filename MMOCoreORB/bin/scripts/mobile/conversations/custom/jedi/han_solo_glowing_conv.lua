@@ -17,7 +17,7 @@ han_solo_glowing_convo_template:addScreen(first_screen)
 
 imperial = ConvoScreen:new {
   id = "imperial",
-  customDialogText = "You really think an Imperial's gonna stroll into a Rebel hideout and haul me off? Heh… not today. Now, are you helping me or wasting your time? There's a nice reward in it if you do.",
+  customDialogText = "You really think an Imperial's gonna stroll into a Rebel hideout and haul me off? Heh... not today. Now, are you helping me or wasting your time? There's a nice reward in it if you do.",
   stopConversation = "false",
   options = {
     { "Fine, where's your ship?", "accept" },
@@ -28,7 +28,7 @@ han_solo_glowing_convo_template:addScreen(imperial)
 
 accept = ConvoScreen:new {
   id = "accept",
-  customDialogText = "I parked her just outside of town. Watch for Tuskens—those sand rats are relentless—and keep an eye on Jawas; they've got sticky fingers. Don't let them strip the Falcon for parts.",
+  customDialogText = "I parked her just outside of town. Watch for Tuskens-those sand rats are relentless-and keep an eye on Jawas; they've got sticky fingers. Don't let them strip the Falcon for parts.",
   stopConversation = "false",
   options = {
     { "I'm on my way!", "accept_quest" },
@@ -62,7 +62,7 @@ han_solo_glowing_convo_template:addScreen(accept_quest_active);
 
 quest_complete = ConvoScreen:new {
 	id = "quest_complete",
-  customDialogText = "Nice work! Here's something for your trouble. Keep your eyes open and maybe we'll cross paths again. Don't do anything I wouldn't do… which isn't much, but still.",
+  customDialogText = "Nice work! Here's something for your trouble. Keep your eyes open and maybe we'll cross paths again. Don't do anything I wouldn't do... which isn't much, but still.",
 	stopConversation = "true",
 	options = {}
 }
@@ -78,7 +78,7 @@ han_solo_glowing_convo_template:addScreen(quest_complete_return);
 
 not_ready = ConvoScreen:new {
 	id = "not_ready",
-  customDialogText = "I wouldn't stick around here if I were you. A few scruffy-lookin' nerf herders are wandering about, and trust me—they don't share blasters politely.",
+  customDialogText = "I wouldn't stick around here if I were you. A few scruffy-lookin' nerf herders are wandering about, and trust me-they don't share blasters politely.",
 	stopConversation = "true",
 	options = {}
 }

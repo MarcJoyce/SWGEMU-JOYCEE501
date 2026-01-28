@@ -36,12 +36,16 @@ function vessaKaelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
 
     if (screenID == "task_accept") then
         CreatureObject(pPlayer):setScreenPlayState(1, "vessa_kael")
-        PlayerObject(pGhost):addWaypoint("tatooine", "Rarruk Graal", "", -5866, 0, -6201, WAYPOINT_YELLOW, true, true, 0)
-        PlayerObject(pGhost):addWaypoint("tatooine", "Jalen Vort", "", 3366, 0, -4584, WAYPOINT_YELLOW, true, true, 0)
-        PlayerObject(pGhost):addWaypoint("tatooine", "Sskarr Vrenn", "", 3540, 0, -4803, WAYPOINT_YELLOW, true, true, 0)
+        -- PlayerObject(pGhost):addWaypoint("tatooine", "Rarruk Graal", "", -5866, 0, -6201, WAYPOINT_YELLOW, true, true, 0)
+        -- PlayerObject(pGhost):addWaypoint("tatooine", "Jalen Vort", "", 3366, 0, -4584, WAYPOINT_YELLOW, true, true, 0)
+        -- PlayerObject(pGhost):addWaypoint("tatooine", "Sskarr Vrenn", "", 3540, 0, -4803, WAYPOINT_YELLOW, true, true, 0)
     elseif (screenID == "final_seven") then
         CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_3")
-        logToFile(playerID .. " completed trial 3", "log/custom_glowing/" .. playerID .. ".log")
+        logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 3", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
+        local pGhost = CreatureObject(pPlayer):getPlayerObject()
+        local oldWaypointID = tonumber(getQuestStatus(playerID .. ":vessa_kael_glowing"))
+        PlayerObject(pGhost):removeWaypoint(oldWaypointID, true)
+        removeQuestStatus(playerID .. ":vessa_kael_glowing")
         CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\Hello, Hello, is this thing working? The artifact has indicated your task is complete, come see me as soon as you can.")
     end
 
