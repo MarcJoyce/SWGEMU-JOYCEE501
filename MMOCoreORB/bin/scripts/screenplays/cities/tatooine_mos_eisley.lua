@@ -415,6 +415,11 @@ function TatooineMosEisleyScreenPlay:spawnSceneObjects()
 
 	--large house west A
 	spawnSceneObject(self.planet, "object/static/structure/general/droid_21bmedical_powerdown.iff", -24.2, 1.0, -9.2, 1188001, math.rad(70) )
+
+	-- Dad
+	local pItem = spawnSceneObject(self.planet, "object/tangible/gravestone/gravestone04.iff", 3501.4, 5, -4847.56, 0, 243.066)
+
+	SceneObject(pItem):setCustomObjectName("In Memoriam Amantem Patris.")
 end
 
 function TatooineMosEisleyScreenPlay:spawnMobiles()
