@@ -4,8 +4,8 @@ infused_force_crystal_dawn_of_dagobah = {
 	customObjectName = "(Infused) Dawn of Dagobah",
 	directObjectTemplate = "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff",
 	craftingValues = {
-		{"mindamage",25,25,0},
-		{"maxdamage",50,50,0},
+		{"mindamage",50,50,0},
+		{"maxdamage",100,100,0},
 		{"attackspeed",0,0,5},
 		{"woundchance",4,4,5},
 		{"hitpoints",100000,100000,0},

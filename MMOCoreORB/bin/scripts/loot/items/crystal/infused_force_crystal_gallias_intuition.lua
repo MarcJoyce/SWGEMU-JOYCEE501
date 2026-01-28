@@ -4,8 +4,8 @@ infused_force_crystal_gallias_intuition = {
 	customObjectName = "(Infused) Gallia's Intuition",
 	directObjectTemplate = "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff",
 	craftingValues = {
-		{"mindamage",75,75,0},
-		{"maxdamage",100,100,0},
+		{"mindamage",100,100,0},
+		{"maxdamage",150,150,0},
 		{"attackspeed",0,0,5},
 		{"woundchance",4,4,5},
 		{"hitpoints",100000,100000,0},
