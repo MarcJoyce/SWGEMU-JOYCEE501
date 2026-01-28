@@ -2090,6 +2090,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			ManagedReference<GroupObject*> group = attackerCreo->getGroup();
 
 			uint32 combatXp = 0;
+			float xpAmount = baseXp;
 
 			Locker crossLocker(attackerCreo, destructedObject);
 
@@ -2113,7 +2114,6 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				uint32 damage = entry->elementAt(j).getValue();
 				String xpType = entry->elementAt(j).getKey();
 
-				float xpAmount = baseXp;
 				int playerLevel = calculatePlayerLevel(attackerCreo, xpType);
 
 				xpAmount *= (float) damage / totalDamage;
@@ -2142,8 +2142,10 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 						xpAmount *= 0.6f;
 					} else if (jediSkillPoints < 24) {
 						xpAmount *= 0.4f;
-					} else {
+					} else if (jediSkillPoints < 127) {
 						xpAmount *= 0.2f;
+					} else {
+						xpAmount *= 0.1f;
 					}
 				}
 
@@ -2155,12 +2157,12 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				awardExperience(attackerCreo, xpType, xpAmount);
 
 				if (xpType == "jedi_general" && attackerCreo->hasSkill("force_title_jedi_rank_03")) {
-					float frsXpAmount = xpAmount * 0.05f;
+					float frsXpAmount = xpAmount * 0.025f;
 					awardExperience(attackerCreo, "force_rank_xp", frsXpAmount);
 				}
 			}
 
-			awardExperience(attackerCreo, "combat_general", combatXp, true, 0.1f);
+			awardExperience(attackerCreo, "combat_general", combatXp, true, 0.11f);
 
 
 			//Check if the group leader is a squad leader
@@ -2168,7 +2170,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				continue;
 
 			//Calculate squad leader group size experience @ 10% person + combat experience which is 10% of the variable
-			float squadXp = (combatXp * 0.1f) + (combatXp * 0.1f * group->getGroupSize());
+			float squadXp = (xpAmount * 0.01f) + (xpAmount * 0.01f * group->getGroupSize());
 
 			Vector3 pos(attacker->getWorldPosition());
 
@@ -2605,7 +2607,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 	if (xpType == "dance" || xpType == "entertainer_healing" || xpType == "music" || xpType == "squadleader") {
 			typeMultiplier = 100.0f;
 	} else if (xpType == "crafting_spice" || xpType == "slicing" || xpType == "bountyhunter") {
-			typeMultiplier = 25.0f;
+			typeMultiplier = 20.0f;
 	} else if (
 			xpType == "bio_engineer_dna_harvesting" ||
 			xpType == "crafting_clothing_armor" ||
@@ -2620,11 +2622,10 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			xpType == "resource_harvesting_inorganic" ||
 			xpType == "scout" ||
 			xpType == "trapping" ||
-			xpType == "camp"
+			xpType == "camp" || 
+			xpType == "medical"
 	) {
-			typeMultiplier = 10.0f;
-	} else if (xpType == "medical") {
-			typeMultiplier = 10.0f;
+			typeMultiplier = 5.0f;
 	} else if (
 			xpType == "combat_general" ||
 			xpType == "combat_meleespecialize_onehand" ||
@@ -2636,7 +2637,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 			xpType == "combat_rangedspecialize_pistol" ||
 			xpType == "combat_rangedspecialize_rifle"
 	) {
-			typeMultiplier = 2.5f;
+			typeMultiplier = 2.0f;
 	} else {
 			typeMultiplier = 1.0f;
 	}
@@ -6420,35 +6421,36 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	float burstRunMod = (float) player->getSkillMod("burst_run");
 	hamModifier += (burstRunMod / 100.f);
 
-	float burstRunSpeed = 1.822f;
+	// float burstRunSpeed = 1.822f;
+	float burstRunSpeed = 1.4f;
 
 	int bhBRSkillMod = player->getSkillMod("bh_burst_run");
 
 	switch(bhBRSkillMod) {
 		case 1:
-			hamModifier += 0.20f;
-			cooldownModifier += 0.20f;
-			burstRunSpeed = 2.f;
+			hamModifier += 0.1f;
+			cooldownModifier += 0.1f;
+			burstRunSpeed = 1.4f;
 			break;
 		case 2:
-			hamModifier += 0.4f;
-			cooldownModifier += 0.4f;
-			burstRunSpeed = 2.f;
+			hamModifier += 0.2f;
+			cooldownModifier += 0.2f;
+			burstRunSpeed = 1.4f;
 			break;
 		case 3:
-			hamModifier += 0.6f;
-			cooldownModifier += 0.6f;
-			burstRunSpeed = 2.f;
+			hamModifier += 0.4f;
+			cooldownModifier += 0.3f;
+			burstRunSpeed = 1.6f;
 			break;
 		case 4:
-			hamModifier += 0.8f;
-			cooldownModifier += 0.8f;
-			burstRunSpeed = 2.5f;
+			hamModifier += 0.6f;
+			cooldownModifier += 0.4f;
+			burstRunSpeed = 1.8f;
 			break;
 		case 5:
-			hamModifier += 0.9f;
-			cooldownModifier += 0.9f;
-			burstRunSpeed = 3.5f;
+			hamModifier += 0.8f;
+			cooldownModifier += 0.5f;
+			burstRunSpeed = 2.0f;
 		default: 
 			break;
 	}
