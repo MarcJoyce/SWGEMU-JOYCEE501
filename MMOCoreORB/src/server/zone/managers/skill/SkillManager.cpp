@@ -6,6 +6,7 @@
 #include "SkillManager.h"
 #include "SkillModManager.h"
 #include "PerformanceManager.h"
+#include "server/chat/ChatManager.h"
 #include "server/zone/objects/creature/variables/Skill.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
@@ -23,6 +24,7 @@
 #include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
 #include "server/zone/objects/player/sui/callbacks/SurrenderPilotSuiCallback.h"
 #include "templates/faction/Factions.h"
+#include "server/ServerCore.h"
 
 SkillManager::SkillManager()
 	: Logger("SkillManager") {
@@ -484,8 +486,12 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		awardSkill("social_imagedesigner_novice", creature, true, true, true);
 	}
 
+	ChatManager* chatManager = creature->getZoneServer()->getChatManager();
+	chatManager->addPlayer(creature);
+
 	if (skill->getSkillName() == "combat_bountyhunter_novice") {
-		creature->sendSystemMessage(" \\#FFFF00\\<Incoming transmission>\\#FFFFFF\\Report to Jabba's Palace and initiate contact with Shae Torrvek for specialised BountyHunter training.");
+		chatManager->sendMail("The Guild", "Welcome to the brotherhood", "Welcome to the ranks of the elite. Report to Jabba's Palace and initiate contact with Shae Torrvek to begin your specialised Bounty Hunter training. Do us proud.", creature->getFirstName());
+		// creature->sendSystemMessage(" \\#FFFF00\\<Incoming transmission>\\#FFFFFF\\Report to Jabba's Palace and initiate contact with Shae Torrvek for specialised BountyHunter training.");
 	}
 
 	/// Update client with new values for things like Terrain Negotiation

@@ -1173,7 +1173,7 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 			damage *= 1.f / (1.f + ((float)forceDefense / 100.f));
 	}
 
-	if (!attacker->isPlayerCreature() && defender->isPlayerCreature()) {
+	if (!attacker->isPlayerCreature() && defender->isPlayerCreature() && data.isForceAttack()) {
 		int totalHam = defender->getMaxHAM(CreatureAttribute::HEALTH) + defender->getMaxHAM(CreatureAttribute::ACTION) + defender->getMaxHAM(CreatureAttribute::MIND);
 		damage = Math::min(damage, totalHam / 100.f * 3.33f);
 	}

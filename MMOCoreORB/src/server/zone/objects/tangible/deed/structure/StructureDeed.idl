@@ -84,12 +84,12 @@ class StructureDeed extends Deed {
 
 	@read
 	public float getExtractionRate() {
-		return extractionRate * 5;
+		return extractionRate;
 	}
 
 	@read
 	public float getHopperSizeMax() {
-		return hopperSizeMax * 10;
+		return hopperSizeMax;
 	}
 
 	@dirty
