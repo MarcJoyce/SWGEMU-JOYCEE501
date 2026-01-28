@@ -19,16 +19,28 @@ function Arena:spawnMobiles()
 end
 
 function Arena:spawnObjects()
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2900, 66, 500, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2913.39746, 66, 550, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2950, 66, 586.6025404, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3000, 66, 600, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3050, 66, 586.6025404, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3086.60254, 66, 550, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3100, 66, 500, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3086.60254, 66, 450, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3050, 66, 413.3974596, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -3000, 66, 400, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2950, 66, 413.3974596, 0, 0);
-  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2913.39746, 66, 450, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2918, 66, 500, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2919, 66, 508, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2922, 66, 516, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2927, 66, 523, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2934, 66, 528, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2942, 66, 531, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2950, 66, 532, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2958, 66, 531, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2966, 66, 528, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2973, 66, 523, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2978, 66, 516, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2981, 66, 508, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2982, 66, 500, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2981, 66, 492, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2978, 66, 484, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2973, 66, 477, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2966, 66, 472, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2958, 66, 469, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2950, 66, 468, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2942, 66, 469, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2934, 66, 472, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2927, 66, 477, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2922, 66, 484, 0, 0);
+  spawnSceneObject("lok", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -2919, 66, 492, 0, 0);
 end
