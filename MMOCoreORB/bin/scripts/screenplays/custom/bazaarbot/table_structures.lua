@@ -1,8 +1,8 @@
 BBStructuresConfig = {
 	path = "object/draft_schematic/structure/",
 	qualityMin = 50,
-	qualityAvg = 75, -- 10% chance to use this as the min value and qualityMax as the max value
-	qualityMax = 95, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
+	qualityAvg = 50, -- 10% chance to use this as the min value and qualityMax as the max value
+	qualityMax = 50, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
 	freq = 86400, -- Every x seconds
 	eventName = "BazaarBotAddStructures",
 	functionName = "addMoreStructures",
@@ -16,14 +16,17 @@ BBStructuresConfig = {
 -- altTemplate: Items such as statues that have a drop down to choose alternate final objects
 -- Items that don't have altTemplates and should be the same price can be grouped together
 BBStructuresItems = {
-	{100000, 1, 1, 0, 
+	{100000, 5, 1, 0, 
 	"installation_generator_wind",
-	"installation_mining_gas",
-	"installation_mining_liquid",
-	"installation_mining_ore",
-	"installation_mining_organic_flora",
+	"installation_generator_fusion",
+	"installation_generator_solar",
+	"installation_mining_gas_light",
+	"installation_mining_liquid_light",
+	"installation_mining_liquid_vapor_light",
+	"installation_mining_ore_light",
+	"installation_mining_organic_flora_light",
 	},
-	{1000000, 1 ,1, 0,
+	{500000, 5, 1, 0,
 	"corellia_house_player_small_floorplan_02",
 	"corellia_house_player_small",
 	"corellia_house_player_small_style_02_floorplan_02",
@@ -36,6 +39,9 @@ BBStructuresItems = {
 	"house_player_small_style_02",
 	"naboo_house_player_small",
 	"naboo_house_player_small_style_02",
+	},
+	{100000, 5, 1, 0,
+	"merchant_tent",
 	}
 }
 
