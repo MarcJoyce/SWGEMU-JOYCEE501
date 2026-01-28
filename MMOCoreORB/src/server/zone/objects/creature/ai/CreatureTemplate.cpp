@@ -163,6 +163,33 @@ void CreatureTemplate::readObject(LuaObject* templateData) {
 		acid = res.getFloatAt(7);
 		stun = res.getFloatAt(8);
 		lightSaber = res.getFloatAt(9);
+		if (kinetic > 0) {
+			kinetic = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(1) + (int)(System::random(20) - 10)));
+		}
+		if (energy > 0) {
+			energy = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(2) + (int)(System::random(20) - 10)));
+		}
+		if (blast > 0) {
+			blast = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(3) + (int)(System::random(20) - 10)));
+		}
+		if (heat > 0) {
+			heat = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(4) + (int)(System::random(20) - 10)));
+		}
+		if (cold > 0) {
+			cold = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(5) + (int)(System::random(20) - 10)));
+		}
+		if (electricity > 0) {
+			electricity = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(6) + (int)(System::random(20) - 10)));
+		}
+		if (acid > 0) {
+			acid = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(7) + (int)(System::random(20) - 10)));
+		}
+		if (stun > 0) {
+			stun = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(8) + (int)(System::random(20) - 10)));
+		}
+		if (lightSaber > 0) {
+			lightSaber = Math::max(0.0f, Math::min(90.0f, res.getFloatAt(9) + (int)(System::random(20) - 10)));
+		}
 	}
 
 	res.pop();

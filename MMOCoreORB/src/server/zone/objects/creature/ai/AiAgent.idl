@@ -154,6 +154,16 @@ class AiAgent extends CreatureObject {
 	protected int respawnCounter;
 	protected boolean randomRespawn;
 
+	protected float kinetic;
+	protected float energy;
+	protected float electricity;
+	protected float stun;
+	protected float blast;
+	protected float heat;
+	protected float cold;
+	protected float acid;
+	protected float lightSaber;
+
 	protected transient boolean hamRegenDisabled;
 
 	protected float coordinateMin;
@@ -245,6 +255,16 @@ class AiAgent extends CreatureObject {
 		respawnTimer = 0;
 		respawnCounter = 0;
 		randomRespawn = false;
+
+		kinetic = 0;
+		energy = 0;
+		electricity = 0;
+		stun = 0;
+		blast = 0;
+		heat = 0;
+		cold = 0;
+		acid = 0;
+		lightSaber = 0;
 
 		primaryWeaponCrc = 0;
 		secondaryWeaponCrc = 0;
@@ -788,6 +808,51 @@ class AiAgent extends CreatureObject {
 	}
 
 	@preLocked
+	public void setKinetic(float val) {
+		kinetic = val;
+	}
+
+	@preLocked
+	public void setEnergy(float val) {
+		energy = val;
+	}
+
+	@preLocked
+	public void setElectricity(float val) {
+		electricity = val;
+	}
+
+	@preLocked
+	public void setStun(float val) {
+		stun = val;
+	}
+
+	@preLocked
+	public void setBlast(float val) {
+		blast = val;
+	}
+
+	@preLocked
+	public void setHeat(float val) {
+		heat = val;
+	}
+
+	@preLocked
+	public void setCold(float val) {
+		cold = val;
+	}
+
+	@preLocked
+	public void setAcid(float val) {
+		acid = val;
+	}
+
+	@preLocked
+	public void setLightSaber(float val) {
+		lightSaber = val;
+	}
+
+	@preLocked
 	public void setRandomRespawn(boolean resp) {
 		randomRespawn = resp;
 	}
@@ -998,7 +1063,7 @@ class AiAgent extends CreatureObject {
 		if (!npcTemplate.get())
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getKinetic());
+		return getReducedResist(kinetic);
 	}
 
 	@dirty
@@ -1009,7 +1074,7 @@ class AiAgent extends CreatureObject {
 		if (!npcTemplate.get())
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getEnergy());
+		return getReducedResist(energy);
 	}
 
 	@dirty
@@ -1021,7 +1086,7 @@ class AiAgent extends CreatureObject {
 		if (!npcTemplate.get())
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getElectricity());
+		return getReducedResist(electricity);
 	}
 
 	@dirty
@@ -1033,7 +1098,7 @@ class AiAgent extends CreatureObject {
 		if (!npcTemplate.get())
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getStun());
+		return getReducedResist(stun);
 	}
 
 	@dirty
@@ -1045,7 +1110,7 @@ class AiAgent extends CreatureObject {
 		if (!npcTemplate.get())
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getBlast());
+		return getReducedResist(blast);
 	}
 
 	@dirty
@@ -1057,7 +1122,7 @@ class AiAgent extends CreatureObject {
 		if (!npcTemplate.get())
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getHeat());
+		return getReducedResist(heat);
 	}
 
 	@dirty
@@ -1069,7 +1134,7 @@ class AiAgent extends CreatureObject {
 		if (npcTemplate.get() == null)
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getCold());
+		return getReducedResist(cold);
 	}
 
 	@dirty
@@ -1081,7 +1146,7 @@ class AiAgent extends CreatureObject {
 		if (npcTemplate.get() == null)
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getAcid());
+		return getReducedResist(acid);
 	}
 
 	@dirty
@@ -1093,16 +1158,16 @@ class AiAgent extends CreatureObject {
 		if (npcTemplate.get() == null)
 			return 0;
 
-		return getReducedResist(npcTemplate.get().getLightSaber());
+		return getReducedResist(lightSaber);
 	}
 
 	@dirty	
 	protected float getReducedResist(float value) {
-		if (super.shockWounds <= 500 || value == -1) {
+		if (super.shockWounds <= 0 || value == -1) {
 			return value;
 		}
 
-		float newValue = value - (value * (super.shockWounds - 500) * 0.001);
+		float newValue = value - (value * (super.shockWounds - 0) * 0.0005);
 
 		return newValue;
 	}

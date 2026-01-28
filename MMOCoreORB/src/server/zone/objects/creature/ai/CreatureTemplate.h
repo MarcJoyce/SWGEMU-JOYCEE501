@@ -129,65 +129,65 @@ public:
 
 	inline float getKinetic() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::KINETIC))
-			return Math::min(kinetic - 100, 95.0f);
+			return kinetic - 100;
 		else
-			return Math::min(kinetic, 95.0f);
+			return kinetic;
 	}
 
 	inline float getEnergy() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::ENERGY))
-			return Math::min(energy - 100, 95.0f);
+			return energy - 100;
 		else
-			return Math::min(energy, 95.0f);
+			return energy;
 	}
 
 	inline float getElectricity() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::ELECTRICITY))
-			return Math::min(electricity - 100, 95.0f);
+			return electricity - 100;
 		else
-			return Math::min(electricity, 95.0f);
+			return electricity;
 	}
 
 	inline float getStun() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::STUN))
-			return Math::min(stun - 100, 95.0f);
+			return stun - 100;
 		else
-			return Math::min(stun, 95.0f);
+			return stun;
 	}
 
 	inline float getBlast() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::BLAST))
-			return Math::min(blast - 100, 95.0f);
+			return blast - 100;
 		else
-			return Math::min(blast, 95.0f);
+			return blast;
 	}
 
 	inline float getHeat() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::HEAT))
-			return Math::min(heat - 100, 95.0f);
+			return heat - 100;
 		else
-			return Math::min(heat, 95.0f);
+			return heat;
 	}
 
 	inline float getCold() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::COLD))
-			return Math::min(cold - 100, 95.0f);
+			return cold - 100;
 		else
-			return Math::min(cold, 95.0f);
+			return cold;
 	}
 
 	inline float getAcid() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::ACID))
-			return Math::min(acid - 100, 95.0f);
+			return acid - 100;
 		else
-			return Math::min(acid, 95.0f);
+			return acid;
 	}
 
 	inline float getLightSaber() const {
 		if (isSpecialProtection(SharedWeaponObjectTemplate::LIGHTSABER))
-			return Math::min(lightSaber - 100, 95.0f);
+			return lightSaber - 100;
 		else
-			return Math::min(lightSaber, 95.0f);
+			return lightSaber;
 	}
 
 	inline bool isStalker() const {
