@@ -26,7 +26,7 @@ function thalosKrennConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc,
   if (screenID == "reward") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_seven")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_seven", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
-    CreatureObject(pPlayer):sendSystemMessage("Thalos Krenn hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Thalos Krenn hands you a piece of the orb")
   end
 
   return pConvScreen

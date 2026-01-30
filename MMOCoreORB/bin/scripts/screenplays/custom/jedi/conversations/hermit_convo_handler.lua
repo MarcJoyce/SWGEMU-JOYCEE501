@@ -37,14 +37,15 @@ function hermitConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 					clonedConversation:setStopConversation(true)
         end
     elseif (screenID == "success") then
-        CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_hermit")
-		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through you, after aiding the hermit.")
+			CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_hermit")
+			logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 6 decipher hermit", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
+			CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through you, after aiding the hermit.")
 
-		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
-		writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
+			local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
+			writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
 
-		if (tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) == 4) then
-		CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\ Head back to Mos Eisley as soon as you can, the inscription is now clear.")
+			if (tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) == 4) then
+				CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\ Head back to Mos Eisley as soon as you can, the inscription is now clear.")
 			end
     end
 

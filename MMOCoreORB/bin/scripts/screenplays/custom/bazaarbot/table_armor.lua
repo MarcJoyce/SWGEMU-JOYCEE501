@@ -1,6 +1,6 @@
 BBArmorConfig = {
 	path = "object/draft_schematic/clothing/clothing_armor_",
-	qualityMin = 50,
+	qualityMin = 60,
 	qualityAvg = 75, -- 10% chance to use this as the min value and qualityMax as the max value
 	qualityMax = 95, -- 1% Chance to get up to +5 to the max value, with qualityMax as the min value
 	freq = 86400, -- Every x seconds

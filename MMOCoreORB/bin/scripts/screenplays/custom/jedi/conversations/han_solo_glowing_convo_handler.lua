@@ -45,7 +45,7 @@ function hanSoloConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 
   if (screenID == "quest_complete") then
     CreatureObject(pPlayer):addCashCredits(10000, true)
-    CreatureObject(pPlayer):sendSystemMessage("Han Solo hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Han Solo hands you a piece of the orb")
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_four")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_four", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
   elseif (screenID == "accept_quest") then

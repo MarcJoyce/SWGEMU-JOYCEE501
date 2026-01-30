@@ -27,7 +27,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
         }
       },
       { 
-        {{ x = 547, z = 25, y = -308 }, " east of Lord Nyax's cult."},
+        {{ x = 547, z = 25, y = -308 }, " west of Lord Nyax's cult."},
         {{ x = 4596, z = 22, y = 1426 }, " near the Rogue Corsec base."}
       }
     },

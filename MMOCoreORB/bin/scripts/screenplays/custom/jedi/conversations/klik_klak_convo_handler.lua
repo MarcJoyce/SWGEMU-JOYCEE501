@@ -50,12 +50,12 @@ function klikKlakConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, se
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_one")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_one", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
     CreatureObject(pPlayer):setScreenPlayState(4, "tusken_queen_head")
-    CreatureObject(pPlayer):sendSystemMessage("Klik Klak hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Klik Klak hands you a piece of the orb")
   elseif (screenID == "success_kill") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_one")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_one", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
     CreatureObject(pPlayer):setScreenPlayState(4, "tusken_queen_head")
-    CreatureObject(pPlayer):sendSystemMessage("Klik Klak hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Klik Klak hands you a piece of the orb")
   end
 
   return pConvScreen

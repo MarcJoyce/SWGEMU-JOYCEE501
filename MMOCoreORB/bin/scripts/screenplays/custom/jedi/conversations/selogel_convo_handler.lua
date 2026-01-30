@@ -53,7 +53,7 @@ function selogelConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_1")) then	
 		return convoTemplate:getScreen("trial_1_complete")
 	-- PLAYER HAS COLLECTED ALL 8 PIECES OF THE ORB
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_one") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_two") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_three") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_four") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_five") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_six") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_seven") and CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_eight")) then
+	elseif (self:collectedHowManyTrial1Pieces(pPlayer) == 8) then
 		return convoTemplate:getScreen("trial_1_complete")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1")) then
 		return convoTemplate:getScreen("trial_1_ongoing")
@@ -78,6 +78,9 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	if screenID == "trial_1_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_1");
 		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer)
+	elseif screenID == "trial_1_ongoing" then
+		local piecesCollected = self:collectedHowManyTrial1Pieces(pPlayer)
+		clonedConversation:setCustomDialogText("Back already? Do you have all the pieces? Let's see, you have... " .. piecesCollected .. " of 8 so far. Do you need me to remind you of the information I have?")
 	elseif screenID == "trial_1_complete" then
 		CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_1")
 		logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 1", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
@@ -107,6 +110,7 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_5");
 	elseif (screenID == "trial_5_complete") then
 		local decipherTrial = getRandomNumber(1, #trialSixRiddles)
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " received trial " .. decipherTrial .. " as their decipher trial, log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 		writeScreenPlayData(pPlayer, "DecipherQuest", "trial", decipherTrial)
 	elseif (screenID == "trial_6_explain_two") then
 		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0
@@ -291,3 +295,34 @@ function selogelConvoHandler:jumbleString(str, intensity)
     return table.concat(chars)
 end
 
+function selogelConvoHandler:collectedHowManyTrial1Pieces(pPlayer)
+	local num = 0
+
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_one")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_two")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_three")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_four")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_five")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_six")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_seven")) then
+		num = num + 1	
+	end
+	if (CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_eight")) then
+		num = num + 1	
+	end
+
+	return num
+		
+end

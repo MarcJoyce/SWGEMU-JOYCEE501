@@ -51,7 +51,7 @@ function jabbaHenchmanCustomConvoHandler:runScreenHandlers(pConvTemplate, pPlaye
   elseif (screenID == "free") then
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_six")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_six", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
-    CreatureObject(pPlayer):sendSystemMessage("Gurkk hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Gurkk hands you a piece of the orb")
   elseif (screenID == "pay") then
     local playerCredits = CreatureObject(pPlayer):getCashCredits()
     CreatureObject(pPlayer):setScreenPlayState(1, "pay_jabba")
@@ -66,7 +66,7 @@ function jabbaHenchmanCustomConvoHandler:runScreenHandlers(pConvTemplate, pPlaye
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_six")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_six", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
     CreatureObject(pPlayer):removeScreenPlayState(1, "pay_jabba")
-    CreatureObject(pPlayer):sendSystemMessage("Gurkk hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Gurkk hands you a piece of the orb")
   elseif (screenID == "kill") then
     CreatureObject(pPlayer):setScreenPlayState(1, "krayt_dragon")
     createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceSix", pPlayer)
@@ -75,7 +75,7 @@ function jabbaHenchmanCustomConvoHandler:runScreenHandlers(pConvTemplate, pPlaye
     CreatureObject(pPlayer):removeScreenPlayState(2, "krayt_dragon")
     CreatureObject(pPlayer):setScreenPlayState(1, "piece_of_eight_six")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " received piece_of_eight_six", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
-    CreatureObject(pPlayer):sendSystemMessage("Gurkk hands you a piece of the orb")
+    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\Gurkk hands you a piece of the orb")
   end
 
   return pConvScreen

@@ -143,8 +143,19 @@ function dedleeSynConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
     CreatureObject(pPlayer):sendSystemMessage("Hunt target is: " .. huntTarget)
 
   elseif screenID == "score" then
-    CreatureObject(pPlayer):sendSystemMessage("Tokens: " .. huntCount)
-
+    if (huntCount > 100) then
+      clonedConversation:setCustomDialogText("Your current token haul stands at " .. huntCount .. ". Outstanding work, you're a legendary hunter!")
+    elseif (huntCount > 50) then
+      clonedConversation:setCustomDialogText("Your current token haul stands at " .. huntCount .. ". Impressive work, you're among the top hunters I've seen.")
+    elseif (huntCount > 25) then
+      clonedConversation:setCustomDialogText("Your current token haul stands at " .. huntCount .. ". Not bad, some beings would've died collecting half that.")
+    elseif (huntCount > 10) then
+      clonedConversation:setCustomDialogText("Your current token haul stands at " .. huntCount .. ". Keep at it, you're doing well.")
+    elseif (huntCount > 0) then
+      clonedConversation:setCustomDialogText("Your current token haul stands at " .. huntCount .. ". A good start, but you can do better.")
+    else
+      clonedConversation:setCustomDialogText("You're sitting rock bottom on 0. But... that means the only way is up! Get out there and start hunting! We all believe in you... Well, most of us.")
+    end
   elseif screenID == "shop" then
     if huntCount < 25 then
       clonedConversation:setCustomDialogText("You don't have enough tokens to purchase anything yet. Keep killing and come back when you have at least 25 tokens.")

@@ -12,15 +12,16 @@ GCWEncounters = ScreenPlay:new {
 		-- [4] = { 30, 31 },
 		-- [5] = { 30, 31 }
 		[1] = { 86400, 259200 },
-		[2] = { 86400, 259200 },
-		[3] = { 86400 , 345600 },
-		[4] = { 86400 , 345600 },
+		[2] = { 172800, 345600 },
+		[3] = { 259200, 432000 },
+		[4] = { 345600, 518400 },
+
 		-- [5] = { 86400 , 432000 }
 	}
 }
 
 function GCWEncounters:isEligible(pPlayer) 
-	return CreatureObject(pPlayer):isCovert() or CreatureObject(pPlayer):isOvert();
+	return CreatureObject(pPlayer):isOvert() and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03");
 end
 
 function GCWEncounters:getCurrentStep(pPlayer)

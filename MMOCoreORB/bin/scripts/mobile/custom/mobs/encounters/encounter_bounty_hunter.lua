@@ -34,7 +34,10 @@ encounter_bounty_hunter = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "mercenary_tier_1", chance = 10000000}
+				{ group = "bandit_tier_4", chance = 3333333 },
+				{ group = "bloodrazor_tier_1", chance = 3333333 },
+				{ group = "canyon_corsair_tier_2", chance = 3333333 },
+				{ group = "dark_jedi_tier_5", chance = 1 }
 			}
 		}
 	},

@@ -153,7 +153,7 @@ selogelConvoTemplate:addScreen(explain_eleven);
 
 explain_twelve = ConvoScreen:new {
   id = "explain_twelve",
-  customDialogText = "Oh, impatient, are we? I suspected you'd want another clue.",
+  customDialogText = "Oh, impatient, are we? I suspected you'd want more information.",
   stopConversation = "false",
   options = {
     {"That would be great", "trial_1_start"},
@@ -164,21 +164,42 @@ selogelConvoTemplate:addScreen(explain_twelve);
 
 trial_1_start = ConvoScreen:new {
   id = "trial_1_start",
-  customDialogText = "The fragments pulse with the Force. That makes them valuable, and dangerous. Smugglers covet them. Traders hoard them. The strong simply feel them. A Hutt keeps one close. The Tuskens guard another with blood and tradition. Jawas... well, Jawas pick up anything not nailed down. And strangers from Lok fled this world too quickly, they may know something.  Go now. Do not return until all eight pieces are yours. Palpatine's shadow stretches far... and he likes to watch me suffer.",
+  customDialogText = "The fragments pulse with the Force. That makes them valuable, and dangerous. Smugglers covet them. Traders hoard them. The strong simply feel them. A Hutt keeps one close. The Tuskens guard another with blood and tradition. Jawas... well, Jawas pick up anything not nailed down. And strangers from Lok fled this world too quickly, they may know something.  Go now. Palpatine's shadow stretches far... and he likes to watch me suffer.",
   stopConversation = "true",
   options = {},
 }
 
 selogelConvoTemplate:addScreen(trial_1_start);
 
-trial_1_ongoing = ConvoScreen:new {
-  id = "trial_1_ongoing",
-  customDialogText = "Back already? Without the pieces? No, no, Palpatine has eyes in every shadow. Hurry! Before my thoughts slip again.",
+trial_1_clue = ConvoScreen:new {
+  id = "trial_1_clue",
+  customDialogText = "The fragments pulse with the Force. That makes them valuable, and dangerous. Smugglers covet them. Traders hoard them. The strong simply feel them. A Hutt keeps one close. The Tuskens guard another with blood and tradition. Jawas... well, Jawas pick up anything not nailed down. And strangers from Lok fled this world too quickly, they may know something.  Go now. Palpatine's shadow stretches far... and he likes to watch me suffer.",
   stopConversation = "true",
   options = {},
 }
 
+selogelConvoTemplate:addScreen(trial_1_clue);
+
+trial_1_ongoing = ConvoScreen:new {
+  id = "trial_1_ongoing",
+  customDialogText = "",
+  stopConversation = "false",
+  options = {
+    { "Yes, please.", "trial_1_clue"},
+    { "No, it's ok, I'll be back when I have the rest of the pieces" , "trial_1_goodbye" }
+  },
+}
+
 selogelConvoTemplate:addScreen(trial_1_ongoing);
+
+trial_1_goodbye = ConvoScreen:new {
+  id = "trial_1_goodbye",
+  customDialogText = "Good to hear, now go. Palpatine's shadow stretches far... and he likes to watch me suffer.",
+  stopConversation = "true",
+  options = {},
+}
+
+selogelConvoTemplate:addScreen(trial_1_goodbye);
 
 trial_1_complete = ConvoScreen:new {
   id = "trial_1_complete",
