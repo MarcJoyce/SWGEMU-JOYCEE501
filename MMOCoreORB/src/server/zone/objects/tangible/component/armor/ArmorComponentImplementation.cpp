@@ -36,23 +36,23 @@ void ArmorComponentImplementation::updateCraftingValues(CraftingValues* values, 
 
 	if (specialResists != AttributesMap::VALUENOTFOUND) {
 		if (specialResists & SharedWeaponObjectTemplate::KINETIC)
-			addProperty("kineticeffectiveness", specialbase + kinetic, 10, expProp);
+			addProperty("kineticeffectiveness", Math::min(80.0f, specialbase + kinetic), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::ENERGY)
-			addProperty("energyeffectiveness", specialbase + energy, 10, expProp);
+			addProperty("energyeffectiveness", Math::min(80.0f, specialbase + energy), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::BLAST)
-			addProperty("blasteffectiveness", specialbase + blast, 10, expProp);
+			addProperty("blasteffectiveness", Math::min(80.0f, specialbase + blast), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::STUN)
-			addProperty("stuneffectiveness", specialbase + stun, 10, expProp);
+			addProperty("stuneffectiveness", Math::min(80.0f, specialbase + stun), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::LIGHTSABER)
-			addProperty("restraineffectiveness", specialbase + lightSaber, 10, expProp);
+			addProperty("restraineffectiveness", Math::min(80.0f, specialbase + lightSaber), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::HEAT)
-			addProperty("heateffectiveness", specialbase + heat, 10, expProp);
+			addProperty("heateffectiveness", Math::min(80.0f, specialbase + heat), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::COLD)
-			addProperty("coldeffectiveness", specialbase + cold, 10, expProp);
+			addProperty("coldeffectiveness", Math::min(80.0f, specialbase + cold), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::ACID)
-			addProperty("acideffectiveness", specialbase + acid, 10, expProp);
+			addProperty("acideffectiveness", Math::min(80.0f, specialbase + acid), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::ELECTRICITY)
-			addProperty("electricaleffectiveness", specialbase + electricity, 10, expProp);
+			addProperty("electricaleffectiveness", Math::min(80.0f, specialbase + electricity), 10, expProp);
 	}
 }
 

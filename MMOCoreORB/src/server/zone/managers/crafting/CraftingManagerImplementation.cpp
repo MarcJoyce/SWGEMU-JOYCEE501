@@ -95,9 +95,7 @@ int CraftingManagerImplementation::calculateExperimentationSuccess(CreatureObjec
 	}
 
 	/// Range 0-100
-	int luckRoll = System::random(100) + cityBonus;
-	// TODO: REMOVE THIS WHEN GO LIVE
-	return AMAZINGSUCCESS;
+	int luckRoll = System::random(500) + cityBonus;
 	if(luckRoll > ((95 - expbonus) - forceSkill))
 		return AMAZINGSUCCESS;
 

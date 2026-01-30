@@ -55,9 +55,6 @@ float SharedLabratory::calculateExperimentationValueModifier(int experimentation
 	}
 	results *= pointsAttempted;
 
-	// TODO: REMOVE THIS WHEN GO LIVE	//
-	return 2.f;
-
 	return results;
 }
 float SharedLabratory::calculateAssemblyValueModifier(int assemblyResult) {
@@ -190,8 +187,6 @@ int SharedLabratory::calculateAssemblySuccess(CreatureObject* player,DraftSchema
 	luckRoll += System::random(player->getSkillMod("luck") + player->getSkillMod("force_luck"));
 
 	int assemblyRoll = (toolModifier * (luckRoll + (assemblyPoints * 5)));
-	// TODO: REMOVE THIS WHEN GO LIVE	//
-	return CraftingManager::AMAZINGSUCCESS;
 
 	if (assemblyRoll > 60) 
 		return CraftingManager::AMAZINGSUCCESS;

@@ -420,25 +420,27 @@ float LootValues::getDistributedValue(float min, float max, int level, float dis
 
 	float mid = ((max - min) * rank) + min;
 
-	if (mid < min) {
-		max += (mid - min);
-		mid = min;
-	}
+	return Math::clamp(min, mid, max);
 
-	if (mid > max) {
-		min += (mid - max);
-		mid = max;
-	}
+	// if (mid < min) {
+	// 	max += (mid - min);
+	// 	mid = min;
+	// }
 
-	float randomMin = getRandomValue(min, mid);
-	float randomMax = getRandomValue(mid, max);
-	float randomVal = getRandomValue(randomMin, randomMax);
+	// if (mid > max) {
+	// 	min += (mid - max);
+	// 	mid = max;
+	// }
 
-	if (inverted) {
-		randomVal = (valueMax - randomVal) + valueMin;
-	}
+	// float randomMin = getRandomValue(min, mid);
+	// float randomMax = getRandomValue(mid, max);
+	// float randomVal = getRandomValue(randomMin, randomMax);
 
-	return Math::clamp(min, randomVal, max);
+	// if (inverted) {
+	// 	randomVal = (valueMax - randomVal) + valueMin;
+	// }
+
+	// return Math::clamp(min, randomVal, max);
 }
 
 int LootValues::getDistributedValue(int min, int max, int level, float distMin, float distMax) {
@@ -459,25 +461,27 @@ int LootValues::getDistributedValue(int min, int max, int level, float distMin, 
 
 	int mid = round(((max - min) * rank) + min);
 
-	if (mid < min) {
-		max += (mid - min);
-		mid = min;
-	}
+	return Math::clamp(min, mid, max);
 
-	if (mid > max) {
-		min += (mid - max);
-		mid = max;
-	}
+	// if (mid < min) {
+	// 	max += (mid - min);
+	// 	mid = min;
+	// }
 
-	int randomMin = getRandomValue(min, mid);
-	int randomMax = getRandomValue(mid, max);
-	int randomVal = getRandomValue(randomMin, randomMax);
+	// if (mid > max) {
+	// 	min += (mid - max);
+	// 	mid = max;
+	// }
 
-	if (inverted) {
-		randomVal = (valueMax - randomVal) + valueMin;
-	}
+	// int randomMin = getRandomValue(min, mid);
+	// int randomMax = getRandomValue(mid, max);
+	// int randomVal = getRandomValue(randomMin, randomMax);
 
-	return Math::clamp(min, randomVal, max);
+	// if (inverted) {
+	// 	randomVal = (valueMax - randomVal) + valueMin;
+	// }
+
+	// return Math::clamp(min, randomVal, max);
 }
 
 float LootValues::getLevelRankValue(int level, float distMin, float distMax) {

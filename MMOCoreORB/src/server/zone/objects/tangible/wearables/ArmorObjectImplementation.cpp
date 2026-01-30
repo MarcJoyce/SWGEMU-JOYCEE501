@@ -297,8 +297,8 @@ float ArmorObjectImplementation::getTypeValue(int type, float value) const {
 			if(newValue > 90)
 				newValue = 90;
 		} else {
-			if(newValue > 90)
-				newValue = 90;
+			if(newValue > 80)
+				newValue = 80;
 		}
 	}
 

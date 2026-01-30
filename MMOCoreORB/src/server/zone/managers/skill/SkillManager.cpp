@@ -367,8 +367,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 	if (ghost != nullptr) {
 		//Withdraw skill points.
 		if (!ghost->isAdmin()) {
-			// TODO: REMOVE THIS COMMENT WHEN GO LIVE
-			// ghost->addSkillPoints(-skill->getSkillPointsRequired());
+			ghost->addSkillPoints(-skill->getSkillPointsRequired());
 		}
 
 		//Witdraw experience.
@@ -613,8 +612,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 
 	//Give the player the used skill points back.
 	if (!ghost->isAdmin()) {
-		// TODO: REMOVE THIS COMMENT WHEN GO LIVE
-		// ghost->addSkillPoints(skill->getSkillPointsRequired());
+		ghost->addSkillPoints(skill->getSkillPointsRequired());
 	}
 
 	//Remove abilities but only if the creature doesn't still have a skill that grants the
@@ -760,8 +758,7 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 			if (ghost != nullptr) {
 				//Give the player the used skill points back.
 				if (!ghost->isAdmin()) {
-					// TODO: REMOVE THIS COMMENT WHEN GO LIVE
-					// ghost->addSkillPoints(skill->getSkillPointsRequired());
+					ghost->addSkillPoints(skill->getSkillPointsRequired());
 				}
 
 				//Remove abilities
@@ -903,8 +900,6 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 		if (ghost->isAdmin()) {
 			return true;
 		}
-			// TODO: REMOVE THIS WHEN GO LIVE
-			return true;
 
 		//Check if player has enough skill points to learn the skill.
 		if (ghost->getSkillPoints() < skill->getSkillPointsRequired()) {

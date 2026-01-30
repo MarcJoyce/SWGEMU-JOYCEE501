@@ -2505,8 +2505,9 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		if (armorReduction >= 0)
 			damage *= getArmorPiercing(cast<AiAgent*>(defender), armorPiercing);
 
-		// if (armorReduction > 0) {
-		// 	damage *= (1.f - (armorReduction / 100.f));
+		if (armorReduction > 0) {
+			damage *= (1.f - (armorReduction / 100.f));
+		}
 
 		// 	if (!defender->isPet())
 		// 		defender->addUnmitigatedDamage(damage);

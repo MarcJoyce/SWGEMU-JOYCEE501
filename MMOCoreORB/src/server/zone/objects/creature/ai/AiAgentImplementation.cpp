@@ -231,61 +231,63 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 		maxHamList.add(baseHAM.get(i));
 	}
 
-	float baseKinetic = npcTemplate->getKinetic();
-	if (baseKinetic > 0) {
+	if (petDeed == nullptr) {
+		float baseKinetic = npcTemplate->getKinetic();
+		if (baseKinetic > 0) {
 			setKinetic(Math::max(0.0f, Math::min(90.0f, baseKinetic + (int)(System::random(20) - 10))));
-	} else {
-			setKinetic(baseKinetic);
-	}
-	float baseEnergy = npcTemplate->getEnergy();
-	if (baseEnergy > 0) {
-			setEnergy(Math::max(0.0f, Math::min(90.0f, baseEnergy + (int)(System::random(20) - 10))));
-	} else {
-			setEnergy(baseEnergy);
-	}
-	float baseElectricity = npcTemplate->getElectricity();
-	if (baseElectricity > 0) {
-			setElectricity(Math::max(0.0f, Math::min(90.0f, baseElectricity + (int)(System::random(20) - 10))));
-	} else {
-			setElectricity(baseElectricity);
-	}
-	float baseStun = npcTemplate->getStun();
-	if (baseStun > 0) {
-			setStun(Math::max(0.0f, Math::min(90.0f, baseStun + (int)(System::random(20) - 10))));
-	} else {
-			setStun(baseStun);
-	}
-	float baseBlast = npcTemplate->getBlast();
-	if (baseBlast > 0) {
-			setBlast(Math::max(0.0f, Math::min(90.0f, baseBlast + (int)(System::random(20) - 10))));
-	} else {
-			setBlast(baseBlast);
-	}
-	float baseHeat = npcTemplate->getHeat();
-	if (baseHeat > 0) {
-			setHeat(Math::max(0.0f, Math::min(90.0f, baseHeat + (int)(System::random(20) - 10))));
-	} else {
-			setHeat(baseHeat);
-	}
-	float baseCold = npcTemplate->getCold();
-	if (baseCold > 0) {
-			setCold(Math::max(0.0f, Math::min(90.0f, baseCold + (int)(System::random(20) - 10))));
-	} else {
-			setCold(baseCold);
-	}
-	float baseAcid = npcTemplate->getAcid();
-	if (baseAcid > 0) {
-			setAcid(Math::max(0.0f, Math::min(90.0f, baseAcid + (int)(System::random(20) - 10))));
-	} else {
-			setAcid(baseAcid);
-	}
-	float baseLightSaber = npcTemplate->getLightSaber();
-	if (baseLightSaber > 0) {
+		} else {
+				setKinetic(baseKinetic);
+		}
+		float baseEnergy = npcTemplate->getEnergy();
+		if (baseEnergy > 0) {
+				setEnergy(Math::max(0.0f, Math::min(90.0f, baseEnergy + (int)(System::random(20) - 10))));
+		} else {
+				setEnergy(baseEnergy);
+		}
+		float baseElectricity = npcTemplate->getElectricity();
+		if (baseElectricity > 0) {
+				setElectricity(Math::max(0.0f, Math::min(90.0f, baseElectricity + (int)(System::random(20) - 10))));
+		} else {
+				setElectricity(baseElectricity);
+		}
+		float baseStun = npcTemplate->getStun();
+		if (baseStun > 0) {
+				setStun(Math::max(0.0f, Math::min(90.0f, baseStun + (int)(System::random(20) - 10))));
+		} else {
+				setStun(baseStun);
+		}
+		float baseBlast = npcTemplate->getBlast();
+		if (baseBlast > 0) {
+				setBlast(Math::max(0.0f, Math::min(90.0f, baseBlast + (int)(System::random(20) - 10))));
+		} else {
+				setBlast(baseBlast);
+		}
+		float baseHeat = npcTemplate->getHeat();
+		if (baseHeat > 0) {
+				setHeat(Math::max(0.0f, Math::min(90.0f, baseHeat + (int)(System::random(20) - 10))));
+		} else {
+				setHeat(baseHeat);
+		}
+		float baseCold = npcTemplate->getCold();
+		if (baseCold > 0) {
+				setCold(Math::max(0.0f, Math::min(90.0f, baseCold + (int)(System::random(20) - 10))));
+		} else {
+				setCold(baseCold);
+		}
+		float baseAcid = npcTemplate->getAcid();
+		if (baseAcid > 0) {
+				setAcid(Math::max(0.0f, Math::min(90.0f, baseAcid + (int)(System::random(20) - 10))));
+		} else {
+				setAcid(baseAcid);
+		}
+		float baseLightSaber = npcTemplate->getLightSaber();
+		if (baseLightSaber > 0) {
 			setLightSaber(Math::max(0.0f, Math::min(90.0f, baseLightSaber + (int)(System::random(20) - 10))));
-	} else {
+		} else {
 			setLightSaber(baseLightSaber);
+		}
 	}
-
+	
 	objectName = npcTemplate->getObjectName();
 
 	if (npcTemplate->getRandomNameType() != NameManagerType::TAG) {

@@ -1058,7 +1058,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getKinetic() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getKinetic());
+			return petDeed.getKinetic();
 		}
 		if (!npcTemplate.get())
 			return 0;
@@ -1069,7 +1069,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getEnergy() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getEnergy());
+			return petDeed.getEnergy();
 		}
 		if (!npcTemplate.get())
 			return 0;
@@ -1080,7 +1080,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getElectricity() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getElectric());
+			return petDeed.getElectric();
 		}
 
 		if (!npcTemplate.get())
@@ -1092,7 +1092,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getStun() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getStun());
+			return petDeed.getStun();
 		}
 
 		if (!npcTemplate.get())
@@ -1104,7 +1104,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getBlast() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getBlast());
+			return petDeed.getBlast();
 		}
 
 		if (!npcTemplate.get())
@@ -1116,7 +1116,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getHeat() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getHeat());
+			return petDeed.getHeat();
 		}
 
 		if (!npcTemplate.get())
@@ -1128,7 +1128,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getCold() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getCold());
+			return petDeed.getCold();
 		}
 
 		if (npcTemplate.get() == null)
@@ -1140,7 +1140,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getAcid() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getAcid());
+			return petDeed.getAcid();
 		}
 
 		if (npcTemplate.get() == null)
@@ -1152,7 +1152,7 @@ class AiAgent extends CreatureObject {
 	@dirty
 	public abstract float getLightSaber() {
 		if (petDeed) {
-			return getReducedResist(petDeed.getSaber());
+			return petDeed.getSaber();
 		}
 
 		if (npcTemplate.get() == null)
