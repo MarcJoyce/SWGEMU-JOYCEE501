@@ -20,7 +20,8 @@ todo = ConvoScreen:new {
   options = {
     { "Clear inv", "todo_clear_inv"},
     { "Relist things", "todo_relist"},
-    { "Add World Boss waypoints", "add_wps"}
+    { "Add World Boss waypoints", "add_wps"},
+    { "Spawn Barbed Wire", "spawn_barbed"},
   }
 }
 bazaar_bot_helper_convo_template:addScreen(todo)
@@ -32,7 +33,8 @@ todo_clear_inv = ConvoScreen:new {
   options = {
     { "Clear inv", "todo_clear_inv"},
     { "Relist things", "todo_relist"},
-    { "Add World Boss waypoints", "add_wps"}
+        { "Add World Boss waypoints", "add_wps"},
+    { "Spawn Barbed Wire", "spawn_barbed"},
   }
 }
 bazaar_bot_helper_convo_template:addScreen(todo_clear_inv)
@@ -44,7 +46,8 @@ todo_relist = ConvoScreen:new {
   options = {
     { "Clear inv", "todo_clear_inv"},
     { "Relist things", "todo_relist"},
-    { "Add World Boss waypoints", "add_wps"}
+    { "Add World Boss waypoints", "add_wps"},
+    { "Spawn Barbed Wire", "spawn_barbed"},
   }
 }
 bazaar_bot_helper_convo_template:addScreen(todo_relist)
@@ -56,10 +59,24 @@ add_wps = ConvoScreen:new {
   options = {
     { "Clear inv", "todo_clear_inv"},
     { "Relist things", "todo_relist"},
-    { "Add World Boss waypoints", "add_wps"}
+    { "Add World Boss waypoints", "add_wps"},
+    { "Spawn Barbed Wire", "spawn_barbed"},
   }
 }
 bazaar_bot_helper_convo_template:addScreen(add_wps)
+
+spawn_barbed = ConvoScreen:new {
+  id = "spawn_barbed",
+  customDialogText = "What do you want me to do?",
+  stopConversation = "false",
+  options = {
+    { "Clear inv", "todo_clear_inv"},
+    { "Relist things", "todo_relist"},
+    { "Add World Boss waypoints", "add_wps"},
+    { "Spawn Barbed Wire", "spawn_barbed"},
+  }
+}
+bazaar_bot_helper_convo_template:addScreen(spawn_barbed)
 
 addConversationTemplate("bazaar_bot_helper_convo_template", bazaar_bot_helper_convo_template);
 

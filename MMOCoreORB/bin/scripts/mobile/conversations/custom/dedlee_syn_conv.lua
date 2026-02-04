@@ -29,7 +29,7 @@ dedlee_syn_convo_template:addScreen(first_screen_has_met)
 
 information = ConvoScreen:new {
   id = "information",
-  customDialogText = "Here's the deal: you take down high-value targets, the kind that make Imperial tacticians flinch... and I hand you tokens. Stack enough tokens, and I'll arm you with weapons even Hutts whisper about.",
+  customDialogText = "Here's the deal: you take down high-value targets, the kind that make Imperial tacticians flinch... and you earn a token. Stack enough tokens, and I'll arm you with weapons beyond your wildest dreams.",
   stopConversation = "false",
   options = {
     { "How many tokens have I earned so far?", "score" },
@@ -382,7 +382,7 @@ local tokens = {
 for _, id in ipairs(tokens) do
   local screen = ConvoScreen:new {
     id = id,
-    customDialogText =  "Take it, may it serve you well in the chaos ahead. Try not to vaporize anything you'll miss.",
+    customDialogText =  "Take it, may it serve you well in the chaos ahead. Remember, don't try and repair it. These beauties are built to be replaced, not fixed.",
     stopConversation = "true",
     options = {}
   }

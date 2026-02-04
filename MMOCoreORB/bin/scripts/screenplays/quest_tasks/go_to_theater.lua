@@ -163,7 +163,7 @@ function GoToTheater:spawnTheaterObjects(pPlayer)
 	local playerID = SceneObject(pPlayer):getObjectID()
 
 	if (self.taskName == "MeatlumpKingTheatre") then
-		local pStan = getCreatureObject(281474993546765)
+		local pStan = getCreatureObject(281474993547517)
 		playerID = SceneObject(pStan):getObjectID()
 	end
 
@@ -338,7 +338,7 @@ function GoToTheater:getTheaterObject(pPlayer)
 	local theaterId = readData(SceneObject(pPlayer):getObjectID() .. self.taskName .. "theaterID")
 
 	if (self.taskName == "MeatlumpKingTheatre") then
-		local pStan = getCreatureObject(281474993546765)
+		local pStan = getCreatureObject(281474993547517)
 		theaterId = readData(SceneObject(pStan):getObjectID() .. self.taskName .. "theaterID")
 	end
 

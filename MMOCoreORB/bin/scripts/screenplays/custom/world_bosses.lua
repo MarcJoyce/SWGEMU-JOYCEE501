@@ -1,6 +1,6 @@
 WorldBossesScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
-  AdminPlayerID = 281474993546765, -- PlayerID of Admin character
+  AdminPlayerID = 281474993547517, -- PlayerID of Admin character
   screenplayName = "WorldBossesScreenPlay",
   respawnFrequency = 1000 * 300,
   specialSpawns = { 

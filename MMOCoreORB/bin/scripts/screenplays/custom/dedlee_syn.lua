@@ -3,7 +3,7 @@ local Logger = require("utils.logger")
 
 DedleeSynScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
-  AdminPlayerID = 281474993546765, -- PlayerID of Admin character
+  AdminPlayerID = 281474993547517, -- PlayerID of Admin character
   screenplayName = "DedleeSynScreenPlay",
   respawnFrequency = 1000 * 86400,
   spawns = {

@@ -12,7 +12,7 @@ includeFile("custom/bazaarbot/table_vehicles.lua")
 
 BazaarBotScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
-	AdminPlayerID = 281474993546765,
+	AdminPlayerID = 281474993547517,
 	terminalIDs = {4685572},
 	itemDescription = "This item has been produced by the BazaarBot.",
 }
@@ -237,7 +237,7 @@ function BazaarBotScreenPlay:listCraftedItems(configTable, itemTable)
                     end
                 
                     local quality = getRandomNumber(minQuality, maxQuality)
-                    local price = itemTable[j][1] * (((quality/200) + 1) * crateQuantity) * 3
+                    local price = itemTable[j][1] * (((quality/200) + 1) * crateQuantity) * (1 + (quality / 100))
                   
 										
 					local pItem = bazaarBotCreateCraftedItemAndList(pBazaarBot, template, crateQuantity, quality, altTemplate, pVendor, self.itemDescription, price)
@@ -307,7 +307,7 @@ function BazaarBotScreenPlay:addMoreLoot()
 			lootLevelFactor = (BBLootPriceRanges[indexGroup].minPrice)
 		end
 
-		local price = getRandomNumber(lootLevelFactor, BBLootPriceRanges[indexGroup].maxPrice) * 1.5
+		local price = getRandomNumber(lootLevelFactor, BBLootPriceRanges[indexGroup].maxPrice) * (1 + (rarity / 100))
 
 		local pItem = bazaarBotCreateLootItem(pBazaarBot, lootName, lootLevel, true, pVendor, self.itemDescription, price)
 		self:logListing("Loot: lootName: " .. lootName .. ", objectName: " .. SceneObject(pItem):getObjectName() .. " (level: " .. tostring(lootLevel) .. ") " .. tostring(price) .. "cr")

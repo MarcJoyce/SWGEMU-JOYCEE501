@@ -10,15 +10,15 @@ BBLootConfig = {
 -- Organized by BBLootItems index number
 -- If the Junk Dealer value is greater than the randomly generated price, JunkValue * 2 is used instead so people can't make money buying and selling to the Junk Dealer.
 BBLootPriceRanges = {
-	{minPrice = 500, maxPrice = 5000},
-	{minPrice = 5000, maxPrice = 10000},
-	{minPrice = 10000, maxPrice = 20000},
-	{minPrice = 20000, maxPrice = 30000},
-	{minPrice = 30000, maxPrice = 50000},
-	{minPrice = 50000, maxPrice = 100000},
-	{minPrice = 50000, maxPrice = 100000},
-	{minPrice = 150000, maxPrice = 200000},
-	{minPrice = 200000, maxPrice = 250000},
+	{minPrice = 500, maxPrice = 500},
+	{minPrice = 5000, maxPrice = 1000},
+	{minPrice = 10000, maxPrice = 2000},
+	{minPrice = 20000, maxPrice = 3000},
+	{minPrice = 30000, maxPrice = 5000},
+	{minPrice = 50000, maxPrice = 10000},
+	{minPrice = 50000, maxPrice = 10000},
+	{minPrice = 150000, maxPrice = 20000},
+	{minPrice = 200000, maxPrice = 100000},
 }
 
 -- Rarity and price increase with index number
@@ -899,26 +899,12 @@ BBLootItems = {
 	-- "two_handed_sword_cleaver",
 	-- "two_handed_sword_katana",
 	-- "two_handed_sword_maul",
-	"attachment_armor",
-	"attachment_clothing",
-	"attachment_armor",
-	"attachment_clothing",
-	"attachment_armor",
-	"attachment_clothing",
-	"attachment_armor",
-	"attachment_clothing",
-	"attachment_armor",
-	"attachment_clothing",
-	"attachment_armor",
-	"attachment_clothing",
-	"attachment_armor",
-	"attachment_clothing",
 	},
 	-- Rare 97 - 99
 	-- Price 5000 - 10000
 	{
-	"attachment_armor",
-	"attachment_clothing",
+	-- "attachment_armor",
+	-- "attachment_clothing",
 	"giant_dune_kimogila_scale",
 	"rancor_bile",
 	"rancor_hides",

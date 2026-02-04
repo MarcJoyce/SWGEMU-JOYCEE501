@@ -348,6 +348,8 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 
 		-- BazaarBot Helper
 		-- {"bazaar_bot_helper", 300, 3514, 5.5, -4929, 245, 0, ""},
+		-- Stan
+		{"stan", 300, 3514, 5.5, -4929, 245, 0, "calm"},
 
 		{"junk_dealer", 0, 3355.75, 5, -4823.58, 122, 0, ""},
 		{"junk_dealer", 0, 3699.2, 5, -4822, 92, 0, ""},

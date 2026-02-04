@@ -5,15 +5,15 @@ janta_loreweaver = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "janta_tribe",
 	faction = "janta_tribe",
-	level = 55,
-	chanceHit = 0.6,
-	damageMin = 445,
-	damageMax = 600,
-	baseXp = 5373,
-	baseHAM = 11000,
-	baseHAMmax = 14000,
-	armor = 0,
-	resists = {-1,45,-1,0,0,70,0,-1,-1},
+	level = 150,
+	chanceHit = 4.75,
+	damageMin = 1000,
+	damageMax = 1500,
+	baseXp = 12424,
+	baseHAM = 50000,
+	baseHAMmax = 61000,
+	armor = 2,
+	resists = {70,70,70,70,70,70,70,70,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,7 +34,7 @@ janta_loreweaver = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "janta_tribe_tier_2", chance = 10000000}
+				{group = "janta_tribe_tier_3", chance = 10000000}
 			}
 		}
 	},

@@ -5,15 +5,15 @@ janta_shaman = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "janta_tribe",
 	faction = "janta_tribe",
-	level = 60,
-	chanceHit = 0.65,
-	damageMin = 470,
-	damageMax = 650,
-	baseXp = 5830,
-	baseHAM = 12000,
-	baseHAMmax = 14000,
-	armor = 1,
-	resists = {-1,40,-1,20,100,100,20,-1,-1},
+	level = 150,
+	chanceHit = 4.75,
+	damageMin = 770,
+	damageMax = 1250,
+	baseXp = 12424,
+	baseHAM = 50000,
+	baseHAMmax = 61000,
+	armor = 2,
+	resists = {70,70,70,70,70,70,70,70,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,7 +34,7 @@ janta_shaman = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "janta_tribe_tier_2", chance = 10000000}
+				{group = "janta_tribe_tier_3", chance = 10000000}
 			}
 		}
 	},

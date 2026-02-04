@@ -23,7 +23,7 @@ function dedleeSynConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
   local pGhost = CreatureObject(pPlayer):getPlayerObject()
   local accountID = PlayerObject(pGhost):getAccountID()
 
-  local pAdminPlayer = getCreatureObject(281474993546765)
+  local pAdminPlayer = getCreatureObject(281474993547517)
   local huntTarget = readScreenPlayData(pAdminPlayer, "DedleeSynScreenPlay", "huntTargetMessage")
   local huntCount = tonumber(readScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount")) or 0
 

@@ -77,6 +77,7 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 
 	if screenID == "trial_1_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_1");
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " has started the glowing unlock journey", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 		createObserver(KILLEDCREATURE, "CustomGlowingScreenPlay", "notifyKilledCreatureTrialOnePieceTwo", pPlayer)
 	elseif screenID == "trial_1_ongoing" then
 		local piecesCollected = self:collectedHowManyTrial1Pieces(pPlayer)

@@ -3,7 +3,7 @@ tatooine_canyon_krayt_dragon_lair_neutral_large = Lair:new {
 		{"krayt_dragon_grand",1},
 		{"giant_canyon_krayt_dragon",2},
 		{"canyon_krayt_dragon",3},
-		{"krayt_dragon_adolescent", 4}
+		{"krayt_dragon_adolescent", 4},
 		{"juvenile_canyon_krayt_dragon",5}
 	},
 	bossMobiles = {

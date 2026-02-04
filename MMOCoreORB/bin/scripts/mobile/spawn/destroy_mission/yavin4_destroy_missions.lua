@@ -110,6 +110,12 @@ yavin4_destroy_missions = {
 			maxDifficulty = 45,
 			size = 25,
 		},
+		{
+			lairTemplateName = "woolamander_jungle",
+			minDifficulty = 55,
+			maxDifficulty = 60,
+			size = 25,
+		},
 	}
 }
 
