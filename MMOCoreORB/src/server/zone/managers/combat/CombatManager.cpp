@@ -1682,13 +1682,11 @@ int CombatManager::applyDamage(CreatureObject* attacker, WeaponObject* weapon, T
 		if (armorReduction >= 0)
 			damage *= getArmorPiercing(defender, armorPiercing);
 
+		if (armorReduction > 0) {
+			damage *= (1.f - (armorReduction / 100.f));
 
-		// Armor Reduce on BF instead
-		// if (armorReduction > 0) {
-		// 	damage *= (1.f - (armorReduction / 100.f));
-
-		// 	defender->addUnmitigatedDamage(damage);
-		// }
+			// defender->addUnmitigatedDamage(damage);
+		}
 	}
 
 	defender->inflictDamage(attacker, 0, damage, true, xpType, true, true);

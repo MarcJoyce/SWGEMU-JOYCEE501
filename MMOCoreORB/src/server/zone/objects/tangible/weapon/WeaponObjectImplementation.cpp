@@ -725,7 +725,15 @@ String WeaponObjectImplementation::repairAttempt(int repairChance) {
 		repairChance = 0;
 	}
 
-	int reduction = (float)(Math::min(95, Math::max(75, repairChance)) / 100.f);
+	if (getCraftersName() == "Dedlee Syn") {
+		message += "sys_repair_failed";
+		setMaxCondition(1, true);
+		setConditionDamage(0, true);
+
+		return message;
+	}
+
+	float reduction = (float)(Math::min(95, Math::max(75, repairChance)) / 100.f);
 
 	setMaxCondition(getMaxCondition() * reduction, true);
 	setConditionDamage(0, true);

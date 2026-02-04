@@ -389,7 +389,7 @@ String WearableObjectImplementation::repairAttempt(int repairChance) {
 		repairChance = 0;
 	}
 
-	int reduction = (float)(Math::min(95, Math::max(75, repairChance)) / 100.f);
+	float reduction = (float)(Math::min(95, Math::max(75, repairChance)) / 100.f);
 
 	setMaxCondition(getMaxCondition() * reduction, true);
 	setConditionDamage(0, true);

@@ -20,6 +20,8 @@
 #include "server/zone/managers/creature/CreatureTemplateManager.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
 
+// #define LOOTVALUES_DEBUG
+
 class ServerLootCommand {
 	const static int GENERALERROR = 0;
 	const static int SUCCESS = 1;
@@ -122,18 +124,14 @@ public:
 		prototype->setCraftersID(craftersOID);
 
 		if (modifier >= LootValues::EXPERIMENTAL) {
-			auto lootValues = LootValues(itemTemplate, 0, 0);
-			lootValues.setLevel(level);
-			lootValues.setModifier(modifier);
-			lootValues.recalculateValues(true);
-
+			auto lootValues = LootValues(itemTemplate, level, modifier);
 			prototype->updateCraftingValues(&lootValues, true);
 
 			if (lootValues.getDynamicValues() > 0 && !(prototype->getOptionsBitmask() & OptionBitmask::YELLOW)) {
 				prototype->addMagicBit(false);
 			}
 #ifdef LOOTVALUES_DEBUG
-			lootValues.debugAttributes(prototype, itemTemplate);
+			// lootValues.debugAttributes(prototype, itemTemplate);
 #endif // LOOTVALUES_DEBUG
 		}
 

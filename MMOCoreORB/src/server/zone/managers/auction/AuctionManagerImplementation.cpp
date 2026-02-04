@@ -911,10 +911,10 @@ AuctionItem* AuctionManagerImplementation::createVendorItem(CreatureObject* play
 	uint64 vendorExpire = time(0) + AuctionManager::VENDOREXPIREPERIOD;
 	uint64 commodityExpire = time(0) + AuctionManager::COMMODITYEXPIREPERIOD;
 
-	if (duration > 0) {
-		vendorExpire = time(0) + duration;
-		commodityExpire = time(0) +  duration;
-	}
+	// if (duration > 0) {
+	// 	vendorExpire = time(0) + duration;
+	// 	commodityExpire = time(0) +  duration;
+	// }
 
 	String playername = player->getFirstName().toLowerCase();
 	String descr = description.toString();
@@ -2022,12 +2022,8 @@ void AuctionManagerImplementation::cancelItem(CreatureObject* player, uint64 obj
 			player->sendMessage(msg);
 			return;
 		}
-		/// 7 Days
-		availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
-		
-		if (item->getOwnerName() != "Stan") {
-			availableTime = currentTime;
-		}
+
+		availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
 
 	} else {
 		BaseMessage* msg = new CancelLiveAuctionResponseMessage(objectID, CancelLiveAuctionResponseMessage::ALREADYCOMPLETED);
@@ -2131,10 +2127,7 @@ void AuctionManagerImplementation::expireSale(AuctionItem* item) {
 	uint64 availableTime = 0;
 
 	if(item->isOnBazaar()) {
-		availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
-		if (item->getOwnerName() != "Stan") {
-			availableTime = currentTime;
-		}
+		availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
 	} else {
 		availableTime = currentTime + AuctionManager::VENDOREXPIREPERIOD;
 	}
@@ -2178,10 +2171,7 @@ void AuctionManagerImplementation::expireBidAuction(AuctionItem* item) {
 	uint64 availableTime = 0;
 
 	if(item->isOnBazaar()) {
-		availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
-		if (item->getOwnerName() != "Stan") {
-			availableTime = currentTime;
-		}
+		availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
 	} else {
 		availableTime = currentTime + AuctionManager::VENDOREXPIREPERIOD;
 	}
@@ -2222,11 +2212,7 @@ void AuctionManagerImplementation::expireAuction(AuctionItem* item) {
 
 	Time expireTime;
 	uint64 currentTime = expireTime.getMiliTime() / 1000;
-	uint64 availableTime = currentTime + AuctionManager::AVAILABLEITEMSEXPIRE;
-
-	if (item->getOwnerName() != "Stan") {
-		availableTime = currentTime;
-	}
+	uint64 availableTime = currentTime + AuctionManager::COMMODITYEXPIREPERIOD;
 
 	Locker locker(item);
 	item->setExpireTime(availableTime);

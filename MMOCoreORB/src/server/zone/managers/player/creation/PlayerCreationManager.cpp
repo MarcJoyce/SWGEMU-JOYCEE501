@@ -463,9 +463,9 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 				}
 
 				if (accountPermissionLevel < 9) {
-					String cooldownString = "You are only permitted to create one character every 15 minutes. Repeat attempts during cooldown will reset the timer.";
+					String cooldownString = "You are only permitted to create one character every 1 minute(s). Repeat attempts during cooldown will reset the timer.";
 
-					int cooldownTimer = 900000;
+					int cooldownTimer = 900000 / 15;
 					try {
 						StringBuffer query;
 						uint32 galaxyId = zoneServer.get()->getGalaxyID();
@@ -569,6 +569,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	// Welcome Mail
 	chatManager->sendMail("system", "@newbie_tutorial/newbie_mail:welcome_subject", "@newbie_tutorial/newbie_mail:welcome_body", playerCreature->getFirstName());
+	chatManager->sendMail("system", "Welcome to SWGEMU-NAMFS", "Thank you for joining the server, I hope you have a great time here. Please make sure to join the discord where you'll find a lot of helpful people willing to help you out, or where you can offer help and support if needed. Discord has a section for lots of tips and tricks and also a place to raise suggestions and issues, if you find any. AN IMPORTANT NOTE - You can Stat Migrate anywhere on the server, but you have to attempt the stat migration twice, in order for it to take effect.", playerCreature->getFirstName());
 
 	// Schedule Task to send out JTL Recruitment Mail
 	SendJtlRecruitment* jtlMailTask = new SendJtlRecruitment(playerCreature);

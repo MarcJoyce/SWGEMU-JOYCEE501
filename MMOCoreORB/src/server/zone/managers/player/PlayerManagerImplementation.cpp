@@ -2604,12 +2604,13 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 
 	float typeMultiplier = 1.f;
 
-	if (xpType == "dance" || xpType == "entertainer_healing" || xpType == "music" || xpType == "squadleader") {
+	if (xpType == "dance" || xpType == "entertainer_healing" || xpType == "music" || xpType == "squadleader" || xpType == "imagedesigner" || xpType == "merchant" || xpType == "political") {
 			typeMultiplier = 100.0f;
 	} else if (xpType == "crafting_spice" || xpType == "slicing" || xpType == "bountyhunter") {
 			typeMultiplier = 20.0f;
 	} else if (
 			xpType == "bio_engineer_dna_harvesting" ||
+			xpType == "crafting_bio_engineer_creature" || 
 			xpType == "crafting_clothing_armor" ||
 			xpType == "crafting_clothing_general" ||
 			xpType == "crafting_droid_general" ||

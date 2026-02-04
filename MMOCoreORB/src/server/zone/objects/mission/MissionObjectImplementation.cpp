@@ -168,6 +168,7 @@ void MissionObjectImplementation::setRewardCredits(int creds, bool notifyClient)
 		} else {
 			rewardCreditsDivisor = 1;
 		}
+		rewardCreditsDivisor = 1;
 
 		MissionObjectDeltaMessage3* delta = new MissionObjectDeltaMessage3(_this.getReferenceUnsafeStaticCast());
 		delta->updateRewardCredits(creds);
