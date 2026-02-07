@@ -23,6 +23,7 @@
 #include "server/zone/objects/player/events/StoreSpawnedChildrenTask.h"
 #include "server/zone/objects/mission/MissionObject.h"
 #include "server/zone/managers/mission/MissionManager.h"
+#include "templates/params/creature/CreatureAttribute.h"
 
 const char LuaCreatureObject::className[] = "LuaCreatureObject";
 
@@ -123,6 +124,7 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "addDotState", &LuaCreatureObject::addDotState},
 		{ "getSlottedObject", &LuaSceneObject::getSlottedObject},
 		{ "checkCooldownRecovery", &LuaCreatureObject::checkCooldownRecovery},
+		{ "getCooldownTime", &LuaCreatureObject::getCooldownTime},
 		{ "addCooldown", &LuaCreatureObject::addCooldown},
 		{ "isDead", &LuaCreatureObject::isDead},
 		{ "isIncapacitated", &LuaCreatureObject::isIncapacitated },
@@ -176,6 +178,7 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getActivePetsSize", &LuaCreatureObject::getActivePetsSize },
 		{ "getActivePet", &LuaCreatureObject::getActivePet },
 		{ "addSkillMod", &LuaCreatureObject::addSkillMod },
+		{ "revivePatient", &LuaCreatureObject::revivePatient },
 		
 
 		// JTL
@@ -588,6 +591,42 @@ int LuaCreatureObject::clearCombatState(lua_State* L) {
 	return 0;
 }
 
+int LuaCreatureObject::revivePatient(lua_State* L) {
+	CreatureObject* patient = realObject;
+
+	Locker clocker(patient);
+
+	ManagedReference<PlayerObject*> targetGhost = patient->getPlayerObject();
+
+	if (targetGhost != nullptr) {
+		if (targetGhost->getJediState() > 1) {
+			targetGhost->setForcePower(targetGhost->getForcePowerMax());
+		} 
+
+		if (patient->isDead()) {
+			targetGhost->removeSuiBoxType(SuiWindowType::CLONE_REQUEST);
+		}
+	}
+
+	patient->setHAM(CreatureAttribute::HEALTH, patient->getMaxHAM(CreatureAttribute::HEALTH));
+	patient->setHAM(CreatureAttribute::ACTION, patient->getMaxHAM(CreatureAttribute::ACTION));
+	patient->setHAM(CreatureAttribute::MIND, patient->getMaxHAM(CreatureAttribute::MIND));
+
+	for (int i = 0; i < 9; ++i) {
+		patient->setWounds(i, 0);
+	}
+
+	patient->setShockWounds(0);
+	patient->clearDots();
+	patient->removeFeignedDeath();
+	patient->setPosture(CreaturePosture::UPRIGHT);
+
+	patient->broadcastPvpStatusBitmask();
+
+	return 0;
+}
+
+
 int LuaCreatureObject::getHAM(lua_State* L) {
 	int type = lua_tonumber(L, -1);
 
@@ -913,6 +952,20 @@ int LuaCreatureObject::checkCooldownRecovery(lua_State* L) {
 	String cooldownName = lua_tostring(L, -1);
 
 	lua_pushboolean(L, realObject->checkCooldownRecovery(cooldownName));
+
+	return 1;
+}
+
+int LuaCreatureObject::getCooldownTime(lua_State* L) {
+	String cooldownName = lua_tostring(L, -1);
+
+	const Time* t = realObject->getCooldownTime(cooldownName);
+
+	if (t == nullptr) {
+		lua_pushnumber(L, 0);
+	} else {
+		lua_pushnumber(L, t->getMiliTime());
+	}
 
 	return 1;
 }

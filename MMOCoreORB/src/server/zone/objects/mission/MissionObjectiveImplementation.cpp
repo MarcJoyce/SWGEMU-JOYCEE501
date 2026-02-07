@@ -270,9 +270,10 @@ void MissionObjectiveImplementation::awardReward() {
 					memberPosition.setZ(0);
 				}
 
-				if (memberPosition.distanceTo(missionEndPoint) < 128) {
-					players.add(groupMember);
-				}
+				//if (memberPosition.distanceTo(missionEndPoint) < 128) {
+				//	players.add(groupMember);
+				//}
+				players.add(groupMember);
 			} else if(groupMember->isPet()) {
 				Vector3 petPosition = groupMember->getWorldPosition();
 
@@ -372,11 +373,12 @@ void MissionObjectiveImplementation::awardReward() {
 		trx.addState("missionTotalBonusRewarded", totalBonusRewarded);
 
 	if (group != nullptr) {
-		if (expanded) {
-			owner->sendSystemMessage("@mission/mission_generic:group_expanded"); // Group Mission Success! Reward credits have been transmitted to the bank account of all group members in the immediate area. They have been recalculated to reflect the newly added members.
-		} else {
-			owner->sendSystemMessage("@mission/mission_generic:group_success"); // Group Mission Success! Reward credits have been transmitted to the bank account of all group members in the immediate area.
-		}
+		// if (expanded) {
+		// 	owner->sendSystemMessage("@mission/mission_generic:group_expanded"); // Group Mission Success! Reward credits have been transmitted to the bank account of all group members in the immediate area. They have been recalculated to reflect the newly added members.
+		// } else {
+		// 	owner->sendSystemMessage("@mission/mission_generic:group_success"); // Group Mission Success! Reward credits have been transmitted to the bank account of all group members in the immediate area.
+		// }
+		owner->sendSystemMessage("Group Mission Success! Reward credits have been transmitted to the bank account of all group members.");
 	}
 
 	StatisticsManager::instance()->completeMission(mission->getTypeCRC(), totalRewarded);

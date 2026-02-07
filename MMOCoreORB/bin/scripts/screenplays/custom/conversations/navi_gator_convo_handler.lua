@@ -51,6 +51,7 @@ if (screenID == "first_screen_not_met" or screenID == "first_screen_has_met") th
     clonedConversation:addOption("10k - Nightsister Stronghold", "ns_stronghold")
     clonedConversation:addOption("10k - Krayt Graveyard", "krayt")
     clonedConversation:addOption("10k - Fort Tusken", "fort_tusken")
+    clonedConversation:addOption("10k - Janta Stronghold", "janta_cave")
   end
 
   
@@ -83,6 +84,10 @@ if (screenID == "first_screen_not_met" or screenID == "first_screen_has_met") th
     CreatureObject(pPlayer):subtractCashCredits(10000)
     CreatureObject(pPlayer):sendSystemMessage("You pay Gator 10000 credits.")
     SceneObject(pPlayer):switchZone("tatooine", -3984, 10, 6435, 0)
+  elseif (screenID == "janta_cave_go") then
+    CreatureObject(pPlayer):subtractCashCredits(10000)
+    CreatureObject(pPlayer):sendSystemMessage("You pay Gator 10000 credits.")
+    SceneObject(pPlayer):switchZone("dantooine", 6974, 10, -4116, 0)
   elseif (screenID == "krayt_go") then
     CreatureObject(pPlayer):subtractCashCredits(10000)
     CreatureObject(pPlayer):sendSystemMessage("You pay Gator 10000 credits.")

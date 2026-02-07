@@ -133,7 +133,8 @@ int UplinkTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 		player->sendSystemMessage("You are too far away from the uplink to continue jamming!");
 		return 1;
 	} else if (!player->hasSkill("combat_bountyhunter_novice")) {
-		player->sendSystemMessage("Only a bounty hunter with intermediate surveillance skill could expect to jam this uplink!");
+		// player->sendSystemMessage("Only a bounty hunter with intermediate surveillance skill could expect to jam this uplink!");
+		player->sendSystemMessage("Only a bounty hunter could expect to jam this uplink!");
 		return 1;
 	}
 

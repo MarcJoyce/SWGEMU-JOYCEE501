@@ -2134,15 +2134,15 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				} else {
 					PlayerObject* playerObject = attackerCreo->getPlayerObject();
 					int jediSkillPoints = playerObject->getSpentJediSkillPoints();
-					if (jediSkillPoints < 8) {
+					if (jediSkillPoints < 44) {
 						xpAmount *= 1.f;
-					} else if (jediSkillPoints < 16) {
+					} else if (jediSkillPoints < 83) {
 						xpAmount *= 0.8f;
-					} else if (jediSkillPoints < 22) {
-						xpAmount *= 0.6f;
-					} else if (jediSkillPoints < 24) {
-						xpAmount *= 0.4f;
 					} else if (jediSkillPoints < 127) {
+						xpAmount *= 0.6f;
+					} else if (jediSkillPoints < 166) {
+						xpAmount *= 0.4f;
+					} else if (jediSkillPoints < 207) {
 						xpAmount *= 0.2f;
 					} else {
 						xpAmount *= 0.1f;
@@ -5187,7 +5187,7 @@ SortedVector<String> PlayerManagerImplementation::getTeachableSkills(CreatureObj
 
 		const auto& skillName = skill->getSkillName();
 
-		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_") || skillName.contains("_investigation")) && skillManager->canLearnSkill(skillName, student, false))
+		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_")) && skillManager->canLearnSkill(skillName, student, false))
 			skills.put(skillName);
 	}
 

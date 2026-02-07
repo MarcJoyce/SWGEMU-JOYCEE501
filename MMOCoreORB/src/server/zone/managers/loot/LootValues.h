@@ -7,7 +7,7 @@
 #include "templates/LootItemTemplate.h"
 
 #ifndef LOOTVALUES_DEBUG
-//#define LOOTVALUES_DEBUG
+// #define LOOTVALUES_DEBUG
 #endif // LOOTVALUES_DEBUG
 
 class LootValues: public CraftingValues, public LootAttributeType {
@@ -20,8 +20,8 @@ public:
 	constexpr static float DISTNORMAL = 2.82333f;
 
 	enum BonusType : int {
-		LEGENDARY = 9,
-		EXCEPTIONAL = 8,
+		LEGENDARY = 10,
+		EXCEPTIONAL = 5,
 		ENHANCED = 2,
 		EXPERIMENTAL = 1,
 		STATIC = 0,
@@ -129,6 +129,8 @@ public:
 			prototype->setCustomObjectName(prototype->getDisplayedName() + " (Enhanced)", false);
 		} else if (modifier > STATIC) {
 			prototype->setCustomObjectName(prototype->getDisplayedName() + " (Experimental)", false);
+		} else {
+			prototype->setCustomObjectName(prototype->getDisplayedName(), false);
 		}
 
 		StringBuffer msg;

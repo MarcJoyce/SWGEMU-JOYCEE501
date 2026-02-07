@@ -1,4 +1,4 @@
-global_surface_marshall_imperial_none = Lair:new {
+global_surface_marchal_imperial_none = Lair:new {
 	mobiles = {
 		{"imperial_surface_marshall",1},
 		{"imperial_army_captain",2},
@@ -17,4 +17,4 @@ global_surface_marshall_imperial_none = Lair:new {
 	faction = "imperial"
 }
 
-addLairTemplate("global_surface_marshall_imperial_none", global_surface_marshall_imperial_none)
+addLairTemplate("global_surface_marchal_imperial_none", global_surface_marchal_imperial_none)

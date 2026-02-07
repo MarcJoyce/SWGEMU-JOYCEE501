@@ -131,6 +131,17 @@ fort_tusken = ConvoScreen:new {
 
 navi_gator_convo_template:addScreen(fort_tusken)
 
+janta_cave = ConvoScreen:new {
+  id = "janta_cave",
+  customDialogText = "Janta's? Those primatives in loin clothes, to each their own.",
+  stopConversation = "false",
+  options = {
+    {"Let's go", "janta_cave_go"}
+  }
+}
+
+navi_gator_convo_template:addScreen(janta_cave)
+
 village = ConvoScreen:new {
   id = "village",
   customDialogText = "A quiet little village? Finally, somewhere I'm not likely to get shot. Probably. Let's go.",
@@ -174,6 +185,7 @@ local destinationIds = {
   "ns_stronghold_go",
   "krayt_go",
   "fort_tusken_go",
+  "janta_cave_go",
   "village_go",
   "lje_go",
   "dje_go"

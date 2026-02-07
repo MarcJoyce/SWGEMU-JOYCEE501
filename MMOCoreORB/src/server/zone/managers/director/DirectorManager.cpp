@@ -1651,8 +1651,10 @@ int DirectorManager::generateWeapon(lua_State* L){
 		object->setForceNoTrade(true);
 		
 		ManagedReference<WeaponObject*> weaponObj = (object).castTo<WeaponObject*>();
-		
-		object->setMaxCondition(System::random(tokensToSpend * 25) + 1500);
+
+		// int condition = Math::max(System::random(tokensToSpend * 25) + 750, 2500);
+
+		object->setMaxCondition(1500);
 
 		String name = "Dedlee Syn";
 		object->setCraftersName(name);
@@ -1666,7 +1668,7 @@ int DirectorManager::generateWeapon(lua_State* L){
 		weaponObj->setDamageType(damageType);
 		weaponObj->setAttackSpeed(1.0f);
 
-		int tokenFactor = tokensToSpend / 5;
+		int tokenFactor = tokensToSpend / 25 * 2;
 
 		bool isMeleeWeapon = weaponObj->isMeleeWeapon();
 
@@ -1676,12 +1678,12 @@ int DirectorManager::generateWeapon(lua_State* L){
 		} else {
 			weaponFactor = 925;
 		}
-		
-		// float maxDamage = weaponObj->getMaxDamage();
-		float baseMaxDamage = (tokenFactor * tokenFactor - 45 * tokenFactor + weaponFactor) / 3.0f;
 
-		float minDamage = (System::random(baseMaxDamage * tokenFactor * 0.5) + baseMaxDamage * tokenFactor) / 100 * (100 - System::random(25));
-		float maxDamage = System::random(baseMaxDamage * tokenFactor * 0.5) + baseMaxDamage * tokenFactor;
+		float baseMinDamage = weaponObj->getMinDamage();
+		float baseMaxDamage = weaponObj->getMaxDamage();
+
+		float minDamage = (baseMinDamage * tokenFactor - baseMinDamage) + baseMinDamage;
+		float maxDamage = (baseMaxDamage * tokenFactor - baseMaxDamage) + baseMaxDamage;
 
 		float newMinDamage = Math::min(minDamage, maxDamage);
 		float newMaxDamage = Math::max(minDamage, maxDamage);
@@ -1691,11 +1693,11 @@ int DirectorManager::generateWeapon(lua_State* L){
 
 		int ap;
 
-		if (tokenFactor >= 20) {
+		if (tokenFactor >= 8) {
 			ap = 3;
-		} else if (tokenFactor >= 10) {
+		} else if (tokenFactor >= 4) {
 			ap = 2;
-		} else if (tokenFactor >= 5) {
+		} else if (tokenFactor >= 2) {
 			ap = 1;
 		} else {
 			ap = weaponObj->getArmorPiercing();
@@ -1707,7 +1709,7 @@ int DirectorManager::generateWeapon(lua_State* L){
 
 		float wound = weaponObj->getWoundsRatio();
 
-		float newWound = System::random(50) + 50 + wound;
+		float newWound = System::random(50) + wound;
 
 		weaponObj->setWoundsRatio(newWound);
 

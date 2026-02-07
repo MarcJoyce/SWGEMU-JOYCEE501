@@ -95,6 +95,7 @@ namespace creature {
 		int setOptionsBitmask(lua_State* L);
 		int addDotState(lua_State* L);
 		int checkCooldownRecovery(lua_State* L);
+		int getCooldownTime(lua_State* L);
 		int addCooldown(lua_State* L);
 		int isIncapacitated(lua_State* L);
 		int isDead(lua_State* L);
@@ -143,6 +144,7 @@ namespace creature {
 		int getActivePetsSize(lua_State* L);
 		int getActivePet(lua_State* L);
 		int addSkillMod(lua_State* L);
+		int revivePatient(lua_State* L);
 
 		// JTL
 		int isRebelPilot(lua_State* L);

@@ -204,7 +204,7 @@ function WorldBossesScreenPlay:respawnBoss()
   local coords = location[1]
   local suffixMessage = location[2]
 
-  local message = "Locals have reporting sighting dangerous creatures" .. suffixMessage
+  local message = "Locals have reported sightings of dangerous creatures" .. suffixMessage
 
 
   for i = 1, #templates, 1 do

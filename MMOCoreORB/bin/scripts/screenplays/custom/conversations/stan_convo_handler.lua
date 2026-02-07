@@ -29,6 +29,11 @@ function stanConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, select
 		if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1") and not CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_1")) then
 			clonedConversation:addOption("I'm looking for something  related to the ancient force mystics, have you heard anything about that?", "glowy_trial_1_rumour")
 		end
+	elseif (screenID == "glowy_trial_1_rumour") then
+		if (selogelConvoHandler:collectedHowManyTrial1Pieces(pPlayer) > 6 and not CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_seven")) then
+			clonedConversation:addOption("Is there anything else you know? I am willing to pay for this information.", "glowy_trial_1_rumour_two")
+		end
+		clonedConversation:addOption("Thanks for the tip!", "goodbye")
 	end
 
 	return pConvScreen

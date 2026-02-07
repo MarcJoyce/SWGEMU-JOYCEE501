@@ -242,9 +242,9 @@ public:
 				targetGhost->removeSuiBoxType(SuiWindowType::CLONE_REQUEST);
 		}
 
-		patient->healDamage(creature, CreatureAttribute::HEALTH, creature->getMaxHAM(CreatureAttribute::HEALTH));
-		patient->healDamage(creature, CreatureAttribute::ACTION, creature->getMaxHAM(CreatureAttribute::ACTION));
-		patient->healDamage(creature, CreatureAttribute::MIND, creature->getMaxHAM(CreatureAttribute::MIND));
+		patient->healDamage(creature, CreatureAttribute::HEALTH, patient->getMaxHAM(CreatureAttribute::HEALTH));
+		patient->healDamage(creature, CreatureAttribute::ACTION, patient->getMaxHAM(CreatureAttribute::ACTION));
+		patient->healDamage(creature, CreatureAttribute::MIND, patient->getMaxHAM(CreatureAttribute::MIND));
 
 		for (int i = 0; i < 9; ++i) {
 			patient->setWounds(i, 0);

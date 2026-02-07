@@ -7,49 +7,51 @@ function shaeTorrvekConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 
   self:log("Shae Torr'vek Conversation Handler: Player " .. SceneObject(pPlayer):getObjectID() .. " has completed " .. trialsCompleted .. " trials.")
 
-  -- Player is not a bounty hunter
-  if (not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_novice")) then
-    -- Player has never been a bounty hunter
-    if (not CreatureObject(pPlayer):hasScreenPlayState(1, "bounty_hunter_trial")) then
-      return convoTemplate:getScreen("not_bounty_hunter")
-    end
 
-    -- Player used to be a bounty hunter
-    return convoTemplate:getScreen("ex_bounty_hunter")
-  end
+  return convoTemplate:getScreen("not_bounty_hunter")
+  -- -- Player is not a bounty hunter
+  -- if (not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_novice")) then
+  --   -- Player has never been a bounty hunter
+  --   if (not CreatureObject(pPlayer):hasScreenPlayState(1, "bounty_hunter_trial")) then
+  --     return convoTemplate:getScreen("not_bounty_hunter")
+  --   end
 
-  -- Player has not yet started the trials
-  if (not CreatureObject(pPlayer):hasScreenPlayState(1, "bounty_hunter_trial")) then
-    return convoTemplate:getScreen("first_screen")
-  end
+  --   -- Player used to be a bounty hunter
+  --   return convoTemplate:getScreen("ex_bounty_hunter")
+  -- end
 
-  -- Player has completed all trials and has received training iV
-  if (trialsCompleted >= 16 and CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_04")) then
-    return convoTemplate:getScreen("no_more_work")
-  end
+  -- -- Player has not yet started the trials
+  -- if (not CreatureObject(pPlayer):hasScreenPlayState(1, "bounty_hunter_trial")) then
+  --   return convoTemplate:getScreen("first_screen")
+  -- end
 
-  -- Player has completed 16 trials and not received training IV
-  if (trialsCompleted >= 16 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_04")) then
-    return convoTemplate:getScreen("training_iv")
-  end
+  -- -- Player has completed all trials and has received training iV
+  -- if (trialsCompleted >= 16 and CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_04")) then
+  --   return convoTemplate:getScreen("no_more_work")
+  -- end
 
-  -- Player has completed 12 trials and not received training III
-  if (trialsCompleted >= 12 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_03")) then
-    return convoTemplate:getScreen("training_iii")
-  end
+  -- -- Player has completed 16 trials and not received training IV
+  -- if (trialsCompleted >= 16 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_04")) then
+  --   return convoTemplate:getScreen("training_iv")
+  -- end
+
+  -- -- Player has completed 12 trials and not received training III
+  -- if (trialsCompleted >= 12 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_03")) then
+  --   return convoTemplate:getScreen("training_iii")
+  -- end
   
-  -- Player has completed 8 trials and not received training II
-  if (trialsCompleted >= 8 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_02")) then
-    return convoTemplate:getScreen("training_ii")
-  end
+  -- -- Player has completed 8 trials and not received training II
+  -- if (trialsCompleted >= 8 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_02")) then
+  --   return convoTemplate:getScreen("training_ii")
+  -- end
   
-  -- Player has completed 4 trials and not received training I
-  if (trialsCompleted >= 4 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_01")) then
-    return convoTemplate:getScreen("training_i")
-  end
+  -- -- Player has completed 4 trials and not received training I
+  -- if (trialsCompleted >= 4 and not CreatureObject(pPlayer):hasSkill("combat_bountyhunter_investigation_01")) then
+  --   return convoTemplate:getScreen("training_i")
+  -- end
 
-  -- Player has returned and cannot be trained
-  return convoTemplate:getScreen("returned_early")
+  -- -- Player has returned and cannot be trained
+  -- return convoTemplate:getScreen("returned_early")
 end
 
 function shaeTorrvekConvoHandler:log(message)

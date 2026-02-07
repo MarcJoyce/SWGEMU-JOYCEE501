@@ -489,7 +489,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 	chatManager->addPlayer(creature);
 
 	if (skill->getSkillName() == "combat_bountyhunter_novice") {
-		chatManager->sendMail("The Guild", "Welcome to the brotherhood", "Welcome to the ranks of the elite. Report to Jabba's Palace and initiate contact with Shae Torrvek to begin your specialised Bounty Hunter training. Do us proud.", creature->getFirstName());
+		// chatManager->sendMail("The Guild", "Welcome to the brotherhood", "Welcome to the ranks of the elite. Report to Jabba's Palace and initiate contact with Shae Torrvek to begin your specialised Bounty Hunter training. Do us proud.", creature->getFirstName());
 		// creature->sendSystemMessage(" \\#FFFF00\\<Incoming transmission>\\#FFFFFF\\Report to Jabba's Palace and initiate contact with Shae Torrvek for specialised BountyHunter training.");
 	}
 

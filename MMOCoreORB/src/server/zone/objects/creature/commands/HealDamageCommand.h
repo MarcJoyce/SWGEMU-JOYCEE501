@@ -498,13 +498,13 @@ public:
 		Locker locker(stimPack);
 		stimPack->decreaseUseCount();
 
-		if (!targetCreature->isPet()) {
-			if (targetCreature != creature) {
+//		if (!targetCreature->isPet()) {
+			if (targetCreature != creature && !targetCreature->isPet()) {
 				awardXp(creature, "medical", (healthHealed + actionHealed + mindHealed));
 			} else {
 				awardXp(creature, "medical", (int)((healthHealed + actionHealed + mindHealed) * 0.1f));
 			}
-		}
+//		}
 
 		if (targetCreature != creature)
 			clocker.release();

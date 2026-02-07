@@ -911,14 +911,15 @@ AuctionItem* AuctionManagerImplementation::createVendorItem(CreatureObject* play
 	uint64 vendorExpire = time(0) + AuctionManager::VENDOREXPIREPERIOD;
 	uint64 commodityExpire = time(0) + AuctionManager::COMMODITYEXPIREPERIOD;
 
-	// if (duration > 0) {
-	// 	vendorExpire = time(0) + duration;
-	// 	commodityExpire = time(0) +  duration;
-	// }
-
+	
 	String playername = player->getFirstName().toLowerCase();
 	String descr = description.toString();
 	String planetStr = zone->getZoneName();
+	
+	if (playername == "stan") {
+		vendorExpire = time(0) + duration;
+		commodityExpire = time(0) +  duration;
+	}
 
 	AuctionItem* item  = new AuctionItem(objectToSell->getObjectID());
 

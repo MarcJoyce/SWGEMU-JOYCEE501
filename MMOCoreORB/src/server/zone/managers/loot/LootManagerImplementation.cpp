@@ -24,6 +24,7 @@
 #include "server/zone/objects/ship/ai/ShipAiAgent.h"
 
 // #define DEBUG_LOOT_MAN
+// #define LOOTVALUES_DEBUG
 
 void LootManagerImplementation::initialize() {
 	info(true) << "Loading configuration...";
@@ -270,11 +271,11 @@ void LootManagerImplementation::setCustomObjectName(TangibleObject* object, cons
 
 	String suffixName = "";
 
-	// if (excMod >= legendaryModifier) {
-	// 	suffixName = " (Legendary)";
-	// } else if (excMod >= exceptionalModifier) {
-	// 	suffixName = " (Exceptional)";
-	// }
+	if (excMod >= legendaryModifier) {
+		suffixName = " (Legendary)";
+	} else if (excMod >= exceptionalModifier) {
+		suffixName = " (Exceptional)";
+	}
 
 	if (suffixName != "") {
 		object->setCustomObjectName(object->getDisplayedName() + suffixName, false);
@@ -309,7 +310,7 @@ int LootManagerImplementation::calculateLootCredits(int level) {
 
 	int credits = mincredits + System::random(maxcredits - mincredits);
 
-	return credits;
+	return credits * 1.25f;
 }
 
 void LootManagerImplementation::setRandomLootValues(TransactionLog& trx, TangibleObject* prototype, const LootItemTemplate* itemTemplate, int level, float excMod) {
@@ -330,7 +331,8 @@ void LootManagerImplementation::setRandomLootValues(TransactionLog& trx, Tangibl
 	} else if (excMod >= exceptionalModifier) {
 		trx.addState("lootIsExceptional", true);
 		exceptionalLooted.increment();
-	} else if (lootValues.getDynamicValues() > 0) {
+	} else if (excMod >= yellowModifier) {
+		// } else if (lootValues.getDynamicValues() > 0) {
 		trx.addState("lootIsYellow", true);
 		yellowLooted.increment();
 
@@ -447,13 +449,14 @@ TangibleObject* LootManagerImplementation::createLootObject(TransactionLog& trx,
 	#ifdef DEBUG_LOOT_MAN
 			info(true) << "LootManagerImplementation: level" << String::valueOf(level);
 		#endif
-
-	CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
-	craftingValues->addExperimentalAttribute("creatureLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
-	craftingValues->setCurrentValue("creatureLevel", level);
-	craftingValues->setHidden("creatureLevel");
-
+		
 	if (prototype != nullptr && prototype->isAttachment()) {
+
+		CraftingValues* craftingValues = new CraftingValues(templateObject->getAttributesMapCopy());
+		craftingValues->addExperimentalAttribute("creatureLevel", "creatureLevel", level, level, 0, false, AttributesMap::LINEARCOMBINE);
+		craftingValues->setCurrentValue("creatureLevel", level);
+		craftingValues->setHidden("creatureLevel");
+		
 		Attachment* attachment = cast<Attachment*>(prototype.get());
 
 		if (attachment == nullptr) {
@@ -786,7 +789,7 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 
 		rolls.add(roll);
 
-		if (roll > lootChance && level <= 150)
+		if (roll > lootChance && level < 150)
 			continue;
 
  		// Start at 0
@@ -815,6 +818,14 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 
 			break;
 		}
+	}
+
+	int roll = System::random(10000000);
+	float deityChance = 0.0005f + ((level / 50.f) * 0.0001f);
+	uint32 deityChanceInt = deityChance * 10000000;
+
+	if (roll > deityChanceInt) {
+		objectID = createLoot(trx, container, "deity_items", level);
 	}
 
 	trx.addState("lootChances", chances);
@@ -1212,10 +1223,10 @@ float LootManagerImplementation::getRandomModifier(const LootItemTemplate* itemT
 
 		if (System::random(yellowChance) <= chance) {
 			excMod = yellowModifier;
-		} else if (System::random(baseChance) <= chance) {
-			excMod = baseModifier;
+		// } else if (System::random(baseChance) <= chance) {
+			// excMod = baseModifier;
 		} else {
-			excMod = 0.f;
+			excMod = baseModifier + LootValues::getDistributedValue(0.f, 1.f, level);
 		}
 	}
 
@@ -1232,8 +1243,8 @@ float LootManagerImplementation::getRandomModifier(const LootItemTemplate* itemT
 		modMax = yellowModifier;
 		modMin = baseModifier;
 	} else if (excMod >= baseModifier) {
-		modMax = baseModifier;
-		modMin = 0.f;
+		modMax = excMod;
+		modMin = baseModifier;
 	}
 
 	return modMax == modMin ? modMin : LootValues::getDistributedValue(modMin, modMax, level) + baseModifier;

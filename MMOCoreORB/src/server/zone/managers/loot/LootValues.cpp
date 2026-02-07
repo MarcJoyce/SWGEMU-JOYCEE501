@@ -267,6 +267,11 @@ void LootValues::setDynamicValue(const String& attribute, float percentageMax) {
 }
 
 void LootValues::setModifierValue(const String& attribute, float percentageMax) {
+	// Modifier of 1 (or less) is neutral - do not collapse the range
+	//if (percentageMax <= 1.f) {
+	//		return;
+	//}
+
 	float min = staticValues.getMinValue(attribute);
 	float max = staticValues.getMaxValue(attribute);
 
@@ -420,27 +425,25 @@ float LootValues::getDistributedValue(float min, float max, int level, float dis
 
 	float mid = ((max - min) * rank) + min;
 
-	return Math::clamp(min, mid, max);
+	if (mid < min) {
+		max += (mid - min);
+		mid = min;
+	}
 
-	// if (mid < min) {
-	// 	max += (mid - min);
-	// 	mid = min;
-	// }
+	if (mid > max) {
+		min += (mid - max);
+		mid = max;
+	}
 
-	// if (mid > max) {
-	// 	min += (mid - max);
-	// 	mid = max;
-	// }
+	float randomMin = getRandomValue(min, mid);
+	float randomMax = getRandomValue(mid, max);
+	float randomVal = getRandomValue(randomMin, randomMax);
 
-	// float randomMin = getRandomValue(min, mid);
-	// float randomMax = getRandomValue(mid, max);
-	// float randomVal = getRandomValue(randomMin, randomMax);
+	if (inverted) {
+		randomVal = (valueMax - randomVal) + valueMin;
+	}
 
-	// if (inverted) {
-	// 	randomVal = (valueMax - randomVal) + valueMin;
-	// }
-
-	// return Math::clamp(min, randomVal, max);
+	return Math::clamp(min, randomVal, max);
 }
 
 int LootValues::getDistributedValue(int min, int max, int level, float distMin, float distMax) {
@@ -461,27 +464,25 @@ int LootValues::getDistributedValue(int min, int max, int level, float distMin, 
 
 	int mid = round(((max - min) * rank) + min);
 
-	return Math::clamp(min, mid, max);
+	if (mid < min) {
+		max += (mid - min);
+		mid = min;
+	}
 
-	// if (mid < min) {
-	// 	max += (mid - min);
-	// 	mid = min;
-	// }
+	if (mid > max) {
+		min += (mid - max);
+		mid = max;
+	}
 
-	// if (mid > max) {
-	// 	min += (mid - max);
-	// 	mid = max;
-	// }
+	int randomMin = getRandomValue(min, mid);
+	int randomMax = getRandomValue(mid, max);
+	int randomVal = getRandomValue(randomMin, randomMax);
 
-	// int randomMin = getRandomValue(min, mid);
-	// int randomMax = getRandomValue(mid, max);
-	// int randomVal = getRandomValue(randomMin, randomMax);
+	if (inverted) {
+		randomVal = (valueMax - randomVal) + valueMin;
+	}
 
-	// if (inverted) {
-	// 	randomVal = (valueMax - randomVal) + valueMin;
-	// }
-
-	// return Math::clamp(min, randomVal, max);
+	return Math::clamp(min, randomVal, max);
 }
 
 float LootValues::getLevelRankValue(int level, float distMin, float distMax) {

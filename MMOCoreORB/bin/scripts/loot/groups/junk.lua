@@ -40,7 +40,7 @@ junk = {
 		{groupTemplate = "coa2_decoder_components", weight = 285714},
 		{groupTemplate = "data_storage_unit_parts", weight = 285714},
 		{groupTemplate = "resource_deed", weight = 285723},
-		{groupTemplate = "named_crystals", weight = 1},
+		{groupTemplate = "deity_items", weight = 1},
 	}
 }
 

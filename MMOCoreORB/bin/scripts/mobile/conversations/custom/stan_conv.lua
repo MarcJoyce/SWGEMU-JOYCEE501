@@ -38,13 +38,21 @@ stan_convo_template:addScreen(what_do_you_sell)
 
 glowy_trial_1_rumour = ConvoScreen:new {
   id = "glowy_trial_1_rumour",
-  customDialogText = "You look like someone who could handle a bit of adventure. I've heard rumors about a glowing artifact, that was broken and must be reassembled. The rumors suggest that the great Hutt, hiding in his palace, has acquired one. As has the mighty Nym in his Stronghold on Lok. Then there's the notorious cultist leader on Dantooine that everyone is talking about. Believe me, he's not the messiah, he's a very naughty boy!! If you can retrieve these pieces, you might be able to reassemble the artifact and unlock its secrets.",
+  customDialogText = "You look like someone who could handle a bit of adventure. I'll tell you this for free. I've heard rumors about a glowing artifact, that was broken and must be reassembled. The rumors suggest that the great Hutt, hiding in his palace, has acquired one. As has the mighty Nym in his Stronghold on Lok. Then there's the notorious cultist leader on Dantooine that everyone is talking about. Believe me, he's not the messiah, he's a very naughty boy!! If you can retrieve these pieces, you might be able to reassemble the artifact and unlock its secrets.",
   stopConversation = "false",
-  options = {
-    { "Thanks for the tip!", "goodbye" },
-  }
+  options = {}
 }
 stan_convo_template:addScreen(glowy_trial_1_rumour)
+
+glowy_trial_1_rumour_two = ConvoScreen:new {
+  id = "glowy_trial_1_rumour_two",
+  customDialogText = "Keep your credits, friend. I'll tell you what I know. There's an old Jedi sympathiser somewhere on Naboo, they move around so I can't be sure where, exactly, but I'm sure they'll have more information about what you seek.",
+  stopConversation = "false",
+  options = {
+    { "Thanks for the tip!", "goodbye" }
+  }
+}
+stan_convo_template:addScreen(glowy_trial_1_rumour_two)
 
 goodbye = ConvoScreen:new {
   id = "goodbye",

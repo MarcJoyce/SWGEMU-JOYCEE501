@@ -67,7 +67,7 @@ rebelRewardData = {
 	},
 
 	vehicles = {
-		barc_speeder_rebel_deed = { type=factionRewardType.vehicle, display="Barc Speeder", item="object/tangible/deed/vehicle_deed/barc_speeder_rebel_deed.iff", cost=75000}
+		barc_speeder_rebel_deed = { type=factionRewardType.vehicle, display="Barc Speeder", item="object/tangible/deed/vehicle_deed/barc_speeder_rebel_deed.iff", cost=250000}
 	},
 
 	furnitureList = {
@@ -163,7 +163,7 @@ imperialRewardData = {
 	},
 
 	vehicles = {
-		barc_speeder_imperial_deed = { type=factionRewardType.vehicle, display="Barc Speeder", item="object/tangible/deed/vehicle_deed/barc_speeder_imperial_deed.iff", cost=75000}
+		barc_speeder_imperial_deed = { type=factionRewardType.vehicle, display="Barc Speeder", item="object/tangible/deed/vehicle_deed/barc_speeder_imperial_deed.iff", cost=250000}
 	},
 
 	installationsList = {

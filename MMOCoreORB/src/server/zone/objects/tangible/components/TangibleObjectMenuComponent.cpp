@@ -87,7 +87,7 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 					}
 				}
 				if (!hasForbiddenMods) {
-					menuResponse->addRadialMenuItem(89, 3, "Extract Skill Mods (Destroys Item - " + String::valueOf(price / 1000) + "k Credit Fee)");
+					// menuResponse->addRadialMenuItem(89, 3, "Extract Skill Mods (Destroys Item - " + String::valueOf(price / 1000) + "k Credit Fee)");
 				}
 			}
 		}
