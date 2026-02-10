@@ -202,8 +202,8 @@ endor_destroy_missions = {
 		},
 		{
 			lairTemplateName = "endor_arachne_lair_neutral_boss_03",
-			minDifficulty = 40,
-			maxDifficulty = 44,
+			minDifficulty = 55,
+			maxDifficulty = 60,
 			size = 25,
 		},
 		{

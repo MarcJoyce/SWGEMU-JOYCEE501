@@ -154,7 +154,7 @@ end
 
 function CustomGlowingScreenPlay:spawnMobilesNaboo()
   -- Piece of eight seven - Jedi Sympathiser
-  spawnMobile("naboo", "thalos_krenn", 300, -5472.9, 14.0, 4462.0, 270.025, 0)
+  spawnMobile("naboo", "thalos_krenn", 300, -5530, 6.0, 4471, 230.417, 0)
 end
 
 function CustomGlowingScreenPlay:spawnMobilesLok()

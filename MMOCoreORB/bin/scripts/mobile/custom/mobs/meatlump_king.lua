@@ -6,11 +6,11 @@ meatlump_king = Creature:new {
 	faction = "meatlump",
 	level = 300,
 	chanceHit = 30.25,
-	damageMin = 1520,
-	damageMax = 2750,
-	baseXp = 26654,
-	baseHAM = 321000,
-	baseHAMmax = 392000,
+	damageMin = 2270,
+	damageMax = 4250,
+	baseXp = 28549,
+	baseHAM = 310000,
+	baseHAMmax = 401000,
 	armor = 3,
 	resists = {75,75,75,75,75,75,75,75,75},
 	meatType = "",
@@ -32,7 +32,7 @@ meatlump_king = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{ group = "meatlump_king", chance = 10000000 },
+				-- { group = "meatlump_king", chance = 10000000 },
 			}
 		}
 	},

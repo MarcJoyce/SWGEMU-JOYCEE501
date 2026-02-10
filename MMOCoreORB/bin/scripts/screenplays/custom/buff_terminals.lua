@@ -6,8 +6,8 @@ BuffTerminal = ScreenPlay:new {
 	buffs = {
 		-- Legend: {name, price, duration in hours, health, strength, constitution, action, quickness, stamina, mind, focus, willpower},
 		{"Starter Buff", 0, 4, 500, 250, 250, 500, 250, 250, 500, 250, 250, requiredSkills = {}, requiredSkillNames = ""}, -- Free!
-		{"Basic Buff", 5000, 3, 1000, 500, 500, 1000, 500, 500, 1000, 500, 500, requiredSkills = {}, requiredSkillNames = ""},
-		{"Premium Buff", 25000, 2, 1500, 750, 750, 1500, 750, 750, 1500, 750, 750, requiredSkills = {"", ""}, requiredSkillNames = ""},
+		{"Basic Buff", 5000, 3, 750, 500, 500, 750, 500, 500, 750, 500, 500, requiredSkills = {}, requiredSkillNames = ""},
+		{"Premium Buff", 15000, 2, 1000, 750, 750, 1000, 750, 750, 1000, 750, 750, requiredSkills = {"", ""}, requiredSkillNames = ""},
 	},
 	termModel = "object/tangible/terminal/terminal_light_enclave_voting.iff",
 	termName = "Medical Services Terminal",

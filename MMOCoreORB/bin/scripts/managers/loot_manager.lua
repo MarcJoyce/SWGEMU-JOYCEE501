@@ -174,6 +174,8 @@ lootableClothingAttachmentStatMods = {
 	"armor_experimentation",
 	"armor_repair",
 	-- "berserk",
+	"bio_engineer_assembly",
+	"bio_engineer_experimentation",
 	"blind_defense",
 	"block",
 	-- "camouflage",

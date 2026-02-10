@@ -1652,9 +1652,9 @@ int DirectorManager::generateWeapon(lua_State* L){
 		
 		ManagedReference<WeaponObject*> weaponObj = (object).castTo<WeaponObject*>();
 
-		// int condition = Math::max(System::random(tokensToSpend * 25) + 750, 2500);
+		int condition = System::random(1500 - 750) + 750;
 
-		object->setMaxCondition(1500);
+		object->setMaxCondition(condition);
 
 		String name = "Dedlee Syn";
 		object->setCraftersName(name);

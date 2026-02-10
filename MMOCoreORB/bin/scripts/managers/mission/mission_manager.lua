@@ -22,7 +22,7 @@ bh_target_zones = {
 }
 
 bh_targets_at_mission_level = {
-	level1 = { --level 1 - 50
+	level1 = {
 		"bh_bodyguard", --level 7
 		"bh_fugitive", --level 7
 		"bh_spice_fiend", --level 8
@@ -36,6 +36,8 @@ bh_targets_at_mission_level = {
 		"bh_assassin_twilek_mate", --level 18
 		"bh_pirate_captain", --level 20
 		"bh_brigand_leader", --level 20
+},
+level2 = {
 		"bh_bounty_hunter_thug", --level 24
 		"bh_sennex_guard", --level 32
 		"bh_scientist", --level 34
@@ -44,6 +46,8 @@ bh_targets_at_mission_level = {
 		"bh_ig_assassin_droid", --level 45
 		"bh_canyon_corsair_captain", --level 50
 		"bh_tusken_death_hunter", --level 50
+},
+level3 = {
 		"bh_tusken_warlord", --level 62
 		"bh_untrained_wielder_of_the_dark_side", --level 65
 		"bh_mercenary_sentry", --level 66
@@ -60,28 +64,24 @@ bh_targets_at_mission_level = {
 		"bh_inquisitor_exile", -- level 130
 		"bh_spiderclan_protector", -- level 140
 		"bh_nightsister_protector", -- level 150
-	},
-	level2 = { --level 50 - 200
 		"bh_dark_trooper_deserter", -- level 160
 		"bh_rebel_guard_captain_deserter", -- level 170
 		"bh_ig_assassin_droid_180", -- level 180
-		"bh_trandoshan_slaver_190", -- level 190
+		-- "bh_trandoshan_slaver_190", -- level 190
 		"bh_tusken_witch_doctor", -- level 200
-		"bh_tusken_death_master", -- level 210
+		-- "bh_tusken_death_master", -- level 210
 		"bh_death_watch_black_sun_assassin", -- level 220
-		"bh_death_watch_black_sun_guard", -- level 230
+		-- "bh_death_watch_black_sun_guard", -- level 230
 		"bh_death_watch_black_sun_henchman", -- level 240
-		"bh_death_watch_black_sun_thug", -- level 250
-		"bh_light_jedi_padawan", -- level 260
-		"bh_dark_jedi_padawan", -- level 270
+		-- "bh_death_watch_black_sun_thug", -- level 250
+		-- "bh_light_jedi_padawan", -- level 260
+		-- "bh_dark_jedi_padawan", -- level 270
 		"bh_light_jedi_knight", -- level 280
 		"bh_dark_jedi_knight", -- level 290
-	},
-	level3 = { 
 		"bh_nightsister_elder", -- level 300
 		"bh_singing_mountain_clan_councilwoman", -- level 300
-		"bh_tusken_executioner", -- level 300
-		"bh_tusken_observer", -- level 300
+		-- "bh_tusken_executioner", -- level 300
+		-- "bh_tusken_observer", -- level 300
 		"bh_dark_jedi_master", -- level 300
 		"bh_boba_fett", -- level 350
 	},

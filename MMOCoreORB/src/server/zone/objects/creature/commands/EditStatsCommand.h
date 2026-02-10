@@ -142,6 +142,12 @@ public:
 				ghost->setVisibility(vis);
 				return SUCCESS;
 			}
+			else if (commandType.beginsWith("cooldown")) {
+				String cooldownString;
+				args.getStringToken(cooldownString);
+
+				patient->updateCooldownTimer(cooldownString);
+			}
 
 		} catch (Exception& e) {
 			creature->sendSystemMessage("Syntax: /editStats buff health, action... / all amount duration(hours)");

@@ -160,6 +160,9 @@ lok_regions = {
 	{"@lok_region_names:lok_imperial_outpost", -1920, -3084, {CIRCLE, 201}, CITY + NOSPAWNAREA},
 	{"lok_imperial_outpost_nobuild_1", -1920, -3084, {CIRCLE, 402}, CAMPINGAREA + NOBUILDZONEAREA},
 
+	-- Starport
+	{"lok_starport", 478, 5511, {CIRCLE, 120}, NOSPAWNAREA},
+
 	-- Spawn Areas
 	{"@lok_region_names:central_north_medium", -3992, 990, {RECTANGLE, 2010, 3980}, SPAWNAREA, {"lok_central_north_medium"}, 448},
 	{"@lok_region_names:central_south_Kimogilas_hard", 4185, 72, {CIRCLE, 165}, SPAWNAREA, {"lok_central_south_kimogilas_hard"}, 4},

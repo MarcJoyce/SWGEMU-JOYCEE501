@@ -1,6 +1,7 @@
 global_dark_jedi_camp_dark_jedi_theater = Lair:new {
-	mobiles = {{"dark_jedi_knight",1}, {"dark_jedi_master",1}},
-	spawnLimit = 4,
+	mobiles = {{"dark_adept",4}, {"dark_jedi_knight",1}},
+	bossMobiles = {{"dark_jedi_master",1}},
+	spawnLimit = 8,
 	buildingsVeryEasy = {"object/building/poi/tatooine_hutt_businessmen_camp_small1.iff","object/building/poi/tatooine_hutt_businessmen_camp_small2.iff"},
 	buildingsEasy = {"object/building/poi/tatooine_hutt_businessmen_camp_small1.iff","object/building/poi/tatooine_hutt_businessmen_camp_small2.iff"},
 	buildingsMedium = {"object/building/poi/tatooine_hutt_businessmen_camp_small1.iff","object/building/poi/tatooine_hutt_businessmen_camp_small2.iff"},

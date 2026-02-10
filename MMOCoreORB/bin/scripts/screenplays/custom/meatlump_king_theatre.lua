@@ -59,6 +59,33 @@ function MeatlumpKingTheatre:onObjectsSpawned(pPlayer, spawnedMobilesList)
 	end
 
   createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage90", spawnedMobilesList[1])
+  createObserver(OBJECTDESTRUCTION, self.taskName, "notifyOnKingKilled", spawnedMobilesList[1])
+end
+
+function MeatlumpKingTheatre:notifyOnKingKilled(pMobile)
+  if (pMobile == nil) then
+    return
+  end
+
+  local playerTable = SceneObject(pMobile):getPlayersInRange(120)
+
+  for i = 1, #playerTable, 1 do
+    local pPlayer = playerTable[i]
+
+    if (pPlayer ~= nil) then
+      local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
+      self:log(self.taskName .. ": " .. CreatureObject(pPlayer):getFirstName() .. " received meatlump king theatre loot.")
+
+      if pInventory == nil then
+        self:log("Error locating target inventory\n")
+        return nil
+      end
+
+      createLoot(pInventory, "meatlump_king", 350, true)
+
+      CreatureObject(pPlayer):sendSystemMessage("You have received a loot item!")
+    end
+  end
 end
 
 function MeatlumpKingTheatre:damageTaken(pNpc, damageThreshold)
@@ -99,6 +126,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage90(pMeatlumpKing, pAttacker, da
     self:getHelp(pMeatlumpKing, 7, "meatlump_king_buffoon", pAttacker)
     self:getHelp(pMeatlumpKing, 7, "meatlump_king_loon", pAttacker)
     spatialChat(pMeatlumpKing, "Get em boys!")
+    self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage75", pMeatlumpKing)
     return 1
@@ -118,6 +146,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage75(pMeatlumpKing, pAttacker, da
 
     self:getHelp(pMeatlumpKing, 10, "meatlump_king_fool", pAttacker)
     spatialChat(pMeatlumpKing, "Come on then!")
+      self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage50", pMeatlumpKing)
     return 1
@@ -137,6 +166,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage50(pMeatlumpKing, pAttacker, da
 
     self:getHelp(pMeatlumpKing, 8, "meatlump_king_stooge", pAttacker)
     spatialChat(pMeatlumpKing, "What are you doin'!")
+    self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage33", pMeatlumpKing)
     return 1
@@ -156,6 +186,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage33(pMeatlumpKing, pAttacker, da
 
     self:getHelp(pMeatlumpKing, 6, "meatlump_king_clod", pAttacker)
     spatialChat(pMeatlumpKing, "Show em who's boss!")
+    self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage25", pMeatlumpKing)
     return 1
@@ -175,6 +206,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage25(pMeatlumpKing, pAttacker, da
 
     self:getHelp(pMeatlumpKing, 4, "meatlump_king_oaf", pAttacker)
     spatialChat(pMeatlumpKing, "Come on, kill em!!")
+    self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage10", pMeatlumpKing)
     return 1

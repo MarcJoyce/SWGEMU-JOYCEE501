@@ -1085,9 +1085,6 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 		randomTexts = 50;
 	}
 
-	level = 3;
-	randomTexts = 50;
-
 	NameManager* nm = processor->getNameManager();
 
 	bool playerTarget = false;

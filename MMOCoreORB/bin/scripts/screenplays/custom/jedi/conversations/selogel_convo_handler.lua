@@ -88,6 +88,7 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	elseif screenID == "trial_2_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_2");
 		local professionString = self:getAndSetProfession(pPlayer, "combat", "Trial2")
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " combat profession: " .. professionString, "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log");
 		CreatureObject(pPlayer):sendSystemMessage(professionString)
 	elseif screenID == "trial_2_ongoing" then
 		CreatureObject(pPlayer):sendSystemMessage(self:getProfessionString(pPlayer, "combat", "Trial2"))
@@ -97,10 +98,11 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	elseif screenID == "trial_3_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_3");
 		local waypointId = PlayerObject(pGhost):addWaypoint("tatooine", "Vessa Kael", "", -1148, 98, -3893, WAYPOINT_YELLOW, true, true, 0)
-    	setQuestStatus(playerID .. ":vessa_kael_glowing", waypointId)
+		setQuestStatus(playerID .. ":vessa_kael_glowing", waypointId)
 	elseif screenID == "trial_4_start" then
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_4");
 		local professionString = self:getAndSetProfession(pPlayer, "support", "Trial4")
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " support profession: " .. professionString, "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log");
 		CreatureObject(pPlayer):sendSystemMessage(professionString)
 	elseif screenID == "trial_4_ongoing" then
 		CreatureObject(pPlayer):sendSystemMessage(self:getProfessionString(pPlayer, "support", "Trial4"))
@@ -111,7 +113,7 @@ function selogelConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 		CreatureObject(pPlayer):setScreenPlayState(1, "glowy_trial_5");
 	elseif (screenID == "trial_5_complete") then
 		local decipherTrial = getRandomNumber(1, #trialSixRiddles)
-		logToFile(CreatureObject(pPlayer):getFirstName() .. " received trial " .. decipherTrial .. " as their decipher trial, log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " received trial number " .. tonumber(decipherTrial), "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 		writeScreenPlayData(pPlayer, "DecipherQuest", "trial", decipherTrial)
 	elseif (screenID == "trial_6_explain_two") then
 		local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0

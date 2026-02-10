@@ -1,17 +1,17 @@
-enhanced_gaping_spider = Creature:new {
+arachne_enhanced_gaping_spider = Creature:new {
 	objectName = "@mob/creature_names:geonosian_gaping_spider_fire",
-	customName = "Fire Breathing Spider",
-	socialGroup = "geonosian_creature",
-	mobType = MOB_CARNIVORE,
+	customName = "Wandering Fire Breathing Spider",
+	socialGroup = "arachne",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 150,
 	chanceHit = 2.5,
-	damageMin = 2500,
-	damageMax = 2840,
+	damageMin = 1800,
+	damageMax = 2340,
 	baseXp = 10267,
 	baseHAM = 225000,
 	baseHAMmax = 275000,
-	armor = 3,
+	armor = 2,
 	resists = {150,150,150,150,150,150,150,150,-1},
 	meatType = "meat_insect",
 	meatAmount = 50,
@@ -28,7 +28,7 @@ enhanced_gaping_spider = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/gaping_spider.iff"},
-	scale = 2.5,
+	scale = 1.75,
 	lootGroups = {
 		{
 			groups = {
@@ -49,4 +49,4 @@ enhanced_gaping_spider = Creature:new {
 	secondaryAttacks = { {"strongpoison",""}, {"stunattack",""} }
 }
 
-CreatureTemplates:addCreatureTemplate(enhanced_gaping_spider, "enhanced_gaping_spider")
+CreatureTemplates:addCreatureTemplate(arachne_enhanced_gaping_spider, "arachne_enhanced_gaping_spider")
