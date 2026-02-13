@@ -228,7 +228,7 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player, bool ini
 		bool ch = player->hasSkill("outdoors_creaturehandler_novice");
 
 		if (ch) {
-			maxPets = player->getSkillMod("keep_creature");
+			maxPets = player->getSkillMod("keep_creature") + 1;
 			maxLevelofPets = player->getSkillMod("tame_level");
 		}
 

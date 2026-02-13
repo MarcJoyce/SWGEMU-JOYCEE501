@@ -824,7 +824,7 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 	float deityChance = 0.0005f + ((level / 50.f) * 0.0001f);
 	uint32 deityChanceInt = deityChance * 10000000;
 
-	if (roll > deityChanceInt) {
+	if (roll <= deityChanceInt) {
 		objectID = createLoot(trx, container, "deity_items", level);
 	}
 

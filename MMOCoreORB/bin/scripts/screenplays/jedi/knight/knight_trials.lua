@@ -49,6 +49,7 @@ function KnightTrials:startNextKnightTrial(pPlayer)
 		deleteScreenPlayData(pPlayer, "JediTrials", "huntTargetCount")
 		deleteScreenPlayData(pPlayer, "JediTrials", "huntTargetGoal")
 		JediTrials:unlockJediKnight(pPlayer)
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " has unlocked Jedi Knight.", "log/jedi.log")
 		return
 	end
 

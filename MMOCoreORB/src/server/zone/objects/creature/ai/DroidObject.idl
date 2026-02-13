@@ -430,6 +430,9 @@ class DroidObject extends AiAgent {
 	@dirty
 	public float getLightSaber() {
 		if( isPet() ){
+			if (resist > 0) {
+				return resist / 6.f;
+			}
 			return -1; // Pet droids never have lightsaber resistance
 		}
 		else{

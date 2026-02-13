@@ -2014,11 +2014,14 @@ int CombatManager::getAttackerAccuracyBonus(CreatureObject* attacker, WeaponObje
 	bonus += attacker->getSkillMod("private_attack_accuracy");
 	bonus += attacker->getSkillMod("private_accuracy_bonus");
 
-	if (weapon->getAttackType() == SharedWeaponObjectTemplate::MELEEATTACK)
+	if (weapon->getAttackType() == SharedWeaponObjectTemplate::MELEEATTACK) {
 		bonus += attacker->getSkillMod("private_melee_accuracy_bonus");
-	if (weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK)
+		bonus += attacker->getSkillMod("deity_chewbacca");
+	}
+	if (weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) {
 		bonus += attacker->getSkillMod("private_ranged_accuracy_bonus");
-
+		bonus += attacker->getSkillMod("deity_han_solo");
+	}
 	return bonus;
 }
 
@@ -2056,6 +2059,7 @@ int CombatManager::getDefenderDefenseModifier(CreatureObject* defender, WeaponOb
 	// food bonus goes on top as well
 	targetDefense += defender->getSkillMod("dodge_attack");
 	targetDefense += defender->getSkillMod("private_dodge_attack");
+	targetDefense += defender->getSkillMod("deity_han_solo");
 
 	debug() << "Target defense after state affects and cap is " << targetDefense;
 
@@ -2606,7 +2610,7 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 
 		Locker plocker(psg);
 
-		psg->inflictDamage(psg, 0, damage * 0.2 / 2, true, true);
+		psg->inflictDamage(psg, 0, damage * 0.15, true, true);
 	}
 
 	// Standard Armor
@@ -2634,7 +2638,7 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		// inflict condition damage
 		Locker alocker(armor);
 
-		armor->inflictDamage(armor, 0, damage * 0.2, true, true);
+		armor->inflictDamage(armor, 0, damage * 0.3, true, true);
 	}
 
 	return damage;

@@ -50,14 +50,14 @@ function VillageJediManagerHolocron.useTheHolocron(pSceneObject, pPlayer)
 	if (holocronName == "Jedi Holocron") then
 		local mod = CreatureObject(pPlayer):getSkillMod("jedi_force_power_regen_add")
 		if (mod < 10) then
-			CreatureObject(pPlayer):addSkillMod(0x103, "jedi_force_power_regen_add", 10, true)
+			CreatureObject(pPlayer):addSkillMod(0x100, "jedi_force_power_regen_add", 10, true)
 		else
 			PlayerObject(pGhost):setForcePower(PlayerObject(pGhost):getForcePowerMax());
 		end
 	else 
 		local mod = CreatureObject(pPlayer):getSkillMod("jedi_force_power_max_add")
 		if (mod < 500) then
-			CreatureObject(pPlayer):addSkillMod(0x103, "jedi_force_power_max_add", 50, true)
+			CreatureObject(pPlayer):addSkillMod(0x100, "jedi_force_power_max_add", 50, true)
 		else
 			PlayerObject(pGhost):setForcePower(PlayerObject(pGhost):getForcePowerMax());
 		end

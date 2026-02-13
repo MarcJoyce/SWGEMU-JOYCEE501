@@ -4058,7 +4058,7 @@ bool PlayerManagerImplementation::checkPlayerSpeedTest(CreatureObject* player, S
 			PetManager* petManager = server->getPetManager();
 
 			if (petManager != nullptr) {
-				allowedSpeedBase = petManager->getMountedRunSpeed(mount);
+				allowedSpeedBase = petManager->getMountedRunSpeed(mount) * 20.f;
 			}
 		}
 	}

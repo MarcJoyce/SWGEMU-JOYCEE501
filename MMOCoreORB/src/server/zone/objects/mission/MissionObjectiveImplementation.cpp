@@ -345,10 +345,8 @@ void MissionObjectiveImplementation::awardReward() {
 	int totalBonusRewarded = 0;
 
 	for (int i = 0; i < players.size(); i++) {
+		int totalReward = dividedReward;
 		ManagedReference<CreatureObject*> player = players.get(i);
-		StringIdChatParameter stringId("mission/mission_generic", "success_w_amount");
-		stringId.setDI(dividedReward);
-		player->sendSystemMessage(stringId);
 
 		if (anonymousPlayerBounties && dividedBonus > 0) {
 			String bonusString = "The Bounty Hunter guild has paid you a bonus in the amount of: " + String::valueOf(dividedBonus);
@@ -357,13 +355,24 @@ void MissionObjectiveImplementation::awardReward() {
 		}
 
 		Locker lockerPl(player, _this.getReferenceUnsafeStaticCast());
-		TransactionLog trxReward(TrxCode::MISSIONSYSTEMDYNAMIC, player, dividedReward, false);
+		TransactionLog trxReward(TrxCode::MISSIONSYSTEMDYNAMIC, player, totalReward, false);
 		trxReward.groupWith(trx);
 		trxReward.addState("missionTrxId", trx.getTrxID());
 		trxReward.addState("missionID", mission->getObjectID());
 
-		player->addBankCredits(dividedReward + dividedBonus, true);
-		totalRewarded += dividedReward;
+		if (owner->getObjectID() == player->getObjectID() || player->getWorldPosition().distanceTo(missionEndPoint) < 128) {
+			totalReward = totalReward + dividedBonus;
+		} else {
+			totalReward = (totalReward + dividedBonus) * 0.1f;
+		}
+		
+		StringIdChatParameter stringId("mission/mission_generic", "success_w_amount");
+		stringId.setDI(totalReward);
+		player->sendSystemMessage(stringId);
+		
+		player->addBankCredits(totalReward, true);
+
+		totalRewarded += totalReward;
 	}
 
 	// Catch any rounding errors etc.

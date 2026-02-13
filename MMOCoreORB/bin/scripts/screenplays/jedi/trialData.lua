@@ -6,22 +6,22 @@ TRIAL_HUNT_FACTION = 5
 TRIAL_COUNCIL = 6
 
 padawanTrialQuests = {
-	{
-		trialName = "architect",
-		trialType = TRIAL_TALK,
-		trialNpc = "devaronian_male",
-		trialNpcName = "Kant Graf (an architect)",
-		targetNpc = "trials_gungan_captain",
-		targetKillable = true
-	},
-	{
-		trialName = "artist",
-		trialType = TRIAL_TALK,
-		trialNpc = "bestine_rumor12",
-		trialNpcName = "Sathme Forr (an artist)",
-		targetNpc = "commoner",
-		targetKillable = false
-	},
+	-- {
+	-- 	trialName = "architect",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "devaronian_male",
+	-- 	trialNpcName = "Kant Graf (an architect)",
+	-- 	targetNpc = "trials_gungan_captain",
+	-- 	targetKillable = true
+	-- },
+	-- {
+	-- 	trialName = "artist",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "bestine_rumor12",
+	-- 	trialNpcName = "Sathme Forr (an artist)",
+	-- 	targetNpc = "commoner",
+	-- 	targetKillable = false
+	-- },
 	{
 		trialName = "bad_cat",
 		trialType = TRIAL_KILL,
@@ -30,14 +30,14 @@ padawanTrialQuests = {
 		targetNpc = "bloodstained_prowler",
 		targetKillable = true
 	},
-	{
-		trialName = "chef",
-		trialType = TRIAL_TALK,
-		trialNpc = "dannik_malaan",
-		trialNpcName = "Seevi Nyed (a chef)",
-		targetNpc = "neo_cobral_overlord",
-		targetKillable = true
-	},
+	-- {
+	-- 	trialName = "chef",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "dannik_malaan",
+	-- 	trialNpcName = "Seevi Nyed (a chef)",
+	-- 	targetNpc = "neo_cobral_overlord",
+	-- 	targetKillable = true
+	-- },
 	{
 		trialName = "craft_lightsaber",
 		trialType = TRIAL_LIGHTSABER,
@@ -48,7 +48,7 @@ padawanTrialQuests = {
 		trialNpc = "sullustan_male",
 		trialNpcName = "Menchi (an environmentalist)",
 		huntTarget = "baz_nitch",
-		huntGoal = 20
+		huntGoal = 5
 	},
 	{
 		trialName = "kill_falumpaset",
@@ -56,7 +56,7 @@ padawanTrialQuests = {
 		trialNpc = "irenez",
 		trialNpcName = "Braganta (a naturalist)",
 		huntTarget = "falumpaset",
-		huntGoal = 20
+		huntGoal = 5
 	},
 	{
 		trialName = "kill_sludge_panther",
@@ -64,29 +64,29 @@ padawanTrialQuests = {
 		trialNpc = "kima_nazith",
 		trialNpcName = "Luha Kellaro (an ecologist)",
 		huntTarget = "sludge_panther",
-		huntGoal = 20
+		huntGoal = 5
 	},
-	{
-		trialName = "old_musician",
-		trialType = TRIAL_TALK,
-		trialNpc = "grobber",
-		trialNpcName = "Grizzlo (a retired musician)",
-		targetNpc = nil,
-		targetLoc = { 3468, 5, -4852, "tatooine" },
-		thirdTargetNpc = nil,
-		thirdTargetLoc = { 469, 12, 5021, "lok" }
-	},
-	{
-		trialName = "pannaqa",
-		trialType = TRIAL_TALK,
-		trialNpc = nil,
-		trialLoc = { 5291.3, 78.5, -4037.8, "dathomir", "Aurilia" },
-		targetNpc = "commoner",
-		targetKillable = false,
-		thirdTargetNpc = "commoner_male",
-		thirdTargetName = "Shendo",
-		thirdTargetKillable = false
-	},
+	-- {
+	-- 	trialName = "old_musician",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "grobber",
+	-- 	trialNpcName = "Grizzlo (a retired musician)",
+	-- 	targetNpc = nil,
+	-- 	targetLoc = { 3468, 5, -4852, "tatooine" },
+	-- 	thirdTargetNpc = nil,
+	-- 	thirdTargetLoc = { 469, 12, 5021, "lok" }
+	-- },
+	-- {
+	-- 	trialName = "pannaqa",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = nil,
+	-- 	trialLoc = { 5291.3, 78.5, -4037.8, "dathomir", "Aurilia" },
+	-- 	targetNpc = "commoner",
+	-- 	targetKillable = false,
+	-- 	thirdTargetNpc = "commoner_male",
+	-- 	thirdTargetName = "Shendo",
+	-- 	thirdTargetKillable = false
+	-- },
 	{
 		trialName = "peoples_soldier",
 		trialType = TRIAL_KILL,
@@ -103,24 +103,24 @@ padawanTrialQuests = {
 		targetNpc = "bloodseeker_mite",
 		targetKillable = true
 	},
-	{
-		trialName = "sob_story",
-		trialType = TRIAL_TALK,
-		trialNpc = "karena_keer",
-		trialNpcName = "Erim Thelcar",
-		targetNpc = "object/tangible/jedi/padawan_trials_skeleton.iff",
-		targetNpcName = "The remains of Josef Thelcar",
-		targetKillable = false
-	},
-	{
-		trialName = "spice_mom",
-		trialType = TRIAL_TALK,
-		trialNpc = "bestine_rumor10",
-		trialNpcName = "Sola Nosconda",
-		targetNpc = "devaronian_male",
-		targetNpcName = "Evif Sulp",
-		targetKillable = false
-	},
+	-- {
+	-- 	trialName = "sob_story",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "karena_keer",
+	-- 	trialNpcName = "Erim Thelcar",
+	-- 	targetNpc = "object/tangible/jedi/padawan_trials_skeleton.iff",
+	-- 	targetNpcName = "The remains of Josef Thelcar",
+	-- 	targetKillable = false
+	-- },
+	-- {
+	-- 	trialName = "spice_mom",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "bestine_rumor10",
+	-- 	trialNpcName = "Sola Nosconda",
+	-- 	targetNpc = "devaronian_male",
+	-- 	targetNpcName = "Evif Sulp",
+	-- 	targetKillable = false
+	-- },
 	{
 		trialName = "surveyor",
 		trialType = TRIAL_KILL,
@@ -129,15 +129,15 @@ padawanTrialQuests = {
 		targetNpc = "sharnaff_bull",
 		targetKillable = true
 	},
-	{
-		trialName = "the_ring",
-		trialType = TRIAL_TALK,
-		trialNpc = "giaal_itotr",
-		trialNpcName = "Keicho",
-		targetNpc = "dread_pirate",
-		killMessage = "@jedi_trials:padawan_trials_received_the_ring",
-		targetKillable = true
-	},
+	-- {
+	-- 	trialName = "the_ring",
+	-- 	trialType = TRIAL_TALK,
+	-- 	trialNpc = "giaal_itotr",
+	-- 	trialNpcName = "Keicho",
+	-- 	targetNpc = "dread_pirate",
+	-- 	killMessage = "@jedi_trials:padawan_trials_received_the_ring",
+	-- 	targetKillable = true
+	-- },
 }
 
 knightTrialQuests = {
@@ -202,13 +202,6 @@ knightTrialQuests = {
 		huntGoal = 22
 	},
 	{
-		trialName = "corvette_officer",
-		trialType = TRIAL_HUNT_FACTION,
-		rebelTarget = "stormtrooper_novatrooper_elite_commander",
-		imperialTarget = "corvette_rebel_rear_admiral",
-		huntGoal = 4
-	},
-	{
 		trialName = "geonosian_bunker_acklay",
 		trialType = TRIAL_HUNT,
 		huntTarget = "geonosian_acklay_bunker_boss",
@@ -230,6 +223,12 @@ knightTrialQuests = {
 		trialName = "giant_canyon_krayt",
 		trialType = TRIAL_HUNT,
 		huntTarget = "giant_canyon_krayt_dragon",
+		huntGoal = 1
+	},
+	{
+		trialName = "deathwatch_overlord",
+		trialType = TRIAL_HUNT,
+		huntTarget = "death_watch_overlord",
 		huntGoal = 1
 	},
 }

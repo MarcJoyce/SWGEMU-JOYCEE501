@@ -1129,7 +1129,9 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 		//Send the Mail
 		locker.release();
 		UnicodeString blankBody;
-		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
+		if (sellerName != "Stan") {
+			cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
+		}
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
 
 		if (sellerName == "Stan") {
@@ -1183,7 +1185,9 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 
 		//Send the Mail
 		UnicodeString blankBody;
-		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
+		if (sellerName != "Stan") {
+			cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
+		}
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
 
 		if (sellerName == "Stan") {
@@ -2301,7 +2305,9 @@ void AuctionManagerImplementation::expireAuction(AuctionItem* item) {
 		locker.release();
 
 		UnicodeString blankBody;
-		cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
+		if (sellerName != "Stan") {
+			cman->sendMail(sender, sellerSubject, blankBody, sellerName, &sellerBodyVector, &sellerWaypointVector);
+		}
 		cman->sendMail(sender, buyerSubject, blankBody, item->getBidderName(), &buyerBodyVector, &buyerWaypointVector);
 	}
 }

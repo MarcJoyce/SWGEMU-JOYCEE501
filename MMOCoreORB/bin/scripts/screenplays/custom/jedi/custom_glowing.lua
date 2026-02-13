@@ -389,7 +389,7 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialSixKrayt(pPlayer, pVic
   if (numberOfKraytsKilled >= 10) then
     CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_krayt")
     logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 6 decipher krayt", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
-    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge flow through you as the Krayt Dragon falls.")
+    --CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge flow through you as the Krayt Dragon falls.")
 
     local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
     writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
@@ -411,7 +411,7 @@ function CustomGlowingScreenPlay:notifyKilledPlayerTrialSix(pPlayer, pVictim, no
 
   CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_death")
   logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 6 decipher death", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
-  CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge flow through you as your body fades.")
+  --CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge flow through you as your body fades.")
 
   local decipherQuestsCompleted = tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) or 0  
   writeScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted", decipherQuestsCompleted + 1)
@@ -446,8 +446,8 @@ function CustomGlowingScreenPlay:notifyChatSent(pPlayer, pChatMessage)
 
   if (string.upper(chatMessage) == string.upper(trialAnswer)) then
     CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_6")
-    logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 6", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 
     dropObserver(SPATIALCHATSENT, "CustomGlowingScreenPlay", "notifyChatSent", pPlayer)
   end
+  return 0
 end

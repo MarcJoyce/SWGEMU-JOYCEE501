@@ -16,7 +16,8 @@ function selogelConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 		return convoTemplate:getScreen("trial_7_complete")
 	elseif (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_7")) then
 		return convoTemplate:getScreen("trial_7_ongoing")
-	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_6")) then	
+	elseif (CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_6")) then
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 6", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 		return convoTemplate:getScreen("trial_6_complete")
 	elseif (tonumber(readScreenPlayData(pPlayer, "DecipherQuest", "trialsCompleted")) == 4) then
 		return convoTemplate:getScreen("trial_6_complete_decipher")

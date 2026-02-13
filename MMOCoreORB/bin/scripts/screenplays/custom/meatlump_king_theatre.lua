@@ -89,12 +89,6 @@ function MeatlumpKingTheatre:notifyOnKingKilled(pMobile)
 end
 
 function MeatlumpKingTheatre:damageTaken(pNpc, damageThreshold)
-  -- self:log("damageTaken pnpc" .. CreatureObject(pNpc):getHAM(0) .. " dmgThreshold: " .. damageThreshold)
-
-  -- self:log("Current Health:" .. CreatureObject(pNpc):getHAM(0) .. ", Max Health: " .. CreatureObject(pNpc):getMaxHAM(0) .. " DamageThreshold:" .. CreatureObject(pNpc):getMaxHAM(0) * (damageThreshold / 100))
-  -- self:log("Current Action:" .. CreatureObject(pNpc):getHAM(3) .. ", Max Action: " .. CreatureObject(pNpc):getMaxHAM(3) .. " DamageThreshold:" .. CreatureObject(pNpc):getMaxHAM(3) * (damageThreshold / 100))
-  -- self:log("Current Mind:" .. CreatureObject(pNpc):getHAM(6) .. ", Max Mind: " .. CreatureObject(pNpc):getMaxHAM(6) .. " DamageThreshold:" .. CreatureObject(pNpc):getMaxHAM(6) * (damageThreshold / 100))
-
   if ((CreatureObject(pNpc):getHAM(0) <= (CreatureObject(pNpc):getMaxHAM(0) * (damageThreshold / 100))) or (CreatureObject(pNpc):getHAM(3) <= (CreatureObject(pNpc):getMaxHAM(3) * (damageThreshold / 100))) or (CreatureObject(pNpc):getHAM(6) <= (CreatureObject(pNpc):getMaxHAM(6) * (damageThreshold / 100)))) then
     return true
   else
@@ -126,7 +120,6 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage90(pMeatlumpKing, pAttacker, da
     self:getHelp(pMeatlumpKing, 7, "meatlump_king_buffoon", pAttacker)
     self:getHelp(pMeatlumpKing, 7, "meatlump_king_loon", pAttacker)
     spatialChat(pMeatlumpKing, "Get em boys!")
-    self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage75", pMeatlumpKing)
     return 1
@@ -247,8 +240,6 @@ function MeatlumpKingTheatre:healTenPercent(pObj)
       local newHAM = currentHAM + toHeal;
 			CreatureObject(pObj):setHAM(i, newHAM);
 		end
-	else
-		TangibleObject(pObj):setConditionDamage(0);
 	end
 end
 

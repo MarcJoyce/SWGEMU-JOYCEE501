@@ -280,7 +280,7 @@ void PetDeedImplementation::updateCraftingValues(CraftingValues* values, bool fi
 		clFactor = component->getLevel();
 
 		quality = component->getQuality();
-		chanceHit = component->getHit();
+		chanceHit = Math::max(12.5f, component->getHit() * 3);
 		attackSpeed = component->getSpeed();
 
 		damageMin = Math::min(2000, component->getMinDamage() * 2);
@@ -473,7 +473,7 @@ int PetDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte s
 		int currentlySpawned = 0;
 		int spawnedLevel = 0;
 		int cLevel = level;
-		int maxPets = player->getSkillMod("keep_creature");
+		int maxPets = player->getSkillMod("keep_creature") + 1;
 		int maxLevelofPets = player->getSkillMod("tame_level");
 
 		for (int i = 0; i < ghost->getActivePetsSize(); ++i) {

@@ -36,7 +36,7 @@ function cozmicConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
     return pConvScreen
   elseif (screenID == "quest_complete") then
     if (not CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_5")) then
-      CreatureObject(pPlayer):addCashCredits(100000)
+      CreatureObject(pPlayer):addCashCredits(100000, true)
       CreatureObject(pPlayer):setScreenPlayState(2, "glowy_trial_5")
       logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 5", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
       return pConvScreen

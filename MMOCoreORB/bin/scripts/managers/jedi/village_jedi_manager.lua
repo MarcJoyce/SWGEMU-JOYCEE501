@@ -53,7 +53,7 @@ function VillageJediManager:onPlayerLoggedIn(pPlayer)
 		return
 	end
 
-	Glowing:onPlayerLoggedIn(pPlayer)
+	-- Glowing:onPlayerLoggedIn(pPlayer)
 
 	if (VillageJediManagerCommon.isVillageEligible(pPlayer) and not CreatureObject(pPlayer):hasSkill("force_title_jedi_novice")) then
 		awardSkill(pPlayer, "force_title_jedi_novice")

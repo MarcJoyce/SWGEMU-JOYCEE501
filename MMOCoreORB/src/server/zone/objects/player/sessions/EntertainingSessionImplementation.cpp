@@ -67,6 +67,9 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 		return;
 	}
 
+	woundHealingSkill += (float)creo->getSkillMod("deity_oola");
+	playerShockHealingSkill += (float)creo->getSkillMod("deity_oola");
+
 	ManagedReference<BuildingObject*> building = cast<BuildingObject*>(creo->getRootParent());
 
 	if (building != nullptr && factionPerkSkill > 0 && building->isPlayerRegisteredWithin(creo->getObjectID())) {
@@ -78,6 +81,9 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 			playerShockHealingSkill += factionPerkSkill;
 		}
 	}
+	
+	woundHealingSkill *= 2.f;
+	playerShockHealingSkill *= 2.f;
 
 	int woundHeal = ceil(performance->getHealMindWound() * (woundHealingSkill / 100.0f));
 	int shockHeal = ceil(performance->getHealShockWound() * ((playerShockHealingSkill + buildingShockHealingSkill) / 100.0f));
@@ -722,12 +728,14 @@ void EntertainingSessionImplementation::addEntertainerBuffStrength(CreatureObjec
 
 	if (isDancing()) {
 		maxBuffStrength = (float) entertainer->getSkillMod("healing_dance_mind");
+		maxBuffStrength += (entertainer->getSkillMod("deity_oola") * 2.f);
 	} else if (isPlayingMusic()) {
 		maxBuffStrength = (float) entertainer->getSkillMod("healing_music_mind");
+		maxBuffStrength += (entertainer->getSkillMod("deity_oola") * 2.f);
 	}
 
-	if (maxBuffStrength > 150.0f)
-		maxBuffStrength = 150.0f;	//cap at 150% power
+	if (maxBuffStrength > 200.0f)
+		maxBuffStrength = 200.0f;	//cap at 200% power
 
 	float factionPerkStrength = entertainer->getSkillMod("private_faction_buff_mind");
 

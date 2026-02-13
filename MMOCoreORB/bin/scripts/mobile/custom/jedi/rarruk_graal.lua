@@ -1,6 +1,6 @@
 rarruk_graal = Creature:new {
 	objectName = "",
-    customName = "Rarruk Graal",
+    customName = "Rarrukk Graal",
 	mobType = MOB_NPC,
 	socialGroup = "mercenary",
 	faction = "",

@@ -1157,7 +1157,7 @@ void CreatureManagerImplementation::tame(Creature* creature, CreatureObject* pla
 	int currentlySpawned = 0;
 	int spawnedLevel = 0;
 	int level = creature->getLevel();
-	int maxPets = player->getSkillMod("keep_creature");
+	int maxPets = player->getSkillMod("keep_creature") + 1;
 
 	for (int i = 0; i < ghost->getActivePetsSize(); ++i) {
 		ManagedReference<AiAgent*> object = ghost->getActivePet(i);

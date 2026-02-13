@@ -121,8 +121,10 @@ function PadawanTrials:startNextPadawanTrial(pObject, pPlayer)
 
 	if (trialsCompleted == #padawanTrialQuests) then
 		JediTrials:unlockJediPadawan(pPlayer)
+		logToFile(CreatureObject(pPlayer):getFirstName() .. " has unlocked Jedi Padawan.", "log/jedi.log")
 		return
-	elseif (trialsCompleted == 7) then
+	-- elseif (trialsCompleted == 7) then
+	elseif (trialsCompleted == 3) then
 		local trialNum = self:getSaberCraftingTrialNumber()
 		self:startTrial(pPlayer, trialNum)
 	else

@@ -467,6 +467,8 @@ int LuaTangibleObject::setSocketCount(lua_State* L) {
 			count = 0;
 		}
 
+		count = 6;
+
 		wo->setSockets(count);
 	}
 

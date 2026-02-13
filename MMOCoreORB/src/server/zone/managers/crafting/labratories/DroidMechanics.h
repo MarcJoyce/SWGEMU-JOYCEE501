@@ -40,7 +40,7 @@ public:
 		if (hamValue < minHam) {
 			hamValue = minHam;
 		}
-		return hamValue;
+		return hamValue * 2.f;
 	}
 	static float determineSpeed(int droidType, float ham) {
 		if(droidType == DroidObject::R_SERIES)
@@ -65,22 +65,22 @@ public:
 		if (rating == 0)
 			return 1;
 		if(droidType == DroidObject::R_SERIES)
-			return ((int)((rating/600.0) * 80.0)) + 80;
+			return (((int)((rating/600.0) * 80.0)) + 80) * 2.f;
 		if(droidType == DroidObject::LE_REPAIR)
-			return ((int)((rating/600.0) * 45.0)) + 45;
+			return (((int)((rating/600.0) * 45.0)) + 45) * 2.f;
 		if(droidType == DroidObject::PROBOT || droidType == DroidObject::DZ70)
-			return ((int)((rating/600.0) * 95.0)) + 95;
+			return (((int)((rating/600.0) * 95.0)) + 95 * 2.f);
 		return 1;
 	}
 	static float determineMaxDamage(int droidType, int rating) {
 		if (rating == 0)
 			return 1;
 		if(droidType == DroidObject::R_SERIES)
-			return ((int)((rating/600.0) * 85.0)) + 85;
+			return (((int)((rating/600.0) * 85.0)) + 85) * 2.f;
 		if(droidType == DroidObject::LE_REPAIR)
-			return ((int)((rating/600.0) * 55.0)) + 55;
+			return (((int)((rating/600.0) * 55.0)) + 55) * 2.f;
 		if(droidType == DroidObject::PROBOT || droidType == DroidObject::DZ70)
-			return ((int)((rating/600.0) * 100.0)) + 100;
+			return (((int)((rating/600.0) * 100.0)) + 100) * 2.f;
 		return 1;
 	}
 	/** Used to determine harvest droid and trap droid skill mod*/
