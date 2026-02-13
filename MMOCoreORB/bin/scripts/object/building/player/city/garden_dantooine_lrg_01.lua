@@ -45,7 +45,7 @@ object_building_player_city_garden_dantooine_lrg_01 = object_building_player_cit
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "talus", "tatooine", "yavin4" },
+	allowedZones = {"corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "rori", "talus", "tatooine", "yavin4" },
 	length = 7,
 	width = 7,
 	cityRankRequired = 1,
