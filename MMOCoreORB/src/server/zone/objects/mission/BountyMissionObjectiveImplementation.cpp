@@ -22,6 +22,7 @@
 #include "server/zone/objects/mission/bountyhunter/BountyHunterDroid.h"
 #include "server/zone/objects/mission/bountyhunter/events/BountyHunterTargetTask.h"
 #include "server/zone/managers/visibility/VisibilityManager.h"
+#include "server/zone/managers/creature/CreatureTemplateManager.h"
 
 void BountyMissionObjectiveImplementation::setNpcTemplateToSpawn(SharedObjectTemplate* sp) {
 	npcTemplateToSpawn = sp;
@@ -129,6 +130,11 @@ void BountyMissionObjectiveImplementation::complete() {
 	int expGain = (mission->getRewardCredits() + mission->getBonusCredits()) / 50;
 
 	owner->getZoneServer()->getPlayerManager()->awardExperience(owner, "bountyhunter", expGain, true, 1);
+	CreatureTemplate* creoTemplate = CreatureTemplateManager::instance()->getTemplate(mission->getTargetOptionalTemplate());
+
+	if (owner->hasSkill("combat_bountyhunter_elite_novice") && (creoTemplate->getLevel() >= 350)) {
+		owner->getZoneServer()->getPlayerManager()->awardExperience(owner, "combat_bountyhunter_elite", 2500, true, 1);
+	}
 
 	owner->getZoneServer()->getMissionManager()->completePlayerBounty(mission->getTargetObjectId(), owner->getObjectID());
 
@@ -173,7 +179,12 @@ void BountyMissionObjectiveImplementation::spawnTarget(const String& zoneName) {
 			error("Template error: " + e.getMessage() + " Template = '" + mission->getTargetOptionalTemplate() +"'");
 		}
 		if (npcTarget != nullptr) {
-			npcTarget->setCustomObjectName(mission->getTargetName(), true);
+			String targetCustomName = npcTarget->getCustomObjectName().toString();
+			if (targetCustomName == "") {
+				npcTarget->setCustomObjectName(mission->getTargetName(), true);
+			} else {
+				npcTarget->setCustomObjectName(targetCustomName, true);
+			}
 			//TODO add observer to catch player kill and fail mission in that case.
 			addObserverToCreature(ObserverEventType::OBJECTDESTRUCTION, npcTarget);
 			addObserverToCreature(ObserverEventType::DAMAGERECEIVED, npcTarget);
@@ -673,6 +684,10 @@ void BountyMissionObjectiveImplementation::handlePlayerKilled(ManagedObject* arg
 	message.setDI(xpLoss * -1);
 	message.setTO("exp_n", "jedi_general");
 	target->sendSystemMessage(message);
+
+	if (killer->hasSkill("combat_bountyhunter_elite_novice")) {
+		playerManager->awardExperience(killer, "combat_bountyhunter_elite", Math::min(rewardCreds / 200.f, 2500.f), true, 1);
+	}
 
 	complete();
 }

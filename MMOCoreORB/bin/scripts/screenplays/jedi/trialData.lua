@@ -202,6 +202,13 @@ knightTrialQuests = {
 		huntGoal = 22
 	},
 	{
+		trialName = "corvette_officer",
+		trialType = TRIAL_HUNT_FACTION,
+		rebelTarget = "stormtrooper_novatrooper_elite_commander",
+		imperialTarget = "corvette_rebel_rear_admiral",
+		huntGoal = 4
+	},
+	{
 		trialName = "geonosian_bunker_acklay",
 		trialType = TRIAL_HUNT,
 		huntTarget = "geonosian_acklay_bunker_boss",
@@ -224,13 +231,7 @@ knightTrialQuests = {
 		trialType = TRIAL_HUNT,
 		huntTarget = "giant_canyon_krayt_dragon",
 		huntGoal = 1
-	},
-	{
-		trialName = "deathwatch_overlord",
-		trialType = TRIAL_HUNT,
-		huntTarget = "death_watch_overlord",
-		huntGoal = 1
-	},
+	}
 }
 
 bhTrials = {

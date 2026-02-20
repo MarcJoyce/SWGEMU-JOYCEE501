@@ -22,9 +22,20 @@ who_are_you = ConvoScreen:new {
   stopConversation = "false",
   options = {
     { "What do you sell?", "what_do_you_sell" },
+    { "Is there anything else you can do?", "what_else" }
   }
 }
 stan_convo_template:addScreen(who_are_you)
+
+what_else = ConvoScreen:new {
+  id = "what_else",
+  customDialogText = "I'm quite the cunning linguist, here let me teach you some. I have... other skills... but I don't think you, or this side of the galaxy for that matter, are ready for that yet.",
+  stopConversation = "false",
+  options = {
+    { "And what sort of things do you sell?", "what_do_you_sell" },
+  }
+}
+stan_convo_template:addScreen(what_else)
 
 what_do_you_sell = ConvoScreen:new {
   id = "what_do_you_sell",

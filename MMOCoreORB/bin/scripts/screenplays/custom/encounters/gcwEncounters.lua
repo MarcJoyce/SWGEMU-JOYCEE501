@@ -129,7 +129,7 @@ function GCWEncounters:onPlayerLoggedIn(pPlayer)
 	if (self:hasDelayPassed(pPlayer)) then
 		createEvent(getRandomNumber(300, 900) * 1000, "GCWEncounters", "doDelayedStep", pPlayer, "")
 	end
-
+	return 0
 end
 
 function GCWEncounters:log(message)

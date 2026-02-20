@@ -1665,6 +1665,8 @@ int DirectorManager::generateWeapon(lua_State* L){
 		customName << firstName << "s " << object->getDisplayedName();
 		object->setCustomObjectName(customName.toString(), false);
 
+		weaponObj->setSliced(true);
+
 		weaponObj->setDamageType(damageType);
 		weaponObj->setAttackSpeed(1.0f);
 

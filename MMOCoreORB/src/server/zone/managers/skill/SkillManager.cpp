@@ -482,7 +482,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 	}
 
 	if (skill->getSkillName() == "social_imagedesigner_novice") {
-		awardSkill("social_imagedesigner_novice", creature, true, true, true);
+		awardSkill("social_imagedesigner_master", creature, true, true, true);
 	}
 
 	ChatManager* chatManager = creature->getZoneServer()->getChatManager();

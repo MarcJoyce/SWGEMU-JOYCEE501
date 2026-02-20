@@ -257,7 +257,8 @@ template<> bool CheckFlee::check(AiAgent* agent) const {
 	int fleeChance = 75;
 
 	if (agent->getPvpStatusBitmask() & ObjectFlag::AGGRESSIVE) {
-		fleeChance = 25;
+		return false;
+		// fleeChance = 25;
 	}
 
 	if (System::random(1000) > fleeChance) {

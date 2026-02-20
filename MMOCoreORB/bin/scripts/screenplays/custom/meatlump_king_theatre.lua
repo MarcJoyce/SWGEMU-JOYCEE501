@@ -119,7 +119,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage90(pMeatlumpKing, pAttacker, da
 
     self:getHelp(pMeatlumpKing, 7, "meatlump_king_buffoon", pAttacker)
     self:getHelp(pMeatlumpKing, 7, "meatlump_king_loon", pAttacker)
-    spatialChat(pMeatlumpKing, "Get em boys!")
+    spatialChat(pMeatlumpKing, "The Meatlump King always triumphs! Have at you! Come on then.")
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage75", pMeatlumpKing)
     return 1
@@ -138,7 +138,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage75(pMeatlumpKing, pAttacker, da
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage75", pMeatlumpKing)
 
     self:getHelp(pMeatlumpKing, 10, "meatlump_king_fool", pAttacker)
-    spatialChat(pMeatlumpKing, "Come on then!")
+    spatialChat(pMeatlumpKing, "Tis but a scratch!")
       self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage50", pMeatlumpKing)
@@ -158,7 +158,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage50(pMeatlumpKing, pAttacker, da
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage50", pMeatlumpKing)
 
     self:getHelp(pMeatlumpKing, 8, "meatlump_king_stooge", pAttacker)
-    spatialChat(pMeatlumpKing, "What are you doin'!")
+    spatialChat(pMeatlumpKing, "I've had worse!")
     self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage33", pMeatlumpKing)
@@ -178,7 +178,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage33(pMeatlumpKing, pAttacker, da
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage33", pMeatlumpKing)
 
     self:getHelp(pMeatlumpKing, 6, "meatlump_king_clod", pAttacker)
-    spatialChat(pMeatlumpKing, "Show em who's boss!")
+    spatialChat(pMeatlumpKing, "I'm invincible!")
     self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage25", pMeatlumpKing)
@@ -198,7 +198,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage25(pMeatlumpKing, pAttacker, da
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage25", pMeatlumpKing)
 
     self:getHelp(pMeatlumpKing, 4, "meatlump_king_oaf", pAttacker)
-    spatialChat(pMeatlumpKing, "Come on, kill em!!")
+    spatialChat(pMeatlumpKing, "All right, we'll call it a draw!")
     self:healTenPercent(pMeatlumpKing)
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage10", pMeatlumpKing)
@@ -218,7 +218,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage10(pMeatlumpKing, pAttacker, da
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage10", pMeatlumpKing)
 
     self:getHelp(pMeatlumpKing, 3, "meatlump_king_cretin", pAttacker)
-    spatialChat(pMeatlumpKing, "Do I have to do everythin' myself!")
+    spatialChat(pMeatlumpKing, "Running away eh? Come back here and take what's coming to you! I'll bite your legs off!")
     self:healTenPercent(pMeatlumpKing)
     return 1
   else

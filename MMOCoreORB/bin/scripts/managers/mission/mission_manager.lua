@@ -82,7 +82,9 @@ level3 = {
 		"bh_singing_mountain_clan_councilwoman", -- level 300
 		-- "bh_tusken_executioner", -- level 300
 		-- "bh_tusken_observer", -- level 300
-		"bh_dark_jedi_master", -- level 300
+		"bh_dark_jedi_master", -- level 350
+		"bh_bossk", -- level 350
+		"bh_ig_assassin_droid_180", -- level 350
 		"bh_boba_fett", -- level 350
 	},
 }

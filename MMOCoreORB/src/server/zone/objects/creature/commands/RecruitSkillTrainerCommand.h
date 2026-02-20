@@ -80,6 +80,9 @@ public:
 		suiTrainerType->addMenuItem("@city/city:st_tailor", 30);
 		suiTrainerType->addMenuItem("@city/city:st_unarmed", 31);
 		suiTrainerType->addMenuItem("@city/city:st_weaponsmith", 32);
+		suiTrainerType->addMenuItem("Spynet Operative (Level 1)", 33);
+		suiTrainerType->addMenuItem("Spynet Operative (Level 2)", 34);
+		suiTrainerType->addMenuItem("Spynet Operative (Level 3)", 35);
 
 		ghost->addSuiBox(suiTrainerType);
 		creature->sendMessage(suiTrainerType->generateMessage());

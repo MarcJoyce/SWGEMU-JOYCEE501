@@ -433,6 +433,21 @@ function KnightTrials:onPlayerLoggedIn(pPlayer)
 	if (JediTrials:isEligibleForKnightTrials(pPlayer) and not JediTrials:isOnKnightTrials(pPlayer)) then
 		KnightTrials:startKnightTrials(pPlayer)
 	elseif (JediTrials:isOnKnightTrials(pPlayer)) then
+		
+		-- Start fix for broken players
+		local trialsCompleted = JediTrials:getTrialsCompleted(pPlayer)
+
+		if (trialsCompleted >= #knightTrialQuests) then
+			dropObserver(KILLEDCREATURE, "KnightTrials", "notifyKilledHuntTarget", pPlayer)
+			deleteScreenPlayData(pPlayer, "JediTrials", "huntTarget")
+			deleteScreenPlayData(pPlayer, "JediTrials", "huntTargetCount")
+			deleteScreenPlayData(pPlayer, "JediTrials", "huntTargetGoal")
+			JediTrials:unlockJediKnight(pPlayer)
+			logToFile(CreatureObject(pPlayer):getFirstName() .. " has unlocked Jedi Knight.", "log/jedi.log")
+			return
+		end
+		-- End fix for broken players
+
 		local trialNumber = JediTrials:getCurrentTrial(pPlayer)
 
 		if (trialNumber <= 0) then

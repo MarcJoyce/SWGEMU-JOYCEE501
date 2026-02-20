@@ -2194,7 +2194,7 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 				if ((evadeTotal > 0 && System::random(100) <= evadeTotal) && creoDefender->getPosture() == CreaturePosture::UPRIGHT) {
 					hitResult = HitStatus::RICOCHET;
 
-					int forceCost = damage * 0.05f;
+					int forceCost = damage * 0.005f;
 
 					ManagedReference<PlayerObject*> playerObject = creoDefender->getPlayerObject();
 					if (playerObject != nullptr) {

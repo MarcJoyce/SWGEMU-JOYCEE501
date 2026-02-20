@@ -1,15 +1,16 @@
 bh_ig_assassin_droid_180 = Creature:new {
 	objectName = "@mob/creature_names:ig_assassin_droid",
+	customName = "IG-88",
 	socialGroup = "",
 	faction = "",
 	mobType = MOB_ANDROID,
-		level = 180,
-	chanceHit = 9.0,
-	damageMin = 1045,
-	damageMax = 1800,
-	baseXp = 18000,
-	baseHAM = 119000,
-	baseHAMmax = 165000,
+	level = 350,
+	chanceHit = 30,
+	damageMin = 2500,
+	damageMax = 3810,
+	baseXp = 27849,
+	baseHAM = 350000,
+	baseHAMmax = 400000,
 	armor = 3,
 	resists = {90,90,90,90,90,90,90,90,-1},
 	meatType = "",
@@ -30,50 +31,9 @@ bh_ig_assassin_droid_180 = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 5400000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 5400000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 5400000
-		},
+				{group = "world_boss", chance = 10000000}
+			}
+		}
 	},
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",

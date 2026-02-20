@@ -37,7 +37,7 @@ function hermitConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 					clonedConversation:setStopConversation(true)
         end
     elseif (screenID == "success") then
-		if (not CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher")) then	
+		if (not CreatureObject(pPlayer):hasScreenPlayState(1, "trial_6_decipher_hermit")) then	
 			CreatureObject(pPlayer):setScreenPlayState(1, "trial_6_decipher_hermit")
 			logToFile(CreatureObject(pPlayer):getFirstName() .. " completed trial 6 decipher hermit", "log/custom_glowing/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
 			--CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\ You feel a surge of knowledge flow through you, after aiding the hermit.")

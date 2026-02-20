@@ -1,5 +1,6 @@
 bh_boba_fett = Creature:new {
 	objectName = "@mob/creature_names:boba_fett",
+	customName = "Boba Fett",
 	mobType = MOB_NPC,
 	socialGroup = "jabba",
 	faction = "jabba",

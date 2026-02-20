@@ -1,14 +1,15 @@
 bh_dark_jedi_master = Creature:new {
 	objectName = "@mob/creature_names:dark_jedi_master",
+	customName = "Rogue Inquisitor",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
 	mobType = MOB_NPC,
 	socialGroup = "dark_jedi",
 	faction = "",
-	level = 300,
-	chanceHit = 27.25,
-	damageMin = 2000,
-	damageMax = 3510,
+	level = 350,
+	chanceHit = 30,
+	damageMin = 2500,
+	damageMax = 3810,
 	baseXp = 27849,
 	baseHAM = 350000,
 	baseHAMmax = 400000,
@@ -32,7 +33,7 @@ bh_dark_jedi_master = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "dark_jedi_tier_5", chance = 10000000}
+				{group = "world_boss", chance = 10000000}
 			}
 		}
 	},

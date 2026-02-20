@@ -1,17 +1,18 @@
 bh_bossk = Creature:new {
 	objectName = "@mob/creature_names:bossk",
+	customName = "Bossk",
 	socialGroup = "mercenary",
 	faction = "",
 	mobType = MOB_NPC,
-	level = 190,
-	chanceHit = 9.0,
-	damageMin = 1245,
-	damageMax = 2000,
-	baseXp = 10000,
-	baseHAM = 125000,
-	baseHAMmax = 185000,
+	level = 350,
+	chanceHit = 30,
+	damageMin = 2500,
+	damageMax = 3810,
+	baseXp = 27849,
+	baseHAM = 350000,
+	baseHAMmax = 400000,
 	armor = 3,
-	resists = {95,95,95,95,95,95,95,95,-1},
+	resists = {90,90,90,90,90,90,90,90,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,52 +32,10 @@ bh_bossk = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 5400000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 5400000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 5400000
-		},
+				{group = "world_boss", chance = 10000000}
+			}
+		}
 	},
-
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
 	primaryWeapon = "imperial_carbine",

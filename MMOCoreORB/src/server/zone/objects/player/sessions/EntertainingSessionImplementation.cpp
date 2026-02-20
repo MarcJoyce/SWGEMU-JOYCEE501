@@ -69,6 +69,9 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 
 	woundHealingSkill += (float)creo->getSkillMod("deity_oola");
 	playerShockHealingSkill += (float)creo->getSkillMod("deity_oola");
+	
+	woundHealingSkill += (float)creo->getSkillMod("private_spec_entertainer");
+	playerShockHealingSkill += (float)creo->getSkillMod("private_spec_entertainer");
 
 	ManagedReference<BuildingObject*> building = cast<BuildingObject*>(creo->getRootParent());
 
@@ -471,10 +474,17 @@ void EntertainingSessionImplementation::doPerformEffect(int effectId, int effect
 	String effectFile = effect->getEffectFile();
 	String effectMessage = effect->getEffectMessage();
 
+	Zone* zone = entertainer->getZone();
+
+	if (zone == nullptr) {
+		cancelSession();
+		return;
+	}
+
 	if (targetType == PerformEffect::TARGET_SELF) {
 		entertainer->playEffect(effectFile, "");
 	} else if (targetType == PerformEffect::TARGET_STATIONARY) {
-		PlayClientEffectLoc* effectLoc = new PlayClientEffectLoc(effectFile, entertainer->getZone()->getZoneName(), entertainer->getPositionX(), entertainer->getPositionZ(), entertainer->getPositionY(), entertainer->getParentID());
+		PlayClientEffectLoc* effectLoc = new PlayClientEffectLoc(effectFile, zone->getZoneName(), entertainer->getPositionX(), entertainer->getPositionZ(), entertainer->getPositionY(), entertainer->getParentID());
 		entertainer->broadcastMessage(effectLoc, true);
 	} else if (targetType == PerformEffect::TARGET_OTHER) {
 		uint64 targetID = entertainer->getTargetID();
@@ -728,10 +738,12 @@ void EntertainingSessionImplementation::addEntertainerBuffStrength(CreatureObjec
 
 	if (isDancing()) {
 		maxBuffStrength = (float) entertainer->getSkillMod("healing_dance_mind");
-		maxBuffStrength += (entertainer->getSkillMod("deity_oola") * 2.f);
+		maxBuffStrength += (float) (entertainer->getSkillMod("deity_oola") * 2.0f);
+		maxBuffStrength += (float) entertainer->getSkillMod("private_spec_entertainer");
 	} else if (isPlayingMusic()) {
 		maxBuffStrength = (float) entertainer->getSkillMod("healing_music_mind");
-		maxBuffStrength += (entertainer->getSkillMod("deity_oola") * 2.f);
+		maxBuffStrength += (float) (entertainer->getSkillMod("deity_oola") * 2.0f);
+		maxBuffStrength += (float) entertainer->getSkillMod("private_spec_entertainer");
 	}
 
 	if (maxBuffStrength > 200.0f)
