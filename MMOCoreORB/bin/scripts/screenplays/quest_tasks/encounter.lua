@@ -88,7 +88,7 @@ function Encounter:isPlayerInNpcCity(pPlayer)
 end
 
 function Encounter:isPlayerInNonEncounterEvent(pPlayer)
-	if (tonumber(readScreenPlayData(pPlayer, "NontEncounterEvent", "inEvent")) == 1) then
+	if (tonumber(readScreenPlayData(pPlayer, "NonEncounterEvent", "inEvent")) == 1) then
 		return true
 	end
 	return false

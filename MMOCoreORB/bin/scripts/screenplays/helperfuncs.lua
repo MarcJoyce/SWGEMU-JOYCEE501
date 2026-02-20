@@ -59,3 +59,21 @@ function HelperFuncs:isTableASubset(table1, table2)
 
 	return true
 end
+
+
+function HelperFuncs:split(str, sep)
+    local t = {}
+    if str == nil or str == "" then return t end
+    for s in string.gmatch(str, "([^" .. sep .. "]+)") do
+        table.insert(t, s)
+    end
+    return t
+end
+
+function HelperFuncs:join(tbl, sep)
+    return table.concat(tbl, sep)
+end
+
+function HelperFuncs:round(num)
+	return math.floor(num + 0.5)
+end

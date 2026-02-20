@@ -144,7 +144,7 @@ function BartendersScreenPlay:spawnBartenders()
 			createObserver(DESTINATIONREACHED, "BartendersScreenPlay", "reachedBartenderPoint", pNpc)
 
 			-- 15% chance to be a rumor bartender
-			if (getRandomNumber(100) <= 15) then
+			if (getRandomNumber(100) <= 100) then
 				createObserver(SPATIALCHAT, "BartendersScreenPlay", "chatListen", pNpc)
 
 				writeData(npcID .. ":BartenderRumorFlag:", 1)
@@ -226,8 +226,10 @@ function BartendersScreenPlay:chatListen(pNpc, pChatMessage, playerID)
 
 	spatialChat(pNpc, "Ya never know what ya'll hear 'round these parts...")
 
-	writeStringData(npcID .. ":BartenderRumorMessage:", spatialMsg)
-	writeStringData(npcID .. ":BartenderRumorPlayer:", CreatureObject(pObject):getFirstName())
+	-- writeStringData(npcID .. ":BartenderRumorMessage:", spatialMsg)
+	-- writeStringData(npcID .. ":BartenderRumorPlayer:", CreatureObject(pObject):getFirstName())
+	writeStringData(npcID .. ":BartenderRumorMessage:", "that Meatlump King has been spotted in a hut on " .. readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "planet"))
+	writeStringData(npcID .. ":BartenderRumorPlayer:", "Stan")
 
 	writeData(npcID .. ":BartenderPlayerRumors:", 1)
 

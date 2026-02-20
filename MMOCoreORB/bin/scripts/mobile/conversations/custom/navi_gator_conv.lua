@@ -175,6 +175,17 @@ dje = ConvoScreen:new {
 
 navi_gator_convo_template:addScreen(dje)
 
+arena = ConvoScreen:new {
+  id = "arena",
+  customDialogText = "Oh, the Arena? Fancy yourself some sort of gladiator do we?",
+  stopConversation = "false",
+  options = {
+    {"Let's go", "arena_go"}
+  }
+}
+
+navi_gator_convo_template:addScreen(arena)
+
 local destinationIds = {
   "coronet_go",
   "mos_eisley_go",
@@ -188,7 +199,8 @@ local destinationIds = {
   "janta_cave_go",
   "village_go",
   "lje_go",
-  "dje_go"
+  "dje_go",
+  "arena_go"
 }
 
 for _, id in ipairs(destinationIds) do

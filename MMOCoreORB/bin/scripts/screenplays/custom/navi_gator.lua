@@ -17,6 +17,9 @@ function NaviGatorScreenPlay:start()
   if (isZoneEnabled("naboo")) then
     self:spawnNaboo()
   end
+  if (isZoneEnabled("lok")) then
+    self:spawnLok()
+  end
 end
 
 function NaviGatorScreenPlay:spawnCorellia()
@@ -34,4 +37,8 @@ end
 function NaviGatorScreenPlay:spawnNaboo()
   -- Theed Starport
   spawnMobile("naboo", "navi_gator", 300, -16.3, 0.7, -67.9, 126.881, 1692102)
+end
+
+function NaviGatorScreenPlay:spawnLok()
+  spawnMobile("lok", "navi_gator", 300, -3042.43, 67.07, 493.457, 80.0585, 0)
 end

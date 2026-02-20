@@ -54,6 +54,10 @@ if (screenID == "first_screen_not_met" or screenID == "first_screen_has_met") th
     clonedConversation:addOption("10k - Janta Stronghold", "janta_cave")
   end
 
+  if (playerCredits > 9999 and CreatureObject(pPlayer):hasScreenPlayState(1, "arena")) then
+    clonedConversation:addOption("10k - Lok Arena", "arena")
+  end
+
   
   if (playerCredits > 9999 and QuestManager.hasCompletedQuest(pPlayer, QuestManager.quests.LOOT_DATAPAD_2)) then
     clonedConversation:addOption("10k - Jedi Village", "village")
@@ -116,6 +120,10 @@ if (screenID == "first_screen_not_met" or screenID == "first_screen_has_met") th
     CreatureObject(pPlayer):subtractCashCredits(10000)
     CreatureObject(pPlayer):sendSystemMessage("You pay Gator 10000 credits.")
     SceneObject(pPlayer):switchZone("yavin4", 5080, 100, 306, 0)
+  elseif (screenID == "arena_go") then
+    CreatureObject(pPlayer):subtractCashCredits(10000)
+    CreatureObject(pPlayer):sendSystemMessage("You pay Gator 10000 credits.")
+    SceneObject(pPlayer):switchZone("lok", -3060, 66, 500, 0)
   end
 
   return pConvScreen

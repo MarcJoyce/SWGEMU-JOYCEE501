@@ -9,6 +9,10 @@ function PlayerTriggers:playerLoggedIn(pPlayer)
 	CustomGlowingScreenPlay:playerLoggedIn(pPlayer)
 	DedleeSynScreenPlay:playerLoggedIn(pPlayer)
 	GCWEncounters:onPlayerLoggedIn(pPlayer)
+	ArenaInvite:onPlayerLoggedIn(pPlayer)
+	RewardFirst:onPlayerLoggedIn(pPlayer)
+	RewardSecond:onPlayerLoggedIn(pPlayer)
+	RewardThird:onPlayerLoggedIn(pPlayer)
 end
 
 function PlayerTriggers:playerLoggedOut(pPlayer)

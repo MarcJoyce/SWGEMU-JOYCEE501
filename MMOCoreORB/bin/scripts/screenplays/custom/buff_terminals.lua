@@ -8,6 +8,7 @@ BuffTerminal = ScreenPlay:new {
 		{"Starter Buff", 0, 4, 500, 250, 250, 500, 250, 250, 500, 250, 250, requiredSkills = {}, requiredSkillNames = ""}, -- Free!
 		{"Basic Buff", 5000, 3, 750, 500, 500, 750, 500, 500, 750, 500, 500, requiredSkills = {}, requiredSkillNames = ""},
 		{"Premium Buff", 15000, 2, 1000, 750, 750, 1000, 750, 750, 1000, 750, 750, requiredSkills = {"", ""}, requiredSkillNames = ""},
+		{"Arena Buff", 25000, 1, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, requiredSkills = {}, requiredSkillNames = ""}
 	},
 	termModel = "object/tangible/terminal/terminal_light_enclave_voting.iff",
 	termName = "Medical Services Terminal",
@@ -15,6 +16,7 @@ BuffTerminal = ScreenPlay:new {
 		{planetName = "tatooine", x = 37.835, z = 0.10, y = 0.6809, ow = 0.659092, oy = 0.752062, cellID = 1082875},
 		{planetName = "corellia", x = 37.835, z = 0.10, y = 0.6809, ow = 0.659092, oy = 0.752062, cellID = 8105494},
 		{planetName = "naboo", x = 37.835, z = 0.10, y = 0.6809, ow = 0.659092, oy = 0.752062, cellID = 89},
+		{planetName = "lok", x = -3045, z = 67, y = 500,  ow = 0.659092, oy = 0.752062, cellID = 0}
 	}
 }
 
@@ -73,8 +75,14 @@ function BuffTerminal:openWindow(pCreatureObject, pUsingObject)
 	
 	sui.add(healMessage, "")
 
-	for i = 1, #self.buffs, 1 do
-		sui.add("Apply " .. self.buffs[i][1] .. " (" .. tostring(self.buffs[i][2]) .. "cr/" .. tostring(self.buffs[i][3]) .. "h)", "")
+	if (SceneObject(pCreatureObject):getZoneName() == "lok") then
+		for i = 1, #self.buffs, 1 do
+			sui.add("Apply " .. self.buffs[i][1] .. " (" .. tostring(self.buffs[i][2]) .. "cr/" .. tostring(self.buffs[i][3]) .. "h)", "")
+		end
+	else
+		for i = 1, #self.buffs - 1, 1 do
+			sui.add("Apply " .. self.buffs[i][1] .. " (" .. tostring(self.buffs[i][2]) .. "cr/" .. tostring(self.buffs[i][3]) .. "h)", "")
+		end
 	end
 
 	sui.sendTo(pCreatureObject)
@@ -228,19 +236,35 @@ function BuffTerminalMenuComponent:handleObjectMenuSelect(pObject, pPlayer, sele
 	elseif (selectedID == 120) then
 		local suiManager = LuaSuiManager()
 		local helpMessage = "This window shows the stats that are increased for each buff type, as well as their price and duration.\n\n"
-		
-		for i = 1, #BuffTerminal.buffs, 1 do
-			helpMessage = helpMessage .. BuffTerminal.buffs[i][1] .. " (" .. tostring(BuffTerminal.buffs[i][2]) .. "cr/" .. tostring(BuffTerminal.buffs[i][3]) .. "h):\n" -- BuffName (1234cr/2h):
-			helpMessage = helpMessage .. "- - - - - - - - - - - - -\n"
-			helpMessage = helpMessage .. "Health: " .. BuffTerminal.buffs[i][4] .. "\n"
-			helpMessage = helpMessage .. "Strength: " .. BuffTerminal.buffs[i][5] .. "\n"
-			helpMessage = helpMessage .. "Constitution: " .. BuffTerminal.buffs[i][6] .. "\n"
-			helpMessage = helpMessage .. "Action: " .. BuffTerminal.buffs[i][7] .. "\n"
-			helpMessage = helpMessage .. "Quickness: " .. BuffTerminal.buffs[i][8] .. "\n"
-			helpMessage = helpMessage .. "Stamina: " .. BuffTerminal.buffs[i][9] .. "\n"
-			helpMessage = helpMessage .. "Mind: " .. BuffTerminal.buffs[i][10] .. "\n"
-			helpMessage = helpMessage .. "Focus: " .. BuffTerminal.buffs[i][11] .. "\n"
-			helpMessage = helpMessage .. "Willpower: " .. BuffTerminal.buffs[i][12] .. "\n\n"
+
+		if (SceneObject(pCreatureObject):getZoneName() == "lok") then
+			for i = 1, #BuffTerminal.buffs, 1 do
+				helpMessage = helpMessage .. BuffTerminal.buffs[i][1] .. " (" .. tostring(BuffTerminal.buffs[i][2]) .. "cr/" .. tostring(BuffTerminal.buffs[i][3]) .. "h):\n" -- BuffName (1234cr/2h):
+				helpMessage = helpMessage .. "- - - - - - - - - - - - -\n"
+				helpMessage = helpMessage .. "Health: " .. BuffTerminal.buffs[i][4] .. "\n"
+				helpMessage = helpMessage .. "Strength: " .. BuffTerminal.buffs[i][5] .. "\n"
+				helpMessage = helpMessage .. "Constitution: " .. BuffTerminal.buffs[i][6] .. "\n"
+				helpMessage = helpMessage .. "Action: " .. BuffTerminal.buffs[i][7] .. "\n"
+				helpMessage = helpMessage .. "Quickness: " .. BuffTerminal.buffs[i][8] .. "\n"
+				helpMessage = helpMessage .. "Stamina: " .. BuffTerminal.buffs[i][9] .. "\n"
+				helpMessage = helpMessage .. "Mind: " .. BuffTerminal.buffs[i][10] .. "\n"
+				helpMessage = helpMessage .. "Focus: " .. BuffTerminal.buffs[i][11] .. "\n"
+				helpMessage = helpMessage .. "Willpower: " .. BuffTerminal.buffs[i][12] .. "\n\n"
+			end
+		else
+			for i = 1, #BuffTerminal.buffs - 1, 1 do
+				helpMessage = helpMessage .. BuffTerminal.buffs[i][1] .. " (" .. tostring(BuffTerminal.buffs[i][2]) .. "cr/" .. tostring(BuffTerminal.buffs[i][3]) .. "h):\n" -- BuffName (1234cr/2h):
+				helpMessage = helpMessage .. "- - - - - - - - - - - - -\n"
+				helpMessage = helpMessage .. "Health: " .. BuffTerminal.buffs[i][4] .. "\n"
+				helpMessage = helpMessage .. "Strength: " .. BuffTerminal.buffs[i][5] .. "\n"
+				helpMessage = helpMessage .. "Constitution: " .. BuffTerminal.buffs[i][6] .. "\n"
+				helpMessage = helpMessage .. "Action: " .. BuffTerminal.buffs[i][7] .. "\n"
+				helpMessage = helpMessage .. "Quickness: " .. BuffTerminal.buffs[i][8] .. "\n"
+				helpMessage = helpMessage .. "Stamina: " .. BuffTerminal.buffs[i][9] .. "\n"
+				helpMessage = helpMessage .. "Mind: " .. BuffTerminal.buffs[i][10] .. "\n"
+				helpMessage = helpMessage .. "Focus: " .. BuffTerminal.buffs[i][11] .. "\n"
+				helpMessage = helpMessage .. "Willpower: " .. BuffTerminal.buffs[i][12] .. "\n\n"
+			end
 		end
 		
 		suiManager:sendMessageBox(pObject, pPlayer, "About Buffs", helpMessage, "@ok", "BuffTerminalMenuComponent", "noCallback")

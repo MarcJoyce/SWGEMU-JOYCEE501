@@ -91,9 +91,13 @@ includeFile("custom/dedlee_syn.lua")
 includeFile("custom/stan.lua")
 includeFile("custom/battle_coordinator.lua")
 includeFile("custom/arena_inviter.lua")
+includeFile("custom/reward_first.lua")
+includeFile("custom/reward_second.lua")
+includeFile("custom/reward_third.lua")
 
 includeFile("custom/mobs/krayt_dragon_elder.lua")
 includeFile("custom/mobs/kliknik_acklay.lua")
+includeFile("custom/mobs/arachne_enhanced_gaping_spider.lua")
 
 includeFile("custom/mobs/world_boss/world_boss_butterfly_drone.lua")
 includeFile("custom/mobs/world_boss/world_boss_butterfly.lua")
@@ -142,6 +146,9 @@ includeFile("custom/mobs/meatlump_king_loon.lua")
 includeFile("custom/mobs/meatlump_king_oaf.lua")
 includeFile("custom/mobs/meatlump_king_stooge.lua")
 
+includeFile("custom/mobs/arena_gladiator_basic.lua")
+includeFile("custom/mobs/arena_gladiator_elite.lua")
+includeFile("custom/mobs/arena_gladiator_master.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/mobile/serverobjects.lua")

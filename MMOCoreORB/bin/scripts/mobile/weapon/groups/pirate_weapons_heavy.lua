@@ -3,6 +3,7 @@ pirate_weapons_heavy = {
 	"object/weapon/ranged/rifle/rifle_t21.iff",
 	"object/weapon/ranged/pistol/pistol_srcombat.iff",
 	"object/weapon/ranged/pistol/pistol_striker.iff",
+	"object/weapon/ranged/carbine/carbine_e11.iff",
 	"object/weapon/melee/knife/knife_dagger.iff",
 	"object/weapon/melee/axe/axe_heavy_duty.iff",
 	"object/weapon/melee/polearm/polearm_vibro_axe.iff",
