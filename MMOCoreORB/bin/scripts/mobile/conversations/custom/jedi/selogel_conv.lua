@@ -343,7 +343,7 @@ selogelConvoTemplate:addScreen(trial_5_complete)
 
 trial_6_explain = ConvoScreen:new {
   id = "trial_6_explain",
-  customDialogText = "Your next trial comes from the Whills themseleves. The inscription is... cryptic. It's message is illegible but does say: 'Speak the word.'. What that means... even I cannot tell.",
+  customDialogText = "Your next trial comes from the Whills themseleves. The inscription is... cryptic. It's message is illegible but part clearly reads: 'Planet'. What that means... even I cannot tell.",
   stopConversation = "false",
   options = {
     { "Show me the inscription.", "trial_6_explain_two" }
@@ -393,7 +393,7 @@ trial_6_part_one = ConvoScreen:new {
   customDialogText = "Curious... indeed most curious. Ancient texts speak of these inscriptions as gateways to insight. Some trials may appear... peculiar, even nonsensical, but the Force flows through all of them.",
   stopConversation = "false",
   options = { 
-    { "Ok... Let's hear your list.", "trial_6_part_one_two" }
+    { "What trials would you have me complete?", "trial_6_part_one_two" }
   }
 }
 selogelConvoTemplate:addScreen(trial_6_part_one)

@@ -28,9 +28,9 @@ function rewardSecondConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
 	if (screenID == "greeting") then
-		CreatureObject(pPlayer):addCashCredits(500000, true)
-		CreatureObject(pPlayer):sendSystemMessage("You have received 500,000 credits for your second place finish in the arena!")
-		CreatureObject(pPlayer):awardExperience("combat_gladiator", 2500, true)
+		CreatureObject(pPlayer):addCashCredits(250000, true)
+		CreatureObject(pPlayer):sendSystemMessage("You have received 250,000 credits for your second place finish in the arena!")
+		CreatureObject(pPlayer):awardExperience("combat_gladiator", 1250, true)
 		-- CreatureObject(pPlayer):addCashCredits(5, true)
 		-- CreatureObject(pPlayer):sendSystemMessage("You have received 5 credits for your second place finish in the arena!")
 		-- CreatureObject(pPlayer):awardExperience("combat_gladiator", 5, true)

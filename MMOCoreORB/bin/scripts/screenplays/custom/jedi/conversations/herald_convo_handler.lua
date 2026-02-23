@@ -5,7 +5,7 @@ function heraldConvoHandler:getInitialScreen(pPlayer, nNpc, pConvTemplate)
 
   local hasAnySkills = self:playerHasAnySkills(pPlayer)
 
-  self:log("hasAnySkills = " .. tostring(hasAnySkills))
+  logToFile(CreatureObject(pPlayer):getFirstName() .. " hasAnySkills: " .. tostring(hasAnySkills))
 
   if (VillageJediManagerCommon.hasJediProgressionScreenPlayState(pPlayer, VILLAGE_JEDI_PROGRESSION_GLOWING)) then
     return convoTemplate:getScreen("not_ready")
@@ -35,8 +35,6 @@ function heraldConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sele
 	if (pGhost == nil) then
 		return pConvScreen
 	end
-
-    self:log("screenID = " .. screenID)
 
     if (screenID == "herald_one") then
       VillageJediManagerCommon.setJediProgressionScreenPlayState(pPlayer, VILLAGE_JEDI_PROGRESSION_GLOWING)
@@ -70,9 +68,4 @@ function heraldConvoHandler:playerHasAnySkills(pPlayer)
 
   return hasSkills
 
-end
-
-function heraldConvoHandler:log(message)
-  local outputFile = "log/herald.log"
-  logToFile(message, outputFile)
 end

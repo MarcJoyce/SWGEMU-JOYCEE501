@@ -218,6 +218,7 @@ function Arena:resetArena()
 end
 
 function Arena:beginArena(pPlayer)
+  logToFile(CreatureObject(pPlayer):getFirstName() .. " entered the arena.", "log/arena/troubleshoot.log")
   local pAdminPlayer = getCreatureObject(self.AdminPlayerID)
   writeScreenPlayData(pAdminPlayer, "Arena", "occupied", 1)
 
@@ -257,7 +258,7 @@ function Arena:stopArena(pPlayer)
   end
 
   local score = HelperFuncs:round(elapsed * 3.14 * 501 / 69)
-  local experience = HelperFuncs:round(score * 0.25)
+  local experience = HelperFuncs:round(score * 0.261365)
   CreatureObject(pPlayer):awardExperience("combat_gladiator", experience, true)
 
   local pAdminPlayer = getCreatureObject(self.AdminPlayerID)

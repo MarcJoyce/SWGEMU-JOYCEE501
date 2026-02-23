@@ -8,6 +8,7 @@ function stanConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local playerID = SceneObject(pPlayer):getObjectID()
 
 	local accountID = 0
+	local pAdminPlayer = getCreatureObject(281474993547)
 
   return convoTemplate:getScreen("hello")
 end

@@ -28,9 +28,9 @@ function rewardThirdConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc,
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
 	if (screenID == "greeting") then
-		CreatureObject(pPlayer):addCashCredits(250000, true)
-		CreatureObject(pPlayer):sendSystemMessage("You have received 250,000 credits for your third place finish in the arena!")
-		CreatureObject(pPlayer):awardExperience("combat_gladiator", 1250, true)
+		CreatureObject(pPlayer):addCashCredits(100000, true)
+		CreatureObject(pPlayer):sendSystemMessage("You have received 100,000 credits for your third place finish in the arena!")
+		CreatureObject(pPlayer):awardExperience("combat_gladiator", 500, true)
 		-- CreatureObject(pPlayer):addCashCredits(2, true)
 		-- CreatureObject(pPlayer):sendSystemMessage("You have received 2 credits for your third place finish in the arena!")
 		-- CreatureObject(pPlayer):awardExperience("combat_gladiator", 2, true)

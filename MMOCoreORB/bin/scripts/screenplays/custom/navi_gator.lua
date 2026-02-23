@@ -20,6 +20,13 @@ function NaviGatorScreenPlay:start()
   if (isZoneEnabled("lok")) then
     self:spawnLok()
   end
+  if (isZoneEnabled("dathomir")) then
+    self:spawnDathomir()
+  end
+end
+
+function NaviGatorScreenPlay:spawnDathomir()
+  spawnMobile("dathomir", "navi_gator", 300, 5233.58, 78.5, -4225.55, 60.4822, 0)
 end
 
 function NaviGatorScreenPlay:spawnCorellia()
