@@ -2,8 +2,8 @@ local ObjectManager = require("managers.object.object_manager")
 local QuestManager = require("managers.quest.quest_manager")
 
 FsSad2 = ScreenPlay:new {
-	timePeriod = 24 * 60 * 60, -- 24 Hours
-	tasksPerPeriod = 3,
+	timePeriod = 7 * 1 * 24 * 60 * 60, -- 7 Days
+	tasksPerPeriod = 8,
 	theaterTable = { FsSad2Theater1, FsSad2Theater2, FsSad2Theater3, FsSad2Theater4, FsSad2Theater5, FsSad2Theater6, FsSad2Theater7, FsSad2Theater8 }
 }
 
@@ -11,7 +11,7 @@ function FsSad2:hasExceededLimit(pPlayer)
 	local lastTimestamp = self:getLastTimestamp(pPlayer)
 	local tasksSinceLast = self:getTasksSinceLastTimestamp(pPlayer)
 
-	if ((os.difftime(os.time(), lastTimestamp) < self.timePeriod) and tasksSinceLast >= self.tasksPerPeriod) then
+	if ((os.difftime(os.time(), lastTimestamp) < self.timePeriod) and tasksSinceLast > self.tasksPerPeriod) then
 		return true
 	end
 

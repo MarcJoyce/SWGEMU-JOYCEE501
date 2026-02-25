@@ -751,7 +751,11 @@ void CraftingSessionImplementation::initialAssembly(int clientCounter) {
 	manufactureSchematic->setCrafter(crafter);
 
 	String expskill = draftSchematic->getExperimentationSkill();
-	experimentationPointsTotal = int(crafter->getSkillMod(expskill) / 10);
+	int experimentationSkill = crafter->getSkillMod(expskill);
+	int forceSkill = crafter->getSkillMod("force_experimentation");
+	int deitySkill = crafter->getSkillMod("deity_techno_union");
+	experimentationPointsTotal = int((experimentationSkill + forceSkill + deitySkill) / 10);
+
 	experimentationPointsUsed = 0;
 
 	// Calculate exp failure for red bars

@@ -7,7 +7,7 @@ EncounterPadawan = Encounter:new {
   -- Encounter properties
   encounterDespawnTime = 2 * 60 * 1000,
   spawnObjectList = {
-    { template = "encounter_padawan", minimumDistance = 32, maximumDistance = 64, referencePoint = 0, followPlayer = true, setNotAttackable = false, runOnDespawn = true },
+    { template = "encounter_padawan", minimumDistance = 96, maximumDistance = 128, referencePoint = 0, followPlayer = true, setNotAttackable = false, runOnDespawn = true },
     { template = "encounter_padawan", minimumDistance = 2, maximumDistance = 4, referencePoint = 1, followPlayer = true, setNotAttackable = false, runOnDespawn = true }
   },
   onEncounterSpawned = nil,

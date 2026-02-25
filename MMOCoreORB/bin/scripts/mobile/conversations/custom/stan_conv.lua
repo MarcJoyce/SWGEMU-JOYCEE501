@@ -65,6 +65,16 @@ glowy_trial_1_rumour_two = ConvoScreen:new {
 }
 stan_convo_template:addScreen(glowy_trial_1_rumour_two)
 
+meatlump_king_location = ConvoScreen:new {
+  id = "meatlump_king_location",
+  customDialogText = "",
+  stopConversation = "false",
+  options = {
+    { "Great, thank you!", "goodbye" }
+  }
+}
+stan_convo_template:addScreen(meatlump_king_location)
+
 goodbye = ConvoScreen:new {
   id = "goodbye",
   customDialogText = "Safe travels, friend! If you need anything else, you know where to find me.",

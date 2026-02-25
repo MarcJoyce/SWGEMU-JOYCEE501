@@ -34,10 +34,10 @@ public:
 		auto ghost = creature->getSlottedObject("ghost").castTo<PlayerObject*>();
 
 		if (ghost->isIgnoring(name)) {
-			StringIdChatParameter param("cmnty", "friend_fail_is_ignored");
-			param.setTT(name);
-			creature->sendSystemMessage(param);
-
+			// StringIdChatParameter param("cmnty", "friend_fail_is_ignored");
+			// param.setTT(name);
+			// creature->sendSystemMessage(param);
+			creature->sendSystemMessage("You may not add that player to your friend list.");
 			return GENERALERROR;
 		}
 
@@ -60,8 +60,11 @@ public:
 			PlayerObject* player = creo->getPlayerObject();
 			if (player != nullptr && !ghost->hasGodMode()) {
 				if (player->hasGodMode()) {
-					creature->sendSystemMessage("You may not add that player to your friend list.");
+					// StringIdChatParameter param("cmnty", "friend_fail_is_ignored");
+					// param.setTT(name);
+					// creature->sendSystemMessage(param);
 
+					creature->sendSystemMessage("You may not add that player to your friend list.");
 					return GENERALERROR;
 				}
 			}

@@ -664,7 +664,8 @@ void BountyMissionObjectiveImplementation::handlePlayerKilled(ManagedObject* arg
 		return;
 
 	int minXpLoss = -50000;
-	int maxXpLoss = -500000;
+	// int maxXpLoss = -500000;
+	int maxXpLoss = -200000;
 
 	VisibilityManager::instance()->clearVisibility(target);
 	int rewardCreds = mission->getRewardCredits() + mission->getBonusCredits();

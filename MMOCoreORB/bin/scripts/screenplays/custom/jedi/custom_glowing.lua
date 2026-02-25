@@ -294,14 +294,11 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceSix(pPlayer, p
 end
 
 function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceFive(pPlayer, pVictim)
-  printf("notifyKilledCreatureTrialOnePieceFive function called")
 	if (pVictim == nil) then
-    printf("pVictim is nil")
 		return 0
 	end
 
 	if (pPlayer == nil) then
-    printf("pPlayer is nil")
 		return 1
 	end
 
@@ -318,14 +315,11 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialOnePieceFive(pPlayer, 
 end
 
 function CustomGlowingScreenPlay:notifyKilledCreatureTrialFiveTrandoshan(pPlayer, pVictim)
-  printf("notifyKilledCreatureTrialFiveTrandoshan function called")
 	if (pVictim == nil) then
-    printf("pVictim is nil")
 		return 0
 	end
 
 	if (pPlayer == nil) then
-    printf("pPlayer is nil")
 		return 1
 	end
 
@@ -343,14 +337,11 @@ function CustomGlowingScreenPlay:notifyKilledCreatureTrialFiveTrandoshan(pPlayer
 end
 
 function CustomGlowingScreenPlay:notifyKilledCreatureTrialFiveWookiee(pPlayer, pVictim)
-  printf("notifyKilledCreatureTrialFiveWookiee function called")
 	if (pVictim == nil) then
-    printf("pVictim is nil")
 		return 0
 	end
 
 	if (pPlayer == nil) then
-    printf("pPlayer is nil")
 		return 1
 	end
 
@@ -369,12 +360,10 @@ end
 
 function CustomGlowingScreenPlay:notifyKilledCreatureTrialSixKrayt(pPlayer, pVictim)
 	if (pVictim == nil) then
-    printf("pVictim is nil")
 		return 0
 	end
 
 	if (pPlayer == nil) then
-    printf("pPlayer is nil")
 		return 1
 	end
 

@@ -110,6 +110,8 @@ function GoToTheater:taskStart(pPlayer)
 	self:log(self.taskName .. " spawned at: " .. zoneName .. " @ coords x = " .. spawnPoint[1] .. ", y = " .. spawnPoint[3])
 	if (self.taskName == "MeatlumpKingTheatre") then
 		local pAdminPlayer = getCreatureObject(281474993547517)
+		writeScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "x", spawnPoint[1])
+		writeScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "y", spawnPoint[3])
 		writeScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "planet", zoneName)
 	end
 

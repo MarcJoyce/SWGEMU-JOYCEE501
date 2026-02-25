@@ -2157,7 +2157,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				awardExperience(attackerCreo, xpType, xpAmount);
 
 				if (xpType == "jedi_general" && attackerCreo->hasSkill("force_title_jedi_rank_03")) {
-					float frsXpAmount = xpAmount * 0.025f;
+					float frsXpAmount = xpAmount * 0.0125f;
 					awardExperience(attackerCreo, "force_rank_xp", frsXpAmount);
 				}
 			}
