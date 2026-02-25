@@ -9,10 +9,10 @@ corsec_tier_1 = {
 		{groupTemplate = "junk", weight = 3150000},
 		{groupTemplate = "tailor_components", weight = 1100000},
 		{groupTemplate = "wearables_all", weight = 2600000},
-		{groupTemplate = "resource_chemical", weight = 250000},
-		{groupTemplate = "resource_gemstone", weight = 250000},
-		{groupTemplate = "resource_metal", weight = 250000},
-		{groupTemplate = "resource_water", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

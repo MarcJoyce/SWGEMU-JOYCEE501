@@ -14,8 +14,8 @@ nightsister_tier_4 = {
 		{groupTemplate = "ranged_weapons", weight = 2800000},
 		{groupTemplate = "tailor_components", weight = 400000},
 		{groupTemplate = "wearables_common", weight = 400000},
-		{groupTemplate = "resource_creature", weight = 300000},
-		{groupTemplate = "resource_water", weight = 100000},
+		{groupTemplate = "junkVersionTwo", weight = 300000},
+		{groupTemplate = "junkVersionTwo", weight = 100000},
 		{groupTemplate = "crafting_component", weight = 100000},
 		{groupTemplate = "crafting_component_advanced", weight = 300000},
 	}

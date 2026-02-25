@@ -9,10 +9,10 @@ rori_death_watch_tier_1 = {
 		{groupTemplate = "ranged_weapons", weight = 2150000},
 		{groupTemplate = "wearables_common", weight = 400000},
 		{groupTemplate = "wearables_uncommon", weight = 400000},
-		{groupTemplate = "resource_gemstone", weight = 250000},
-		{groupTemplate = "resource_metal", weight = 250000},
-		{groupTemplate = "resource_ore", weight = 250000},
-		{groupTemplate = "resource_water", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junkVersionTwo", weight = 250000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

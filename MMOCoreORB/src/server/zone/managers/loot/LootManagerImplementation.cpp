@@ -269,6 +269,10 @@ void LootManagerImplementation::setCustomObjectName(TangibleObject* object, cons
 		}
 	}
 
+	if (object->isAttachment()) {
+		return;
+	}
+
 	String suffixName = "";
 
 	if (excMod >= legendaryModifier) {

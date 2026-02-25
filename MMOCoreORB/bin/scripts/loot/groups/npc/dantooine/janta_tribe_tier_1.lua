@@ -8,8 +8,8 @@ janta_tribe_tier_1 = {
 		{groupTemplate = "janta_common", weight = 4400000},
 		{groupTemplate = "junk", weight = 2900000},
 		{groupTemplate = "loot_kit_parts", weight = 2700000},
-		-- {groupTemplate = "resource_creature", weight = 750000},
-		-- {groupTemplate = "resource_water", weight = 250000},
+		-- {groupTemplate = "junkVersionTwo", weight = 750000},
+		-- {groupTemplate = "junkVersionTwo", weight = 250000},
 	}
 }
 

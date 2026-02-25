@@ -17,10 +17,10 @@ dark_jedi_tier_5 = {
 		{groupTemplate = "ranged_weapons", weight = 1734130 },
 		{groupTemplate = "jedi_clothing_attachments", weight = 869564 },
 		{groupTemplate = "crafting_component_advanced", weight = 1304353 },
-		-- {groupTemplate = "resource_chemical", weight = 50000},
-		-- {groupTemplate = "resource_gemstone", weight = 50000},
-		-- {groupTemplate = "resource_metal", weight = 50000},
-		-- {groupTemplate = "resource_water", weight = 50000},
+		-- {groupTemplate = "junkVersionTwo", weight = 50000},
+		-- {groupTemplate = "junkVersionTwo", weight = 50000},
+		-- {groupTemplate = "junkVersionTwo", weight = 50000},
+		-- {groupTemplate = "junkVersionTwo", weight = 50000},
 	}
 }
 
