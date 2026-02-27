@@ -6,7 +6,7 @@ mining_suit_quest_jazeen = {
 	craftingValues = {},
 	customizationStringNames = {},
 	customizationValues = {},
-	skillMods = {{"surveying", 2}}
+	skillMods = {{"surveying", 25}}
 }
 
 addLootItemTemplate("mining_suit_quest_jazeen", mining_suit_quest_jazeen)

@@ -5,15 +5,15 @@ aakuan_warder = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "aakuans",
 	faction = "aakuans",
-	level = 29,
-	chanceHit = 0.37,
-	damageMin = 260,
-	damageMax = 270,
-	baseXp = 3005,
-	baseHAM = 8100,
-	baseHAMmax = 9900,
-	armor = 0,
-	resists = {30,30,15,15,15,-1,15,15,-1},
+	level = 96,
+	chanceHit = 0.85,
+	damageMin = 595,
+	damageMax = 900,
+	baseXp = 9150,
+	baseHAM = 20000,
+	baseHAMmax = 25000,
+	armor = 1,
+	resists = {40,200,40,200,200,200,200,200,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -23,8 +23,8 @@ aakuan_warder = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
-	creatureBitmask = PACK + KILLER,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = PACK + KILLER + STALKER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
@@ -48,7 +48,7 @@ aakuan_warder = Creature:new {
 	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,swordsmanmaster),
+	primaryAttacks = merge(fencermaster,swordsmanmid,pikemanmaster,brawlermaster),
 	secondaryAttacks = { }
 }
 

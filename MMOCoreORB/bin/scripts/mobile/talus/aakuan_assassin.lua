@@ -6,15 +6,15 @@ aakuan_assassin = Creature:new {
 	customName = "an Aa'kuan Assassin",
 	socialGroup = "aakuans",
 	faction = "aakuans",
-	level = 31,
-	chanceHit = 0.37,
-	damageMin = 270,
-	damageMax = 280,
-	baseXp = 3188,
-	baseHAM = 8200,
-	baseHAMmax = 10000,
-	armor = 0,
-	resists = {40,40,0,0,0,-1,0,0,-1},
+	level = 278,
+	chanceHit = 27.25,
+	damageMin = 1520,
+	damageMax = 2750,
+	baseXp = 26654,
+	baseHAM = 321000,
+	baseHAMmax = 392000,
+	armor = 3,
+	resists = {200,200,200,200,200,200,200,200,20},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -24,8 +24,8 @@ aakuan_assassin = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
-	creatureBitmask = PACK + KILLER,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = PACK + KILLER + HEALER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
@@ -49,7 +49,7 @@ aakuan_assassin = Creature:new {
 	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,swordsmanmaster),
+	primaryAttacks = merge(tkamaster,swordsmanmaster,fencermaster,pikemanmaster,brawlermaster),
 	secondaryAttacks = { }
 }
 

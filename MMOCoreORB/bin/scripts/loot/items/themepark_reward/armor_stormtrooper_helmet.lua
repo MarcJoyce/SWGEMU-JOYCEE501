@@ -15,7 +15,7 @@ armor_stormtrooper_helmet = {
 	},
 	customizationStringNames = {},
 	customizationValues = {},
-	skillMods = {{"blind_defense", 5}, {"melee_defense", 3}}
+	skillMods = {{"blind_defense", 25}, {"melee_defense", 25}}
 }
 
 addLootItemTemplate("armor_stormtrooper_helmet", armor_stormtrooper_helmet)

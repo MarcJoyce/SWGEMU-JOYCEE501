@@ -62,4 +62,4 @@ professionSpecificItems = {
         social_entertainer = { slitherhorn }
 }
 
-commonStartingItems = { foodTool, marojMelon, survivalKnife, x31Speeder, genericTool, brawlerOneHander, brawlerPolearm, brawlerTwoHander, marksmanCarbine, marksmanPistol, marksmanRifle, mineralTool, chemicalTool, paddedArmorBoots, paddedArmorChest, paddedArmorGloves, paddedArmorHelmet }
+commonStartingItems = { foodTool, marojMelon, survivalKnife, x31Speeder, genericTool, brawlerOneHander, brawlerPolearm, brawlerTwoHander, marksmanCarbine, marksmanPistol, marksmanRifle, mineralTool, chemicalTool }

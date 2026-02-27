@@ -22,7 +22,7 @@ corsec_scout_blaster = {
 		{"attackactioncost",31,19,0},
 		{"attackmindcost",20,11,0},
 	},
-	skillMods = {{"pistol_speed", 3}},
+	skillMods = {{"pistol_speed", -1}},
 	customizationStringNames = {},
 	customizationValues = {},
 

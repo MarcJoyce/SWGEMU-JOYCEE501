@@ -7145,6 +7145,8 @@ void PlayerManagerImplementation::logOnlinePlayers(bool onlyWho) {
 							logClient["worldPositionY"] = (int)worldPosition.getY();
 							logClient["zone"] = zone->getZoneName();
 						}
+
+						logClient["visibility"] = (int) ghost->getVisibility();
 					} else {
 						logClient["isOnline"] = false;
 					}

@@ -9,7 +9,7 @@ aakuan_shirt = {
 	},
 	customizationStringNames = {},
 	customizationValues = {},
-	skillMods = {{"resistance_bleeding", 10}}
+	skillMods = {{"resistance_bleeding", -1}}
 }
 
 addLootItemTemplate("aakuan_shirt", aakuan_shirt)

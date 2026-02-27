@@ -5,15 +5,15 @@ aakuan_champion = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "aakuans",
 	faction = "aakuans",
-	level = 30,
-	chanceHit = 0.39,
-	damageMin = 290,
-	damageMax = 300,
-	baseXp = 3097,
-	baseHAM = 8400,
-	baseHAMmax = 10200,
-	armor = 0,
-	resists = {30,30,0,0,-1,-1,0,-1,-1},
+	level = 131,
+	chanceHit = 4.75,
+	damageMin = 770,
+	damageMax = 1250,
+	baseXp = 12424,
+	baseHAM = 50000,
+	baseHAMmax = 61000,
+	armor = 2,
+	resists = {60,200,60,200,200,200,200,200,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -23,11 +23,10 @@ aakuan_champion = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
-
 	templates = {
 		"object/mobile/dressed_aakuan_champion_zabrak_female_01.iff",
 		"object/mobile/dressed_aakuan_champion_zabrak_male_01.iff"},
@@ -48,7 +47,7 @@ aakuan_champion = Creature:new {
 	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,swordsmanmaster),
+	primaryAttacks = merge(fencermaster,swordsmanmaster,tkamid,brawlermaster,pikemanmaster),
 	secondaryAttacks = { }
 }
 

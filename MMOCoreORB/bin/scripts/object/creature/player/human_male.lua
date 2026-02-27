@@ -60,7 +60,12 @@ object_creature_player_human_male = object_creature_player_shared_human_male:new
 		
 	},
 	defaultLanguage = 1,
-	startingItems = { },
+		startingItems = { 
+		"object/tangible/wearables/armor/padded/armor_padded_s01_helmet.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_gloves.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_boots.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_chest_plate.iff"
+	},
 	startingSkills = { "species_human", "social_language_basic_comprehend", "social_language_basic_speak" }
 }
 

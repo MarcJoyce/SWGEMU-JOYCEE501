@@ -15,7 +15,7 @@ armor_stormtrooper_chestplate = {
 	},
 	customizationStringNames = {},
 	customizationValues = {},
-	skillMods = {{"stun_defense", 5}, {"melee_defense", 3}}
+	skillMods = {{"stun_defense", 25}, {"melee_defense", 25}}
 }
 
 addLootItemTemplate("armor_stormtrooper_chestplate", armor_stormtrooper_chestplate)

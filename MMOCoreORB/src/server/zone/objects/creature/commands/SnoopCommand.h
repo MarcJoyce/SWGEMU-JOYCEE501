@@ -150,6 +150,8 @@ public:
 			creature->sendSystemMessage(targetCreature->getFirstName() + "'s jedi trainer is located at " + coords.toString() + " on " + planet);
 		} else if (container == "ham") {
 			return sendHam(creature, targetCreature);
+		} else if (container == "experience") {
+			return sendExperience(creature, targetCreature);
 		} else if (container == "lots") {
 			return sendLots(creature, targetCreature);
 		} else if (container == "vendors") {
@@ -652,6 +654,70 @@ public:
 
 		ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, 0);
 		box->setPromptTitle("Player HAM");
+		box->setPromptText(body.toString());
+		box->setUsingObject(target);
+		box->setForceCloseDisabled();
+
+		ghost->addSuiBox(box);
+		creature->sendMessage(box->generateMessage());
+
+		return SUCCESS;
+	}
+
+	int sendExperience(CreatureObject* creature, CreatureObject* target) const {
+		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+		ManagedReference<PlayerObject*> targetGhost = target->getPlayerObject();
+
+		if (ghost == nullptr) {
+			return GENERALERROR;
+		}
+
+		StringBuffer body;
+		body << "Player Name:\t" << target->getFirstName() << endl << endl;
+
+		body << "Armor Crafting: " << targetGhost->getExperience("crafting_clothing_armor") << "\n";
+		body << "Bio-Engineer Crafting: " << targetGhost->getExperience("crafting_bio_engineer_creature") << "\n";
+		body << "Bounty Hunter: " << targetGhost->getExperience("bountyhunter") << "\n";
+		body << "Carbine Weapons: " << targetGhost->getExperience("combat_rangedspecialize_carbine") << "\n";
+		body << "Combat: " << targetGhost->getExperience("combat_general") << "\n";
+		body << "Creature Handling: " << targetGhost->getExperience("creaturehandler") << "\n";
+		body << "Dancing: " << targetGhost->getExperience("dance") << "\n";
+		body << "DNA Sampling: " << targetGhost->getExperience("bio_engineer_dna_harvesting") << "\n";
+		body << "Droid Crafting: " << targetGhost->getExperience("crafting_droid_general") << "\n";
+		body << "Entertainer Healing: " << targetGhost->getExperience("entertainer_healing") << "\n";
+		body << "Food Crafting: " << targetGhost->getExperience("crafting_food_general") << "\n";
+		body << "General Crafting: " << targetGhost->getExperience("crafting_general") << "\n";
+		body << "Gladiator: " << targetGhost->getExperience("combat_gladiator") << "\n";
+		body << "Heavy Weapons: " << targetGhost->getExperience("combat_rangedspecialize_heavy") << "\n";
+		body << "Image Designer: " << targetGhost->getExperience("imagedesigner") << "\n";
+		body << "Jedi: " << targetGhost->getExperience("jedi_general") << "\n";
+		body << "Medical: " << targetGhost->getExperience("medical") << "\n";
+		body << "Medicine Crafting: " << targetGhost->getExperience("crafting_medicine_general") << "\n";
+		body << "Merchant: " << targetGhost->getExperience("merchant") << "\n";
+		body << "Musician: " << targetGhost->getExperience("music") << "\n";
+		body << "Onehanded Weapons: " << targetGhost->getExperience("combat_meleespecialize_onehand") << "\n";
+		body << "Pistol Weapons: " << targetGhost->getExperience("combat_rangedspecialize_pistol") << "\n";
+		body << "Polearm Weapons: " << targetGhost->getExperience("combat_meleespecialize_polearm") << "\n";
+		body << "Political: " << targetGhost->getExperience("political") << "\n";
+		body << "Rifle Weapons: " << targetGhost->getExperience("combat_rangedspecialize_rifle") << "\n";
+		body << "Scouting: " << targetGhost->getExperience("scout") << "\n";
+		body << "Slicing: " << targetGhost->getExperience("slicing") << "\n";
+		body << "Spice Crafting: " << targetGhost->getExperience("crafting_spice") << "\n";
+		body << "Squad Leadership: " << targetGhost->getExperience("squadleader") << "\n";
+		body << "Structure Crafting: " << targetGhost->getExperience("crafting_structure_general") << "\n";
+		body << "Surveying: " << targetGhost->getExperience("resource_harvesting_inorganic") << "\n";
+		body << "Tailoring: " << targetGhost->getExperience("crafting_clothing_general") << "\n";
+		body << "Trapping: " << targetGhost->getExperience("trapping") << "\n";
+		body << "Twohanded Weapons: " << targetGhost->getExperience("combat_meleespecialize_twohand") << "\n";
+		body << "Unarmed Combat: " << targetGhost->getExperience("combat_meleespecialize_unarmed") << "\n";
+		body << "Weapon Crafting: " << targetGhost->getExperience("crafting_weapons_general") << "\n";
+		body << "Wilderness Survival: " << targetGhost->getExperience("camp") << "\n";
+		
+		body << "\n\n";
+
+
+		ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, 0);
+		box->setPromptTitle("Player Experience");
 		box->setPromptText(body.toString());
 		box->setUsingObject(target);
 		box->setForceCloseDisabled();

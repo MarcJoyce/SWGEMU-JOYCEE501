@@ -59,7 +59,12 @@ object_creature_player_sullustan_female = object_creature_player_shared_sullusta
 		{templateFile = "object/tangible/bank/character_bank.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4}
 	},
 	defaultLanguage = 1,
-	startingItems = { },
+		startingItems = { 
+		"object/tangible/wearables/armor/padded/armor_padded_s01_helmet.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_gloves.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_boots.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_chest_plate.iff"
+	},
 	startingSkills = { "species_sullustan", "social_language_basic_comprehend", "social_language_basic_speak" , "social_language_sullustan_comprehend", "social_language_sullustan_speak" }
 }
 

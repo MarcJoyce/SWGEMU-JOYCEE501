@@ -10,7 +10,7 @@ village_medic_puzzle_ice_pendant = {
 	customizationStringNames = {},
 	customizationValues = {},
 	condition = 100,
-	skillMods = {{"combat_medicine_experimentation", 5}}
+	skillMods = {{"combat_medicine_experimentation", -1}}
 }
 
 addLootItemTemplate("village_medic_puzzle_ice_pendant", village_medic_puzzle_ice_pendant)

@@ -6,15 +6,15 @@ aakuan_spice_guard = Creature:new {
 	customName = "an Aa'kuan Spice Guard",
 	socialGroup = "aakuans",
 	faction = "aakuans",
-	level = 27,
-	chanceHit = 0.36,
-	damageMin = 250,
-	damageMax = 260,
-	baseXp = 2822,
-	baseHAM = 7700,
-	baseHAMmax = 9400,
-	armor = 0,
-	resists = {30,30,-1,0,0,-1,0,-1,-1},
+	level = 88,
+	chanceHit = 0.8,
+	damageMin = 545,
+	damageMax = 800,
+	baseXp = 8408,
+	baseHAM = 21000,
+	baseHAMmax = 26000,
+	armor = 1,
+	resists = {65,65,65,200,200,200,200,200,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -24,7 +24,7 @@ aakuan_spice_guard = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
@@ -49,7 +49,7 @@ aakuan_spice_guard = Creature:new {
 	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,swordsmanmaster),
+	primaryAttacks = merge(fencermid,swordsmanmid,pikemanmaster,brawlermaster),
 	secondaryAttacks = { }
 }
 

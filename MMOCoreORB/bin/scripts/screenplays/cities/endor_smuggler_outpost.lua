@@ -82,5 +82,7 @@ function EndorSmugglerOutpostScreenPlay:spawnMobiles()
 		CreatureObject(pNpc):setOptionsBitmask(0)
 	end
 
-	local pNpc = spawnMobile("endor", "informant_npc_lvl_3", 60, -905, 80, 1624, 30.4788, 0)
+	local pNpc = spawnMobile("endor", "informant_npc_lvl_1", 60, -915, 80, 1606, 164.084, 0)
+	local pNpc = spawnMobile("endor", "informant_npc_lvl_2", 60, -915, 80, 1606, 164.084, 0)
+	local pNpc = spawnMobile("endor", "informant_npc_lvl_3", 60, -908, 80, 1608, 78.5966, 0)
 end

@@ -9,7 +9,7 @@ imperial_medallion = {
 	},
 	customizationStringNames = {},
 	customizationValues = {},
-	skillMods = {{"intimidate", 5}}
+	skillMods = {{"intimidate", 25}}
 }
 
 addLootItemTemplate("imperial_medallion", imperial_medallion)

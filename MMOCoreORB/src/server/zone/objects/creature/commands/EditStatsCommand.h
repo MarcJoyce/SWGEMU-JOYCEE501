@@ -143,13 +143,6 @@ public:
 				ghost->setVisibility(vis);
 				return SUCCESS;
 			}
-			else if (commandType.beginsWith("cooldown")) {
-				String cooldownString;
-				args.getStringToken(cooldownString);
-				
-				patient->updateCooldownTimer(cooldownString);
-				return SUCCESS;
-			}
 			else if (commandType.beginsWith("surrenderAllSkills")) {
 				SkillManager::instance()->surrenderAllSkills(patient, true, false, true);
 				patient->sendSystemMessage("All skills unlearned.");
