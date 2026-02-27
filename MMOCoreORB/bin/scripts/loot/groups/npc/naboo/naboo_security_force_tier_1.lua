@@ -11,10 +11,10 @@ naboo_security_force_tier_1 = {
 		{groupTemplate = "ranged_weapons", weight = 3700000},
 		{groupTemplate = "tailor_components", weight = 1000000},
 		{groupTemplate = "wearables_common", weight = 1000000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 	}
 }
 

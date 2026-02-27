@@ -10,10 +10,10 @@ mauler_tier_1 = {
 		{groupTemplate = "loot_kit_parts", weight = 1750000},
 		{groupTemplate = "mauler_common", weight = 1700000},
 		{groupTemplate = "tailor_components", weight = 800000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

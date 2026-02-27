@@ -10,10 +10,10 @@ spynet_tier_1 = {
 		{groupTemplate = "pistols", weight = 900000},
 		{groupTemplate = "tailor_components", weight = 1000000},
 		{groupTemplate = "wearables_common", weight = 1800000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 	}
 }
 

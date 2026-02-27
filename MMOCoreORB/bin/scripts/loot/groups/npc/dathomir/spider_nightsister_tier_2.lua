@@ -14,8 +14,8 @@ spider_nightsister_tier_2 = {
 		{groupTemplate = "ranged_weapons", weight = 2700000},
 		{groupTemplate = "wearables_common", weight = 400000},
 		{groupTemplate = "wearables_uncommon", weight = 400000},
-		{groupTemplate = "junkVersionTwo", weight = 600000},
-		{groupTemplate = "junkVersionTwo", weight = 200000},
+		{groupTemplate = "junk_version_two", weight = 600000},
+		{groupTemplate = "junk_version_two", weight = 200000},
 		{groupTemplate = "crafting_component", weight = 225000},
 		{groupTemplate = "crafting_component_advanced", weight = 75000},
 	}

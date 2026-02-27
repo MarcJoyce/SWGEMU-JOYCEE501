@@ -9,10 +9,10 @@ chunker_tier_1 = {
 		{groupTemplate = "junk", weight = 1100000},
 		{groupTemplate = "melee_knife", weight = 600000},
 		{groupTemplate = "ranged_weapons", weight = 1800000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 	}
 }
 

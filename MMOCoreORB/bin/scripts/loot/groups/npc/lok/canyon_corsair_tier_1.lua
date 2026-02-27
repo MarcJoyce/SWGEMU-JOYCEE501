@@ -14,10 +14,10 @@ canyon_corsair_tier_1 = {
 		{groupTemplate = "power_crystals", weight = 300000},
 		{groupTemplate = "ranged_weapons", weight = 1000000},
 		{groupTemplate = "tailor_components", weight = 800000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

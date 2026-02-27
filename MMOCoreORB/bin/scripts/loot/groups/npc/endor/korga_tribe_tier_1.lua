@@ -9,8 +9,8 @@ korga_tribe_tier_1 = {
 		{groupTemplate = "clothing_attachments", weight = 300000},
 		{groupTemplate = "ewok", weight = 7600000},
 		{groupTemplate = "wearables_uncommon", weight = 800000},
-		{groupTemplate = "junkVersionTwo", weight = 750000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 750000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 	}
 }
 

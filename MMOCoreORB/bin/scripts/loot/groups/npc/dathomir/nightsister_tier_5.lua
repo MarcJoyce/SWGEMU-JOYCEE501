@@ -15,8 +15,8 @@ nightsister_tier_5 = {
 		{groupTemplate = "wearables_rare", weight = 300000},
 		{groupTemplate = "wearables_scarce", weight = 300000},
 		{groupTemplate = "refined_crystal_pack", weight = 1100000},
-		-- {groupTemplate = "junkVersionTwo", weight = 150000},
-		-- {groupTemplate = "junkVersionTwo", weight = 50000},
+		-- {groupTemplate = "junk_version_two", weight = 150000},
+		-- {groupTemplate = "junk_version_two", weight = 50000},
 		{groupTemplate = "crafting_component_advanced", weight = 450000},
 	}
 }

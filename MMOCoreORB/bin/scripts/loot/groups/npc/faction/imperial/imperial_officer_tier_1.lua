@@ -13,10 +13,10 @@ imperial_officer_tier_1 = {
 		{groupTemplate = "junk", weight = 3300000},
 		{groupTemplate = "weapons_all", weight = 3000000},
 		{groupTemplate = "wearables_all", weight = 1200000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

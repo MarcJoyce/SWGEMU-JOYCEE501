@@ -12,8 +12,8 @@ mokk_tribe_tier_1 = {
 		{groupTemplate = "loot_kit_parts", weight = 2700000},
 		{groupTemplate = "wearables_common", weight = 900000},
 		{groupTemplate = "wearables_uncommon", weight = 900000},
-		{groupTemplate = "junkVersionTwo", weight = 750000},
-		{groupTemplate = "junkVersionTwo", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 750000},
+		{groupTemplate = "junk_version_two", weight = 250000},
 	}
 }
 

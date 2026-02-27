@@ -11,8 +11,8 @@ kunga_tribe_tier_3 = {
 		{groupTemplate = "loot_kit_parts", weight = 2400000},
 		{groupTemplate = "power_crystals", weight = 300000},
 		{groupTemplate = "wearables_all", weight = 3100000},
-		{groupTemplate = "junkVersionTwo", weight = 450000},
-		{groupTemplate = "junkVersionTwo", weight = 150000},
+		{groupTemplate = "junk_version_two", weight = 450000},
+		{groupTemplate = "junk_version_two", weight = 150000},
 	}
 }
 
