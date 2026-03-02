@@ -18,10 +18,7 @@ lok_mercenaries_tier_2 = {
 		{groupTemplate = "tailor_components", weight = 500000},
 		{groupTemplate = "wearables_common", weight = 800000},
 		{groupTemplate = "wearables_uncommon", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
+		{groupTemplate = "junk_version_two", weight = 800000},
 		{groupTemplate = "crafting_component", weight = 225000},
 		{groupTemplate = "crafting_component_advanced", weight = 75000},
 	}

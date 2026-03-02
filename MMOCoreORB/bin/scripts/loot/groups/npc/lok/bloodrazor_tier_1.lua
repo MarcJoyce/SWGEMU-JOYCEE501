@@ -15,10 +15,7 @@ bloodrazor_tier_1 = {
 		{groupTemplate = "pistols", weight = 500000},
 		{groupTemplate = "power_crystals", weight = 300000},
 		{groupTemplate = "tailor_components", weight = 800000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

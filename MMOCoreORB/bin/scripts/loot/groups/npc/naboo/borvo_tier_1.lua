@@ -11,10 +11,7 @@ borvo_tier_1 = {
 		{groupTemplate = "loot_kit_parts", weight = 850000},
 		{groupTemplate = "ranged_weapons", weight = 800000},
 		{groupTemplate = "tailor_components", weight = 800000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

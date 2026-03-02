@@ -791,5 +791,5 @@ includeFile("groups/custom/meatlump_king.lua")
 includeFile("groups/custom/barc_disks.lua")
 includeFile("groups/custom/holocron_splinters.lua")
 includeFile("groups/custom/deity_items.lua")
+includeFile("groups/custom/junk_version_two.lua")
 
-includeFile("groups/junk_version_two.lua")

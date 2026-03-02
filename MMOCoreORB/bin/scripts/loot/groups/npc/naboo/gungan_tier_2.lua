@@ -13,8 +13,7 @@ gungan_tier_2 = {
 		{groupTemplate = "melee_two_handed", weight = 800000},
 		{groupTemplate = "tailor_components", weight = 1300000},
 		{groupTemplate = "wearables_common", weight = 1700000},
-		{groupTemplate = "junk_version_two", weight = 600000},
-		{groupTemplate = "junk_version_two", weight = 200000},
+		{groupTemplate = "junk_version_two", weight = 800000},
 		{groupTemplate = "crafting_component", weight = 225000},
 		{groupTemplate = "crafting_component_advanced", weight = 75000},
 	}

@@ -14,10 +14,7 @@ tusken_raider_tier_2 = {
 		{groupTemplate = "power_crystals", weight = 300000},
 		{groupTemplate = "tusken_common", weight = 3000000},
 		{groupTemplate = "wearables_all", weight = 2500000},
-		{groupTemplate = "junk_version_two", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 200000},
+		{groupTemplate = "junk_version_two", weight = 800000},
 		{groupTemplate = "crafting_component", weight = 225000},
 		{groupTemplate = "crafting_component_advanced", weight = 75000},
 	}

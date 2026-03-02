@@ -12,10 +12,7 @@ weequay_tier_1 = {
 		{groupTemplate = "tailor_components", weight = 900000},
 		{groupTemplate = "wearables_common", weight = 1300000},
 		{groupTemplate = "weequay_common", weight = 200000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "melee_weapons_common", weight = 1000000},
 		{groupTemplate = "ranged_weapons_common", weight = 1000000},
 	}

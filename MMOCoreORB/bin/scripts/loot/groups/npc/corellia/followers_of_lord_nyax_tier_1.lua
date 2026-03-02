@@ -8,10 +8,7 @@ followers_of_lord_nyax_tier_1 = {
 		{groupTemplate = "color_crystals", weight = 750000},
 		{groupTemplate = "junk", weight = 5300000},
 		{groupTemplate = "ranged_weapons", weight = 2700000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

@@ -10,8 +10,7 @@ dantari_raiders_tier_2 = {
 		{groupTemplate = "junk", weight = 3700000},
 		{groupTemplate = "loot_kit_parts", weight = 2700000},
 		{groupTemplate = "wearables_all", weight = 1800000},
-		{groupTemplate = "junk_version_two", weight = 600000},
-		{groupTemplate = "junk_version_two", weight = 200000},
+		{groupTemplate = "junk_version_two", weight = 800000},
 	}
 }
 

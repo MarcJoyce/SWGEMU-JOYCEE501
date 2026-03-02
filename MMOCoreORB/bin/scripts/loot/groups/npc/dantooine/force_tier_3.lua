@@ -16,10 +16,7 @@ force_tier_3 = {
 		{groupTemplate = "power_crystals", weight = 500000},
 		{groupTemplate = "wearables_common", weight = 600000},
 		{groupTemplate = "wearables_uncommon", weight = 600000},
-		{groupTemplate = "junk_version_two", weight = 150000},
-		{groupTemplate = "junk_version_two", weight = 150000},
-		{groupTemplate = "junk_version_two", weight = 150000},
-		{groupTemplate = "junk_version_two", weight = 150000},
+		{groupTemplate = "junk_version_two", weight = 600000},
 		{groupTemplate = "crafting_component", weight = 175000},
 		{groupTemplate = "crafting_component_advanced", weight = 175000},
 	}

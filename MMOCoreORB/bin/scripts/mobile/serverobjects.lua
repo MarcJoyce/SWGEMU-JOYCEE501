@@ -128,6 +128,13 @@ includeFile("custom/mobs/world_boss/world_boss_death_watch_drone.lua")
 includeFile("custom/mobs/world_boss/world_boss_arachne.lua")
 includeFile("custom/mobs/world_boss/world_boss_arachne_warrior.lua")
 includeFile("custom/mobs/world_boss/world_boss_arachne_drone.lua")
+includeFile("custom/mobs/world_boss/world_boss_bd.lua")
+includeFile("custom/mobs/world_boss/world_boss_sbd.lua")
+includeFile("custom/mobs/world_boss/world_boss_gsp_drone.lua")
+includeFile("custom/mobs/world_boss/world_boss_gsp.lua")
+includeFile("custom/mobs/world_boss/world_boss_kimo_drone.lua")
+includeFile("custom/mobs/world_boss/world_boss_kimo.lua")
+
 
 includeFile("custom/mobs/encounters/encounter_bounty_hunter.lua")
 includeFile("custom/mobs/encounters/encounter_padawan.lua")

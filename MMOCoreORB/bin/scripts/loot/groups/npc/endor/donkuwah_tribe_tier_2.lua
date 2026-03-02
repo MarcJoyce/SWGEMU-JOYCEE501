@@ -7,8 +7,7 @@ donkuwah_tribe_tier_2 = {
 	lootItems = {
 		{groupTemplate = "donkuwah_common", weight = 7600000},
 		{groupTemplate = "wearables_all", weight = 1600000},
-		{groupTemplate = "junk_version_two", weight = 600000},
-		{groupTemplate = "junk_version_two", weight = 200000},
+		{groupTemplate = "junk_version_two", weight = 800000},
 	}
 }
 

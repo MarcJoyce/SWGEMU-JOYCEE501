@@ -15,10 +15,7 @@ kun_tier_4 = {
 		{groupTemplate = "melee_weapons", weight = 900000},
 		{groupTemplate = "power_crystals", weight = 700000},
 		{groupTemplate = "wearables_all", weight = 1200000},
-		{groupTemplate = "junk_version_two", weight = 100000},
-		{groupTemplate = "junk_version_two", weight = 100000},
-		{groupTemplate = "junk_version_two", weight = 100000},
-		{groupTemplate = "junk_version_two", weight = 100000},
+		{groupTemplate = "junk_version_two", weight = 400000},
 		{groupTemplate = "crafting_component", weight = 100000},
 		{groupTemplate = "crafting_component_advanced", weight = 300000},
 	}

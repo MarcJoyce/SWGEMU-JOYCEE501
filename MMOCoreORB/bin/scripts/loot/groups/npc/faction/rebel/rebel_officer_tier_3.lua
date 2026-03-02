@@ -13,10 +13,7 @@ rebel_officer_tier_3 = {
 		{groupTemplate = "rebel_officer_common", weight = 350000},
 		{groupTemplate = "weapons_all", weight = 900000},
 		{groupTemplate = "wearables_all", weight = 900000},
-		{groupTemplate = "junk_version_two", weight = 150000},
-		{groupTemplate = "junk_version_two", weight = 150000},
-		{groupTemplate = "junk_version_two", weight = 150000},
-		{groupTemplate = "junk_version_two", weight = 150000},
+		{groupTemplate = "junk_version_two", weight = 600000},
 		{groupTemplate = "crafting_component", weight = 175000},
 		{groupTemplate = "crafting_component_advanced", weight = 175000},
 	}

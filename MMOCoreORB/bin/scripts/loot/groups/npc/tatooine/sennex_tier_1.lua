@@ -11,10 +11,7 @@ sennex_tier_1 = {
 		{groupTemplate = "tailor_components", weight = 1200000},
 		{groupTemplate = "wearables_common", weight = 1500000},
 		{groupTemplate = "wearables_uncommon", weight = 300000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

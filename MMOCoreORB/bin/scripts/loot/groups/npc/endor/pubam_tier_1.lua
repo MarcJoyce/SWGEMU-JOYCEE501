@@ -9,8 +9,7 @@ pubam_tier_1 = {
 		{groupTemplate = "clothing_attachments", weight = 300000},
 		{groupTemplate = "ewok", weight = 7000000},
 		{groupTemplate = "wearables_all", weight = 1400000},
-		{groupTemplate = "junk_version_two", weight = 750000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 	}
 }
 

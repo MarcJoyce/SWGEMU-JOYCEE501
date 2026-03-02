@@ -10,10 +10,7 @@ cor_swoop_tier_1 = {
 		{groupTemplate = "printer_parts", weight = 700000},
 		{groupTemplate = "swooper_common", weight = 1400000},
 		{groupTemplate = "tailor_components", weight = 1000000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "melee_weapons_common", weight = 1000000},
 		{groupTemplate = "ranged_weapons_common", weight = 1000000},
 	}

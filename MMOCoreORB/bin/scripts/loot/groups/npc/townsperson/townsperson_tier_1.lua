@@ -12,8 +12,7 @@ townsperson_tier_1 = {
 		{groupTemplate = "ranged_weapons", weight = 1500000},
 		{groupTemplate = "tailor_components", weight = 600000},
 		{groupTemplate = "wearables_common", weight = 1300000},
-		{groupTemplate = "junk_version_two", weight = 750000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

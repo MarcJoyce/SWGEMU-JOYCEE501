@@ -13,10 +13,7 @@ bandit_tier_4 = {
 		{groupTemplate = "pistols", weight = 500000},
 		{groupTemplate = "power_crystals", weight = 300000},
 		{groupTemplate = "wearables_all", weight = 900000},
-		{groupTemplate = "junk_version_two", weight = 100000},
-		{groupTemplate = "junk_version_two", weight = 100000},
-		{groupTemplate = "junk_version_two", weight = 100000},
-		{groupTemplate = "junk_version_two", weight = 100000},
+		{groupTemplate = "junk_version_two", weight = 400000},
 		{groupTemplate = "crafting_component", weight = 100000},
 		{groupTemplate = "crafting_component_advanced", weight = 300000},
 	}

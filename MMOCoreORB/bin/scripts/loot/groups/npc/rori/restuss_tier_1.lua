@@ -10,10 +10,7 @@ restuss_tier_1 = {
 		{groupTemplate = "loot_kit_parts", weight = 350000},
 		{groupTemplate = "ranged_weapons", weight = 1400000},
 		{groupTemplate = "wearables_all", weight = 2800000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

@@ -15,10 +15,7 @@ imperial_stormtrooper_tier_1 = {
 		{groupTemplate = "tailor_components", weight = 900000},
 		{groupTemplate = "weapons_all", weight = 1600000},
 		{groupTemplate = "wearables_all", weight = 2300000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 		{groupTemplate = "crafting_component", weight = 250000},
 	}
 }

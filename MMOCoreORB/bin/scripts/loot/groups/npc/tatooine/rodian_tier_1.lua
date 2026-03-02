@@ -11,10 +11,7 @@ rodian_tier_1 = {
 		{groupTemplate = "loot_kit_parts", weight = 1400000},
 		{groupTemplate = "tailor_components", weight = 700000},
 		{groupTemplate = "wearables_common", weight = 1400000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 	}
 }
 

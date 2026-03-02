@@ -9,8 +9,7 @@ jinda_tribe_tier_1 = {
 		{groupTemplate = "clothing_attachments", weight = 400000},
 		{groupTemplate = "ewok", weight = 7300000},
 		{groupTemplate = "wearables_uncommon", weight = 900000},
-		{groupTemplate = "junk_version_two", weight = 750000},
-		{groupTemplate = "junk_version_two", weight = 250000},
+		{groupTemplate = "junk_version_two", weight = 1000000},
 	}
 }
 
