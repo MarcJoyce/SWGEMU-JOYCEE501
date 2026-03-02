@@ -192,8 +192,9 @@ end
 function BazaarBotScreenPlay:addMoreCraftedItems(configTable, itemTable)
 	self:listCraftedItems(configTable, itemTable)
 	
-	local nextTime = configTable.freq * 1000;
-	-- local nextTime = 60 * 2 * 1000;
+	local originalNextTime = configTable.freq * 1000;
+	local randomTimer = (getRandomNumber(7200) - 3600) * 1000;
+	local nextTime = originalNextTime + randomTimer;
 
 	if (hasServerEvent(configTable.eventName)) then
 		rescheduleServerEvent(configTable.eventName, nextTime)

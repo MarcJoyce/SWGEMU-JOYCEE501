@@ -96,7 +96,17 @@ function MeatlumpKingTheatre:damageTaken(pNpc, damageThreshold)
   end
 end
 
+function MeatlumpKingTheatre:getPlayersInRange(pNpc)
+  local playerTable = SceneObject(pNpc):getPlayersInRange(120)
+
+  return #playerTable
+end
+
 function MeatlumpKingTheatre:getHelp(pNpc, num, template, pAttacker)
+
+  local numberOfPlayers = self:getPlayersInRange(pNpc)
+  local numToSpawn = num * numberOfPlayers
+
   for i = 1, num do
           local zoneName = CreatureObject(pNpc):getZoneName()
       local xLoc = SceneObject(pNpc):getWorldPositionX() + (-20 + getRandomNumber(30))
@@ -117,8 +127,8 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage90(pMeatlumpKing, pAttacker, da
   if self:damageTaken(pMeatlumpKing, 90) then
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage90", pMeatlumpKing)
 
-    self:getHelp(pMeatlumpKing, 7, "meatlump_king_buffoon", pAttacker)
-    self:getHelp(pMeatlumpKing, 7, "meatlump_king_loon", pAttacker)
+    self:getHelp(pMeatlumpKing, getRandomNumber(2), "meatlump_king_buffoon", pAttacker)
+    self:getHelp(pMeatlumpKing, getRandomNumber(2), "meatlump_king_loon", pAttacker)
     spatialChat(pMeatlumpKing, "The Meatlump King always triumphs! Have at you! Come on then.")
 
     createObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage75", pMeatlumpKing)
@@ -137,7 +147,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage75(pMeatlumpKing, pAttacker, da
 
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage75", pMeatlumpKing)
 
-    self:getHelp(pMeatlumpKing, 10, "meatlump_king_fool", pAttacker)
+    self:getHelp(pMeatlumpKing, getRandomNumber(2), "meatlump_king_fool", pAttacker)
     spatialChat(pMeatlumpKing, "Tis but a scratch!")
       self:healTenPercent(pMeatlumpKing)
 
@@ -157,7 +167,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage50(pMeatlumpKing, pAttacker, da
 
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage50", pMeatlumpKing)
 
-    self:getHelp(pMeatlumpKing, 8, "meatlump_king_stooge", pAttacker)
+    self:getHelp(pMeatlumpKing, getRandomNumber(2), "meatlump_king_stooge", pAttacker)
     spatialChat(pMeatlumpKing, "I've had worse!")
     self:healTenPercent(pMeatlumpKing)
 
@@ -177,7 +187,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage33(pMeatlumpKing, pAttacker, da
 
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage33", pMeatlumpKing)
 
-    self:getHelp(pMeatlumpKing, 6, "meatlump_king_clod", pAttacker)
+    self:getHelp(pMeatlumpKing, 1, "meatlump_king_clod", pAttacker)
     spatialChat(pMeatlumpKing, "I'm invincible!")
     self:healTenPercent(pMeatlumpKing)
 
@@ -197,7 +207,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage25(pMeatlumpKing, pAttacker, da
 
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage25", pMeatlumpKing)
 
-    self:getHelp(pMeatlumpKing, 4, "meatlump_king_oaf", pAttacker)
+    self:getHelp(pMeatlumpKing, 1, "meatlump_king_oaf", pAttacker)
     spatialChat(pMeatlumpKing, "All right, we'll call it a draw!")
     self:healTenPercent(pMeatlumpKing)
 
@@ -217,7 +227,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage10(pMeatlumpKing, pAttacker, da
 
     dropObserver(DAMAGERECEIVED, self.taskName, "onMeatlumpKingDamage10", pMeatlumpKing)
 
-    self:getHelp(pMeatlumpKing, 3, "meatlump_king_cretin", pAttacker)
+    self:getHelp(pMeatlumpKing, 1, "meatlump_king_cretin", pAttacker)
     spatialChat(pMeatlumpKing, "Running away eh? Come back here and take what's coming to you! I'll bite your legs off!")
     self:healTenPercent(pMeatlumpKing)
     return 1

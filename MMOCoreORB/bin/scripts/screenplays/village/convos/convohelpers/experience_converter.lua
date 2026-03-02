@@ -11,6 +11,7 @@ require("screenplays.screenplay")
 ExperienceConverter = ScreenPlay:new {
 	xpConversion = {
 		combat = {
+			{ "jedi_general", 1 },
 			{ "bountyhunter", 1 },
 			{ "combat_general", 1 },
 			{ "combat_meleespecialize_onehand", 10 },
@@ -24,6 +25,7 @@ ExperienceConverter = ScreenPlay:new {
 			{ "squadleader", 30 }
 		},
 		senses = {
+			{ "jedi_general", 1 },
 			{ "bio_engineer_dna_harvesting", 1 },
 			{ "camp", 2 },
 			{ "creaturehandler", 3 },
@@ -40,6 +42,7 @@ ExperienceConverter = ScreenPlay:new {
 			{ "trapping", 7 },
 		},
 		reflex = {
+			{ "jedi_general", 1 },
 			{ "bountyhunter", 1 },
 			{ "combat_general", 1 },
 			{ "combat_meleespecialize_onehand", 10 },
@@ -53,6 +56,7 @@ ExperienceConverter = ScreenPlay:new {
 			{ "squadleader", 30 }
 		},
 		crafting = {
+			{ "jedi_general", 1 },
 			{ "crafting_bio_engineer_creature", 1 },
 			{ "crafting_clothing_armor", 2 },
 			{ "crafting_clothing_general", 2 },

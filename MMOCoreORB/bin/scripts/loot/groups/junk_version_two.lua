@@ -5,16 +5,16 @@ junk_version_two = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{groupTemplate = "wearables_common", weight = 10000000},
-		{groupTemplate = "weapons_all", weight = 10000000},
-		{groupTemplate = "armor_all", weight = 10000000},
-		{groupTemplate = "armor_component", weight = 10000000},
-		{groupTemplate = "chemistry_component", weight = 10000000},
-		{groupTemplate = "crafting_component", weight = 10000000},
-		{groupTemplate = "weapon_component", weight = 10000000},
-		{groupTemplate = "junk", weight = 10000000},
-		{groupTemplate = "forage_food", weight = 10000000},
-		{groupTemplate = "forage_medical_components", weight = 10000000}
+		{groupTemplate = "wearables_common", weight = 1000000},
+		{groupTemplate = "weapons_all", weight = 1000000},
+		{groupTemplate = "armor_all", weight = 1000000},
+		{groupTemplate = "armor_component", weight = 1000000},
+		{groupTemplate = "chemistry_component", weight = 1000000},
+		{groupTemplate = "crafting_component", weight = 1000000},
+		{groupTemplate = "weapon_component", weight = 1000000},
+		{groupTemplate = "junk", weight = 1000000},
+		{groupTemplate = "forage_food", weight = 1000000},
+		{groupTemplate = "forage_medical_components", weight = 1000000}
 	}
 }
 

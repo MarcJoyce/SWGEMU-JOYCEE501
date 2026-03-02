@@ -42,7 +42,12 @@ public:
 		NOINTIMIDATE			= 0x200000,
 		NODOT					= 0x400000,
 		TEST					= 0x800000,
-		LASTAIMASK				= 0x1000000, // keep this updated so we can loop through the masks
+		NOKNOCKDOWN			= 0x100000,
+		NOSTATE			= 0x1000000,
+		NODIZZY			= 0x2000000,
+		NOBLIND			= 0x4000000,
+		NOSTUN			= 0x8000000,
+		LASTAIMASK				= 0x10000000, // keep this updated so we can loop through the masks
 
 		CARNIVORE				= 0x01,
 		HERBIVORE				= 0x02

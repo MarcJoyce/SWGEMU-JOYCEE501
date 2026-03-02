@@ -21,13 +21,13 @@ class LairObserver extends SpawnObserver {
 	public static final int WILD_LAIR_PASSIVE_MAX = 10;
 
 	public static final int SPAWN_TIME_MIN = 1; // In seconds
-	public static final int SPAWN_TIME_MAX = 10; // In seconds
+	public static final int SPAWN_TIME_MAX = 1; // In seconds
 
 	public static final int RESPAWN_TIME_MIN = 120; // In seconds
-	public static final int RESPAWN_TIME_MAX = 240; // In seconds
+	public static final int RESPAWN_TIME_MAX = 120; // In seconds
 
 	public static final int PASSIVE_SPAWN_TIME_MIN = 15; // In seconds
-	public static final int PASSIVE_SPAWN_TIME_MAX = 20; // In seconds
+	public static final int PASSIVE_SPAWN_TIME_MAX = 15; // In seconds
 
 	public static final int HEAL_CHECK_INTERVAL = 15; // In seconds
 	public static final int AGGRO_CHECK_INTERVAL = 30; // In seconds

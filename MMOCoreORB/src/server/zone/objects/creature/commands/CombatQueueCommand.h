@@ -631,9 +631,21 @@ public:
 
 		switch (effectType) {
 		case CommandEffect::BLIND:
+		if (defender->isAiAgent()) {
+				AiAgent* defenderAgent = defender->asAiAgent();
+
+				if (defenderAgent != nullptr && (defenderAgent->getCreatureBitmask() & ObjectFlag::NOBLIND))
+					break;
+			}
 			defender->setBlindedState(duration);
 			break;
 		case CommandEffect::DIZZY:
+		if (defender->isAiAgent()) {
+				AiAgent* defenderAgent = defender->asAiAgent();
+
+				if (defenderAgent != nullptr && (defenderAgent->getCreatureBitmask() & ObjectFlag::NODIZZY))
+					break;
+			}
 			defender->setDizziedState(duration);
 			break;
 		case CommandEffect::INTIMIDATE: {
@@ -648,9 +660,21 @@ public:
 			break;
 		}
 		case CommandEffect::STUN:
+		if (defender->isAiAgent()) {
+				AiAgent* defenderAgent = defender->asAiAgent();
+
+				if (defenderAgent != nullptr && (defenderAgent->getCreatureBitmask() & ObjectFlag::NOSTUN))
+					break;
+			}
 			defender->setStunnedState(duration);
 			break;
 		case CommandEffect::KNOCKDOWN:
+			if (defender->isAiAgent()) {
+				AiAgent* defenderAgent = defender->asAiAgent();
+
+				if (defenderAgent != nullptr && (defenderAgent->getCreatureBitmask() & ObjectFlag::NOKNOCKDOWN))
+					break;
+			}
 			if (!defender->checkKnockdownRecovery()) {
 				if (defender->isPlayerCreature() && defender->getPosture() != CreaturePosture::UPRIGHT) {
 					defender->setPosture(CreaturePosture::UPRIGHT, false, false);
