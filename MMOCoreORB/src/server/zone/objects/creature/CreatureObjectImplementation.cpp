@@ -767,6 +767,8 @@ void CreatureObjectImplementation::setCombatState() {
 			addMountedCombatSlow();
 
 		notifyObservers(ObserverEventType::STARTCOMBAT);
+
+		updateSpeedAndAccelerationMods();
 	}
 }
 
@@ -794,6 +796,8 @@ void CreatureObjectImplementation::clearCombatState(bool removedefenders) {
 
 	if (isRidingMount())
 		removeMountedCombatSlow();
+
+	updateSpeedAndAccelerationMods();
 
 	debug("finished clearCombatState");
 }
@@ -1757,6 +1761,10 @@ void CreatureObjectImplementation::updateSpeedAndAccelerationMods() {
 
 	if (mScale != 0.f) {
 		mScale *= getSpeedModifier();
+	}
+
+	if (isInCombat()) {
+		mScale *= 0.5f;
 	}
 
 	/*
@@ -3087,14 +3095,14 @@ void CreatureObjectImplementation::activateHAMRegeneration(int latency) {
 	uint32 mindTick = (uint32) ceil((float) Math::max(0, getHAM(
 			CreatureAttribute::WILLPOWER)) * 13.0f / 2100.0f * modifier);
 
-	if (healthTick < 10)
-		healthTick = 10;
+	if (healthTick < 1)
+		healthTick = 1;
 
-	if (actionTick < 10)
-		actionTick = 10;
+	if (actionTick < 1)
+		actionTick = 1;
 
-	if (mindTick < 10)
-		mindTick = 10;
+	if (mindTick < 1)
+		mindTick = 1;
 
 	healDamage(asCreatureObject(), CreatureAttribute::HEALTH, healthTick, true, false);
 	healDamage(asCreatureObject(), CreatureAttribute::ACTION, actionTick, true, false);
