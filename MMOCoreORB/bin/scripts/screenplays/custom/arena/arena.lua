@@ -348,7 +348,6 @@ function Arena:spawnArenaMobs(pPlayer)
 end
 
 function Arena:killAllEnemies(pPlayer)
-  logToFile("killAllEnemies called", "log/arena/troubleshoot.log")
   if pPlayer == nil then
     return
   end
@@ -362,7 +361,6 @@ function Arena:killAllEnemies(pPlayer)
   end
 
   for enemyID in string.gmatch(enemyList, "[^,]+") do
-    -- logToFile("enemyID is: " .. enemyID, "log/arena/troubleshoot.log")
     local pEnemy = getSceneObject(tonumber(enemyID))
 
     if pEnemy ~= nil then
@@ -397,7 +395,6 @@ function Arena:addOrUpdateScore(pAdminPlayer, pPlayer, score)
 
     local exists = false
     for _, n in ipairs(players) do
-      logToFile("addOrUpdateScore: " .. tostring(n) .. " exists: " .. tostring(n == objectID) .. " n: " .. tostring(n) .. " objectID: " .. tostring(objectID), "log/arena/troubleshoot.log")
       if n == objectID then
         exists = true
             break
@@ -432,7 +429,6 @@ function Arena:getPosition(position)
               screenplay,
               "player_" .. id .. "_score"
           ))
-          logToFile("getPosition - player: " .. id .. " score: " .. tostring(score), "log/arena/troubleshoot.log")
 
       if score ~= nil then
           table.insert(results, {
@@ -476,7 +472,6 @@ function Arena:getPlayerPosition(playerID)
               screenplay,
               "player_" .. id .. "_score"
           ))
-          -- logToFile("getPlayerPosition - player: " .. id .. " score: " .. tostring(score), "log/arena/troubleshoot.log")
 
       if score ~= nil then
           table.insert(results, {
@@ -492,11 +487,9 @@ function Arena:getPlayerPosition(playerID)
 
   for index, entry in ipairs(results) do
       if tonumber(entry.id) == playerID then
-          -- logToFile("getPlayerPosition - player: " .. playerID .. " is at position: " .. index, "log/arena/troubleshoot.log")
           return index
       end
   end
 
-  -- logToFile("getPlayerPosition - player: " .. playerID .. " not found in rankings", "log/arena/troubleshoot.log")
   return nil
 end

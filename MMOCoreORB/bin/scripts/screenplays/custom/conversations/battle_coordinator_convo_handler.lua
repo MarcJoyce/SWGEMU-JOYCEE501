@@ -3,9 +3,35 @@ local QuestManager = require("managers.quest.quest_manager")
 battleCoordinatorConvoHandler = conv_handler:new {}
 
 function battleCoordinatorConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
-  local convoTemplate = LuaConversationTemplate(pConvTemplate)
+	local convoTemplate = LuaConversationTemplate(pConvTemplate)
 
 	local playerID = SceneObject(pPlayer):getObjectID()
+
+	local specialGrants = {
+		["281474993710721"] = { xpType = "combat_gladiator", amount = 1767 },
+		["281474993994353"] = { xpType = "combat_gladiator", amount = 279 },
+		["281474993627424"] = { xpType = "combat_gladiator", amount = 501 },
+		["281474993720118"] = { xpType = "combat_gladiator", amount = 461 },
+		["281474997254656"] = { xpType = "combat_gladiator", amount = 6923 },
+		["281474993547517"] = { xpType = "combat_gladiator", amount = 1419 },
+		["281474993603702"] = { xpType = "combat_gladiator", amount = 2318 },
+		["281474993911974"] = { xpType = "combat_gladiator", amount = 3091 },
+		["281474993622243"] = { xpType = "combat_gladiator", amount = 2285 },
+		["281474996255104"] = { xpType = "combat_gladiator", amount = 1254 },
+	}
+
+	local pid = tostring(playerID)
+	local grant = specialGrants[pid]
+
+	if (grant) then
+		local givenKey = ":backdateArenaXp_1"
+		local already = tonumber(readScreenPlayData(pPlayer, "Arena", givenKey)) or 0
+
+		if (already == 0) then
+			CreatureObject(pPlayer):awardExperience(grant.xpType, grant.amount, true)
+			writeScreenPlayData(pPlayer, "Arena", givenKey, 1)
+		end
+	end
 
 	if (not CreatureObject(pPlayer):hasScreenPlayState(1, "arena")) then
 		return convoTemplate:getScreen("not_eligible")
