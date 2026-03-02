@@ -915,6 +915,8 @@ void ResourceSpawner::sendSample(CreatureObject* player, const String& resname,
 	int actionCost = 124 - (int)(player->getHAM(CreatureAttribute::QUICKNESS)/12.5f);
 	actionCost /= 2;
 
+	actionCost = 25;
+
 	player->inflictDamage(player, CreatureAttribute::ACTION, actionCost, false, true);
 
 	PlayClientEffectLoc* effect = new PlayClientEffectLoc(sampleAnimation,

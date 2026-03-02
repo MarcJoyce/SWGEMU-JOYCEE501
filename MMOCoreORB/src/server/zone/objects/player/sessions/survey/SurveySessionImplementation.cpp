@@ -197,6 +197,8 @@ void SurveySessionImplementation::startSample(const String& resname) {
 
 	actionCost = actionCost /= 2;
 
+	actionCost = 25;
+
 	if (surveyer->getHAM(CreatureAttribute::ACTION) < actionCost) {
 		surveyer->setPosture(CreaturePosture::UPRIGHT, true);
 		surveyer->sendSystemMessage("@error_message:sample_mind"); //You are exhausted. You need to clear your head before you can sample again.

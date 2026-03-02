@@ -130,8 +130,9 @@ public:
 		if (res != SUCCESS)
 			return res;
 
-		if (isWearingArmor(creature))
+		if (isWearingArmor(creature) && !creature->hasSkill("admin_base")) {
 			return NOJEDIARMOR;
+		}
 
 		for (int i=0; i < blockingCRCs.size(); ++i) {
 			if (creature->hasBuff(blockingCRCs.get(i))) {

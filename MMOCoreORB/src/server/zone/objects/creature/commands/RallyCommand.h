@@ -38,6 +38,10 @@ public:
 		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, hamCost);
 		int mindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, hamCost);
 
+		healthCost /= 5;
+		actionCost /= 5;
+		mindCost /= 5;
+
 		if (!inflictHAM(player, healthCost, actionCost, mindCost))
 			return GENERALERROR;
 

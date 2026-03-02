@@ -104,10 +104,14 @@ WorldBossesScreenPlay = ScreenPlay:new {
     { "lok", 
       { 
         {
-          { "kimogila", 1 },
-        }
+          { "world_boss_kimo", 1 },
+          { "world_boss_kimo_drone", 2 }
+        },
+        {
+          { "world_boss_jedi", 1 },
+          { "world_boss_jedi_drone", 1 }
+        },
       },
-      -- { "boss_kimo", "boss_gurk" },
       { 
         {{ x = 2470, z = 18, y = -4217 }, " at the foot of Adi's Rest."},
         {{ x = -2253, z = 11, y = -3070 }, " preparing to seige the Lokian Imperial Outpost."}
@@ -115,11 +119,16 @@ WorldBossesScreenPlay = ScreenPlay:new {
     },
     { "naboo", 
       { 
+        { 
+          { "world_boss_sbd", 1 },
+          { "world_boss_sbd", 2 },
+          { "world_boss_bd", 15 }
+        },
         {
-          { "peko_peko_albatross", 1 },
-        }
+          { "world_boss_jedi", 1 },
+          { "world_boss_jedi_drone", 1 }
+        },
       },
-      -- { "boss_peko_peko", "boss_battle_droid" },
       { 
         {{ x = -5331, z = 11, y = 3498 }, " south of Theed"},
         {{ x = -2080, z = 61, y = -5157 }, " stalking Mordran"}
@@ -128,10 +137,14 @@ WorldBossesScreenPlay = ScreenPlay:new {
     { "talus", 
       { 
         {
-          { "greater_sludge_panther", 1 },
-        }
+          { "world_boss_gsp", 1 },
+          { "world_boss_gsp_drone", 10 }
+        },
+        {
+          { "world_boss_jedi", 1 },
+          { "world_boss_jedi_drone", 1 }
+        },
       },
-      -- { "boss_fynock", "boss_greater_sludge_panther" },
       { 
         {{ x = 4307, z = 6, y = 1015 }, " seeking refuge in the Lost Village of Durbin."},
         {{ x = 395, z = 44, y = -821 }, " west of the Giant Fynock Cave."}
@@ -170,7 +183,6 @@ WorldBossesScreenPlay = ScreenPlay:new {
           { "world_boss_death_watch_drone", 15 }
         }
       },
-      -- { "boss_acklay" },
       { 
         {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun's Temple."},
         {{ x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4."}
