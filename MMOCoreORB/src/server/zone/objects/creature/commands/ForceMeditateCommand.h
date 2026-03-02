@@ -26,7 +26,7 @@ public:
 		if (!creature->isPlayerCreature())
 			return GENERALERROR;
 
-		if (isWearingArmor(creature)) {
+		if (isWearingArmor(creature) && !creature->hasSkill("admin_base")) {
 			return NOJEDIARMOR;
 		}
 		

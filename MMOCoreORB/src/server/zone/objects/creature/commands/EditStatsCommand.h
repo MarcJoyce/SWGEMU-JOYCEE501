@@ -148,6 +148,15 @@ public:
 				patient->sendSystemMessage("All skills unlearned.");
 				return SUCCESS;
 			}
+			else if (commandType.beginsWith("experience")) {
+				String type;
+				args.getStringToken(type);
+
+				int amount;
+				amount = args.getIntToken();
+
+				playerManager->awardExperience(patient, type, amount, true);
+			}
 			
 			return SUCCESS;
 		} catch (Exception& e) {

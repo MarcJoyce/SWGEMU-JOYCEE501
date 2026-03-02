@@ -25,7 +25,7 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (isWearingArmor(creature)) {
+		if (isWearingArmor(creature) && !creature->hasSkill("admin_base")) {
 			return NOJEDIARMOR;
 		}
 
