@@ -144,7 +144,7 @@ public:
 				return SUCCESS;
 			}
 			else if (commandType.beginsWith("surrenderAllSkills")) {
-				SkillManager::instance()->surrenderAllSkills(patient, true, false, true);
+				SkillManager::instance()->surrenderAllSkills(patient, true, true, true);
 				patient->sendSystemMessage("All skills unlearned.");
 				return SUCCESS;
 			}

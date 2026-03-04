@@ -739,7 +739,7 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 
 		surrenderedPilot = (removePilot && skill->getSkillName().contains("pilot"));
 
-		if (skill->getSkillPointsRequired() > 0 || surrenderedPilot) {
+		if (surrenderedPilot) {
 			if (!removeForceProgression and skill->getSkillName().contains("force_"))
 				continue;
 

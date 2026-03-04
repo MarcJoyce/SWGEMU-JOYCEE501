@@ -807,7 +807,10 @@ void CombatManager::finalCombatSpam(TangibleObject* attacker, WeaponObject* weap
 
 					if (!defenderCreo->isIncapacitated() && !defenderCreo->isDead()) {
 						if (attacker->isCreatureObject() && hit == HIT) {
-							applyStates(attacker->asCreatureObject(), defenderCreo, hitList, data);
+							int negateStateSkillMod = defenderCreo->getSkillMod("combat_secutor_defense");
+							if (System::random(100) > negateStateSkillMod) {
+								applyStates(attacker->asCreatureObject(), defenderCreo, hitList, data);
+							}
 						}
 
 						woundCreatureTarget(defenderCreo, weapon, hitList->getPoolsToWound());
@@ -1178,6 +1181,14 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 		damage = Math::min(damage, totalHam / 100.f * 3.33f);
 	}
 
+	int criticalHitChanceSkillMod = attacker->getSkillMod("combat_thraex_hit");
+
+	if (criticalHitChanceSkillMod > 0 && System::random(100) <= criticalHitChanceMod) {
+		int criticalHitDamageSkillMod = attacker->getSkillMod("combat_dimachaerus_hit");
+		
+		damage *= (1 + ((10 + criticalHitDamageSkillMod) / 100.f));
+	}
+
 	// PvP Damage Reduction.
 	if (attacker->isPlayerCreature() && defender->isPlayerCreature())
 		damage *= 0.10;
@@ -1337,19 +1348,22 @@ float CombatManager::applyDamageModifiers(CreatureObject* attacker, WeaponObject
 	if (damageMultiplier != 0)
 		damage *= damageMultiplier;
 
-	int itemDamageMultiplier = attacker->getSkillMod("private_item_damage_multiplier");
-	if (itemDamageMultiplier != 0) 
-		damage *= itemDamageMultiplier;
+	int darthVaderMultiplier = attacker->getSkillMod("deity_darth_vader");
 
+	if (darthVaderMultiplier != 0) {
+		damage *= (1 + (darthVaderMultiplier / 100));
+	}
 
 	int damageDivisor = attacker->getSkillMod("private_damage_divisor");
 
 	if (damageDivisor != 0)
 		damage /= damageDivisor;
 	
-	int itemDamageDivisor = attacker->getSkillMod("private_item_damage_divisor");
-	if (itemDamageDivisor != 0) 
-		damage /= itemDamageDivisor;
+	int obiWanDivisor = attacker->getSkillMod("deity_obi_wan");
+
+	if (obiWanDivisor != 0) {
+		damage *= (1 + (obiWanDivisor / 100));
+	}
 
 	// States Damage Reduction
 	float intimidateMod = attacker->getSkillMod("private_damage_divisor_intimidate");
@@ -2059,7 +2073,12 @@ int CombatManager::getDefenderDefenseModifier(CreatureObject* defender, WeaponOb
 	// food bonus goes on top as well
 	targetDefense += defender->getSkillMod("dodge_attack");
 	targetDefense += defender->getSkillMod("private_dodge_attack");
+
+	// Add Deity Mods
 	targetDefense += defender->getSkillMod("deity_han_solo");
+	targetDefense += defender->getSkillMod("deity_obi_wan");
+
+	targetDefense -= (defender->getSkillMod("deity_darth_vader") * 2);
 
 	debug() << "Target defense after state affects and cap is " << targetDefense;
 
@@ -2222,6 +2241,12 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* creoDe
 					hitResult = defendResult;
 				}
 			}
+		}
+
+		int negateDamageGladiatorSkillMod = creoDefender->getSkillMod("combat_murmillo_defense");
+
+		if (negateDamageGladiatorSkillMod > 0 && System::random(100) <= negateDamageGladiatorSkillMod) {
+			hitResult = defendResult;
 		}
 	}
 
@@ -2795,7 +2820,8 @@ float CombatManager::doObjectDetonation(TangibleObject* attackerTanO, CreatureOb
 		} else {
 			// PvP Damage Reduction
 			if (attackerTanO->isDroidObject() && defender->isPlayerCreature()) {
-				damage *= 0.25;
+				// damage *= 0.25;
+				damage *= 0.10;
 			}
 
 			ArmorObject* psgArmor = getPSGArmor(defender);

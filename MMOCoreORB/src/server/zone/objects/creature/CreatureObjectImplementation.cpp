@@ -3702,6 +3702,9 @@ bool CreatureObjectImplementation::isHealableBy(CreatureObject* healerCreo) {
 	if (healerGhost == nullptr)
 		return false;
 
+	if (healerGhost->isAdmin())
+		return true;
+
 	/* BH TEF should prevent incoming helpful actions to the TEFed individual, not prevent them helping others
 	* See Git History, this was implemented without proper evidence. All evidence states those with BH TEF cannot receive helpful actions.  -- Hakry
 	* if (healerGhost->hasBhTef())

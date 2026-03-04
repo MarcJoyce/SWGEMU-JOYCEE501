@@ -44,7 +44,7 @@ void ArmorComponentImplementation::updateCraftingValues(CraftingValues* values, 
 		if (specialResists & SharedWeaponObjectTemplate::STUN)
 			addProperty("stuneffectiveness", Math::min(80.0f, specialbase + stun), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::LIGHTSABER)
-			addProperty("restraineffectiveness", Math::min(80.0f, specialbase + lightSaber), 10, expProp);
+			addProperty("restraineffectiveness", Math::min(30.0f, specialbase + lightSaber), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::HEAT)
 			addProperty("heateffectiveness", Math::min(80.0f, specialbase + heat), 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::COLD)
