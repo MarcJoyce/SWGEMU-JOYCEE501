@@ -1,6 +1,6 @@
 encounter_luke = Creature:new {
 	objectName = "@mob/creature_names:luke_skywalker",
-	socialGroup = "dark_jedi",
+	socialGroup = "self",
 	faction = "",
 	mobType = MOB_NPC,
 	level = 1000,
@@ -21,8 +21,8 @@ encounter_luke = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
-	creatureBitmask = KILLER + NOINTIMIDATE + NODOT,
+	pvpBitmask = ATTACKABLE + ENEMY,
+	creatureBitmask = KILLER + NOINTIMIDATE + NODOT + NOKNOCKDOWN + NOBLIND + HEALER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 

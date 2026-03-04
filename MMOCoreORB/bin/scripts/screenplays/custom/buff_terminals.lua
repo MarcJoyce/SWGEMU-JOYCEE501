@@ -237,7 +237,7 @@ function BuffTerminalMenuComponent:handleObjectMenuSelect(pObject, pPlayer, sele
 		local suiManager = LuaSuiManager()
 		local helpMessage = "This window shows the stats that are increased for each buff type, as well as their price and duration.\n\n"
 
-		if (SceneObject(pCreatureObject):getZoneName() == "lok") then
+		if (SceneObject(pPlayer):getZoneName() == "lok") then
 			for i = 1, #BuffTerminal.buffs, 1 do
 				helpMessage = helpMessage .. BuffTerminal.buffs[i][1] .. " (" .. tostring(BuffTerminal.buffs[i][2]) .. "cr/" .. tostring(BuffTerminal.buffs[i][3]) .. "h):\n" -- BuffName (1234cr/2h):
 				helpMessage = helpMessage .. "- - - - - - - - - - - - -\n"

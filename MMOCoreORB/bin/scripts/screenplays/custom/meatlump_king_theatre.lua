@@ -107,7 +107,7 @@ function MeatlumpKingTheatre:getHelp(pNpc, num, template, pAttacker)
   local numberOfPlayers = self:getPlayersInRange(pNpc)
   local numToSpawn = num * numberOfPlayers
 
-  for i = 1, num do
+  for i = 1, numToSpawn do
           local zoneName = CreatureObject(pNpc):getZoneName()
       local xLoc = SceneObject(pNpc):getWorldPositionX() + (-20 + getRandomNumber(30))
       local yLoc = SceneObject(pNpc):getWorldPositionY() + (-20 + getRandomNumber(30))

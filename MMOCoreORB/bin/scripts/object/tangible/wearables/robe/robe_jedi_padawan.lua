@@ -68,11 +68,11 @@ object_tangible_wearables_robe_robe_jedi_padawan = object_tangible_wearables_rob
 	jediRobe = true,
 
 	skillMods = {
-		{"jedi_force_power_max", 500},
-		{"jedi_force_power_regen", 10},
-		{"twohandlightsaber_accuracy", 50},
-		{"onehandlightsaber_accuracy", 50},
-		{"polearmlightsaber_accuracy", 50}
+		-- {"jedi_force_power_max", 500},
+		-- {"jedi_force_power_regen", 10},
+		-- {"twohandlightsaber_accuracy", 50},
+		-- {"onehandlightsaber_accuracy", 50},
+		-- {"polearmlightsaber_accuracy", 50}
 	},
 
 	noTrade = 1,

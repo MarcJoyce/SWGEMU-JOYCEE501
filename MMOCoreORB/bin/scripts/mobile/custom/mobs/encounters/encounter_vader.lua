@@ -1,6 +1,6 @@
 encounter_vader = Creature:new {
 	objectName = "@mob/creature_names:darth_vader",
-	socialGroup = "dark_jedi",
+	socialGroup = "self",
 	faction = "",
 	mobType = MOB_NPC,
 	level = 1000,
@@ -21,7 +21,7 @@ encounter_vader = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER + NOINTIMIDATE + NODOT + NOKNOCKDOWN + NOBLIND + HEALER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,

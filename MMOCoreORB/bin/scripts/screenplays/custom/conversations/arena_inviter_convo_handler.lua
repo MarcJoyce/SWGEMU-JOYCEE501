@@ -34,7 +34,6 @@ function arenaInviterConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc
     if (screenID == "accept" or screenID == "decline") then
         CreatureObject(pPlayer):setScreenPlayState(1, "arena")
         PlayerObject(pGhost):addWaypoint("lok", "Vask the Pitmaster", "", -3042, 66, 500, WAYPOINT_PURPLE, true, true, 0)
-        logToFile(CreatureObject(pPlayer):getFirstName() .. " was invited to the arena", "log/arena/" .. CreatureObject(pPlayer):getFirstName() .. ".log")
         EncounterArenaInvite:scheduleDespawnOfInviter(pPlayer)
     end
 

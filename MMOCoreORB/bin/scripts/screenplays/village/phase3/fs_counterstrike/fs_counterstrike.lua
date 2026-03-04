@@ -324,17 +324,17 @@ function FsCounterStrike:completeQuest(pPlayer, teamComplete)
 	local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
 
 	if (pInventory ~= nil) then
-		local crystalID = createLoot(pInventory, "color_crystals", 1, true)
-		local pCrystal = getSceneObject(crystalID)
+		local crystalID = createLoot(pInventory, "crystal_sunriders_destiny", 350, true)
+		-- local pCrystal = getSceneObject(crystalID)
 
-		if (pCrystal == nil) then
-			Logger:log("Crystal is nil. Unable to set Sunriders Crystal Color for Player ID: " .. SceneObject(pPlayer):getObjectID(), LT_ERROR)
-			CreatureObject(pPlayer):sendSystemMessage("There was an error generating your Crystal Reward. Please see Support and screenshot this message.")
-		else
-			local colorCrystal = LuaLightsaberCrystalComponent(pCrystal)
-			colorCrystal:setColor(29)
-			colorCrystal:updateCrystal(29)
-		end
+		-- if (pCrystal == nil) then
+		-- 	Logger:log("Crystal is nil. Unable to set Sunriders Crystal Color for Player ID: " .. SceneObject(pPlayer):getObjectID(), LT_ERROR)
+		-- 	CreatureObject(pPlayer):sendSystemMessage("There was an error generating your Crystal Reward. Please see Support and screenshot this message.")
+		-- else
+		-- 	local colorCrystal = LuaLightsaberCrystalComponent(pCrystal)
+		-- 	colorCrystal:setColor(29)
+		-- 	colorCrystal:updateCrystal(29)
+		-- end
 	end
 
 	CreatureObject(pPlayer):sendSystemMessage("@fs_quest_village:quest_complete")
