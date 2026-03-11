@@ -461,13 +461,11 @@ int LuaTangibleObject::setSocketCount(lua_State* L) {
 
 		WearableObject* wo = cast<WearableObject*>(realObject);
 
-		if (count > 4) {
-			count = 4;
+		if (count > 6) {
+			count = 6;
 		} else if (count < 0) {
 			count = 0;
 		}
-
-		count = 6;
 
 		wo->setSockets(count);
 	}

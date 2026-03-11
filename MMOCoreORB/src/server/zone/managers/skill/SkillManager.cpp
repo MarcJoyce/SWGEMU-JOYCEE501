@@ -808,6 +808,29 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 	}
 }
 
+void SkillManager::verifyAbilities(CreatureObject* creature) {
+	ManagedReference<PlayerObject* > ghost = creature->getPlayerObject();
+	if (creature == nullptr || ghost == nullptr) {
+		return;
+	}
+
+	const SkillList* skillList = creature->getSkillList();
+
+	for (int i = 0; i < skillList->size(); ++i) {
+		Skill* skill = skillList->get(i);
+
+		auto abilityNames = skill->getAbilities();
+
+		for (int j = 0; j < abilityNames->size(); ++j) {
+			const String& abilityName = abilityNames->get(j);
+
+			if (!ghost->hasAbility(abilityName)) {
+				addAbility(ghost, abilityName, true);
+			}
+		}
+	}
+}
+
 void SkillManager::awardDraftSchematics(Skill* skill, PlayerObject* ghost, bool notifyClient) {
 	if (ghost != nullptr) {
 		//Add draft schematic groups

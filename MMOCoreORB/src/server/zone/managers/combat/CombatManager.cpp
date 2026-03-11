@@ -1183,7 +1183,7 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	int criticalHitChanceSkillMod = attacker->getSkillMod("combat_thraex_hit");
 
-	if (criticalHitChanceSkillMod > 0 && System::random(100) <= criticalHitChanceMod) {
+	if (criticalHitChanceSkillMod > 0 && System::random(100) <= criticalHitChanceSkillMod) {
 		int criticalHitDamageSkillMod = attacker->getSkillMod("combat_dimachaerus_hit");
 		
 		damage *= (1 + ((10 + criticalHitDamageSkillMod) / 100.f));
@@ -2821,7 +2821,6 @@ float CombatManager::doObjectDetonation(TangibleObject* attackerTanO, CreatureOb
 			// PvP Damage Reduction
 			if (attackerTanO->isDroidObject() && defender->isPlayerCreature()) {
 				// damage *= 0.25;
-				damage *= 0.10;
 			}
 
 			ArmorObject* psgArmor = getPSGArmor(defender);

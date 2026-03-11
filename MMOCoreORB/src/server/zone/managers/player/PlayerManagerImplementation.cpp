@@ -2142,10 +2142,8 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 						xpAmount *= 0.6f;
 					} else if (jediSkillPoints < 166) {
 						xpAmount *= 0.4f;
-					} else if (jediSkillPoints < 207) {
-						xpAmount *= 0.2f;
 					} else {
-						xpAmount *= 0.1f;
+						xpAmount *= 0.2f;
 					}
 				}
 

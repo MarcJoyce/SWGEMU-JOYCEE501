@@ -782,7 +782,8 @@ void LairObserverImplementation::spawnLairMobile(LairObject* lair, int spawnNumb
 	info(true) << "Wild Lair - Name: " << lair->getDisplayedName() << " ID: " << lair->getObjectID() << " Damaging Self from creature spawn: " << newDamage;
 #endif // DEBUG_WILD_LAIRS
 
-	lair->inflictDamage(lair, 0, newDamage, true, true, false);
+	//lair->inflictDamage(lair, 0, newDamage, true, true, false);
+	lair->inflictDamage(lair, 0, 0, true, true, false);
 
 	// Returning here for no passive spawn, lair is destroyed or we have hit the max passive spawns
 	if (!spawnPassive || lair->isDestroyed() || spawnedCreatures.size() > LairObserver::WILD_LAIR_PASSIVE_MAX) {

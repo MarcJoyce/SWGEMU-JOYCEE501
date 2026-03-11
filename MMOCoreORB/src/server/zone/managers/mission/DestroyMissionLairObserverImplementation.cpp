@@ -309,5 +309,6 @@ void DestroyMissionLairObserverImplementation::spawnLairMobile(LairObject* lair,
 	info(true) << "Wild Lair - Name: " << lair->getDisplayedName() << " ID: " << lair->getObjectID() << " Damaging Self from creature spawn: " << newDamage;
 #endif // DEBUG_MISSION_LAIRS
 
-	lair->inflictDamage(lair, 0, newDamage, true, true, false);
+	//lair->inflictDamage(lair, 0, newDamage, true, true, false);
+	lair->inflictDamage(lair, 0, 0, true, true, false);
 }

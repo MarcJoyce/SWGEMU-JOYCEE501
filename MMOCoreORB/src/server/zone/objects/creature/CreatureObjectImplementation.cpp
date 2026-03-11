@@ -1764,7 +1764,7 @@ void CreatureObjectImplementation::updateSpeedAndAccelerationMods() {
 	}
 
 	if (isInCombat()) {
-		mScale *= 0.5f;
+		mScale *= 0.8f;
 	}
 
 	/*

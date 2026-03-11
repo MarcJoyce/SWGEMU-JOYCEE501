@@ -458,7 +458,7 @@ public:
 				validateIntTokenErrors(&args, creature, &errors, &maxCondition, condition, 999999, "Max Condition");
 
 				// Sockets
-				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 6, "Sockets");
+				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 12, "Sockets");
 
 				// Skill Mods
 				validateSkillModTokens(&args, creature, &errors, &skillModType01);
@@ -553,7 +553,7 @@ public:
 				validateIntTokenErrors(&args, creature, &errors, &maxCondition, condition, 999999, "Max Condition");
 
 				// Sockets
-				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 6, "Sockets");
+				validateIntTokenErrors(&args, creature, &errors, &sockets, 0, 12, "Sockets");
 
 				// If errors, do not generate armor
 				if (errors)

@@ -224,7 +224,7 @@ public:
 	}
 
 	int getSpawnLimit() const {
-		return spawnLimit;
+		return spawnLimit * 2;
 	}
 
 	const VectorMap<String, int>* getMobiles() const {

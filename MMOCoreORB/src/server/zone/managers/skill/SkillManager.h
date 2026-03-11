@@ -84,6 +84,8 @@ public:
 	bool surrenderSkill(const String& skillName, CreatureObject* creature, bool notifyClient = true, bool verifyFrs = true, bool allowPilot = false);
 	void surrenderAllSkills(CreatureObject* creature, bool notifyClient = true, bool removeForceProgression = true, bool removePilot = false);
 
+	void verifyAbilities(CreatureObject* creature);
+
 	/**
 	 * Checks if the player can learn the skill (fulfills skill prerequisites, enough skill points and enough XP).
 	 * @param skillName the name of the skill to check if the player can learn.
