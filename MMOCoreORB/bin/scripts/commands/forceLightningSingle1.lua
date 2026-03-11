@@ -44,9 +44,9 @@
 ForceLightningSingle1Command = {
 	name = "forcelightningsingle1",
 
-	minDamage = 400,
-	maxDamage = 700,
-	speed = 4.0,
+	minDamage = 800,
+	maxDamage = 1400,
+	speed = 1.0,
 	forceCost = 75,
 	visMod = 25,
 
@@ -69,7 +69,7 @@ ForceLightningSingle1Command = {
 			{},
 			{},
 			{ "jedi_state_defense" },
-			30,
+			100,
 			0,
 			30
 		)

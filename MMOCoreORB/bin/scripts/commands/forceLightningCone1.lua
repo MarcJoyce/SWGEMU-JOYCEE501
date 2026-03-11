@@ -44,9 +44,9 @@
 ForceLightningCone1Command = {
 	name = "forcelightningcone1",
 
-	minDamage = 300,
-	maxDamage = 600,
-	speed = 4.0,
+	minDamage = 600,
+	maxDamage = 1200,
+	speed = 1.0,
 	forceCost = 125,
 	accuracySkillMod = "forcelightning_accuracy",
 	coneAngle = 40,
@@ -59,7 +59,7 @@ ForceLightningCone1Command = {
 			{},
 			{},
 			{ "jedi_state_defense" },
-			30,
+			100,
 			0,
 			30
 		)
