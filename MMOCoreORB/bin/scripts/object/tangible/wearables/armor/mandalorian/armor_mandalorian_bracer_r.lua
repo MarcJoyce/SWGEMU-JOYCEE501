@@ -106,18 +106,18 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_bracer_r = object_
 	mindEncumbrance = 0,
 
 	-- LIGHT, MEDIUM, HEAVY
-	rating = MEDIUM,
+	rating = LIGHT,
 	maxCondition = 100000,
 
-	kinetic = 90,
-	energy = 90,
-	electricity = 90,
-	stun = 45,
-	blast = 90,
-	heat = 90,
-	cold = 90,
-	acid = 90,
-	lightSaber = 45
+	kinetic = 70,
+	energy = 70,
+	electricity = 70,
+	stun = 50,
+	blast = 70,
+	heat = 70,
+	cold = 70,
+	acid = 70,
+	lightSaber = 25
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_mandalorian_armor_mandalorian_bracer_r, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_bracer_r.iff")

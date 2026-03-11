@@ -8,7 +8,7 @@ function stanConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local playerID = SceneObject(pPlayer):getObjectID()
 
 	local accountID = 0
-	local pAdminPlayer = getCreatureObject(281474993547)
+	local pAdminPlayer = getCreatureObject(281474993547517)
 
   return convoTemplate:getScreen("hello")
 end
@@ -26,23 +26,27 @@ function stanConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, select
 
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-	local pAdminPlayer = getCreatureObject(281474993547)
+	local pAdminPlayer = getCreatureObject(281474993547517)
 
 	local cooldown = tonumber(readScreenPlayData(pPlayer, "StanMeatlump", "cooldown")) or 0
+	local randomNumber = getRandomNumber(100)
+
+	local planet = tostring(readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "planet"))
+	local x = tonumber(readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "x"))
+	local y = tonumber(readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "y"))
 
 	if (screenID == "what_do_you_sell") then
 		if (CreatureObject(pPlayer):hasScreenPlayState(1, "glowy_trial_1") and not CreatureObject(pPlayer):hasScreenPlayState(2, "glowy_trial_1")) then
 			clonedConversation:addOption("I'm looking for something  related to the ancient force mystics, have you heard anything about that?", "glowy_trial_1_rumour")
 		end
-	elseif (screenID == "glowy_trial_1_rumour") then
-		if (selogelConvoHandler:collectedHowManyTrial1Pieces(pPlayer) > 6 and not CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_seven")) then
-			clonedConversation:addOption("Is there anything else you know? I am willing to pay for this information.", "glowy_trial_1_rumour_two")
-		end
-		
-		if (getRandomNumber(100) > 50 and cooldown > os.time()) then
+		if (randomNumber > 50 and cooldown <= os.time()) then
 			clonedConversation:addOption("Have you heard anything about a Meatlump King?", "meatlump_king_location")
 		else 
 			writeScreenPlayData(pPlayer, "StanMeatlump", "cooldown", os.time() + (30 * 60))
+		end
+	elseif (screenID == "glowy_trial_1_rumour") then
+		if (selogelConvoHandler:collectedHowManyTrial1Pieces(pPlayer) > 6 and not CreatureObject(pPlayer):hasScreenPlayState(1, "piece_of_eight_seven")) then
+			clonedConversation:addOption("Is there anything else you know? I am willing to pay for this information.", "glowy_trial_1_rumour_two")
 		end
 
 		clonedConversation:addOption("Thanks for the tip!", "goodbye")
@@ -70,11 +74,7 @@ function stanConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, select
 		awardSkill(pPlayer, "social_language_sullustan_speak");
 		awardSkill(pPlayer, "social_language_sullustan_comprehend");
 	elseif (screenID == "meatlump_king_location") then
-		local planet = readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "planet")
-		local x = readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "x")
-		local y = readScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "y")
-
-		clonedConversation:setCustomDialogText("Ah, the false royal, claiming domain over all the galaxy. He's worse than the Hutt that one. Yes, I know where he is. Head to " .. planet .. ". I have marked the exact coordinates in your datapad. Do the galaxy a favour and get rid of him.")
+		clonedConversation:setCustomDialogText("Ah, the false royal, claiming domain over all the galaxy. He's worse than the Hutt that one. Yes, I know where he is. Head to " .. planet .. ". I have marked the exact coordinates in your datapad. Do the galaxy a favour and get rid of him. But hurry, he rarely stays in one place for long.")
 
 		PlayerObject(pGhost):addWaypoint(planet, "The false royal.", "", x, 0, y, WAYPOINT_YELLOW, true, true, WAYPOINTQUESTTASK)
 	end

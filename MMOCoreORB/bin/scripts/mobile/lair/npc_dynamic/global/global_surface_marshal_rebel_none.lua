@@ -1,11 +1,11 @@
 global_surface_marshal_rebel_none = Lair:new {
 	mobiles = {
-		{"rebel_surface_marshall",1},
-		{"rebel_colonel",1},
-		{"rebel_major",2},
-		{"rebel_commando",4}
+		{"rebel_surface_marshall", 1},
+		{"rebel_colonel", 1},
+		{"rebel_major", 2},
+		{"rebel_commando", 4},
+		{"rebel_rear_admiral", 5}
 	},
-	bossMobiles = {{"corvette_rebel_rear_admiral", 2}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/building/poi/anywhere_rebel_camp_small_1.iff","object/building/poi/anywhere_rebel_camp_small_2.iff","object/building/poi/anywhere_rebel_camp_small_3.iff"},
 	buildingsEasy = {"object/building/poi/anywhere_rebel_camp_small_1.iff","object/building/poi/anywhere_rebel_camp_small_2.iff","object/building/poi/anywhere_rebel_camp_small_3.iff"},

@@ -113,6 +113,10 @@ function GoToTheater:taskStart(pPlayer)
 		writeScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "x", spawnPoint[1])
 		writeScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "y", spawnPoint[3])
 		writeScreenPlayData(pAdminPlayer, "MeatlumpKingTheatre", "planet", zoneName)
+
+		local pAdminGhost = CreatureObject(pAdminPlayer):getPlayerObject()
+
+		PlayerObject(pAdminGhost):addWaypoint(zoneName, "Meatlump King Camp", "", spawnPoint[1], 0, spawnPoint[3], WAYPOINT_YELLOW, true, true, WAYPOINTQUESTTASK)
 	end
 
 	self:callFunctionIfNotNil(self.onTheaterCreated, nil, pPlayer)

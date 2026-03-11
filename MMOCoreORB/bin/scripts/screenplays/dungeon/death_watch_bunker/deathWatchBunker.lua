@@ -1548,10 +1548,10 @@ function DeathWatchBunkerScreenPlay:checkDoor(pSceneObject, pCreature)
 			return
 		end
 
-		if (self:hasRequiredSkill(doorNumber, pCreature) == false) then
-			CreatureObject(pCreature):sendSystemMessage(self.missingSkillMessage[doorNumber])
-			return
-		end
+		-- if (self:hasRequiredSkill(doorNumber, pCreature) == false) then
+		-- 	CreatureObject(pCreature):sendSystemMessage(self.missingSkillMessage[doorNumber])
+		-- 	return
+		-- end
 
 		self:unlockForGroup(doorNumber, pCreature, true)
 

@@ -160,8 +160,8 @@ factional_imperial_destroy_missions = {
 		},
 		{
 			lairTemplateName = "global_surface_marshal_rebel_none",
-			minDifficulty = 26,
-			maxDifficulty = 30,
+			minDifficulty = 55,
+			maxDifficulty = 60,
 			size = 25,
 		},
 	}

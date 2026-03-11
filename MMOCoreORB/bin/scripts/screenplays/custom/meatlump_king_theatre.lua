@@ -229,11 +229,27 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage10(pMeatlumpKing, pAttacker, da
 
     self:getHelp(pMeatlumpKing, 1, "meatlump_king_cretin", pAttacker)
     spatialChat(pMeatlumpKing, "Running away eh? Come back here and take what's coming to you! I'll bite your legs off!")
-    self:healTenPercent(pMeatlumpKing)
+    self:finalHeal(pMeatlumpKing)
     return 1
   else
     return 0
   end
+end
+
+function MeatlumpKingTheatre:finalHeal(pObj)
+	if (pObj == nil) then
+		return
+	end
+
+	SceneObject(pObj):playEffect("clienteffect/healing_healdamage.cef", "")
+
+	if (SceneObject(pObj):isCreatureObject()) then
+		for i = 0, 6, 3 do
+			local toHeal = CreatureObject(pObj):getMaxHAM(i) * 0.5;
+      local currentHAM = CreatureObject(pObj):getHAM(i);
+			CreatureObject(pObj):setHAM(i, math.min(CreatureObject(pObj):getMaxHAM(i), currentHAM + toHeal));
+		end
+	end
 end
 
 function MeatlumpKingTheatre:healTenPercent(pObj)

@@ -1,6 +1,6 @@
 stan = Creature:new {
 	objectName = "",
-    customName = "Stan",
+    customName = "Stan-ish",
 	socialGroup = "townsperson",
 	faction = "townsperson",
 	mobType = MOB_NPC,
@@ -28,7 +28,7 @@ stan = Creature:new {
 	diet = HERBIVORE,
 	scale = 1,
 
-    templates = {"object/mobile/dressed_businessman_human_male_01.iff"},
+    templates = {"object/mobile/dressed_commoner_naboo_moncal_male_01.iff"},
 	lootGroups = {},
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
