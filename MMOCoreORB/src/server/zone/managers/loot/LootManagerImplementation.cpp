@@ -641,35 +641,36 @@ void LootManagerImplementation::setSkillMods(TangibleObject* prototype, const Lo
     const String& key = skillMods.elementAt(i).getKey();
     int value = skillMods.elementAt(i).getValue();
 
-    if (value <= 0) {
-        int min = Math::clamp(-1, (int)round(0.075f * level) - 1, 25);
-        int max = Math::clamp(-1, (int)round(0.125f * level) + 1, 25);
-        int mod = System::random(Math::max(1, max - min)) + min;
-        mod = Math::min<int>(25, Math::max<int>(((50 + level) / 50) * 5, 5));
-        skillMods.put(key, ((mod <= 0) ? 1 : mod));
-    }
+    // if (value <= 0) {
+		int min = Math::clamp(-1, (int)round(0.075f * level) - 1, 25);
+		int max = Math::clamp(-1, (int)round(0.125f * level) + 1, 25);
+		int mod = System::random(Math::max(1, max - min)) + min;
+		mod = Math::min<int>(25, Math::max<int>(((50 + level) / 50) * 5, 5));
+		skillMods.put(key, ((mod <= 0) ? 1 : mod));
+    // }
 	}
 
 	float modifier = Math::max(getRandomModifier(templateObject, level, excMod), baseModifier);
-	int chance = LootValues::getLevelRankValue(level, 0.2f, 0.9f) * modifier * levelChance;
-	int roll = System::random(skillModChance);
-	int randomMods = 0;
+	int chance = LootValues::getLevelRankValue(level, 0.2f, 6.0f);
 
-	if (roll <= chance) {
-		int pivot = chance - roll;
+	int roll = System::random(100);
+	int randomMods = (int)chance;
 
-		if (pivot < 40) {
-			randomMods = 1;
-		} else if (pivot < 70) {
-			randomMods = System::random(1) + 1;
-		} else if (pivot < 100) {
-			randomMods = System::random(2) + 1;
-		} else {
-			randomMods = System::random(1) + 2;
-		}
+	if (roll < 20) {
+		randomMods += System::random(1);
+	} else if (roll < 40) {
+		randomMods += System::random(2);
+	} else if (roll < 60) {
+		randomMods += System::random(3);
+	} else if (roll < 80) {
+		randomMods += System::random(4);
+	} else if (roll < 90) {
+		randomMods += System::random(5);
+	} else {
+		randomMods += System::random(6);
 	}
 
-	randomMods = 6;
+	randomMods = Math::min(6, randomMods);
 
 	for (int i = 0; i < randomMods; ++i) {
 		String modName = getRandomLootableMod(prototype->getGameObjectType(), templateObject->getTemplateName());
@@ -793,7 +794,7 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 
 		rolls.add(roll);
 
-		if (roll > lootChance && level < 120)
+		if (roll > lootChance && level <= 120)
 			continue;
 
  		// Start at 0
@@ -810,7 +811,14 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 		for (int k = 0; k < lootGroups->count(); ++k) {
 			const LootGroupEntry* groupEntry = lootGroups->get(k);
 
-			lootGroupNames.add(groupEntry->getLootGroupName());
+			String lootEntry = groupEntry->getLootGroupName();
+
+			if (lootEntry == "junk" && level >= 120) {
+				info(true) << "createLootFromCollection: lootEntry: " << lootEntry << ", mob level: " << level;
+				lootEntry = "high_level_junk";
+			}
+
+			lootGroupNames.add(lootEntry);
 
 			tempChance += groupEntry->getLootChance();
 
@@ -818,7 +826,7 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 			if (tempChance < roll)
 				continue;
 
-			objectID = createLoot(trx, container, groupEntry->getLootGroupName(), level);
+			objectID = createLoot(trx, container, lootEntry, level);
 
 			break;
 		}

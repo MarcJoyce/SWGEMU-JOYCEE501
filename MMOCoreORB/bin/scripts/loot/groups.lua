@@ -792,4 +792,11 @@ includeFile("groups/custom/barc_disks.lua")
 includeFile("groups/custom/holocron_splinters.lua")
 includeFile("groups/custom/deity_items.lua")
 includeFile("groups/custom/junk_version_two.lua")
+includeFile("groups/custom/high_level_junk.lua")
+
+includeFile("groups/seaRemoval/sea_removal_20.lua")
+includeFile("groups/seaRemoval/sea_removal_40.lua")
+includeFile("groups/seaRemoval/sea_removal_60.lua")
+includeFile("groups/seaRemoval/sea_removal_80.lua")
+includeFile("groups/seaRemoval/blank_attachments.lua")
 
