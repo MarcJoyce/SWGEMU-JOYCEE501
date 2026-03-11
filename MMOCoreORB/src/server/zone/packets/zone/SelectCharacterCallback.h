@@ -9,6 +9,7 @@
 #define SELECTCHARACTERCALLBACK_H_
 
 #include "server/zone/packets/MessageCallback.h"
+#include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/ZoneServer.h"
 #include "server/zone/Zone.h"
 #include "server/zone/SpaceZone.h"
@@ -349,6 +350,8 @@ public:
 		}
 
 		SkillModManager::instance()->verifyWearableSkillMods(player);
+		SkillModManager::instance()->verifySkillBoxSkillMods(player);
+		SkillManager::instance()->verifyAbilities(player);
 	}
 
 	void run() {

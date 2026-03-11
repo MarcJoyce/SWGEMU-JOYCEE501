@@ -81,7 +81,8 @@ void MissionObjectiveImplementation::complete() {
 	_lock.release();
 
 	Reference<CompleteMissionObjectiveTask*> task = new CompleteMissionObjectiveTask(_this.getReferenceUnsafeStaticCast());
-	task->execute();
+	Core::getTaskManager()->executeTask(task);
+	// task->execute();
 
 	if (player->isGrouped() && player->getGroup() != nullptr) {
 		GroupObject* group = player->getGroup();
