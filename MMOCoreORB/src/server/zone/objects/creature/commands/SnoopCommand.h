@@ -690,7 +690,6 @@ public:
 		body << "Gladiator: " << targetGhost->getExperience("combat_gladiator") << "\n";
 		body << "Heavy Weapons: " << targetGhost->getExperience("combat_rangedspecialize_heavy") << "\n";
 		body << "Image Designer: " << targetGhost->getExperience("imagedesigner") << "\n";
-		body << "Jedi: " << targetGhost->getExperience("jedi_general") << "\n";
 		body << "Medical: " << targetGhost->getExperience("medical") << "\n";
 		body << "Medicine Crafting: " << targetGhost->getExperience("crafting_medicine_general") << "\n";
 		body << "Merchant: " << targetGhost->getExperience("merchant") << "\n";
@@ -712,10 +711,16 @@ public:
 		body << "Unarmed Combat: " << targetGhost->getExperience("combat_meleespecialize_unarmed") << "\n";
 		body << "Weapon Crafting: " << targetGhost->getExperience("crafting_weapons_general") << "\n";
 		body << "Wilderness Survival: " << targetGhost->getExperience("camp") << "\n";
+		body << "\n";
+		body << "Force Sensitive Combat: " << targetGhost->getExperience("fs_combat") << "\n";
+		body << "Force Sensitive Reflexes: " << targetGhost->getExperience("reflex") << "\n";
+		body << "Force Sensitive Senses: " << targetGhost->getExperience("fs_senses") << "\n";
+		body << "Force Sensitive Crafting: " << targetGhost->getExperience("fs_crafting") << "\n";
+		body << "Jedi: " << targetGhost->getExperience("jedi_general") << "\n";
 		
 		body << "\n\n";
 
-
+		
 		ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, 0);
 		box->setPromptTitle("Player Experience");
 		box->setPromptText(body.toString());

@@ -295,29 +295,22 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 
 		int templSpecies = getSpecies();
 
-		String newName = nm->makeCreatureName(npcTemplate->getRandomNameType(), templSpecies);
-
 		if (!npcTemplate->getRandomNameTag()) {
-			newName += " CL: " + String::valueOf(level);
-			setCustomObjectName(newName, false);
+			setCustomObjectName(nm->makeCreatureName(npcTemplate->getRandomNameType(), templSpecies), false);
 		} else {
+			String newName = nm->makeCreatureName(npcTemplate->getRandomNameType(), templSpecies);
 			newName += " (";
-			
-			if (objectName == "") {
+
+			if (objectName == "")
 				newName += templateData->getCustomName();
-			} else {
+			else
 				newName += StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
-			}
 
 			newName += ")";
-			newName += " CL: " + String::valueOf(level);
 			setCustomObjectName(newName, false);
 		}
 	} else {
-		String customName = templateData->getCustomName();
-
-		customName += " CL: " + String::valueOf(level);
-		setCustomObjectName(customName, false);
+		setCustomObjectName(templateData->getCustomName(), false);
 	}
 
 	setHeight(templateData->getScale(), false);
@@ -488,6 +481,8 @@ void AiAgentImplementation::fillAttributeList(AttributeListMessage* alm, Creatur
 	if (isDead()) {
 		return;
 	}
+
+	alm->insertAttribute("challenge_level", String::valueOf(getTemplateLevel()));
 
 	if (getArmor() == 0)
 		alm->insertAttribute("armorrating", "None");

@@ -218,6 +218,12 @@ naboo_destroy_missions = {
 			maxDifficulty = 36,
 			size = 35,
 		},
+		{
+			lairTemplateName = "global_dark_jedi_camp_dark_jedi_theater",
+			minDifficulty = 150,
+			maxDifficulty = 200,
+			size = 35,
+		}
 	}
 }
 

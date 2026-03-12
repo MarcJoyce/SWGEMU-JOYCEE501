@@ -233,6 +233,9 @@ TatooineMosEspaScreenPlay = CityScreenPlay:new {
 		{"herald_of_the_whills",0,-2879,5,2555,135,0, ""},
 		-- {"informant_npc_lvl_2",0,-2879,5,2555,135,0, ""},
 
+		-- Kreezo
+		{"kreezo", 0, -2868, 5, 2444, 134.187, 0, ""},
+
 		--Jawa's
 		{"jawa",300,-2930.03,5,2038.02,270.008,0, "conversation"},
 		{"jawa",300,-2932.03,5,2038.02,90.0027,0, "conversation"},

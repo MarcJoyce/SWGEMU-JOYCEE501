@@ -97,9 +97,9 @@ function GCWEncounters:doDelayedStep(pPlayer)
 		end
 	elseif (curStep == self.ELITE) then
     if (isImperial) then
-      encounterResult = EncounterGCWTEliteImperial:start(pPlayer);
+      encounterResult = EncounterGCWEliteImperial:start(pPlayer);
     else
-      encounterResult = EncounterGCWTEliteRebel:start(pPlayer)
+      encounterResult = EncounterGCWEliteRebel:start(pPlayer)
 		end
 	elseif (curStep == self.MASTER) then
     if (isImperial) then

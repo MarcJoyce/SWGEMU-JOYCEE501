@@ -74,7 +74,7 @@ namespace creature {
 		}
 
 		int getSpawnLimit() const {
-			return spawnLimit * 2;
+			return spawnLimit;
 		}
 
 		int getMinDifficulty() const {

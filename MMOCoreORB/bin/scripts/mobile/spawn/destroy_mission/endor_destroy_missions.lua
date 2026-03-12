@@ -254,6 +254,12 @@ endor_destroy_missions = {
 			maxDifficulty = 200,
 			size = 25,
 		},
+		{
+			lairTemplateName = "global_dark_jedi_camp_dark_jedi_theater",
+			minDifficulty = 150,
+			maxDifficulty = 200,
+			size = 35,
+		}
 	}
 }
 

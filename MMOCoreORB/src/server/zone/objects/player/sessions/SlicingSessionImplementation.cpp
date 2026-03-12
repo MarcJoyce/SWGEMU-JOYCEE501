@@ -578,9 +578,11 @@ void SlicingSessionImplementation::handleWeaponSlice() {
 		min += 5;
 		max += 5;
 	case 3:
+		min += 5;
+		max += 5;	
 	case 2:
-		min += 10;
-		max += 25;
+		min += 20;
+		max += 20;
 		break;
 	default:
 		return;
@@ -704,14 +706,14 @@ void SlicingSessionImplementation::handleArmorSlice() {
 
 	switch (sliceSkill) {
 	case 5:
-		min += (sliceType == 0) ? 6 : 5;
+		min += 5;
 		max += 5;
 	case 4:
-		min += (sliceType == 0) ? 0 : 10;
-		max += 10;
-	case 3:
 		min += 5;
-		max += (sliceType == 0) ? 20 : 30;
+		max += 5;
+	case 3:
+		min += (sliceType == 0) ? 20 : 20;
+		max += (sliceType == 0) ? 20 : 20;
 		break;
 	default:
 		return;
