@@ -6,8 +6,8 @@ krayt_dragon_elder_tissue = {
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/blaster_power_handler_enhancement_krayt.iff",
 	craftingValues = {
-		{"maxdamage",300,600,0},
-		{"attackspeed",-3.0,-6.0,2},
+		{"maxdamage",150,300,0},
+		{"attackspeed",-1.5,-3.0,2},
 		{"useCount",11,22,0},
 	},
 	customizationStringNames = {},
