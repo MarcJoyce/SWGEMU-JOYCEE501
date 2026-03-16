@@ -2151,8 +2151,20 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 					continue;
 				}
 
+				int forceControlMod = 0;
+
+				if (attackerCreo->hasSkill("force_rank_light_novice")) {
+					forceControlMod = attackerCreo->getSkillMod("force_control_light");
+				} else if (attackerCreo->hasSkill("force_rank_dark_novice")) {
+					forceControlMod = attackerCreo->getSkillMod("force_power_dark");
+				}
+
 				//Award individual expType
-				awardExperience(attackerCreo, xpType, xpAmount);
+				if (xpType == "jedi_general") {
+					awardExperience(attackerCreo, xpType, xpAmount * (1.f + (forceControlMod / 100.f)));
+				} else {
+					awardExperience(attackerCreo, xpType, xpAmount);
+				}
 
 				if (xpType == "jedi_general" && attackerCreo->hasSkill("force_title_jedi_rank_03")) {
 					float frsXpAmount = xpAmount * 0.00625f;

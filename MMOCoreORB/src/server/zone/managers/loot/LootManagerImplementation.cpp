@@ -813,11 +813,6 @@ bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, Sc
 
 			String lootEntry = groupEntry->getLootGroupName();
 
-			if (lootEntry == "junk" && level >= 120) {
-				info(true) << "createLootFromCollection: lootEntry: " << lootEntry << ", mob level: " << level;
-				lootEntry = "high_level_junk";
-			}
-
 			lootGroupNames.add(lootEntry);
 
 			tempChance += groupEntry->getLootChance();
@@ -909,19 +904,29 @@ TangibleObject* LootManagerImplementation::createLootAttachment(const LootItemTe
 uint64 LootManagerImplementation::createLoot(TransactionLog& trx, SceneObject* container, const String& lootMapEntry, int level, bool maxCondition) {
 	String lootEntry = lootMapEntry;
 	String lootGroup = "";
-
+	// Replace root junk group for high-level mobs
+	if (level >= 120 && (lootEntry == "loot_kit_parts" || lootEntry == "junk") && lootGroupMap->lootGroupExists("high_level_junk")) {
+		lootEntry = "high_level_junk";
+		
+	}
+	
 	int depthMax = 32;
 	int depth = 0;
-
+	
 	while (lootGroupMap->lootGroupExists(lootEntry) && depthMax > depth++) {
 		auto group = lootGroupMap->getLootGroupTemplate(lootEntry);
-
+		
 		if (group != nullptr) {
 			lootGroup = lootEntry;
 			lootEntry = group->getLootGroupEntryForRoll(System::random(10000000));
+			
+			// Replace nested junk group for high level mobs
+			if (level >= 120 && (lootEntry == "loot_kit_parts" || lootEntry == "junk") && lootGroupMap->lootGroupExists("high_level_junk")) {
+				lootEntry = "high_level_junk";
+			}
 		}
 	}
-
+	
 	Reference<const LootItemTemplate*> itemTemplate = lootGroupMap->getLootItemTemplate(lootEntry);
 
 	if (itemTemplate == nullptr) {

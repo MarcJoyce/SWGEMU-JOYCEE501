@@ -129,6 +129,7 @@ includeFile("lair/creature_lair/dathomir/dathomir_rancor_ancient_bull_lair_neutr
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_bull_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_neutral_large_boss_01.lua")
+includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_bull_lair_monostrous_neutral_large_boss_01.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_enraged_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_rancor_lair_neutral_large.lua")
 includeFile("lair/creature_lair/dathomir/dathomir_reptilian_ancient_flyer_lair_neutral_large.lua")
