@@ -154,20 +154,26 @@ dathomir_destroy_missions = {
 		},
 		{
 			lairTemplateName = "dathomir_rancor_enraged_bull_lair_neutral_large_boss_01",
-			minDifficulty = 87,
-			maxDifficulty = 91,
+			minDifficulty = 85,
+			maxDifficulty = 89,
 			size = 35,
 		},
 		{
 			lairTemplateName = "dathomir_rancor_ancient_bull_lair_neutral_large",
-			minDifficulty = 98,
-			maxDifficulty = 100,
+			minDifficulty = 100,
+			maxDifficulty = 120,
 			size = 35,
 		},
 		{
 			lairTemplateName = "dathomir_nightsister_elder_enclave_neutral_large_theater",
 			minDifficulty = 100,
 			maxDifficulty = 120,
+			size = 35,
+		},
+		{
+			lairTemplateName = "dathomir_rancor_enraged_bull_lair_monostrous_neutral_large_boss_01",
+			minDifficulty = 150,
+			maxDifficulty = 200,
 			size = 35,
 		},
 		{

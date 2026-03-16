@@ -46,7 +46,7 @@ ForceIntimidate1Command = {
 
 	damageMultiplier = 0,
 	speed = 1.0,
-	forceCost = 300,
+	forceCost = 50,
 	accuracySkillMod = "forceintimidate_accuracy",
 	areaAction = true,
 	areaRange = 32,

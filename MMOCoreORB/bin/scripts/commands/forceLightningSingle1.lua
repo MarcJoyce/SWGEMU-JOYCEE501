@@ -47,7 +47,7 @@ ForceLightningSingle1Command = {
 	minDamage = 800,
 	maxDamage = 1400,
 	speed = 1.0,
-	forceCost = 75,
+	forceCost = 50,
 	visMod = 25,
 
 	accuracySkillMod = "forcelightning_accuracy",

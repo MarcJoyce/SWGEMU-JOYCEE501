@@ -42,6 +42,10 @@ function RewardThird:doDelayedStep(pPlayer)
         return
     end
 
+    if (not self:isEligible(pPlayer)) then
+        return
+    end
+
     local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
     if (pGhost == nil or not PlayerObject(pGhost):isOnline()) then

@@ -1,6 +1,5 @@
-dathomir_ancient_bull_rancor_neutral = Lair:new {
-	mobiles = {{"enraged_bull_rancor",1}},
-	bossMobiles = {{"monstrous_brute",1}},
+dathomir_rancor_enraged_bull_lair_monostrous_neutral_large_boss_01 = Lair:new {
+	mobiles = {{"enraged_bull_rancor",5}, {"monstrous_brute",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_bones_large_fog_red.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_bones_large_fog_red.iff"},
@@ -9,4 +8,4 @@ dathomir_ancient_bull_rancor_neutral = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_bones_large_fog_red.iff"},
 }
 
-addLairTemplate("dathomir_ancient_bull_rancor_neutral", dathomir_ancient_bull_rancor_neutral)
+addLairTemplate("dathomir_rancor_enraged_bull_lair_monostrous_neutral_large_boss_01", dathomir_rancor_enraged_bull_lair_monostrous_neutral_large_boss_01)

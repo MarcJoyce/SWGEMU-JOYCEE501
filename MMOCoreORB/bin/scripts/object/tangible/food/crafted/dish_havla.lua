@@ -48,14 +48,13 @@ object_tangible_food_crafted_dish_havla = object_tangible_food_crafted_shared_di
 	filling = 10,
 	nutrition = 10,
 
-	-- effectType = 3, -- Event Based Buff
-	effectType = 4, -- Event Based Buff
-	-- eventTypes = {MEDPACKUSED},
+	effectType = 3,
+	eventTypes = {MEDPACKUSED},
 
 	fillingMin = 30,
 	fillingMax = 20,
-	flavorMin = 720,
-	flavorMax = 1440,
+	flavorMin = 17,
+	flavorMax = 37,
 	nutritionMin = 38,
 	nutritionMax = 60,
 	quantityMin = 5,
