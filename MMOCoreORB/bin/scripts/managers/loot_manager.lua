@@ -46,8 +46,8 @@ levelChance = 5 -- 1 in 5
 --Chance dividend for attribute bonus modifiers
 baseChance = 5 -- 1 in 5
 yellowChance = 20 -- 1 in 20
-exceptionalChance = 100 -- 1 in 100
-legendaryChance = 500 -- 1 in 500
+exceptionalChance = 500 -- 1 in 500
+legendaryChance = 2500 -- 1 in 2500
 
 --Multiplier values for bonus modifiers
 baseModifier = 1
@@ -70,10 +70,10 @@ mindDotChance = 0.30
 
 -- Value ranges for random dots on looted weapons (chance is set individually on the loot items)
 randomDotAttribute = {0, 8} -- See CreatureAttributes.h in src for numbers.
-randomDotStrength = {10, 100} -- poison x1.5, disease x0.5
-randomDotDuration = {30, 120} -- disease x4.0, fire x1.5
-randomDotPotency = {1, 50}
-randomDotUses = {250, 4999}
+randomDotStrength = {10, 250} -- poison x1.5, disease x0.5
+randomDotDuration = {30, 240} -- disease x4.0, fire x1.5
+randomDotPotency = {1, 200}
+randomDotUses = {250, 9999}
 
 -- Modifier applied to min/max junk values found in loot item lua
 junkValueModifier = 5;

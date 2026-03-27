@@ -45,7 +45,7 @@ object_tangible_scout_trap_trap_flash_bomb = object_tangible_scout_trap_shared_t
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
-	useCount = 5,
+	useCount = 20,
 	skillRequired = 70,
 
 	skillMods = {},

@@ -9,6 +9,8 @@ includeFile("custom/bazaarbot/table_furniture.lua")
 includeFile("custom/bazaarbot/table_clothing.lua")
 includeFile("custom/bazaarbot/table_loot.lua")
 includeFile("custom/bazaarbot/table_vehicles.lua")
+includeFile("custom/bazaarbot/table_droid.lua")
+includeFile("custom/bazaarbot/table_additive.lua")
 
 BazaarBotScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
@@ -28,6 +30,8 @@ function BazaarBotScreenPlay:start()
 	self:validateEvent("BazaarBotAddVehicles", "addMoreVehicles", 8)
 	self:validateEvent("BazaarBotAddWeapons", "addMoreWeapons", 9)
 	self:validateEvent("BazaarBotAddLoot", "addMoreLoot", 10)
+	self:validateEvent("BazaarBotAddDroid", "addMoreDroid", 11)
+	self:validateEvent("BazaarBotAddAdditive", "addMoreAdditive", 12)
 
 	-- if (hasServerEvent("BazaarBotCleanInventory")) then
 	-- 	rescheduleServerEvent("BazaarBotCleanInventory", 180 * 1000)
@@ -64,6 +68,8 @@ function BazaarBotScreenPlay:startEvents()
 	self:addMoreClothing()
 	self:addMoreLoot()
 	self:addMoreVehicles()
+	self:addMoreDroid()
+	self:addMoreAdditive()
 	self:logFull("BazaarBotScreenPlay: All listing events have now started and will repeat on their own periodically.\n")
 end
 
@@ -189,6 +195,14 @@ function BazaarBotScreenPlay:addMoreVehicles()
 	self:addMoreCraftedItems(BBVehicleConfig, BBVehicleItems)
 end
 
+function BazaarBotScreenPlay:addMoreDroid()
+	self:addMoreCraftedItems(BBDroidConfig, BBDroidItems)
+end
+
+function BazaarBotScreenPlay:addMoreAdditive()
+	self:addMoreCraftedItems(BBAdditiveConfig, BBAdditiveItems)
+end
+
 function BazaarBotScreenPlay:addMoreCraftedItems(configTable, itemTable)
 	self:listCraftedItems(configTable, itemTable)
 	
@@ -242,6 +256,10 @@ function BazaarBotScreenPlay:listCraftedItems(configTable, itemTable)
                   
 										
 					local pItem = bazaarBotCreateCraftedItemAndList(pBazaarBot, template, crateQuantity, quality, altTemplate, pVendor, self.itemDescription, price)
+
+					if (pItem == nil) then
+						logToFile("Craft: " .. configTable.functionName .. ":" .. template .. "() Failed", "log/bazaarbot_troubleshoot.log")
+					end
 					self:logListing("Loot: " .. SceneObject(pItem):getObjectName() .. " (quality: " .. tostring(quality) .. ") " .. tostring(price) .. "cr")
 					-- self:checkInventory()
 										

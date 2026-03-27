@@ -21,7 +21,8 @@ function MeatlumpKingScreenPlay:start()
   self:respawn(pPlayer)
 end
 
-function MeatlumpKingScreenPlay:respawn(pPlayer)
+function MeatlumpKingScreenPlay:respawn()
+  local pPlayer = getCreatureObject(self.AdminPlayerID)
   MeatlumpKingTheatre:start(pPlayer)
-  createEvent(self.respawnFrequency, "MeatlumpKingTheatre", "finishUpTask", pPlayer, "")
+  createServerEvent(self.respawnFrequency, "MeatlumpKingTheatre", "finishUpTask", "meatlump_theatre_finish")
 end

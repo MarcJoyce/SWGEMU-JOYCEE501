@@ -67,10 +67,10 @@ function trainerConvHandler:removeSpecialItems(pPlayer, customItemPrefix)
 		local itemFullName = customItemPrefix .. " (" .. i .. "/10)"
 		local pItem = getContainerObjectByCustomName(pInventory, itemFullName, true)
 
-			if (pItem ~= nil) then
-				SceneObject(pItem):destroyObjectFromWorld()
-				SceneObject(pItem):destroyObjectFromDatabase()
-			end
+		if (pItem ~= nil) then
+			SceneObject(pItem):destroyObjectFromWorld()
+			SceneObject(pItem):destroyObjectFromDatabase()
+		end
 	end
 end
 

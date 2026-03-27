@@ -45,7 +45,7 @@ object_tangible_scout_trap_trap_melee_ranged_def_1 = object_tangible_scout_trap_
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
-	useCount = 5,
+	useCount = 20,
 	skillRequired = 20,
 
 	skillMods = {{"ranged_defense", -60}, {"melee_defense", -60}},

@@ -5,18 +5,26 @@ DedleeSynScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
   AdminPlayerID = 281474993547517, -- PlayerID of Admin character
   screenplayName = "DedleeSynScreenPlay",
-  respawnFrequency = 1000 * 86400,
-  spawns = {
+  -- respawnFrequency = 1000 * 86400, -- 1 Day
+  respawnFrequency = 1000 * 86400 / 24 * 3, -- 3 hours
+  regularSpawns = {
     { "tusken_witch_doctor", "Tusken Witch Doctor" },
     { "tusken_executioner", "Tusken Executioner" },
     { "tusken_observer", "Tusken Observer" },
     { "dark_jedi_knight", "Dark Jedi Knight" },
     { "dark_jedi_master", "Dark Jedi Master" },
-    { "spiderclan_elder", "SpiderClan Nightsister Elder" },
-    { "nightsister_elder", "Nightsister Elder" },
-    { "singing_mountain_clan_councilwoman", "Singing Mountain Clan Councilwoman" },
-    { "krayt_dragon_ancient", "Ancient Krayt Dragon" },
-    { "graul_marauder", "Graul Marauder" },
+    -- { "spiderclan_elder", "SpiderClan Nightsister Elder" },
+    -- { "nightsister_elder", "Nightsister Elder" },
+    -- { "singing_mountain_clan_councilwoman", "Singing Mountain Clan Councilwoman" },
+    -- { "krayt_dragon_ancient", "Ancient Krayt Dragon" },
+    -- { "graul_marauder", "Graul Marauder" },
+  },
+  spawns = {
+    { "axkva_min", "Axkva Min" },
+    { "krayt_dragon_elder", "Elder Krayt Dragon" },
+    { "death_watch_overlord", "Death Watch Overlord" },
+    { "tusken_observer", "Tusken Observer" },
+    { "dark_jedi_master", "Dark Jedi Master" },
   },
   messages = {
     "Boom! That one's not getting back up. Nice kill, ace. Remind me not to stand in your way!",
@@ -72,7 +80,11 @@ function DedleeSynScreenPlay:setHuntMob()
     return 0
   end
 
-  local target = self.spawns[getRandomNumber(1, #self.spawns)]
+  deleteScreenPlayData(pAdminPlayer, "DedleeSynScreenPlay", "huntTargetTemplate")
+  deleteScreenPlayData(pAdminPlayer, "DedleeSynScreenPlay", "huntTargetMessage")
+
+
+  local target = self.regularSpawns[getRandomNumber(1, #self.regularSpawns)]
   local targetTemplate = target[1]
   local targetMessage = target[2]
   self:log("DedleeSyn: New target selected. Template: " .. targetTemplate .. ", Message: " .. targetMessage)

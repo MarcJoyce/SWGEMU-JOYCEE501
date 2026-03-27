@@ -45,7 +45,7 @@ object_tangible_scout_trap_trap_drowsy_dart = object_tangible_scout_trap_shared_
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
-	useCount = 5,
+	useCount = 20,
 	skillRequired = 5,
 
 	skillMods = {},

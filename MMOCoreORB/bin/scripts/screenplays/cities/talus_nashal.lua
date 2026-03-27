@@ -101,7 +101,7 @@ TalusNashalScreenPlay = CityScreenPlay:new {
 		--misc
 		{"informant_npc_lvl_1",0,4214,2,5140,0,0, ""},
 		{"informant_npc_lvl_1",0,4224,2,5117,70,0, ""},
-		{"informant_npc_lvl_1",0,4277,2,5140,315,0, ""},
+		-- {"informant_npc_lvl_1",0,4277,2,5140,315,0, ""},
 		{"informant_npc_lvl_1",0,4290,2,5202,120,0, ""},
 		{"informant_npc_lvl_1",0,4350,2,5059,315,0, ""},
 		{"informant_npc_lvl_1",0,4353,2,5196,0,0, ""},

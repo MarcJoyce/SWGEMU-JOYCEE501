@@ -2,12 +2,15 @@ WorldBossesScreenPlay = ScreenPlay:new {
   numberOfActs = 1,
   AdminPlayerID = 281474993547517, -- PlayerID of Admin character
   screenplayName = "WorldBossesScreenPlay",
-  respawnFrequency = 1000 * 300,
+  respawnFrequency = 1000 * 86400 / 24 / 2, -- 30 mins
   specialSpawns = { 
     {
       { "world_boss_jedi", 1 },
       { "world_boss_jedi_drone", 1 }
     },
+    {
+      { "world_boss_stan", 1 }
+    }
   },
   spawns = {
     { "corellia", 
@@ -96,7 +99,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
         }
       },
       { 
-        {{ x = -4409, z = 22, y = 4284 }, " in close proximity of the Death Watch."},
+        {{ x = -4409, z = 22, y = 4284 }, " in close proximity of the Death Watch Bunker."},
         {{ x = 3552, z = 9, y = 3552 }, " east of the Korga cave."},
         {{ x = 1000, z = 31, y = -800 }, " between the Endorian outposts."}
       }
@@ -185,7 +188,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
       },
       { 
         {{ x = 4763, z = 98, y = 5248 }, " south-west of Exar Kun's Temple."},
-        {{ x = 5854, z = 661, y = -4383 }, " north-east of Imperial Outpost on Yavin4."}
+        {{ x = 5854, z = 661, y = -4383 }, " north-east of the Yavinian Imperial Outpost."}
       }
     },
   }

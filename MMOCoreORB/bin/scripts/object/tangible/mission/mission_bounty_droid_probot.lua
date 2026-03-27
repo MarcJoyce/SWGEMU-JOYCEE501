@@ -55,7 +55,7 @@ object_tangible_mission_mission_bounty_droid_probot = object_tangible_mission_sh
 	experimentalPrecision = {0, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1},
 	
-	useCount = 5
+	useCount = 25
 }
 
 ObjectTemplates:addTemplate(object_tangible_mission_mission_bounty_droid_probot, "object/tangible/mission/mission_bounty_droid_probot.iff")

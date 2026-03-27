@@ -45,7 +45,7 @@ object_tangible_scout_trap_trap_melee_def_1 = object_tangible_scout_trap_shared_
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
-	useCount = 5,
+	useCount = 20,
 	skillRequired = 5,
 
 	skillMods = {{"melee_defense", -40}},

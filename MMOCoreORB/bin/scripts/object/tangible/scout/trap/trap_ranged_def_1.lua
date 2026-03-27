@@ -46,7 +46,7 @@ object_tangible_scout_trap_trap_ranged_def_1 = object_tangible_scout_trap_shared
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
-	useCount = 5,
+	useCount = 20,
 	skillRequired = 10,
 
 	skillMods = {{"ranged_defense", -40}},

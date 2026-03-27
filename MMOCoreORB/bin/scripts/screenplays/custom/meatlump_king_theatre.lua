@@ -86,6 +86,10 @@ function MeatlumpKingTheatre:notifyOnKingKilled(pMobile)
       CreatureObject(pPlayer):sendSystemMessage("You have received a loot item!")
     end
   end
+
+  rescheduleServerEvent("meatlump_theatre_finish", getRandomNumber(1800, 5400) * 1000)
+
+  return 0
 end
 
 function MeatlumpKingTheatre:damageTaken(pNpc, damageThreshold)
@@ -105,7 +109,7 @@ end
 function MeatlumpKingTheatre:getHelp(pNpc, num, template, pAttacker)
 
   local numberOfPlayers = self:getPlayersInRange(pNpc)
-  local numToSpawn = num * numberOfPlayers
+  local numToSpawn = math.max(num * numberOfPlayers, num * 5)
 
   for i = 1, numToSpawn do
           local zoneName = CreatureObject(pNpc):getZoneName()
@@ -269,7 +273,8 @@ function MeatlumpKingTheatre:healTenPercent(pObj)
 	end
 end
 
-function MeatlumpKingTheatre:finishUpTask(pPlayer)
+function MeatlumpKingTheatre:finishUpTask()
+  local pPlayer = getCreatureObject(281474993547517)
   self:finish(pPlayer)
   createEvent(10000, "MeatlumpKingScreenPlay", "respawn", pPlayer, "")
 end

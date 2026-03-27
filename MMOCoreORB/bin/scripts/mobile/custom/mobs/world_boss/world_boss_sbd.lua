@@ -1,7 +1,7 @@
 world_boss_sbd = Creature:new {
-  customName = "Super Battle Droid",
-	socialGroup = "",
-	faction = "",
+  	customName = "Super Battle Droid",
+  socialGroup = "corsec",
+  faction = "corsec",
 	mobType = MOB_ANDROID,
 	level = 200,
 	chanceHit = 18,

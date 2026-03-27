@@ -5,8 +5,8 @@ Arena = ScreenPlay:new
 	screenplayName = "Arena",
   playerCooldown = 4 * 60 * 60, -- 4 hours
   -- playerCooldown = 10 * 60, -- 10 minutes
-  waveTimer = 45000, -- 45 seconds
-  minWaveTimer = 15000, -- 15 seconds
+  waveTimer = 45000, -- 30 seconds
+  minWaveTimer = 10000, -- 10 seconds
   leaderboardCooldown = 7 * 24 * 60 * 60, -- 7 days
   -- leaderboardCooldown = 30 * 60, -- 30 minutes
   eventName = "ArenaLeaderboard",
@@ -236,7 +236,7 @@ function Arena:beginArena(pPlayer)
 
   writeScreenPlayData(pPlayer, "NonEncounterEvent", "inEvent", 1)
 
-  CreatureObject(pPlayer):sendSystemMessage(" \\#FF0000\\ The Arena will begin in 30s")
+  CreatureObject(pPlayer):sendSystemMessage(" \\#FF0000\\ The Arena will begin in 45s")
 
   -- Start spawning creatures
   createEvent(30000, "Arena", "spawnArenaMobs", pPlayer, "")
