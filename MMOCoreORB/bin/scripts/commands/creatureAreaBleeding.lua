@@ -42,9 +42,9 @@
 --true = 1, false = 0
 
 CreatureAreaBleedingCommand = {
-        name = "creatureareableeding",
-        combatSpam = "attack",
-        animation = "creature_attack_special_2", 
+	name = "creatureareableeding",
+	combatSpam = "attack",
+	animation = "creature_attack_special_2", 
 	animType = GENERATE_INTENSITY,
 	dotEffects = {
 	  DotEffect( 

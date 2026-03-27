@@ -132,9 +132,6 @@ function dedleeSynConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
   local weaponSelection = readScreenPlayData(pPlayer, "DedleeSynScreenPlay", "weaponSelection")
   local damageTypeSelection = tonumber(readScreenPlayData(pPlayer, "DedleeSynScreenPlay", "damageTypeSelection")) or 0
 
-  -- DedleeSynScreenPlay:log("DedleeSyn debug: Weapon: " .. weaponSelection .. ". DamageType: " .. damageTypeSelection)
-
-  -- Screen handling
   if screenID == "information" then
     if not CreatureObject(pPlayer):hasScreenPlayState(1, "dedlee_syn") then
       CreatureObject(pPlayer):setScreenPlayState(1, "dedlee_syn")
@@ -191,6 +188,8 @@ function dedleeSynConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
     local newHuntCount = huntCount - tokensToSpend
 
     generateWeapon(pPlayer, weaponSelection, damageTypeSelection, tokensToSpend)
+
+    logToFile(CreatureObject(pPlayer):getFirstName() .. " received " .. weaponSelection .. " with type " .. damageTypeSelection .. " spending " .. tokensToSpend .. " tokens.")
 
     deleteScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount")
     writeScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount", newHuntCount)

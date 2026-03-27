@@ -1,18 +1,18 @@
-meatlump_king = Creature:new {
+meatlump_spike = Creature:new {
 	objectName = "",
-	customName = "The Meatlump King",
+	customName = "Spike",
 	mobType = MOB_NPC,
 	socialGroup = "meatlump",
 	faction = "meatlump",
-	level = 350,
-	chanceHit = 100,
-	damageMin = 3270,
-	damageMax = 4250,
+	level = 300,
+	chanceHit = 1000,
+	damageMin = 2800,
+	damageMax = 3200,
 	baseXp = 28549,
-	baseHAM = 575000,
-	baseHAMmax = 625000,
+	baseHAM = 510000,
+	baseHAMmax = 545000,
 	armor = 3,
-	resists = {200,200,200,200,200,200,200,200,200},
+	resists = {80,80,80,80,80,80,80,80,80},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -26,9 +26,10 @@ meatlump_king = Creature:new {
 	creatureBitmask = PACK + HERD + KILLER + HEALER + NODOT,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
-	lightsaberColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 },
+	scale = 1.15,
 
-	templates = {"thug"},
+	templates = {"object/mobile/gurreck_hue.iff"},
+	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	lootGroups = {
 		{
 			groups = {
@@ -39,14 +40,18 @@ meatlump_king = Creature:new {
 
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
 	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "dark_jedi_weapons_ranged",
-	reactionStf = "@npc_reaction/slang",
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
+	conversationTemplate = "",
 	
 	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
 	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(lightsabermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	primaryAttacks = { 
+		{"creatureareaattack","stateAccuracyBonus=100"},
+		{"creatureareaknockdown","stateAccuracyBonus=100"},
+		{"creatureareableeding", "stateAccuracyBonus=100"},
+	},
+	secondaryAttacks = { }
 }
 
-CreatureTemplates:addCreatureTemplate(meatlump_king, "meatlump_king")
+CreatureTemplates:addCreatureTemplate(meatlump_spike, "meatlump_spike")
