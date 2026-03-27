@@ -1711,7 +1711,7 @@ int DirectorManager::generateWeapon(lua_State* L){
 
 		float wound = weaponObj->getWoundsRatio();
 
-		float newWound = System::random(50) + wound;
+		float newWound = Math::max(100.f, System::random(50) + (wound * tokenFactor));
 
 		weaponObj->setWoundsRatio(newWound);
 

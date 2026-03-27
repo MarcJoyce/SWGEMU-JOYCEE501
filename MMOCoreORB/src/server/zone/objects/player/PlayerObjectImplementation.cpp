@@ -710,6 +710,8 @@ int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String&
 	if (xpTypeCapList.contains(xpType)) {
 		if (xpType == "jedi_general" || xpType == "force_rank_xp") {
 			xpCap = xpTypeCapList.get(xpType);
+		} else if (xpType == "combat_gladiator") {
+			xpCap = 1000000;
 		} else {
 			xpCap = xpTypeCapList.get(xpType) * 20;
 		}

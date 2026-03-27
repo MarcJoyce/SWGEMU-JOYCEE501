@@ -150,7 +150,7 @@ public:
 				auto targetAgent = objectCreature->asAiAgent();
 
 				if (targetAgent == nullptr || !targetAgent->isAttackableBy(attacker) || !targetAgent->isCreature() || !targetAgent->isMonster()) {
-					continue;
+					// continue;
 				}
 
 				Locker agentLock(targetAgent, attacker);

@@ -26,6 +26,63 @@ public:
 			return GENERALERROR;
 		}
 
+		StringTokenizer args(arguments.toString());
+
+		try {
+			String commandType;
+			args.getStringToken(commandType);
+
+			if (commandType.beginsWith("spout")) {
+				ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target, false);
+
+				String templateFile = object->getObjectTemplate()->getFullTemplateString();
+
+				if (templateFile.contains("junk") || templateFile.contains("vehicle") || templateFile.contains("vendor")){
+					creature->sendSystemMessage("Sorry, spout does not work with: " + templateFile);
+					return GENERALERROR;
+				}
+
+				String planetName = "";
+				templateFile = "";
+
+				if (object == nullptr){
+					planetName = creature->getZone()->getZoneName();
+				} else {
+					planetName = object->getZone()->getZoneName();
+					templateFile = object->getObjectTemplate()->getFullTemplateString();
+				}
+
+				StringBuffer text;
+
+				int angle = object->getDirectionAngle();
+
+				AiAgent* mob = object.castTo<AiAgent*>();
+				auto creatureTemplate = mob->getCreatureTemplate();
+				String mobileName = creatureTemplate->getTemplateName();
+
+				text << "spawnMobile(\"" << planetName << "\", " <<  "\"" << mobileName << "\", 1, ";
+
+				if (object->getParent() != NULL && object->getParent().get()->isCellObject()) {
+					// Inside
+					ManagedReference<CellObject*> cell = cast<CellObject*>( object->getParent().get().get());
+					Vector3 cellPosition = object->getPosition();
+
+					text << cellPosition.getX() << ", " << cellPosition.getZ() << ", " << cellPosition.getY() << ", " << angle << ", " << cell->getObjectID() << ")";
+				} else {
+					// Outside
+					Vector3 worldPosition = object->getWorldPosition();
+
+					text << worldPosition.getX() << ", " << worldPosition.getZ() << ", " << worldPosition.getY() << ", " << angle << ", " << "0" << ")";
+				}
+
+				creature->sendSystemMessage(text.toString());
+			}
+			return SUCCESS;
+		} catch (Exception& e) {
+			creature->sendSystemMessage("Syntax: /getobjvars spout");
+			return SUCCESS;
+		}
+
 		uint64 objectID = 0;
 		UnicodeTokenizer tokenizer(arguments);
 		tokenizer.setDelimeter(" ");

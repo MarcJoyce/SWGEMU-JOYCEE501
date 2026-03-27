@@ -436,10 +436,10 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	Ability* ability = new Ability("intimidate1");
 	ghost->addAbility(ability);
 
-	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "manage_vendor", 1);
-	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "hiring", 10);
-	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "vendor_item_limit", 250);
-	playerCreature->addSkillMod(SkillModManager::SKILLBOX, "slope_move", 50);
+	playerCreature->addSkillMod(SkillModManager::TEMPLATE, "manage_vendor", 1);
+	playerCreature->addSkillMod(SkillModManager::TEMPLATE, "hiring", 10);
+	playerCreature->addSkillMod(SkillModManager::TEMPLATE, "vendor_item_limit", 250);
+	playerCreature->addSkillMod(SkillModManager::TEMPLATE, "slope_move", 50);
 
 	if (ghost != nullptr) {
 		int accID = client->getAccountID();

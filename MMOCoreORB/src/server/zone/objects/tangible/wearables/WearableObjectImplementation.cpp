@@ -14,6 +14,9 @@
 #include "server/zone/managers/skill/SkillModManager.h"
 #include "server/zone/objects/tangible/wearables/ModSortingHelper.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
+#include "server/zone/objects/creature/buffs/Buff.h"
+#include "server/zone/objects/creature/BuffAttribute.h"
+#include "templates/params/creature/CreatureAttribute.h"
 
 void WearableObjectImplementation::initializeTransientMembers() {
 	TangibleObjectImplementation::initializeTransientMembers();
@@ -122,7 +125,7 @@ void WearableObjectImplementation::applyAttachment(CreatureObject* player, Attac
 		return;
 	}
 
-	if (getRemainingSockets() < 1 || wearableSkillMods.size() > 5) {
+	if (getRemainingSockets() < 1) {
 		return;
 	}
 
@@ -196,12 +199,30 @@ void WearableObjectImplementation::applySkillModsTo(CreatureObject* creature) co
 		if (name.toLowerCase() == "deity_han_solo") {
 			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
 		} else if (name.toLowerCase() == "deity_chewbacca") {
+			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
 			int variableOne = 50;
-			
-			// Increase All HAM stats
-			for (int j = 0; j <= 8; j++) {
-				creature->addMaxHAM(j, variableOne * value);
+			int buffValue = variableOne * value;
+
+			uint32 buffCRC = STRING_HASHCODE("deity_chewbacca");
+			Reference<Buff*> buff = creature->getBuff(buffCRC);
+
+			if (buff == nullptr) {
+				buff = new Buff(creature, buffCRC, 86400, BuffType::OTHER);
+				Locker locker(buff);
+
+				buff->setAttributeModifier(CreatureAttribute::HEALTH, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::CONSTITUTION, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::STRENGTH, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::ACTION, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::STAMINA, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::QUICKNESS, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::MIND, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::FOCUS, buffValue);
+				buff->setAttributeModifier(CreatureAttribute::WILLPOWER, buffValue);
+
+				creature->addBuff(buff);
 			}
+
 		} else if (name.toLowerCase() == "deity_darth_vader") {
 			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
 		} else if (name.toLowerCase() == "deity_obi_wan") {
@@ -214,10 +235,10 @@ void WearableObjectImplementation::applySkillModsTo(CreatureObject* creature) co
 			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
 		} else if (!SkillModManager::instance()->isWearableModDisabled(name)) {
 			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
-			creature->updateSpeedAndAccelerationMods();
 		}
 	}
-
+	
+	creature->updateSpeedAndAccelerationMods();
 	SkillModManager::instance()->verifyWearableSkillMods(creature);
 }
 
@@ -233,11 +254,10 @@ void WearableObjectImplementation::removeSkillModsFrom(CreatureObject* creature)
 		if (name.toLowerCase() == "deity_han_solo") {
 			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
 		} else if (name.toLowerCase() == "deity_chewbacca") {
-			int variableOne = -50;
-			
-			// Decrease All HAM stats
-			for (int j = 0; j <= 8; j++) {
-				creature->addMaxHAM(j, variableOne * value);
+			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
+			uint32 buffCRC = STRING_HASHCODE("deity_chewbacca");
+			if (creature->hasBuff(buffCRC)) {
+				creature->removeBuff(buffCRC);
 			}
 		} else if (name.toLowerCase() == "deity_darth_vader") {
 			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
@@ -251,10 +271,10 @@ void WearableObjectImplementation::removeSkillModsFrom(CreatureObject* creature)
 			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
 		} else if (!SkillModManager::instance()->isWearableModDisabled(name)) {
 			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
-			creature->updateSpeedAndAccelerationMods();
 		}
 	}
-
+	
+	creature->updateSpeedAndAccelerationMods();
 	SkillModManager::instance()->verifyWearableSkillMods(creature);
 }
 

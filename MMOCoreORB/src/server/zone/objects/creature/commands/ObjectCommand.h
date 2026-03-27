@@ -1047,6 +1047,7 @@ public:
 			// StringIdChatParameter errMsgDamage("custom/commands/generateEquipment", "invalid_damage_type");
 			// errMsgDamage.setDI(*damageType);
 			// creature->sendSystemMessage(errMsgDamage);
+			creature->sendSystemMessage("Valid Damage Types: 1 (Kinetic), 2 (Energy), 4 (Blast), 8 (Heat), 16 (Cold), 32 (Acid), 64 (Electricity), 128 (Stun), 256 (Lightsaber)");
 			*errors = true;
 		}
 	}
@@ -1070,6 +1071,7 @@ public:
 			// errMsg.setDI(*value);
 			// errMsg.setTU(String::valueOf(min));
 			// creature->sendSystemMessage(errMsg);
+			creature->sendSystemMessage("Minimum " + tokenType + ": " + String::valueOf(min));
 		} else if (*value > max) {
 			*errors = true;
 			// StringIdChatParameter errMsg("custom/commands/generateEquipment", "invalid_int_high");
@@ -1077,6 +1079,7 @@ public:
 			// errMsg.setDI(*value);
 			// errMsg.setTU(String::valueOf(max));
 			// creature->sendSystemMessage(errMsg);
+			creature->sendSystemMessage("Maximum " + tokenType + ": " + String::valueOf(max));
 		}
 	}
 
@@ -1099,6 +1102,7 @@ public:
 			// errMsg.setDF(*value);
 			// errMsg.setDI(min);
 			// creature->sendSystemMessage(errMsg);
+			creature->sendSystemMessage("Minimum " + tokenType + ": " + String::valueOf(min, precision) + "%");
 		} else if (*value > max) {
 			*errors = true;
 			// StringIdChatParameter errMsg("custom/commands/generateEquipment", "invalid_float_high");
@@ -1106,6 +1110,7 @@ public:
 			// errMsg.setDF(*value);
 			// errMsg.setDI(max);
 			// creature->sendSystemMessage(errMsg);
+			creature->sendSystemMessage("Maximum " + tokenType + ": " + String::valueOf(max, precision) + "%");
 		}
 	}
 
@@ -1117,6 +1122,7 @@ public:
 		else {
 			*errors = true;
 			// creature->sendSystemMessage("@custom/commands/generateEquipment:invalid_syntax");
+			creature->sendSystemMessage("Invalid skill mod");
 		}
 	}
 

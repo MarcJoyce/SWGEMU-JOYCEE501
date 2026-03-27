@@ -591,6 +591,13 @@ int BountyMissionObjectiveImplementation::handleNpcTargetReceivesDamage(ManagedO
 }
 
 void BountyMissionObjectiveImplementation::handlePlayerKilled(ManagedObject* arg1, uint64 destructedID) {
+	time_t now = time(0);
+	String dt = ctime(&now);
+	String timeStamp = dt.replaceAll("\n", "");
+	 
+	StringBuffer msg;
+	msg << timeStamp << ": ";
+
 	if (completedMission)
 		return;
 
@@ -633,14 +640,17 @@ void BountyMissionObjectiveImplementation::handlePlayerKilled(ManagedObject* arg
 			killer->sendSystemMessage("You have defeated a bounty hunter, ruining his mission against you!");
 			killer->sendSystemMessage("Word has spread of your victory against the guild, leading to a reduction in the desire to hunt you further.");
 			Reference<PlayerObject*> ghost = killer->getSlottedObject("ghost").castTo<PlayerObject*>();
-			int visReward = 1000;
-			int vis = ghost->getVisibility();
 
-			if (vis < visReward) {
-				visReward = vis;
-			}
+			ghost->setVisibility(0);
 
-			ghost->setVisibility(vis - visReward);
+			msg << killer->getFirstName() << " (Jedi), killed " << owner->getFirstName() << " (BountyHunter)" << endl; 
+
+			File* file = new File("log/bountyhunter.log");
+			FileWriter* writer = new FileWriter(file, true);
+			writer->write(msg.toString());
+			writer->close();
+			delete file;
+			delete writer;
 		}
 
 		fail();
@@ -685,6 +695,15 @@ void BountyMissionObjectiveImplementation::handlePlayerKilled(ManagedObject* arg
 	message.setDI(xpLoss * -1);
 	message.setTO("exp_n", "jedi_general");
 	target->sendSystemMessage(message);
+
+	msg << killer->getFirstName() << " (BountyHunter), killed " << target->getFirstName() << " (Jedi)" << endl; 
+
+	File* file = new File("log/bountyhunter.log");
+	FileWriter* writer = new FileWriter(file, true);
+	writer->write(msg.toString());
+	writer->close();
+	delete file;
+	delete writer;
 
 	if (killer->hasSkill("combat_bountyhunter_elite_novice")) {
 		playerManager->awardExperience(killer, "combat_bountyhunter_elite", Math::min(rewardCreds / 200.f, 2500.f), true, 1);

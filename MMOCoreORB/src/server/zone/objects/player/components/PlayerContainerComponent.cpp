@@ -130,7 +130,7 @@ int PlayerContainerComponent::notifyObjectInserted(SceneObject* sceneObject, Sce
 	if (object->isTangibleObject()) {
 		ManagedReference<TangibleObject*> tano = object->asTangibleObject();
 
-		if (tano != nullptr) {
+		if (tano != nullptr && !tano->isBroken()) {
 			// creo->info(true) << "Adding template & wearable skill mods from: " << tano->getDisplayedName();
 
 			tano->addTemplateSkillMods(creo);
@@ -188,7 +188,7 @@ int PlayerContainerComponent::notifyObjectRemoved(SceneObject* sceneObject, Scen
 	if (object->isTangibleObject()) {
 		ManagedReference<TangibleObject*> tano = object->asTangibleObject();
 
-		if (tano != nullptr) {
+		if (tano != nullptr && !tano->isBroken()) {
 			// creo->info(true) << "Removing template & wearable skill mods from: " << tano->getDisplayedName();
 
 			tano->removeTemplateSkillMods(creo);

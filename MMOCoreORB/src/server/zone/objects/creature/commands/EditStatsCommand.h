@@ -104,7 +104,19 @@ public:
 					playerManager->doEnhanceCharacter(0x2E77F586, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 7); // performance_enhance_music_focus
 					playerManager->doEnhanceCharacter(0x3EC6FCB6, patient, medicalBuff, medicalDuration, BuffType::PERFORMANCE, 8); // performance_enhance_music_willpower
 				}
-			} else if (commandType.beginsWith("skill")) {
+			} 
+			else if (commandType.beginsWith("height")) {
+				float newHeight;
+				newHeight = args.getFloatToken();
+
+				if (newHeight > 0) {
+					patient->setHeight(newHeight, true);
+				} else {
+					creature->sendSystemMessage("Invalid height value.");
+				}
+				return SUCCESS;
+			}
+			else if (commandType.beginsWith("skill")) {
 				String state;
 				args.getStringToken(state);
 
@@ -130,7 +142,7 @@ public:
 					int currentSkillModValue = patient->getSkillMod(skillMod);
 					int skillModDelta = amount - currentSkillModValue;
 
-					patient->addSkillMod(SkillModManager::SKILLBOX, skillMod, skillModDelta, true);
+					patient->addSkillMod(SkillModManager::TEMPLATE, skillMod, skillModDelta, true);
 					return SUCCESS;
 				}
 			}

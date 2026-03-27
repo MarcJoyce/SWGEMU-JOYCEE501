@@ -713,10 +713,11 @@ public:
 		body << "Wilderness Survival: " << targetGhost->getExperience("camp") << "\n";
 		body << "\n";
 		body << "Force Sensitive Combat: " << targetGhost->getExperience("fs_combat") << "\n";
-		body << "Force Sensitive Reflexes: " << targetGhost->getExperience("reflex") << "\n";
+		body << "Force Sensitive Reflexes: " << targetGhost->getExperience("fs_reflex") << "\n";
 		body << "Force Sensitive Senses: " << targetGhost->getExperience("fs_senses") << "\n";
 		body << "Force Sensitive Crafting: " << targetGhost->getExperience("fs_crafting") << "\n";
 		body << "Jedi: " << targetGhost->getExperience("jedi_general") << "\n";
+		body << "Force Rank: " << targetGhost->getExperience("force_rank_xp") << "\n";
 		
 		body << "\n\n";
 

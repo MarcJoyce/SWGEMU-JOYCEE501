@@ -88,6 +88,11 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 				}
 				if (!hasForbiddenMods) {
 					// menuResponse->addRadialMenuItem(89, 3, "Extract Skill Mods (Destroys Item - " + String::valueOf(price / 1000) + "k Credit Fee)");
+					menuResponse->addRadialMenuItem(88, 3, "SEA Removal");
+					menuResponse->addRadialMenuItemToRadialID(88, 90, 3, "Use weak SEA removal tool");
+					menuResponse->addRadialMenuItemToRadialID(88, 91, 3, "Use moderate SEA removal tool");
+					menuResponse->addRadialMenuItemToRadialID(88, 92, 3, "Use strong SEA removal tool");
+					menuResponse->addRadialMenuItemToRadialID(88, 93, 3, "Use powerful SEA removal tool");
 				}
 			}
 		}
@@ -147,91 +152,243 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 		}
 
 		return 0;
-	} else if (selectedID == 89) {
+	// } else if (selectedID == 89) {
+	// 	WearableObject* wearable = cast<WearableObject*>(tano);
+	// 	ManagedReference<SceneObject*> sea = nullptr;
+
+	// 	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
+
+	// 	if (wearable != nullptr && inventory != nullptr) {
+	// 		if (wearable->isWearableObject() || wearable->isArmorObject()) {
+	// 			if (wearable->isEquipped()) {
+	// 				player->sendSystemMessage("You must unequip the item before extracting skill mods.");
+	// 				return 0;
+	// 			}
+
+	// 			VectorMap<String, int>* mods = wearable->getWearableSkillMods();
+	// 			if (mods->size() > 0) {
+	// 				int price;
+	// 				int value = mods->elementAt(0).getValue();
+
+	// 				if (value > 20) {
+	// 					price = mods->size() * (value * 12000);
+	// 				} else if (value > 15) {
+	// 					price = mods->size() * (value * 11000);
+	// 				} else if (value > 10) {
+	// 					price = mods->size() * (value * 10000);
+	// 				} else {
+	// 					price = mods->size() * (value * 9000);
+	// 				}
+	// 				// int price = 50000 * mods->size();
+	// 				if (player->getCashCredits() < price) {
+	// 					player->sendSystemMessage("You do not have enough credits to extract the skill mods.");
+	// 					return 0;
+	// 				}
+	// 				int i,j;
+	// 				auto lootGroupMap = lootManager->getLootMap();
+	// 				Reference<const LootItemTemplate*> itemTemplate = nullptr;
+	// 				String objectTemplate = "";
+	// 				objectTemplate = sceneObject->getObjectTemplate()->getFullTemplateString();
+
+	// 				if (wearable->isArmorObject() || 
+	// 					 objectTemplate == "object/tangible/wearables/armor/padded/armor_padded_s01_belt.iff"  || 
+	// 					 objectTemplate == "object/tangible/wearables/armor/zam/armor_zam_wesell_belt.iff"){
+	// 						itemTemplate = lootGroupMap->getLootItemTemplate("attachment_armor");
+	// 				} else{
+	// 					itemTemplate = lootGroupMap->getLootItemTemplate("attachment_clothing");
+	// 				}
+
+	// 				if (lootGroupMap == nullptr) {
+	// 					error("Invalid loot template");
+	// 					return 0;
+	// 				}
+
+	// 				for (i = 0; i < mods->size(); i++) {
+	// 					String modKey = mods->elementAt(i).getKey();
+
+	// 					sea = lootManager->createLootAttachment(itemTemplate, modKey, mods->elementAt(i).getValue()); 
+
+	// 					if (sea != nullptr){
+	// 						Attachment* attachment = cast<Attachment*>(sea.get());
+							
+	// 						if (attachment != nullptr){
+	// 							Locker objLocker(attachment);
+	// 							if (inventory->transferObject(sea, -1, true, true)) {
+	// 								inventory->broadcastObject(sea, true);
+	// 							} else {
+	// 								sea->destroyObjectFromDatabase(true);
+	// 								error("Unable to place Skill Attachment in player's inventory!");
+	// 								return false;
+	// 							}
+								
+	// 						}
+								
+	// 					}
+	// 				}
+
+	// 				wearable->destroyObjectFromWorld(true);
+	// 				wearable->destroyObjectFromDatabase(true);
+	// 				player->subtractCashCredits(price);
+
+	// 				player->sendSystemMessage("Skill mods extracted successfully. " + String::valueOf(price) + " credits have been deducted.");
+	// 			}
+	// 		}
+	// 	}
+	// return 0;
+	} else if (selectedID == 90 or selectedID == 91 or selectedID == 92 or selectedID == 93) {
 		WearableObject* wearable = cast<WearableObject*>(tano);
 		ManagedReference<SceneObject*> sea = nullptr;
 
 		ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
 
-		if (wearable != nullptr && inventory != nullptr) {
-			if (wearable->isWearableObject() || wearable->isArmorObject()) {
-				if (wearable->isEquipped()) {
-					player->sendSystemMessage("You must unequip the item before extracting skill mods.");
-					return 0;
+		if (wearable == nullptr || inventory == nullptr) {
+			player->sendSystemMessage("An error occurred while trying to remove the SEA. Please contact an administrator.");
+			return 0;
+		}
+
+		if (wearable->isEquipped()) {
+			player->sendSystemMessage("You must unequip the item before extracting skill mods.");
+			return 0;
+		}
+
+		bool isArmorObject = wearable->isArmorObject();
+
+		int seaRemovalLevel = selectedID - 89;
+		int seaRemovalChance = seaRemovalLevel * 15;
+
+		String seaToolName = "";
+
+		switch(selectedID) {
+			case 89:
+				if (isArmorObject) {
+					seaToolName = "a weak armor SEA removal tool";
+				} else {
+					seaToolName = "a weak clothing SEA removal tool";
 				}
-
-				VectorMap<String, int>* mods = wearable->getWearableSkillMods();
-				if (mods->size() > 0) {
-					int price;
-					int value = mods->elementAt(0).getValue();
-
-					if (value > 20) {
-						price = mods->size() * (value * 12000);
-					} else if (value > 15) {
-						price = mods->size() * (value * 11000);
-					} else if (value > 10) {
-						price = mods->size() * (value * 10000);
-					} else {
-						price = mods->size() * (value * 9000);
-					}
-					// int price = 50000 * mods->size();
-					if (player->getCashCredits() < price) {
-						player->sendSystemMessage("You do not have enough credits to extract the skill mods.");
-						return 0;
-					}
-					int i,j;
-					auto lootGroupMap = lootManager->getLootMap();
-					Reference<const LootItemTemplate*> itemTemplate = nullptr;
-					String objectTemplate = "";
-					objectTemplate = sceneObject->getObjectTemplate()->getFullTemplateString();
-
-					if (wearable->isArmorObject() || 
-						 objectTemplate == "object/tangible/wearables/armor/padded/armor_padded_s01_belt.iff"  || 
-						 objectTemplate == "object/tangible/wearables/armor/zam/armor_zam_wesell_belt.iff"){
-							itemTemplate = lootGroupMap->getLootItemTemplate("attachment_armor");
-					} else{
-						itemTemplate = lootGroupMap->getLootItemTemplate("attachment_clothing");
-					}
-
-					if (lootGroupMap == nullptr) {
-						error("Invalid loot template");
-						return 0;
-					}
-
-					for (i = 0; i < mods->size(); i++) {
-						String modKey = mods->elementAt(i).getKey();
-
-						sea = lootManager->createLootAttachment(itemTemplate, modKey, mods->elementAt(i).getValue()); 
-
-						if (sea != nullptr){
-							Attachment* attachment = cast<Attachment*>(sea.get());
-							
-							if (attachment != nullptr){
-								Locker objLocker(attachment);
-								if (inventory->transferObject(sea, -1, true, true)) {
-									inventory->broadcastObject(sea, true);
-								} else {
-									sea->destroyObjectFromDatabase(true);
-									error("Unable to place Skill Attachment in player's inventory!");
-									return false;
-								}
-								
-							}
-								
-						}
-					}
-
-					wearable->destroyObjectFromWorld(true);
-					wearable->destroyObjectFromDatabase(true);
-					player->subtractCashCredits(price);
-
-					player->sendSystemMessage("Skill mods extracted successfully. " + String::valueOf(price) + " credits have been deducted.");
+				break;
+			case 90:
+				if (isArmorObject) {
+					seaToolName = "a moderate armor SEA removal tool";
+				} else {
+					seaToolName = "a moderate clothing SEA removal tool";
 				}
+				break;
+			case 91:
+				if (isArmorObject) {
+					seaToolName = "a strong armor SEA removal tool";
+				} else {
+					seaToolName = "a strong clothing SEA removal tool";
+				}
+				break;
+			case 92:
+				if (isArmorObject) {
+					seaToolName = "a powerful armor SEA removal tool";
+				} else {
+					seaToolName = "a powerful clothing SEA removal tool";
+				}
+				break;
+			default:
+				if (isArmorObject) {
+					seaToolName = "a weak armor SEA removal tool";
+				} else {
+					seaToolName = "a weak clothing SEA removal tool";
+				}
+				break;
+		}
+		
+		Reference<SceneObject*> seaTool = nullptr;
+
+		for (int i = 0; i < inventory->getContainerObjectsSize(); i++) {
+			Reference<SceneObject*> sco = inventory->getContainerObject(i);
+
+			if (sco == nullptr) {
+				continue;
+			}
+
+			if (sco->getCustomObjectName().toString() == seaToolName) {
+				seaTool = sco;
 			}
 		}
-	return 0;
+
+		if (seaTool == nullptr) {
+			player->sendSystemMessage("You do not have the required SEA tool, speak to Kreezo in Mos Espa");
+			return 0;
+		}
+
+		VectorMap<String, int>* mods = wearable->getWearableSkillMods();
+
+		// String blankDiskRequired = "a Blank Clothing Enhancement Disk";
+
+		// if (isArmorObject) {
+		// 	blankDiskRequired = "a Blank Armor Enhancement Disk";
+		// }
+
+		// int numberOfDisks = inventory->getNumberOfContainerObjectByCustomName(blankDiskRequired, true);
+
+		// if (numberOfDisks < mods->size()) {
+		// 	player->sendSystemMessage("You do not have the required number of enhancement disks for this item.")
+		// 	return 0;
+		// }
+
+		auto lootGroupMap = lootManager->getLootMap();
+		Reference<const LootItemTemplate*> itemTemplate = nullptr;
+		String objectTemplate = "";
+		objectTemplate = sceneObject->getObjectTemplate()->getFullTemplateString();
+
+		if (isArmorObject || objectTemplate == "object/tangible/wearables/armor/padded/armor_padded_s01_belt.iff"  || objectTemplate == "object/tangible/wearables/armor/zam/armor_zam_wesell_belt.iff") {
+			itemTemplate = lootGroupMap->getLootItemTemplate("attachment_armor");
+		} else {
+			itemTemplate = lootGroupMap->getLootItemTemplate("attachment_clothing");
+		}
+
+		if (lootGroupMap == nullptr) {
+			error("Invalid loot template");
+			return 0;
+		}
+
+		for (int i = 0; i < mods->size(); i++) {
+			if (System::random(100) < seaRemovalChance) {
+				String key = mods->elementAt(i).getKey();
+				
+				sea = lootManager->createLootAttachment(itemTemplate, key, mods->elementAt(i).getValue());
+				
+				if (sea != nullptr) {
+					Attachment* attachment = cast<Attachment*>(sea.get());
+					
+					if (attachment != nullptr) {
+						Locker objLocker(attachment);
+						if (inventory->transferObject(sea, -1, true, true)) {
+							inventory->broadcastObject(sea, true);
+							player->sendSystemMessage("The skill mod: " + mods->elementAt(i).getKey() + " was successfully extracted.");
+						} else {
+							sea->destroyObjectFromDatabase(true);
+							error("Unable to place Skill Attachment in player's inventory!");
+						return 0;
+						}
+					}
+				}
+			
+				// Reference<SceneObject*> disk = inventory->getContainerObjectByCustomName(blankDiskRequired, true);
+			
+				// disk->destroyObjectFromWorld(true);
+				// disk->destroyObjectFromDatabase(true);
+			} else {
+				player->sendSystemMessage("The skill mod: " + mods->elementAt(i).getKey() + " could not be extracted and has been lost.");
+			}
+		}
+		
+		// Destroy the SEA Tool
+		seaTool->destroyObjectFromWorld(true);
+		seaTool->destroyObjectFromDatabase(true);
+
+		// Destroy the wearable
+		wearable->destroyObjectFromWorld(true);
+		wearable->destroyObjectFromDatabase(true);
+		return 0;
 	} else {
 		return ObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 	}
 }
+
+
 
