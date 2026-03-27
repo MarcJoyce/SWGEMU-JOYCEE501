@@ -2129,7 +2129,7 @@ void AiAgentImplementation::healCreatureTarget(CreatureObject* healTarget) {
 	int actionDam = actionMax - healTarget->getHAM(CreatureAttribute::ACTION);
 	int mindDam = mindMax - healTarget->getHAM(CreatureAttribute::MIND);
 
-	int healAmount = getLevel() * 20;
+	int healAmount = getLevel() * 60;
 
 	if (healAmount > healthDam) {
 		healTarget->healDamage(asAiAgent(), CreatureAttribute::HEALTH, healthMax, true, false);

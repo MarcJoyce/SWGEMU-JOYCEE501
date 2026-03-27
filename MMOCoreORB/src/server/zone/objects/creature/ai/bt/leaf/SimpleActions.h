@@ -684,7 +684,7 @@ public:
 				return FAILURE;
 			}
 
-			if (agent->isInRange(healTarget, 2.0f)) {
+			if (agent->isInRange(healTarget, 8.0f)) {
 				Locker clocker(healTarget, agent);
 
 				agent->healTangibleTarget(healTarget);
