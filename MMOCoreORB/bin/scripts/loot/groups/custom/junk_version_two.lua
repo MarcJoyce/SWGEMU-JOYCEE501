@@ -14,7 +14,7 @@ junk_version_two = {
     {groupTemplate = "weapon_component", weight = 1000000},
     {groupTemplate = "junk", weight = 1000000},
     {groupTemplate = "forage_food", weight = 1000000},
-    {groupTemplate = "forage_medical_components", weight = 1000000}
+    {groupTemplate = "forage_medical_component", weight = 1000000}
 	}
 }
 

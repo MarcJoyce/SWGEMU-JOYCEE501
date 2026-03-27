@@ -38,7 +38,7 @@ looted_container = {
 		{itemTemplate  =  "jedi_holocron_light", weight  = 48000 },
 		{itemTemplate  =  "attachment_clothing", weight  = 64000 },
 		{itemTemplate  =  "attachment_armor", weight  = 64000 },
-		{groupTemplate  = "named_crystals", weight = 16000 },
+		{groupTemplate  = "blank_enhancement_disks", weight = 16000 },
 		{itemTemplate  = "attachment_jedi_clothing", weight = 32000 },
 		-- Weapons (25% chance)
 		{groupTemplate  =  "weapons_all", weight  = 2400000 },

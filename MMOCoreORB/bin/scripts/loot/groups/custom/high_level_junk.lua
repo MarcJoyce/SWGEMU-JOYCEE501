@@ -5,22 +5,20 @@ high_level_junk = {
 	minimumLevel = 120,
 	maximumLevel = 0,
 	lootItems = {
-    {groupTemplate = "armor_attachments", weight = 1388812},
-    {groupTemplate = "armor_component_advanced", weight = 1388812},
-    {groupTemplate = "clothing_attachments", weight = 1388812},
-    {groupTemplate = "crafting_component_advanced", weight = 1388812},
-    {groupTemplate = "chemistry_component_advanced", weight = 1388812},
-    {groupTemplate = "weapon_component_advanced", weight = 1388812},
-    {groupTemplate = "death_watch_bunker_commoners", weight = 277762},
-    {groupTemplate = "nightsister_common", weight = 555525},
-    {groupTemplate = "weapons_all", weight = 277762},
-    {groupTemplate = "wearables_all", weight = 277762},
-    {groupTemplate = "resource_deed", weight = 138881},
-    {groupTemplate = "blank_enhancement_disks", weight = 278},
-    {groupTemplate = "power_crystals", weight = 138881},
-    {groupTemplate = "deity_items", weight = 278},
-
-
+        {groupTemplate = "armor_attachments", weight = 1243163 },
+        {groupTemplate = "armor_component_advanced", weight = 1243163 },
+        {groupTemplate = "clothing_attachments", weight = 1243163 },
+        {groupTemplate = "crafting_component_advanced", weight = 1243163 },
+        {groupTemplate = "chemistry_component_advanced", weight = 1243163 },
+        {groupTemplate = "weapon_component_advanced", weight = 1243163 },
+        {groupTemplate = "death_watch_bunker_commoners", weight = 497265 },
+        {groupTemplate = "nightsister_common", weight = 497265 },
+        {groupTemplate = "weapons_all", weight = 497265 },
+        {groupTemplate = "wearables_all", weight = 497265 },
+        {groupTemplate = "resource_deed", weight = 248633 },
+        {groupTemplate = "blank_enhancement_disks", weight = 49727 },
+        {groupTemplate = "power_crystals", weight = 248633 },
+        {groupTemplate = "deity_items", weight = 4969 },
 	}
 }
 
