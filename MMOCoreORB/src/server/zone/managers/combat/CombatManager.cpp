@@ -1191,8 +1191,8 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	// PvP Damage Reduction.
 	if (attacker->isPlayerCreature() && defender->isPlayerCreature())
-		damage *= 0.10;
-		// damage *= 0.25;
+		// damage *= 0.10;
+		damage *= 0.25;
 
 	if (damage < 25)
 		damage = 25;
@@ -2837,7 +2837,7 @@ float CombatManager::doObjectDetonation(TangibleObject* attackerTanO, CreatureOb
 
 				Locker plocker(psgArmor, attackerTanO);
 
-				psgArmor->inflictDamage(psgArmor, 0, damage * 0.2 / 2, true, true);
+				psgArmor->inflictDamage(psgArmor, 0, damage * 0.3, true, true);
 			}
 
 			ManagedReference<ArmorObject*> armor = getArmorObject(defender, hitLocation);
@@ -2856,7 +2856,7 @@ float CombatManager::doObjectDetonation(TangibleObject* attackerTanO, CreatureOb
 				// inflict condition damage
 				Locker alocker(armor, attackerTanO);
 
-				armor->inflictDamage(armor, 0, damage * 0.2, true, true);
+				armor->inflictDamage(armor, 0, damage * 0.3, true, true);
 			}
 		}
 
