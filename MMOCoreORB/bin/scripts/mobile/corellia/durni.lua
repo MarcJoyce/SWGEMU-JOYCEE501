@@ -7,7 +7,7 @@ durni = Creature:new {
 	chanceHit = 0.26,
 	damageMin = 55,
 	damageMax = 65,
-	baseXp = 147,
+	-- baseXp = 147, -- new xp value = (level * 90) + (baseHAM / 50) + (armor * 250) = (7 * 90) + (270 / 50) + (0 * 250) = 630 + 5.4 + 0 = 635
 	baseHAM = 270,
 	baseHAMmax = 330,
 	armor = 0,

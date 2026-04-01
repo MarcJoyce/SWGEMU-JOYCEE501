@@ -7,7 +7,7 @@ sith_shadow_mercenary_nonaggro = Creature:new {
 	chanceHit = 7,
 	damageMin = 895,
 	damageMax = 1500,
-	baseXp = 3327,
+	-- baseXp = 3327,
 	baseHAM = 67900,
 	baseHAMmax = 83000,
 	armor = 1,
@@ -43,7 +43,7 @@ sith_shadow_mercenary_nonaggro = Creature:new {
 			groups = {
 				{group = "village_resources", chance =  10000000}
 			},
-			lootChance = 1000000
+			lootChance = 7500000
 		},
 	},
 

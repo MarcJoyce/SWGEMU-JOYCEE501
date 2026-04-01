@@ -7,7 +7,7 @@ sith_shadow_thug_nonaggro = Creature:new {
 	chanceHit = 4,
 	damageMin = 770,
 	damageMax = 1250,
-	baseXp = 2503,
+	-- baseXp = 2503,
 	baseHAM = 44300,
 	baseHAMmax = 54300,
 	armor = 2,
@@ -43,7 +43,7 @@ sith_shadow_thug_nonaggro = Creature:new {
 			groups = {
 				{group = "village_resources", chance =  10000000}
 			},
-			lootChance = 1000000
+			lootChance = 7500000
 		},
 	},
 

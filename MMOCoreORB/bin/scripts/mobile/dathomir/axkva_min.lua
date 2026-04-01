@@ -8,7 +8,7 @@ axkva_min = Creature:new {
 	damageMin = 1645,
 	damageMax = 3000,
 	specialDamageMult = 7.5,
-	baseXp = 28549,
+	-- baseXp = 28549,
 	baseHAM = 385000,
 	baseHAMmax = 471000,
 	armor = 3,
@@ -32,13 +32,14 @@ axkva_min = Creature:new {
 		{
 			groups = {
 				{group = "nightsister_tier_5", chance = 10000000}
-			}
+			},
+			lootChance = 10000000
 		},
 		{
 			groups = {
 				{group = "axkva_min", chance = 10000000},
 			},
-			lootChance = 5000000
+			lootChance = 10000000
 		}
 	},
 

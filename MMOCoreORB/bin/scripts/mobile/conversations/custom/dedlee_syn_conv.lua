@@ -101,7 +101,6 @@ pistol = ConvoScreen:new {
   customDialogText = "Going compact? Perfect for smugglers, spies, and anyone who prefers a quick draw over a long speech.",
   stopConversation = "false",
   options = {
-    { "Black Metal Gaderiffi Baton", "blackmetalgaderiffibaton" },
     { "CDEF Pistol", "cdefpistol" },
     { "Corsec CDEF Pistol", "corseccdefpistol" },
     { "D18 Pistol", "d18pistol" },
@@ -194,6 +193,7 @@ onehanded = ConvoScreen:new {
     { "Jagged Vibroblade", "jaggedvibroblade" },
     { "Stun Baton", "stunbaton" },
     { "Gaderiffi Baton", "gaderiffibaton" },
+    { "Black Metal Gaderiffi Baton", "blackmetalgaderiffibaton" },
     { "Let me start again.", "shop" }
   }
 }

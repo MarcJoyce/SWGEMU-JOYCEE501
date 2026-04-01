@@ -7,7 +7,7 @@ sith_shadow_pirate_nonaggro = Creature:new {
 	chanceHit = 0.85,
 	damageMin = 570,
 	damageMax = 850,
-	baseXp = 1864,
+	-- baseXp = 1864,
 	baseHAM = 13300,
 	baseHAMmax = 16300,
 	armor = 1,
@@ -43,7 +43,7 @@ sith_shadow_pirate_nonaggro = Creature:new {
 			groups = {
 				{group = "village_resources", chance =  10000000}
 			},
-			lootChance = 1000000
+			lootChance = 7500000
 		},
 	},
 

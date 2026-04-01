@@ -116,7 +116,6 @@ void CreatureTemplate::readObject(LuaObject* templateData) {
 	specialDamageMult = templateData->getFloatField("specialDamageMult");
 	attackSpeed = templateData->getFloatField("attackSpeed");
 	if (specialDamageMult < 0.001f) specialDamageMult = 1.f; // could use numeric_limit here, but this will prevent people from putting tiny modifiers in as well.
-	baseXp = templateData->getIntField("baseXp");
 	baseHAM = templateData->getIntField("baseHAM");
 	baseHAMmax = templateData->getIntField("baseHAMmax");
 	armor = templateData->getIntField("armor");
@@ -139,6 +138,11 @@ void CreatureTemplate::readObject(LuaObject* templateData) {
 	tauntable = templateData->getBooleanField("tauntable", true);
 	healerType = templateData->getStringField("healerType").trim();
 	lightsaberColor = templateData->getIntField("lightsaberColor");
+	baseXp = templateData->getIntField("baseXp", -1);
+
+	if (baseXp < 0) {
+		baseXp = (level * 90) + (baseHAM / 50) + (armor * 250);
+	}
 
 	if(!templateData->getStringField("defaultAttack").isEmpty())
 		defaultAttack = templateData->getStringField("defaultAttack");

@@ -9,7 +9,7 @@ function createInformantNPC(lvl)
 		chanceHit = 0.39,
 		damageMin = 290,
 		damageMax = 300,
-		baseXp = 2914,
+		-- baseXp = 2914,
 		baseHAM = 8400,
 		baseHAMmax = 10200,
 		armor = 0,

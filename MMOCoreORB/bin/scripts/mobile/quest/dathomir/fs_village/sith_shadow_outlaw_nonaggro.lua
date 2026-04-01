@@ -7,7 +7,7 @@ sith_shadow_outlaw_nonaggro = Creature:new {
 	chanceHit = 0.6,
 	damageMin = 445,
 	damageMax = 600,
-	baseXp = 628,
+	-- baseXp = 628,
 	baseHAM = 11000,
 	baseHAMmax = 13500,
 	armor = 1,
@@ -43,7 +43,7 @@ sith_shadow_outlaw_nonaggro = Creature:new {
 			groups = {
 				{group = "village_resources", chance =  10000000}
 			},
-			lootChance = 1000000
+			lootChance = 7500000
 		},
 	},
 
