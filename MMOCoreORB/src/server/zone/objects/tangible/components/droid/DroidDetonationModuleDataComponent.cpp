@@ -161,7 +161,7 @@ void DroidDetonationModuleDataComponent::onCall() {
 	if (owner == nullptr)
 		return;
 
-	owner->sendSystemMessage("@pet/droid_modules:detonation_warmup");
+	owner->sendSystemMessage("The droid needs to initialize its detonation module for the first time.  This will take approximately 1 seconds.");
 
 	Core::getTaskManager()->scheduleTask([droid]{
 		if(droid != nullptr) {
@@ -172,7 +172,8 @@ void DroidDetonationModuleDataComponent::onCall() {
 			if (module != nullptr)
 				module->setReadyForDetonation();
 		}
-	}, "InitDetModuleTask", 10000);
+	// }, "InitDetModuleTask", 10000);
+	}, "InitDetModuleTask", 1000);
 }
 
 void DroidDetonationModuleDataComponent::onStore() {

@@ -242,7 +242,7 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player, bool ini
 			return;
 		}
 
-	} else if (petType == PetManager::FACTIONPET){
+	} else if (petType == PetManager::FACTIONPET) {
 		maxPets = 3;
 	}
 

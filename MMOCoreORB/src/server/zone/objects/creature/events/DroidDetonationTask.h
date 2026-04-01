@@ -51,6 +51,7 @@ public:
 		Locker crossLocker(player, droid);
 
 		auto zone = droid->getLocalZone();
+		String zoneName = zone->getZoneName();
 
 		// Check if droid is spawned
 		if (zone == nullptr) {
@@ -111,7 +112,7 @@ public:
 					zone->getInRangeObjects(droid->getWorldPositionX(), droid->getWorldPositionZ(), droid->getWorldPositionY(), 40, &closeObjects, true);
 				}
 
-				PlayClientEffectLoc* explodeLoc = new PlayClientEffectLoc("clienteffect/combat_explosion_lair_large.cef", zone->getZoneName(), droid->getPositionX(), droid->getPositionZ(), droid->getPositionY());
+				PlayClientEffectLoc* explodeLoc = new PlayClientEffectLoc("clienteffect/combat_explosion_lair_large.cef", zoneName, droid->getPositionX(), droid->getPositionZ(), droid->getPositionY());
 				droid->broadcastMessage(explodeLoc, false);
 
 				crossLocker.release();

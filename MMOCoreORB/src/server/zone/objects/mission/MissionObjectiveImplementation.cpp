@@ -71,14 +71,12 @@ void MissionObjectiveImplementation::activate() {
 }
 
 void MissionObjectiveImplementation::complete() {
-	// Locker _lock(_this.getReferenceUnsafeStaticCast());
-
 	 ManagedReference<CreatureObject*> player = getPlayerOwner();
 
 	if (player == nullptr)
 		return;
 
-	// _lock.release();
+	Locker locker(player, _this.getReferenceUnsafeStaticCast());
 
 	Reference<CompleteMissionObjectiveTask*> task = new CompleteMissionObjectiveTask(_this.getReferenceUnsafeStaticCast());
 	Core::getTaskManager()->executeTask(task);

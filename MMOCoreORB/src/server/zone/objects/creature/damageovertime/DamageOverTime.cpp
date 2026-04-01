@@ -361,6 +361,9 @@ uint32 DamageOverTime::doPoisonTick(CreatureObject* victim, CreatureObject* atta
 		Locker crossLocker(attackerRef, victimRef);
 
 		victimRef->inflictDamage(attackerRef, attribute, damage, false, "dotDMG", true, false);
+
+		victimRef->addShockWounds((int)(damage * 0.075f));
+
 		if (victimRef->hasAttackDelay())
 			victimRef->removeAttackDelay();
 

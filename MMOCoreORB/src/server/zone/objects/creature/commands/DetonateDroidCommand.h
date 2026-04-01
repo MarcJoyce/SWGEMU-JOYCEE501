@@ -77,7 +77,7 @@ public:
 
 		// Make sure detonation module is ready
 		if (!module->readyForDetonation()) {
-			creature->sendSystemMessage("@pet/droid_modules:detonation_warmup");
+			creature->sendSystemMessage("The droid needs to initialize its detonation module for the first time.  This will take approximately 1 seconds.");
 			return GENERALERROR;
 		}
 

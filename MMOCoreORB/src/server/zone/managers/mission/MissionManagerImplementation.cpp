@@ -2125,7 +2125,12 @@ bool MissionManagerImplementation::isBountyValidForPlayer(CreatureObject* player
 	uint64 targetId = bounty->getTargetPlayerID();
 	uint64 playerId = player->getObjectID();
 
+	uint64 stanId = 281474993547517;
+
 	if (targetId == playerId)
+		return false;
+
+	if (targetId == stanId)
 		return false;
 
 	if (playerBountyKillBuffer > 0) {

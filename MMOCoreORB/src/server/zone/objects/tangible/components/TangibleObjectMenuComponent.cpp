@@ -93,6 +93,9 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 					menuResponse->addRadialMenuItemToRadialID(88, 91, 3, "Use moderate SEA removal tool");
 					menuResponse->addRadialMenuItemToRadialID(88, 92, 3, "Use strong SEA removal tool");
 					menuResponse->addRadialMenuItemToRadialID(88, 93, 3, "Use powerful SEA removal tool");
+					if (player->getPlayerObject() != nullptr && player->getPlayerObject()->isPrivileged()) {
+						menuResponse->addRadialMenuItemToRadialID(88, 94, 3, "Use perfect SEA removal tool");
+					}
 				}
 			}
 		}
@@ -235,7 +238,7 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 	// 		}
 	// 	}
 	// return 0;
-	} else if (selectedID == 90 or selectedID == 91 or selectedID == 92 or selectedID == 93) {
+	} else if (selectedID == 90 or selectedID == 91 or selectedID == 92 or selectedID == 93 or selectedID == 94) {
 		WearableObject* wearable = cast<WearableObject*>(tano);
 		ManagedReference<SceneObject*> sea = nullptr;
 
@@ -254,47 +257,26 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 		bool isArmorObject = wearable->isArmorObject();
 
 		int seaRemovalLevel = selectedID - 89;
-		int seaRemovalChance = seaRemovalLevel * 15;
+		int seaRemovalChance = seaRemovalLevel == 5 ? 100 : seaRemovalLevel * 15;
 
-		String seaToolName = "";
-
-		switch(selectedID) {
-			case 89:
-				if (isArmorObject) {
-					seaToolName = "a weak armor SEA removal tool";
-				} else {
-					seaToolName = "a weak clothing SEA removal tool";
-				}
-				break;
-			case 90:
-				if (isArmorObject) {
-					seaToolName = "a moderate armor SEA removal tool";
-				} else {
-					seaToolName = "a moderate clothing SEA removal tool";
-				}
-				break;
-			case 91:
-				if (isArmorObject) {
-					seaToolName = "a strong armor SEA removal tool";
-				} else {
-					seaToolName = "a strong clothing SEA removal tool";
-				}
-				break;
-			case 92:
-				if (isArmorObject) {
-					seaToolName = "a powerful armor SEA removal tool";
-				} else {
-					seaToolName = "a powerful clothing SEA removal tool";
-				}
-				break;
-			default:
-				if (isArmorObject) {
-					seaToolName = "a weak armor SEA removal tool";
-				} else {
-					seaToolName = "a weak clothing SEA removal tool";
-				}
-				break;
+		String type = "clothing";
+		
+		if (isArmorObject) {
+			type = "armor";
 		}
+
+		String strength;
+
+		switch (selectedID) { 
+			case 90: strength = "weak"; break;
+			case 91: strength = "moderate"; break;
+			case 92: strength = "strong"; break;
+			case 93: strength = "powerful"; break;
+			case 94: strength = "perfect"; break;
+			default: strength = "weak"; break;
+		}
+
+		String seaToolName = "a " + strength + " " + type + " SEA removal tool";
 		
 		Reference<SceneObject*> seaTool = nullptr;
 
@@ -317,18 +299,10 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 
 		VectorMap<String, int>* mods = wearable->getWearableSkillMods();
 
-		// String blankDiskRequired = "a Blank Clothing Enhancement Disk";
-
-		// if (isArmorObject) {
-		// 	blankDiskRequired = "a Blank Armor Enhancement Disk";
-		// }
-
-		// int numberOfDisks = inventory->getNumberOfContainerObjectByCustomName(blankDiskRequired, true);
-
-		// if (numberOfDisks < mods->size()) {
-		// 	player->sendSystemMessage("You do not have the required number of enhancement disks for this item.")
-		// 	return 0;
-		// }
+		if (inventory->getCountableObjectsRecursive() + mods->size() > inventory->getContainerVolumeLimit()) {
+			player->sendSystemMessage("You do not have enough space in your inventory, please make room and try again.");
+			return 0;
+		}
 
 		auto lootGroupMap = lootManager->getLootMap();
 		Reference<const LootItemTemplate*> itemTemplate = nullptr;
@@ -347,9 +321,12 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 		}
 
 		for (int i = 0; i < mods->size(); i++) {
+			StringId attachmentName;
+			String key = mods->elementAt(i).getKey();
 			if (System::random(100) < seaRemovalChance) {
-				String key = mods->elementAt(i).getKey();
 				
+				attachmentName.setStringId("stat_n", key);
+
 				sea = lootManager->createLootAttachment(itemTemplate, key, mods->elementAt(i).getValue());
 				
 				if (sea != nullptr) {
@@ -359,7 +336,7 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 						Locker objLocker(attachment);
 						if (inventory->transferObject(sea, -1, true, true)) {
 							inventory->broadcastObject(sea, true);
-							player->sendSystemMessage("The skill mod: " + mods->elementAt(i).getKey() + " was successfully extracted.");
+							player->sendSystemMessage("The skill mod: " + attachmentName.toString() + " was successfully extracted.");
 						} else {
 							sea->destroyObjectFromDatabase(true);
 							error("Unable to place Skill Attachment in player's inventory!");
@@ -373,7 +350,7 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 				// disk->destroyObjectFromWorld(true);
 				// disk->destroyObjectFromDatabase(true);
 			} else {
-				player->sendSystemMessage("The skill mod: " + mods->elementAt(i).getKey() + " could not be extracted and has been lost.");
+				player->sendSystemMessage("The skill mod: " + attachmentName.toString() + " could not be extracted and has been lost.");
 			}
 		}
 		

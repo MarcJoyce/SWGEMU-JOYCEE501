@@ -1670,22 +1670,25 @@ int DirectorManager::generateWeapon(lua_State* L){
 		weaponObj->setDamageType(damageType);
 		weaponObj->setAttackSpeed(1.0f);
 
-		int tokenFactor = tokensToSpend / 25 * 2;
+		int tokenFactor = tokensToSpend / 25 * 3;
 
 		bool isMeleeWeapon = weaponObj->isMeleeWeapon();
 
-		int weaponFactor;
+		float weaponFactor = 0.95f;
+		float baseMinDamage = 50.f;
+		float baseMaxDamage = 200.f;
+
 		if (isMeleeWeapon) {
-			weaponFactor = 950;
-		} else {
-			weaponFactor = 925;
+			weaponFactor = 1.0f;
 		}
 
-		float baseMinDamage = weaponObj->getMinDamage();
-		float baseMaxDamage = weaponObj->getMaxDamage();
+		// float baseMinDamage = weaponObj->getMinDamage();
+		// float baseMaxDamage = weaponObj->getMaxDamage();
+		// float minDamage = (baseMinDamage * tokenFactor - baseMinDamage) + baseMinDamage;
+		// float maxDamage = (baseMaxDamage * tokenFactor - baseMaxDamage) + baseMaxDamage;
 
-		float minDamage = (baseMinDamage * tokenFactor - baseMinDamage) + baseMinDamage;
-		float maxDamage = (baseMaxDamage * tokenFactor - baseMaxDamage) + baseMaxDamage;
+		float minDamage = baseMinDamage * (0.90f + (System::random(21) * (1.0f / 100.f))) * weaponFactor * tokenFactor;
+		float maxDamage = baseMaxDamage * (0.90f + (System::random(21) * (1.0f / 100.f))) * weaponFactor * tokenFactor;
 
 		float newMinDamage = Math::min(minDamage, maxDamage);
 		float newMaxDamage = Math::max(minDamage, maxDamage);
