@@ -5,9 +5,8 @@ meatlump_king = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{groupTemplate = "barc_disks", weight = 2500000 },
-		{groupTemplate = "holocron_splinters", weight =  2500000 },
-		{groupTemplate = "world_boss", weight = 5000000 }
+		{groupTemplate = "world_boss", weight = 7500000 },
+		{groupTemplate = "collectables", weight = 2500000 },
 	}
 }
 

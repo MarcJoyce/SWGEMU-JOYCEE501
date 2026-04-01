@@ -118,12 +118,14 @@ function DedleeSynScreenPlay:notifyKilledCreature(pPlayer, pVictim)
   end
 
   if (victimName == huntTarget or victimCustomName == huntTarget) then
-    local message = self.messages[getRandomNumber(1, #self.messages)]
-    CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\" .. message)
-
-    local tokens = 1;
-
-    writeScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount", huntCount + tokens)
+    if (CreatureObject(pPlayer):isInRangeWithObject(pVictim, 80)) then
+      local message = self.messages[getRandomNumber(1, #self.messages)]
+      CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\<Communicator>\\#FFFFFF\\" .. message)
+      
+      local tokens = 1;
+      
+      writeScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount", huntCount + tokens)
+    end
   end
 
 	return 0

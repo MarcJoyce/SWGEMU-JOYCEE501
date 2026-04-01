@@ -41,6 +41,8 @@ int CustomIngredientImplementation::getResourceValue(int average) {
 	else if (randValue < 150)
 		randValue = 150;
 
+	randValue = 1000;
+
 	return randValue;
 }
 

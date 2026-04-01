@@ -64,7 +64,7 @@ object_tangible_wearables_armor_nightsister_armor_nightsister_bicep_r_s01 = obje
 	customName = "Nightsister Melee Armguard",
 
 	-- Damage types in WeaponObject
-	vulnerability = ELECTRICITY + ACID + STUN + LIGHTSABER,
+	-- vulnerability = ELECTRICITY + ACID + STUN + LIGHTSABER,
 
 	-- These are default Blue Frog stats
 	healthEncumbrance = 25,
@@ -74,15 +74,15 @@ object_tangible_wearables_armor_nightsister_armor_nightsister_bicep_r_s01 = obje
 	-- LIGHT, MEDIUM, HEAVY
 	rating = LIGHT,
 
-	kinetic = 15,
-	energy = 15,
-	electricity = 15,
-	stun = 15,
-	blast = 15,
-	heat = 15,
-	cold = 15,
-	acid = 15,
-	lightSaber = 0
+	kinetic = 80,
+	energy = 80,
+	electricity = 80,
+	stun = 80,
+	blast = 80,
+	heat = 80,
+	cold = 80,
+	acid = 80,
+	lightSaber = 30
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_nightsister_armor_nightsister_bicep_r_s01, "object/tangible/wearables/armor/nightsister/armor_nightsister_bicep_r_s01.iff")

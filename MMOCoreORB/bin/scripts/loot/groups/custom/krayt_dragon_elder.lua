@@ -5,9 +5,12 @@ krayt_dragon_elder = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "krayt_composite_elder_segment", weight = 3333334},
-		{itemTemplate = "krayt_dragon_elder_scales", weight = 3333333},
-		{itemTemplate = "krayt_dragon_elder_tissue", weight = 3333333}
+		{itemTemplate = "krayt_composite_elder_segment", weight = 2500001 },
+		{itemTemplate = "krayt_dragon_elder_scales", weight = 2500000 },
+		{itemTemplate = "krayt_dragon_elder_tissue", weight = 2500000 },
+		{itemTemplate = "krayt_dragon_tissue_rare", weight = 833333 },
+		{itemTemplate = "krayt_composite_segment", weight = 833333 },
+		{itemTemplate = "krayt_dragon_scales", weight = 833333 },
 	}
 }
 

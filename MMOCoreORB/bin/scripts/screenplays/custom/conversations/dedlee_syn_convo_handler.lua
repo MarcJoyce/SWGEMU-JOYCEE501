@@ -189,10 +189,10 @@ function dedleeSynConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
 
     generateWeapon(pPlayer, weaponSelection, damageTypeSelection, tokensToSpend)
 
-    logToFile(CreatureObject(pPlayer):getFirstName() .. " received " .. weaponSelection .. " with type " .. damageTypeSelection .. " spending " .. tokensToSpend .. " tokens.")
-
     deleteScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount")
     writeScreenPlayData(pPlayer, "DedleeSynScreenPlay", "huntCount", newHuntCount)
+
+    logToFile(CreatureObject(pPlayer):getFirstName() .. " received " .. weaponSelection .. " with type " .. damageTypeSelection .. " spending " .. tokensToSpend .. " tokens.", "log/dedlee_syn.log")
   end
 
   return pConvScreen

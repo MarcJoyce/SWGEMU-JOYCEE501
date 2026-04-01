@@ -218,7 +218,7 @@ function FsCsBaseControl:setupLootMob(pMobile)
 end
 
 function FsCsBaseControl:notifyKilledLootMobile(pVictim, pAttacker)
-	if (pVictim == nil or getRandomNumber(1,100) < 80) then
+	if (pVictim == nil or getRandomNumber(1,100) < 49) then
 		return 1
 	end
 

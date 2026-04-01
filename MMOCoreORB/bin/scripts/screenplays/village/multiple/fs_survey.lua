@@ -153,6 +153,8 @@ function FsSurvey:getResourceValue(average)
 		rand = 150
 	end
 
+	rand = 1000
+
 	return rand
 end
 

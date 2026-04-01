@@ -320,7 +320,7 @@ function BazaarBotScreenPlay:addMoreLoot()
 		
 		local lootLevel = getRandomNumber(BBLootConfig.minLevel, BBLootConfig.maxLevel)
 
-		local lootLevelFactor = (BBLootPriceRanges[indexGroup].minPrice) * (lootLevel / 300 + 1)
+		local lootLevelFactor = (BBLootPriceRanges[indexGroup].minPrice) * (lootLevel / BBLootConfig.maxLevel + 1)
 
 		if (indexGroup == 1 or indexGroup == 3 or indexGroup == 5) then
 			lootLevelFactor = (BBLootPriceRanges[indexGroup].minPrice)

@@ -79,7 +79,7 @@ WorldBossesScreenPlay = ScreenPlay:new {
       },
       { 
         {{ x = -141, z = 10, y = -484 }, " north of the Singing Mountain Clan, along the beach."},
-        {{ x = -640, z = 23, y = -4704 }, " near the Dathomir Tarpits."},
+        {{ x = -640, z = 23, y = -4704 }, " east of the Dathomir Tarpits."},
         {{ x = -6048, z = 125, y = -32 }, " south of the Dathomir Imperial Prison."}
       }
     },

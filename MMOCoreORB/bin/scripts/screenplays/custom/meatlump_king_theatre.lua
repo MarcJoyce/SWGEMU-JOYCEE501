@@ -41,6 +41,8 @@ MeatlumpKingTheatre = GoToTheater:new {
 		{ template = "meatlump_king", minimumDistance = 3, maximumDistance = 6, referencePoint = 0 },
     { template = "meatlump_spike", minimumDistance = 3, maximumDistance = 6, referencePoint = 1 },
     { template = "meatlump_killer", minimumDistance = 3, maximumDistance = 6, referencePoint = 2 },
+    { template = "meatlump_luci", minimumDistance = 3, maximumDistance = 6, referencePoint = 3 },
+    { template = "meatlump_lillith", minimumDistance = 3, maximumDistance = 6, referencePoint = 4 },
 	},
 	activeAreaRadius = 64,
 	flattenLayer = true
@@ -112,6 +114,10 @@ function MeatlumpKingTheatre:getHelp(pNpc, num, template, pAttacker)
 
   local numberOfPlayers = self:getPlayersInRange(pNpc)
   local numToSpawn = math.max(num * numberOfPlayers, num * 5)
+
+  if (template == "meatlump_king_atst") then
+    numToSpawn = 4
+  end
 
   for i = 1, numToSpawn do
       local zoneName = CreatureObject(pNpc):getZoneName()
@@ -256,6 +262,7 @@ function MeatlumpKingTheatre:onMeatlumpKingDamage10Final(pMeatlumpKing, pAttacke
     self:getHelp(pMeatlumpKing, 1, "meatlump_king_cretin", pAttacker)
     self:getHelp(pMeatlumpKing, 1, "meatlump_king_oaf", pAttacker)
     self:getHelp(pMeatlumpKing, 1, "meatlump_king_clod", pAttacker)
+    self:getHelp(pMeatlumpKing, 1, "meatlump_king_atst", pAttacker)
     spatialChat(pMeatlumpKing, "Oooh you bastard! Right, let's be havin' ya!")
     return 1
   else
