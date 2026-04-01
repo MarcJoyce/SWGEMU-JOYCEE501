@@ -4,15 +4,15 @@ infused_force_crystal_ulics_redemption = {
 	customObjectName = "(Infused) Ulic's Redemption",
 	directObjectTemplate = "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff",
 	craftingValues = {
-		{"mindamage",100,100,0},
-		{"maxdamage",150,150,0},
+		{"mindamage",250,250,0},
+		{"maxdamage",250,250,0},
 		{"attackspeed",0,0,5},
 		{"woundchance",4,4,5},
 		{"hitpoints",100000,100000,0},
 		{"attackhealthcost",0,0,0},
 		{"attackactioncost",0,0,0},
 		{"attackmindcost",0,0,0},
-		{"forcecost",2.5,2.5,0},
+		{"forcecost",0.0,0.0,0},
 		{"color",15,15,0},
 		{"quality",7,7,0},
 	},
@@ -25,9 +25,9 @@ infused_force_crystal_ulics_redemption = {
 	-- staticDotValues: Object map that can randomly or statically generate a dot (used for weapon objects.)
 	staticDotValues = {
 		{"attribute", 0, 0}, -- See CreatureAttributes.h in src for numbers.
-		{"strength", 1, 100},
-		{"duration", 60, 180},
-		{"potency", 50, 100},
+		{"strength", 75, 150},
+		{"duration", 120, 180},
+		{"potency", 75, 100},
 		{"uses", -777, -777}
 	},
 }
