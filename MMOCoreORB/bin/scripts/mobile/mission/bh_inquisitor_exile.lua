@@ -1,8 +1,8 @@
 bh_inquisitor_exile = Creature:new {
   customName = "Exiled Inquisitor",
 	mobType = MOB_NPC,
-	socialGroup = "imperial",
-	faction = "imperial",
+	socialGroup = "",
+	faction = "",
 	level = 130,
 	chanceHit = 4.0,
 	damageMin = 770,
