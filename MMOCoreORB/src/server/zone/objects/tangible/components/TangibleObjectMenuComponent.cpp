@@ -321,12 +321,12 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 		}
 
 		for (int i = 0; i < mods->size(); i++) {
-			StringId attachmentName;
+			StringBuffer attachmentName;
 			String key = mods->elementAt(i).getKey();
-			if (System::random(100) < seaRemovalChance) {
-				
-				attachmentName.setStringId("stat_n", key);
 
+			attachmentName << "cat_skill_mod_bonus.@stat_n:" << key;
+
+			if (System::random(100) < seaRemovalChance) {
 				sea = lootManager->createLootAttachment(itemTemplate, key, mods->elementAt(i).getValue());
 				
 				if (sea != nullptr) {

@@ -36,7 +36,7 @@ public:
 		else
 			creature->doCombatAnimation(defender,STRING_HASHCODE("tumble_facing"),0,0xFF);
 
-		if (creature->isDizzied() && System::random(100) < 85) {
+		if (creature->isDizzied() && System::random(100) < 90) {
 			creature->queueDizzyFallEvent();
 		} else {
 			Reference<StateBuff*> buff = new StateBuff(creature, CreatureState::TUMBLING, 1);

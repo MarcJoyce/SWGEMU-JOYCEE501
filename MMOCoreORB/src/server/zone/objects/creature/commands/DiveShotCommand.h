@@ -27,7 +27,7 @@ public:
 		if (ret != SUCCESS)
 			return ret;
 
-		if (creature->isDizzied() && System::random(100) < 85) {
+		if (creature->isDizzied() && System::random(100) < 90) {
 			creature->queueDizzyFallEvent();
 		}
 

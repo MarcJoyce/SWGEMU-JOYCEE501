@@ -141,10 +141,10 @@ int CraftingSessionImplementation::startSession() {
 	dplay9->setExperimentationEnabled(craftingStation != nullptr);
 	dplay9->setCraftingState(1);
 
-	if (craftingStation != nullptr)
-		dplay9->setClosestCraftingStation(craftingStation->getObjectID());
-	else
-		dplay9->setClosestCraftingStation(0);
+	//if (craftingStation != nullptr)
+	//	dplay9->setClosestCraftingStation(craftingStation->getObjectID());
+	//else
+	dplay9->setClosestCraftingStation(0);
 
 	dplay9->setExperimentationPoints(experimentationPointsTotal);
 	dplay9->close();

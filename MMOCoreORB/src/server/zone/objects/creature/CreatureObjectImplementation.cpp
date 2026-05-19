@@ -2837,6 +2837,9 @@ void CreatureObjectImplementation::queueDizzyFallEvent() {
 	if (hasDizzyEvent())
 		return;
 
+	if (isPlayerCreature() && System::random(100) < 80)
+		return;
+
 	dizzyFallDownEvent = new DizzyFallDownEvent(asCreatureObject());
 	dizzyFallDownEvent->schedule(100);
 }
@@ -3087,13 +3090,27 @@ void CreatureObjectImplementation::activateHAMRegeneration(int latency) {
 
 	if (!isInCombat())
 		modifier *= 2;
+
+	// 4000 = 24.76
+	// 3750 = 23.21
+	// 3500 = 21.67
+	// 3250 = 20.12
+	// 3000 = 18.57
+	// 2750 = 17.02
+	// 2500 = 15.48
+
+	int fixedValue = 3250;
+
+
+	int constituiton = Math::min(fixedValue, getHAM(CreatureAttribute::CONSTITUTION));
+	int stamina = Math::min(fixedValue, getHAM(CreatureAttribute::STAMINA));
+	int willpower = Math::min(fixedValue, getHAM(CreatureAttribute::WILLPOWER));
+
+
 	// this formula gives the amount of regen per second
-	uint32 healthTick = (uint32) ceil((float) Math::max(0, getHAM(
-			CreatureAttribute::CONSTITUTION)) * 13.0f / 2100.0f * modifier);
-	uint32 actionTick = (uint32) ceil((float) Math::max(0, getHAM(
-			CreatureAttribute::STAMINA)) * 13.0f / 2100.0f * modifier);
-	uint32 mindTick = (uint32) ceil((float) Math::max(0, getHAM(
-			CreatureAttribute::WILLPOWER)) * 13.0f / 2100.0f * modifier);
+	uint32 healthTick = (uint32) ceil((float) Math::max(0, constituiton) * 13.0f / 2100.0f * modifier);
+	uint32 actionTick = (uint32) ceil((float) Math::max(0, stamina) * 13.0f / 2100.0f * modifier);
+	uint32 mindTick = (uint32) ceil((float) Math::max(0, willpower) * 13.0f / 2100.0f * modifier);
 
 	if (healthTick < 1)
 		healthTick = 1;
@@ -3560,7 +3577,7 @@ bool CreatureObjectImplementation::isAttackableBy(CreatureObject* creature, bool
 				ManagedReference<PetControlDevice*> pcd = creature->getControlDevice().get().castTo<PetControlDevice*>();
 
 				if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && isNeutral()) {
-					return false;
+					// return false;
 				}
 
 				ManagedReference<CreatureObject*> owner = creature->getLinkedCreature().get();

@@ -4142,8 +4142,8 @@ bool AiAgentImplementation::isAggressive(TangibleObject* target) {
 	if (targetIsAgent && targetCreo->isPet() && !targetCreo->asAiAgent()->isMindTricked()) {
 		ManagedReference<PetControlDevice*> pcd = targetCreo->getControlDevice().get().castTo<PetControlDevice*>();
 
-		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && isNeutral())
-			return false;
+		// if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && isNeutral())
+		// 	return false;
 
 		ManagedReference<CreatureObject*> owner = targetCreo->getLinkedCreature().get();
 
@@ -4156,9 +4156,9 @@ bool AiAgentImplementation::isAggressive(TangibleObject* target) {
 	if (isPet() && !isMindTricked()) {
 		ManagedReference<PetControlDevice*> pcd = getControlDevice().get().castTo<PetControlDevice*>();
 
-		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && targetCreo->isNeutral()) {
-			return false;
-		}
+		// if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && targetCreo->isNeutral()) {
+		// 	return false;
+		// }
 
 		ManagedReference<CreatureObject*> owner = getLinkedCreature().get();
 
@@ -4286,8 +4286,8 @@ bool AiAgentImplementation::isAttackableBy(TangibleObject* object) {
 	if (isPet() && !isMindTricked()) {
 		ManagedReference<PetControlDevice*> pcd = getControlDevice().get().castTo<PetControlDevice*>();
 
-		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && object->isNeutral())
-			return false;
+		// if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && object->isNeutral())
+		// 	return false;
 
 		ManagedReference<CreatureObject*> owner = getLinkedCreature().get();
 
@@ -4341,9 +4341,9 @@ bool AiAgentImplementation::isAttackableBy(CreatureObject* creature) {
 	// Handle Pets - Check against owner
 	if (isPet() && !isMindTricked()) {
 		ManagedReference<PetControlDevice*> pcd = getControlDevice().get().castTo<PetControlDevice*>();
-		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && creature->isNeutral()) {
-			return false;
-		}
+		// if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && creature->isNeutral()) {
+		// 	return false;
+		// }
 
 		ManagedReference<CreatureObject*> owner = getLinkedCreature().get();
 
@@ -4360,8 +4360,8 @@ bool AiAgentImplementation::isAttackableBy(CreatureObject* creature) {
 	if (creature->isPet()) {
 		ManagedReference<PetControlDevice*> controlDevice = creature->getControlDevice().get().castTo<PetControlDevice*>();
 
-		if (controlDevice != nullptr && controlDevice->getPetType() == PetManager::FACTIONPET && isNeutral())
-			return false;
+		// if (controlDevice != nullptr && controlDevice->getPetType() == PetManager::FACTIONPET && isNeutral())
+		// 	return false;
 
 		ManagedReference<CreatureObject*> owner = creature->getLinkedCreature().get();
 

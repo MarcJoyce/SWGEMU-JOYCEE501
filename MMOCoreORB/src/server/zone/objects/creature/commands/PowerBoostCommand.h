@@ -55,7 +55,9 @@ public:
 
 		int baseMind = player->getBaseHAM(CreatureAttribute::MIND);
 
-		int pbBonus = baseMind / 2;
+		int pbBonus = baseMind;
+
+		pbBonus = Math::max(1100, pbBonus);
 
 		int meditateMod = player->getSkillMod("meditate");
 

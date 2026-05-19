@@ -42,7 +42,7 @@ public:
 	}
 
 	int setAiAgentPosture(CreatureObject* creature) const {
-		if (creature->isNonPlayerCreatureObject() && creature->isDizzied() && System::random(100) < 85) {
+		if (creature->isNonPlayerCreatureObject() && creature->isDizzied() && System::random(100) < 90) {
 			creature->queueDizzyFallEvent();
 			return SUCCESS;
 		}
@@ -58,7 +58,7 @@ public:
 			return GENERALERROR;
 		}
 
-		if (creature->isDizzied() && System::random(100) < 85) {
+		if (creature->isDizzied() && System::random(100) < 90) {
 			creature->queueDizzyFallEvent();
 			return SUCCESS;
 		}

@@ -35,7 +35,7 @@ public:
 
 		creature->inflictDamage(creature, CreatureAttribute::ACTION, actionCost, false);
 
-		if (creature->isDizzied() && System::random(100) < 85) {
+		if (creature->isDizzied() && System::random(100) < 90) {
 			creature->queueDizzyFallEvent();
 		} else {
 			if (creature->isInCombat()) {

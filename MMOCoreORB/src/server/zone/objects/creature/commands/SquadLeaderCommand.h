@@ -73,8 +73,8 @@ public:
 		if (target == leader)
 			return true;
 
-		if (leader->getZone() != target->getZone())
-			return false;
+		// if (leader->getZone() != target->getZone())
+			// return false;
 
 		CreatureObject* targetCreo = target;
 
@@ -86,11 +86,11 @@ public:
 		}
 
 		// Use healing checks
-		if (!targetCreo->isHealableBy(leader))
-			return false;
+		// if (!targetCreo->isHealableBy(leader))
+		// 	return false;
 
-		if (target->getParentRecursively(SceneObjectType::BUILDING) != leader->getParentRecursively(SceneObjectType::BUILDING))
-			return false;
+		// if (target->getParentRecursively(SceneObjectType::BUILDING) != leader->getParentRecursively(SceneObjectType::BUILDING))
+		// 	return false;
 
 		return true;
 	}
