@@ -62,7 +62,7 @@ object_creature_player_trandoshan_female = object_creature_player_shared_trandos
 		startingItems = { 
 		"object/tangible/wearables/armor/padded/armor_padded_s01_helmet.iff",
 		"object/tangible/wearables/armor/padded/armor_padded_s01_gloves.iff",
-		"object/tangible/wearables/armor/padded/armor_padded_s01_boots.iff",
+		"object/tangible/wearables/armor/padded/armor_padded_s01_leggings.iff",
 		"object/tangible/wearables/armor/padded/armor_padded_s01_chest_plate.iff"
 	},
 	startingSkills = { "species_trandoshan", "social_language_basic_comprehend", "social_language_basic_speak" , "social_language_trandoshan_comprehend", "social_language_trandoshan_speak" }
