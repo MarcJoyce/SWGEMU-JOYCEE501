@@ -18,15 +18,15 @@ BBWeaponsConfig = {
 
 BBWeaponsItems = {
 	-- Starter
-	{350, 5, 1, 0, "axe"},
-	{350, 5, 1, 0, "carbine_blaster_cdef"},
-	{350, 5, 1, 0, "knife_survival"},
-	{350, 5, 1, 0, "pistol_blaster_cdef"},
-	{350, 5, 1, 0, "rifle_blaster_cdef"},
-	{350, 5, 1, 0, "staff"},
-	{350, 5, 1, 0, "rifle_blaster_dlt20"},
-	{350, 5, 1, 0, "rifle_light_blaster_dh17_carbine"},
-	{350, 5, 1, 0, "pistol_blaster_d18"},
+	{100, 5, 1, 0, "axe"},
+	{100, 5, 1, 0, "carbine_blaster_cdef"},
+	{100, 5, 1, 0, "knife_survival"},
+	{100, 5, 1, 0, "pistol_blaster_cdef"},
+	{100, 5, 1, 0, "rifle_blaster_cdef"},
+	{100, 5, 1, 0, "staff"},
+	{100, 5, 1, 0, "rifle_blaster_dlt20"},
+	{100, 5, 1, 0, "rifle_light_blaster_dh17_carbine"},
+	{100, 5, 1, 0, "pistol_blaster_d18"},
 
 	-- Tier 1 Marksman/Brawler
 	{1000, 5, 1, 0, "baton_gaderiffi"},
@@ -56,14 +56,14 @@ BBWeaponsItems = {
 	{2500, 5, 1, 0, "rifle_bowcaster"},
 
 	-- Tier 3 Marksman/Brawler
-	{4500, 5, 1, 0, "sword_ryyk_blade"},
-	{4500, 5, 1, 0, "axe_vibro"},
-	{4500, 5, 1, 0, "poleaxe_vibro"},
-	{4500, 5, 1, 0, "rifle_spray_stick_stohli"},
-	{4500, 5, 1, 0, "pistol_blaster_power5"},
-	{4500, 5, 1, 0, "pistol_projectile_striker"},
-	{4500, 5, 1, 0, "rifle_light_blaster_laser_carbine"},
-	{4500, 5, 1, 0, "pistol_geo_sonic_blaster"},
+	{5000, 5, 1, 0, "sword_ryyk_blade"},
+	{5000, 5, 1, 0, "axe_vibro"},
+	{5000, 5, 1, 0, "poleaxe_vibro"},
+	{5000, 5, 1, 0, "rifle_spray_stick_stohli"},
+	{5000, 5, 1, 0, "pistol_blaster_power5"},
+	{5000, 5, 1, 0, "pistol_projectile_striker"},
+	{5000, 5, 1, 0, "rifle_light_blaster_laser_carbine"},
+	{5000, 5, 1, 0, "pistol_geo_sonic_blaster"},
 
 	-- Tier 4 Marksman/Brawler
 	{7500, 5, 1, 0, "cleaver"},
@@ -78,20 +78,20 @@ BBWeaponsItems = {
 	{7500, 5, 1, 0, "rifle_blaster_ionization_jawa"},
 
 	-- Elite professions
-	{10500, 5, 1, 0, "knuckler_vibro"},
-	{10500, 5, 1, 0, "rifle_t21"},
-	{10500, 5, 1, 0, "pistol_scatter"},
-	{10500, 5, 1, 0, "rifle_lightning"},
-	{10500, 5, 1, 0, "heavy_acid_beam"},
-	{10500, 5, 1, 0, "heavy_lightning_beam"},
-	{10500, 5, 1, 0, "heavy_particle_beam"},
-	{10500, 5, 1, 0, "heavy_rocket_launcher"},
-	{10500, 5, 1, 0, "pistol_launcher"},
-	{10500, 5, 1, 0, "rifle_acid_beam"},
-	{10500, 5, 1, 0, "rifle_beam"},
-	{10500, 5, 1, 0, "rifle_flame_thrower"},
-	{10500, 5, 1, 0, "pistol_disrupter_dx2"},
-	{10500, 5, 1, 0, "pistol_republic_blaster"},
+	{10000, 5, 1, 0, "knuckler_vibro"},
+	{10000, 5, 1, 0, "rifle_t21"},
+	{10000, 5, 1, 0, "pistol_scatter"},
+	{10000, 5, 1, 0, "rifle_lightning"},
+	{10000, 5, 1, 0, "heavy_acid_beam"},
+	{10000, 5, 1, 0, "heavy_lightning_beam"},
+	{10000, 5, 1, 0, "heavy_particle_beam"},
+	{10000, 5, 1, 0, "heavy_rocket_launcher"},
+	{10000, 5, 1, 0, "pistol_launcher"},
+	{10000, 5, 1, 0, "rifle_acid_beam"},
+	{10000, 5, 1, 0, "rifle_beam"},
+	{10000, 5, 1, 0, "rifle_flame_thrower"},
+	{10000, 5, 1, 0, "pistol_disrupter_dx2"},
+	{10000, 5, 1, 0, "pistol_republic_blaster"},
 }
 
 -- BBWeaponsItems = {

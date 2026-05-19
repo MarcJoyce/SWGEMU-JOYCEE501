@@ -19,7 +19,7 @@ greeting = ConvoScreen:new {
   stopConversation = "false",
   options = {
     { "What do you have for sale?", "what_do_you_sell" },
-    { "Do you have any information about the Force?", "force_info" },
+    -- { "Do you have any information about the Force?", "force_info" },
     { "Goodbye.", "goodbye" }
   }
 }
@@ -28,10 +28,46 @@ jedi_shop_keeper_convo_template:addScreen(greeting)
 what_do_you_sell = ConvoScreen:new {
   id = "what_do_you_sell",
   customDialogText = "I have a variety of Force Relics for sale. Some are quite rare and powerful, while others are more common. What exactly did you have in mind?",
-  stopConversation = "true",
+  stopConversation = "false",
   options = {}
 }
 jedi_shop_keeper_convo_template:addScreen(what_do_you_sell)
+
+local purchase = {
+  "color_crystal",
+  "power_crystal",
+  "pearl",
+  "named_crystal",
+  "bnars_sacrifice",
+  "baass_wisdom",
+  "banes_heart",
+  "bondaras_folly",
+  "dawn_of_dagobah",
+  "gallias_intuition",
+  "horns_future",
+  "kenobis_legacy",
+  "kits_ferocity",
+  "kuns_blood",
+  "mauls_vengence",
+  "mundis_response",
+  "prowess_of_plo_koon",
+  "qui_gons_devotion",
+  "quintessence_of_the_force",
+  "strength_of_luminaria",
+  "sunriders_destiny",
+  "ulics_redemption",
+  "windus_guile"
+}
+
+for _, id in ipairs(purchase) do
+  local screen = ConvoScreen:new {
+    id = id,
+    customDialogText = "Thank you for your purchase, goodbye.",
+    stopConversation = "true",
+    options = {}
+  }
+  jedi_shop_keeper_convo_template:addScreen(screen)
+end
 
 force_info = ConvoScreen:new {
   id = "force_info",
@@ -45,7 +81,7 @@ jedi_shop_keeper_convo_template:addScreen(force_info)
 
 goodbye = ConvoScreen:new {
   id = "goodbye",
-  customDialogText = "May the Force be with you, Master.",
+  customDialogText = "May the Force be with you.",
   stopConversation = "true",
   options = {}
 }

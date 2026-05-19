@@ -10,6 +10,10 @@ function stanConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
 	local accountID = 0
 	local pAdminPlayer = getCreatureObject(281474993547517)
 
+	if (VillageJediManagerCommon.hasJediProgressionScreenPlayState(pPlayer, VILLAGE_JEDI_PROGRESSION_GLOWING) and not VillageJediManagerCommon.hasUnlockedBranch(pPlayer, "force_sensitive_heightened_senses_persuasion")) then
+		VillageJediManagerCommon.unlockBranch(pPlayer, "force_sensitive_heightened_senses_persuasion")
+	end
+
   return convoTemplate:getScreen("hello")
 end
 

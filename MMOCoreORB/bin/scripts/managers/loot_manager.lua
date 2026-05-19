@@ -211,7 +211,7 @@ lootableClothingAttachmentStatMods = {
 	"grenade_assembly",
 	"grenade_experimentation",
 	"group_slope_move",
-	"healing_ability",
+	--"healing_ability",
 	"healing_dance_mind",
 	"healing_dance_shock",
 	"healing_dance_wound",

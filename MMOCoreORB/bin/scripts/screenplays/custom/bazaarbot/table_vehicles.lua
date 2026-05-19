@@ -10,7 +10,7 @@ BBVehicleConfig = {
 }
 
 BBVehicleItems = {
-  {1000, 5, 1, 0, "landspeeder_x34"},
-  {2500, 5, 1, 0, "speeder_bike"},
+  {250, 5, 1, 0, "landspeeder_x34"},
+  {500, 5, 1, 0, "speeder_bike"},
   {5000, 5, 1, 0, "speeder_bike_swoop"}
 }

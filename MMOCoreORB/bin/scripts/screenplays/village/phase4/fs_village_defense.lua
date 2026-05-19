@@ -65,10 +65,12 @@ function FsVillageDefense:checkHealerList(healerList)
 			local pQuest
 
 			if (QuestManager.hasActiveQuest(pPlayer, QuestManager.quests.FS_COMBAT_HEALING_2)) then
-				healReq = 100
+				-- healReq = 100
+				healReq = 6
 				pQuest = getQuestInfo("fs_combat_healing_2")
 			else
-				healReq = 50
+				-- healReq = 50
+				healReq = 3
 				pQuest = getQuestInfo("fs_combat_healing_1")
 			end
 

@@ -16,7 +16,7 @@ BBClothingConfig = {
 -- altTemplate: Items such as statues that have a drop down to choose alternate final objects
 -- Items that don't have altTemplates and should be the same price can be grouped together
 BBClothingItems = {
-	{250, 2, 1, 0, 
+	{25, 2, 1, 0, 
 	"backpack_field_01",
 	"backpack_field_03",
 	"backpack_field_04",

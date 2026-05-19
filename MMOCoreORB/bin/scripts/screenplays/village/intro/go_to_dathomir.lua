@@ -28,6 +28,7 @@ function GoToDathomir:onEnteredActiveArea(pPlayer)
 
 	VillageJediManagerCommon.unlockBranch(pPlayer, "force_sensitive_enhanced_reflexes_ranged_defense")
 	VillageJediManagerCommon.unlockBranch(pPlayer, "force_sensitive_enhanced_reflexes_melee_defense")
+	VillageJediManagerCommon.unlockBranch(pPlayer, "force_sensitive_heightened_senses_persuasion")
 end
 
 -- Event handler for the onSuccessfulSpawn.

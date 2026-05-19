@@ -87,6 +87,29 @@ function Arena:start()
 	end
 end
 
+function Arena:onPlayerLoggedIn(pPlayer)
+  dropObserver(OBJECTDESTRUCTION, "Arena", "notifyPlayerKilled", pPlayer)
+  local zoneName = CreatureObject(pPlayer):getZoneName()
+
+  if (zoneName == nil or not zoneName == "lok") then
+    return 0
+  end
+
+	local x = CreatureObject(pPlayer):getPositionX()
+	local y = CreatureObject(pPlayer):getPositionY()
+
+  if (x == nil or y == nil) then
+    return 0;
+  end
+
+  if (x >= -3032 and x <= -2968 and y >= 468 and y <= 532) then
+    SceneObject(pPlayer):switchZone("lok", -3042, 66, 502, 0)
+    CreatureObject(pPlayer):revivePatient()
+
+  end
+  
+end
+
 function Arena:validateEvent()
   if (hasServerEvent(self.eventName)) then
     local eventID = getServerEventID(self.eventName)
@@ -271,7 +294,7 @@ function Arena:stopArena(pPlayer)
   deleteScreenPlayData(pPlayer, "Arena", ":arenaWaveCount")
   writeScreenPlayData(pAdminPlayer, "Arena", "occupied", 0)
 
-  writeScreenPlayData(pPlayer, "NonEncounterEvent", "inEvent", 0)
+  deleteScreenPlayData(pPlayer, "NonEncounterEvent", "inEvent")
 
   createEvent(2500, "Arena", "resetPlayer", pPlayer, "")
   return 0
@@ -281,7 +304,6 @@ function Arena:resetPlayer(pPlayer)
   SceneObject(pPlayer):switchZone("lok", -3042, 66, 502, 0)
   CreatureObject(pPlayer):revivePatient()
   writeScreenPlayData(pPlayer, "Arena", ":arenaCooldown", os.time() + self.playerCooldown)
-
 end
 
 function Arena:notifyPlayerKilled(pPlayer, pVictim, nothing)

@@ -10,7 +10,7 @@ BBDroidConfig = {
 }
 
 BBDroidItems = {
-  {5000, 5, 10, 0, "bounty_probot_transmitter", "bounty_seeker_transmitter" },
+  {500, 10, 25, 0, "bounty_probot_transmitter", "bounty_seeker_transmitter" },
 }
 
 -- /component/advanced_droid_frame

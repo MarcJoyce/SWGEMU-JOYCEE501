@@ -54,6 +54,9 @@ includeFile("themepark/smc/themeParkSmcZideera.lua")
 includeFile("themepark/smc/themeParkSmcVhaundaIzaryx.lua")
 includeFile("themepark/smc/themeParkSmcVurleneAujante.lua")
 
+includeFile("themepark/custom/jedi/light/themeParkLightJedi.lua")
+includeFile("themepark/custom/jedi/dark/themeParkDarkJedi.lua")
+
 -- Screenplay utilities
 includeFile("utils/quest_spawner.lua")
 
@@ -767,6 +770,10 @@ includeFile("custom/jedi/conversations/lazarus_convo_handler.lua")
 includeFile("custom/jedi/conversations/hermit_convo_handler.lua")
 
 includeFile("custom/jedi/conversations/herald_convo_handler.lua")
+
+includeFile("custom/jedi/conversations/light_jedi_padawan_convo_handler.lua")
+includeFile("custom/jedi/conversations/dark_jedi_padawan_convo_handler.lua")
+includeFile("custom/jedi/conversations/jedi_shop_keeper_convo_handler.lua")
 
 includeFile("custom/bountyhunter/conversations/shae_torrvek_convo_handler.lua")
 

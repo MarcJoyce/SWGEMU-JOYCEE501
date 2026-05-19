@@ -17,7 +17,7 @@ BBFoodConfig = {
 -- Items that don't have altTemplates and should be the same price can be grouped together
 
 BBFoodItems = {
-	{ 1000, 10, 10, 0, 
+	{ 500, 10, 25, 0, 
 		"dessert_air_cake",
 		"dessert_almond_kwevvu_crisp_munchies",
 		"dessert_bantha_butter",

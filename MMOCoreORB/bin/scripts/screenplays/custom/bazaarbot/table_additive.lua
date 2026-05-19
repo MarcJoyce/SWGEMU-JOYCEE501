@@ -17,5 +17,5 @@ BBAdditiveConfig = {
 -- Items that don't have altTemplates and should be the same price can be grouped together
 
 BBAdditiveItems = {
-  {5000, 5, 25, 0, "additive_light", "additive_medium", "additive_heavy" }
+  {500, 5, 25, 0, "additive_light", "additive_medium", "additive_heavy" }
 }
